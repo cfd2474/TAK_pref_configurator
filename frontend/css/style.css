@@ -439,6 +439,94 @@ dialog::backdrop {
   word-break: break-word;
 }
 
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.apk-scan-body {
+  padding: 1.25rem;
+}
+
+.apk-scan-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.apk-scan-message {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.apk-scan-message.is-scanning {
+  color: var(--muted);
+}
+
+.apk-scan-message.is-success {
+  color: #86efac;
+}
+
+.apk-scan-message.is-warning {
+  color: #fcd34d;
+}
+
+.apk-scan-message.is-error {
+  color: #fca5a5;
+}
+
+.apk-scan-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #60a5fa;
+  border-radius: 50%;
+  animation: apk-scan-spin 0.8s linear infinite;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+@keyframes apk-scan-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.apk-scan-details {
+  margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: minmax(8rem, 34%) 1fr;
+  gap: 0.35rem 1rem;
+  font-size: 0.9rem;
+}
+
+.apk-scan-details dt {
+  margin: 0;
+  color: var(--muted);
+}
+
+.apk-scan-details dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+.apk-scan-warnings {
+  margin: 1rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.apk-scan-warnings li + li {
+  margin-top: 0.35rem;
+}
+
+#apk-scan-dialog {
+  width: min(560px, 92vw);
+}
+
 .icon-btn {
   background: transparent;
   border: none;

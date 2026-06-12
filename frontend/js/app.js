@@ -40,6 +40,13 @@ const els = {
   previewBtn: document.getElementById("preview-btn"),
   importFile: document.getElementById("import-file"),
   importPluginApk: document.getElementById("import-plugin-apk"),
+  apkScanDialog: document.getElementById("apk-scan-dialog"),
+  apkScanTitle: document.getElementById("apk-scan-title"),
+  apkScanSpinner: document.getElementById("apk-scan-spinner"),
+  apkScanMessage: document.getElementById("apk-scan-message"),
+  apkScanDetails: document.getElementById("apk-scan-details"),
+  apkScanWarnings: document.getElementById("apk-scan-warnings"),
+  apkScanAck: document.getElementById("apk-scan-ack"),
   previewDialog: document.getElementById("preview-dialog"),
   previewContent: document.getElementById("preview-content"),
   closePreview: document.getElementById("close-preview"),
@@ -67,6 +74,10 @@ function bindEvents() {
   els.previewBtn.addEventListener("click", previewPref);
   els.importFile.addEventListener("change", importPref);
   els.importPluginApk.addEventListener("change", importPluginApk);
+  els.apkScanAck.addEventListener("click", () => els.apkScanDialog.close());
+  els.apkScanDialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+  });
   els.closePreview.addEventListener("click", () => els.previewDialog.close());
   els.filename.addEventListener("change", normalizeFilename);
 }
@@ -265,6 +276,90 @@ function removePluginCategory(categoryId) {
   showToast("Plugin category removed");
 }
 
+function resetApkScanModal() {
+  els.apkScanTitle.textContent = "Scan Plugin APK";
+  els.apkScanSpinner.hidden = true;
+  els.apkScanMessage.textContent = "";
+  els.apkScanMessage.className = "apk-scan-message";
+  els.apkScanDetails.hidden = true;
+  els.apkScanDetails.innerHTML = "";
+  els.apkScanWarnings.hidden = true;
+  els.apkScanWarnings.innerHTML = "";
+  els.apkScanAck.disabled = true;
+}
+
+function appendApkScanDetail(label, value) {
+  const dt = document.createElement("dt");
+  dt.textContent = label;
+  const dd = document.createElement("dd");
+  dd.textContent = value;
+  els.apkScanDetails.appendChild(dt);
+  els.apkScanDetails.appendChild(dd);
+}
+
+function setApkScanModalState(state, payload = {}) {
+  resetApkScanModal();
+
+  if (state === "scanning") {
+    els.apkScanTitle.textContent = "Scanning Plugin APK";
+    els.apkScanSpinner.hidden = false;
+    els.apkScanMessage.textContent = `Reading and decoding ${payload.filename || "APK"}…`;
+    els.apkScanMessage.classList.add("is-scanning");
+    return;
+  }
+
+  els.apkScanAck.disabled = false;
+
+  if (state === "success") {
+    els.apkScanTitle.textContent = "Plugin Scan Complete";
+    els.apkScanMessage.textContent = `Found ${payload.fieldCount} preference field${payload.fieldCount === 1 ? "" : "s"}. Category added to navigation.`;
+    els.apkScanMessage.classList.add("is-success");
+    els.apkScanDetails.hidden = false;
+    appendApkScanDetail("File", payload.filename || "—");
+    appendApkScanDetail("Plugin", payload.pluginName || "—");
+    appendApkScanDetail("Package", payload.pluginPackage || "—");
+    appendApkScanDetail("Category", payload.categoryTitle || "—");
+    appendApkScanDetail("Preference fields", String(payload.fieldCount));
+    if (payload.sourceFiles?.length) {
+      appendApkScanDetail("Source XML", payload.sourceFiles.join(", "));
+    }
+  } else if (state === "empty") {
+    els.apkScanTitle.textContent = "No Preferences Found";
+    els.apkScanMessage.textContent =
+      "The APK was scanned successfully, but no preference fields were extracted. No category was added.";
+    els.apkScanMessage.classList.add("is-warning");
+    els.apkScanDetails.hidden = false;
+    appendApkScanDetail("File", payload.filename || "—");
+    appendApkScanDetail("Plugin", payload.pluginName || "—");
+    appendApkScanDetail("Package", payload.pluginPackage || "—");
+    if (payload.sourceFiles?.length) {
+      appendApkScanDetail("XML scanned", payload.sourceFiles.join(", "));
+    }
+  } else {
+    els.apkScanTitle.textContent = "Plugin Scan Failed";
+    els.apkScanMessage.textContent = payload.message || "Unable to scan this APK.";
+    els.apkScanMessage.classList.add("is-error");
+    els.apkScanDetails.hidden = false;
+    appendApkScanDetail("File", payload.filename || "—");
+  }
+
+  const warnings = payload.warnings || [];
+  if (warnings.length) {
+    els.apkScanWarnings.hidden = false;
+    for (const warning of warnings) {
+      const item = document.createElement("li");
+      item.textContent = warning;
+      els.apkScanWarnings.appendChild(item);
+    }
+  }
+}
+
+function openApkScanModal(filename) {
+  resetApkScanModal();
+  setApkScanModalState("scanning", { filename });
+  els.apkScanDialog.showModal();
+}
+
 async function importPluginApk(event) {
   const file = event.target.files?.[0];
   event.target.value = "";
@@ -275,14 +370,31 @@ async function importPluginApk(event) {
     return;
   }
 
+  openApkScanModal(file.name);
+
   const formData = new FormData();
   formData.append("file", file);
 
   try {
-    showToast(`Scanning ${file.name}…`);
     const response = await fetch("/api/plugins/scan", { method: "POST", body: formData });
     const data = await response.json();
     if (!response.ok) throw new Error(data.detail || "Plugin scan failed");
+
+    const fieldCount = data.stats?.field_count ?? 0;
+    const modalPayload = {
+      filename: file.name,
+      pluginName: data.plugin?.name,
+      pluginPackage: data.plugin?.package,
+      categoryTitle: data.category?.title,
+      fieldCount,
+      sourceFiles: data.stats?.source_files || [],
+      warnings: data.warnings || [],
+    };
+
+    if (fieldCount === 0) {
+      setApkScanModalState("empty", modalPayload);
+      return;
+    }
 
     const category = {
       ...data.category,
@@ -298,9 +410,12 @@ async function importPluginApk(event) {
     buildNavigation(els.search.value.trim());
     renderPanel();
     scrollContentToTop();
-    showToast(`Added ${data.stats.field_count} fields from ${data.plugin?.name || file.name}`);
+    setApkScanModalState("success", modalPayload);
   } catch (error) {
-    showToast(error.message, true);
+    setApkScanModalState("error", {
+      filename: file.name,
+      message: error.message,
+    });
   }
 }
 

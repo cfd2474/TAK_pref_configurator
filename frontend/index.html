@@ -52,6 +52,23 @@
     <pre id="preview-content"></pre>
   </dialog>
 
+  <dialog id="apk-scan-dialog">
+    <div class="dialog-header">
+      <h2 id="apk-scan-title">Scan Plugin APK</h2>
+    </div>
+    <div class="apk-scan-body">
+      <div id="apk-scan-status" class="apk-scan-status" aria-live="polite">
+        <div id="apk-scan-spinner" class="apk-scan-spinner" hidden aria-hidden="true"></div>
+        <p id="apk-scan-message" class="apk-scan-message"></p>
+      </div>
+      <dl id="apk-scan-details" class="apk-scan-details" hidden></dl>
+      <ul id="apk-scan-warnings" class="apk-scan-warnings" hidden></ul>
+    </div>
+    <div class="dialog-footer">
+      <button type="button" id="apk-scan-ack" class="btn btn-primary" disabled>Acknowledge</button>
+    </div>
+  </dialog>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="/js/app.js"></script>
