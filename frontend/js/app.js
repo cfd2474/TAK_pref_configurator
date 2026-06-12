@@ -21,6 +21,7 @@ const state = {
   schemaFieldKeys: new Set(),
   activePanel: "cot_streams",
   preferences: {},
+  pluginCategories: [],
   connections: {
     cot_inputs: [],
     cot_outputs: [],
@@ -38,6 +39,7 @@ const els = {
   downloadBtn: document.getElementById("download-btn"),
   previewBtn: document.getElementById("preview-btn"),
   importFile: document.getElementById("import-file"),
+  importPluginApk: document.getElementById("import-plugin-apk"),
   previewDialog: document.getElementById("preview-dialog"),
   previewContent: document.getElementById("preview-content"),
   closePreview: document.getElementById("close-preview"),
@@ -64,6 +66,7 @@ function bindEvents() {
   els.downloadBtn.addEventListener("click", downloadPref);
   els.previewBtn.addEventListener("click", previewPref);
   els.importFile.addEventListener("change", importPref);
+  els.importPluginApk.addEventListener("change", importPluginApk);
   els.closePreview.addEventListener("click", () => els.previewDialog.close());
   els.filename.addEventListener("change", normalizeFilename);
 }
@@ -87,9 +90,17 @@ function scrollContentToTop() {
   }
 }
 
+function allCategories() {
+  return [...(state.schema?.categories || []), ...state.pluginCategories];
+}
+
+function rebuildSchemaFieldKeys() {
+  state.schemaFieldKeys = buildSchemaFieldKeys();
+}
+
 function buildSchemaFieldKeys() {
   const keys = new Set();
-  for (const category of state.schema.categories) {
+  for (const category of allCategories()) {
     for (const field of category.fields || []) keys.add(field.key);
     for (const section of category.sections || []) {
       for (const field of section.fields || []) keys.add(field.key);
@@ -123,6 +134,12 @@ function buildNavigation(filter = "") {
     items.push({ id: category.id, label, group: "ATAK Settings" });
   }
 
+  for (const category of state.pluginCategories) {
+    const label = category.title || category.id;
+    if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
+    items.push({ id: category.id, label, group: "ATAK Settings", plugin: true, deletable: true });
+  }
+
   els.nav.innerHTML = "";
   let currentGroup = "";
   for (const item of items) {
@@ -133,10 +150,14 @@ function buildNavigation(filter = "") {
       groupLabel.textContent = currentGroup;
       els.nav.appendChild(groupLabel);
     }
+    const row = document.createElement("div");
+    row.className = "nav-item-row" + (state.activePanel === item.id ? " active" : "");
+
     const button = document.createElement("button");
     button.type = "button";
     button.className = "nav-item" + (state.activePanel === item.id ? " active" : "");
     button.textContent = item.label;
+    if (item.plugin) button.classList.add("plugin-nav-item");
     button.addEventListener("click", () => {
       if (state.activePanel === item.id) return;
       state.activePanel = item.id;
@@ -144,7 +165,23 @@ function buildNavigation(filter = "") {
       renderPanel();
       scrollContentToTop();
     });
-    els.nav.appendChild(button);
+    row.appendChild(button);
+
+    if (item.deletable) {
+      const deleteBtn = document.createElement("button");
+      deleteBtn.type = "button";
+      deleteBtn.className = "nav-delete-btn";
+      deleteBtn.title = "Remove category";
+      deleteBtn.setAttribute("aria-label", `Remove ${item.label}`);
+      deleteBtn.textContent = "×";
+      deleteBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        removePluginCategory(item.id);
+      });
+      row.appendChild(deleteBtn);
+    }
+
+    els.nav.appendChild(row);
   }
 }
 
@@ -159,19 +196,111 @@ function renderPanel() {
     return;
   }
 
-  const category = state.schema.categories.find((c) => c.id === state.activePanel);
+  const category = allCategories().find((c) => c.id === state.activePanel);
   if (!category) return;
 
   els.panelTitle.textContent = category.title || category.id;
-  els.panelDescription.textContent =
-    "ATAK Shared Preferences (com.atakmap.app.civ_preferences). Leave fields unset or Off to omit them from the generated .pref file.";
+  if (category.source === "plugin_apk") {
+    const group = category.preference_group || PREFERENCE_GROUP;
+    const warnings = (category.warnings || []).join(" ");
+    els.panelDescription.textContent =
+      `Scanned from plugin APK (${category.plugin?.package || "unknown"}). Exports to ${group}. ${warnings}`;
+  } else {
+    els.panelDescription.textContent =
+      "ATAK Shared Preferences (com.atakmap.app.civ_preferences). Leave fields unset or Off to omit them from the generated .pref file.";
+  }
   els.form.innerHTML = "";
 
-  for (const section of category.sections) {
+  if (category.source === "plugin_apk") {
+    const meta = document.createElement("div");
+    meta.className = "plugin-meta";
+    meta.textContent = `Found ${countCategoryFields(category)} preference fields from ${category.file || "APK"}.`;
+    const removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.className = "btn btn-danger plugin-remove-btn";
+    removeBtn.textContent = "Delete Category";
+    removeBtn.addEventListener("click", () => removePluginCategory(category.id));
+    meta.appendChild(removeBtn);
+    els.form.appendChild(meta);
+  }
+
+  for (const section of category.sections || []) {
     els.form.appendChild(renderSection(section.title, section.fields));
   }
-  if (category.fields.length) {
+  if (category.fields?.length) {
     els.form.appendChild(renderSection("General", category.fields));
+  }
+}
+
+function categoryFieldKeys(category) {
+  const keys = [];
+  for (const field of category.fields || []) keys.push(field.key);
+  for (const section of category.sections || []) {
+    for (const field of section.fields || []) keys.push(field.key);
+  }
+  return keys;
+}
+
+function countCategoryFields(category) {
+  return categoryFieldKeys(category).length;
+}
+
+function removePluginCategory(categoryId) {
+  const category = state.pluginCategories.find((entry) => entry.id === categoryId);
+  if (category) {
+    for (const key of categoryFieldKeys(category)) {
+      delete state.preferences[key];
+    }
+  }
+
+  state.pluginCategories = state.pluginCategories.filter((entry) => entry.id !== categoryId);
+  if (state.activePanel === categoryId) {
+    state.activePanel = state.pluginCategories.length
+      ? state.pluginCategories[state.pluginCategories.length - 1].id
+      : "custom_prefs";
+  }
+  rebuildSchemaFieldKeys();
+  buildNavigation(els.search.value.trim());
+  renderPanel();
+  showToast("Plugin category removed");
+}
+
+async function importPluginApk(event) {
+  const file = event.target.files?.[0];
+  event.target.value = "";
+  if (!file) return;
+
+  if (!file.name.toLowerCase().endsWith(".apk")) {
+    showToast("Upload an .apk file", true);
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    showToast(`Scanning ${file.name}…`);
+    const response = await fetch("/api/plugins/scan", { method: "POST", body: formData });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.detail || "Plugin scan failed");
+
+    const category = {
+      ...data.category,
+      preference_group: data.preference_group,
+      plugin: data.plugin,
+      warnings: data.warnings || [],
+    };
+
+    state.pluginCategories = state.pluginCategories.filter((existing) => existing.id !== category.id);
+    state.pluginCategories.push(category);
+    rebuildSchemaFieldKeys();
+    state.activePanel = category.id;
+    buildNavigation(els.search.value.trim());
+    renderPanel();
+    scrollContentToTop();
+    showToast(`Added ${data.stats.field_count} fields from ${data.plugin?.name || file.name}`);
+  } catch (error) {
+    showToast(error.message, true);
   }
 }
 

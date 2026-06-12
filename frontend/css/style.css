@@ -143,6 +143,71 @@ code {
   margin-top: 0;
 }
 
+.sidebar-footer .sidebar-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0 0 0.75rem;
+  cursor: pointer;
+}
+
+.nav-item-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.25rem;
+  margin-bottom: 0.15rem;
+}
+
+.nav-item-row .nav-item {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+}
+
+.nav-item-row.active .nav-item,
+.nav-item-row.active .nav-delete-btn {
+  background: rgba(59, 130, 246, 0.18);
+}
+
+.nav-delete-btn {
+  flex-shrink: 0;
+  width: 2rem;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nav-delete-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+}
+
+.nav-item.plugin-nav-item {
+  color: #c4b5fd;
+  font-size: 0.88rem;
+}
+
+.plugin-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(59, 130, 246, 0.08);
+  font-size: 0.9rem;
+}
+
+.plugin-remove-btn {
+  flex-shrink: 0;
+}
+
 .hint {
   margin: 0.75rem 0 0;
   font-size: 0.75rem;

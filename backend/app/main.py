@@ -11,6 +11,7 @@ from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from .apk_scanner import MAX_APK_BYTES, ApkScanError, scan_apk_bytes
 from .pref_generator import DEFAULT_APP_PREFS, generate_pref_xml
 from .pref_parser import parse_pref_xml
 from .secrets import redact_preferences
@@ -64,6 +65,34 @@ def health() -> dict:
 @app.get("/api/schema")
 def get_schema() -> dict:
     return load_schema()
+
+
+@app.post("/api/plugins/scan")
+async def scan_plugin_apk(file: UploadFile = File(...)) -> dict:
+    if not file.filename or not file.filename.lower().endswith(".apk"):
+        raise HTTPException(status_code=400, detail="Upload an .apk file")
+
+    chunks: list[bytes] = []
+    total = 0
+    while True:
+        chunk = await file.read(1024 * 1024)
+        if not chunk:
+            break
+        total += len(chunk)
+        if total > MAX_APK_BYTES:
+            raise HTTPException(
+                status_code=413,
+                detail=f"APK exceeds maximum size of {MAX_APK_BYTES // (1024 * 1024)} MB",
+            )
+        chunks.append(chunk)
+
+    if not chunks:
+        raise HTTPException(status_code=400, detail="Empty upload")
+
+    try:
+        return scan_apk_bytes(b"".join(chunks), original_filename=file.filename)
+    except ApkScanError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.post("/api/generate")
