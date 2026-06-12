@@ -226,6 +226,37 @@ code {
   resize: vertical;
 }
 
+.field-wide {
+  grid-column: 1 / -1;
+}
+
+.multiselect-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.multiselect-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+}
+
+.custom-option-input {
+  margin-top: 0.45rem;
+}
+
+.custom-option-input[hidden] {
+  display: none;
+}
+
 .checkbox-row {
   flex-direction: row;
   align-items: center;

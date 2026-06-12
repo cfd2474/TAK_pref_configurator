@@ -1,13 +1,14 @@
-# ATAK Preference Configurator
+# TAK-CIV Preference Configurator
 
 Repository: [https://github.com/cfd2474/TAK_pref_configurator](https://github.com/cfd2474/TAK_pref_configurator)
 
-Web application for building ATAK `.pref` configuration files. The UI breaks down ATAK preference settings into editable fields and generates a downloadable `.pref` file compatible with [ATAK-CIV](https://github.com/TAK-Product-Center/atak-civ).
+Web application for building TAK-CIV `.pref` configuration files. The UI is derived from [ATAK-CIV](https://github.com/TAK-Product-Center/atak-civ) preference definitions and uses dropdowns and multi-select controls wherever the source app defines discrete options.
 
 ## Features
 
-- Web UI for all ATAK preference categories extracted from ATAK-CIV source
-- Dedicated editor for server connections (`cot_inputs`, `cot_outputs`, `cot_streams`)
+- Web UI for TAK-CIV preference categories extracted from ATAK-CIV source
+- Dropdowns and multi-select fields for list-based preferences (units, colors, display modes, etc.)
+- Structured connection builder with protocol/interface dropdowns
 - Import existing `.pref` files for editing
 - Preview generated XML before download
 - Runs as a Docker container on Ubuntu 22.04
@@ -80,7 +81,7 @@ Reference implementation: [`PreferenceControl.java`](https://github.com/TAK-Prod
 
 - Place generated `.pref` files in ATAK's config prefs directory or import through ATAK's preference management UI
 - Device-specific keys (`locationCallsign`, `bestDeviceUID`) are intentionally excluded
-- Default preference group name is `com.atakmap.civ_preferences`
+- Default output group: `com.atakmap.civ_preferences`
 
 ## Project Structure
 

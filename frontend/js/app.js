@@ -1,3 +1,5 @@
+const PREFERENCE_GROUP = "com.atakmap.civ_preferences";
+
 const state = {
   schema: null,
   activePanel: "connections",
@@ -16,7 +18,6 @@ const els = {
   panelDescription: document.getElementById("panel-description"),
   search: document.getElementById("category-search"),
   filename: document.getElementById("filename"),
-  preferenceName: document.getElementById("preference-name"),
   downloadBtn: document.getElementById("download-btn"),
   previewBtn: document.getElementById("preview-btn"),
   importFile: document.getElementById("import-file"),
@@ -45,11 +46,11 @@ function bindEvents() {
   els.previewBtn.addEventListener("click", previewPref);
   els.importFile.addEventListener("change", importPref);
   els.closePreview.addEventListener("click", () => els.previewDialog.close());
-  els.filename.addEventListener("change", () => normalizeFilename());
+  els.filename.addEventListener("change", normalizeFilename);
 }
 
 function normalizeFilename() {
-  let value = els.filename.value.trim() || "atak-config.pref";
+  let value = els.filename.value.trim() || "tak-civ-config.pref";
   if (!value.endsWith(".pref")) value += ".pref";
   els.filename.value = value;
 }
@@ -63,15 +64,11 @@ function showToast(message, isError = false) {
 
 function buildNavigation(filter = "") {
   const lower = filter.toLowerCase();
-  const items = [];
-
-  items.push({ id: "connections", label: "Server Connections", group: "Core" });
+  const items = [{ id: "connections", label: "Server Connections", group: "TAK-CIV" }];
 
   for (const category of state.schema.categories) {
     const label = category.title || category.id;
-    if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) {
-      continue;
-    }
+    if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
     items.push({ id: category.id, label, group: "Preferences" });
   }
 
@@ -109,13 +106,11 @@ function renderPanel() {
 
   els.panelTitle.textContent = category.title || category.id;
   els.panelDescription.textContent =
-    "Configure preference keys from ATAK " + category.file + ". Leave fields blank to omit them from the generated file.";
+    `TAK-CIV settings from ${category.file}. Leave fields unset to omit them from the generated .pref file.`;
   els.form.innerHTML = "";
 
-  if (category.sections.length) {
-    for (const section of category.sections) {
-      els.form.appendChild(renderSection(section.title, section.fields));
-    }
+  for (const section of category.sections) {
+    els.form.appendChild(renderSection(section.title, section.fields));
   }
   if (category.fields.length) {
     els.form.appendChild(renderSection("General", category.fields));
@@ -131,23 +126,70 @@ function renderSection(title, fields) {
 
   const grid = document.createElement("div");
   grid.className = "field-grid";
-
   for (const field of fields) {
     grid.appendChild(renderPreferenceField(field));
   }
-
   card.appendChild(grid);
   return card;
 }
 
-function renderPreferenceField(field) {
+function createLabel(text, id) {
+  const label = document.createElement("label");
+  label.textContent = text;
+  if (id) label.htmlFor = id;
+  return label;
+}
+
+function createSelect(options, currentValue, onChange, includeBlank = true) {
+  const select = document.createElement("select");
+  if (includeBlank) {
+    const blank = document.createElement("option");
+    blank.value = "";
+    blank.textContent = "— Not set —";
+    select.appendChild(blank);
+  }
+  for (const option of options) {
+    const opt = document.createElement("option");
+    opt.value = String(option.value);
+    opt.textContent = option.label ?? option.value;
+    select.appendChild(opt);
+  }
+  if (currentValue !== undefined && currentValue !== null && currentValue !== "") {
+    select.value = String(currentValue);
+  }
+  select.addEventListener("change", () => onChange(select.value));
+  return select;
+}
+
+function createMultiSelect(field, currentValue, onChange) {
+  const box = document.createElement("div");
+  box.className = "multiselect-box";
+  const selected = new Set(Array.isArray(currentValue) ? currentValue : []);
+
+  for (const option of field.options || []) {
+    const row = document.createElement("label");
+    row.className = "multiselect-option";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = String(option.value);
+    checkbox.checked = selected.has(String(option.value));
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) selected.add(String(option.value));
+      else selected.delete(String(option.value));
+      onChange(Array.from(selected));
+    });
+    row.appendChild(checkbox);
+    row.append(" ", option.label ?? option.value);
+    box.appendChild(row);
+  }
+  return box;
+}
+
+function renderSelectField(field, currentValue, onChange) {
   const wrapper = document.createElement("div");
   wrapper.className = "field";
 
-  const label = document.createElement("label");
-  label.textContent = field.title || field.key;
-  label.htmlFor = `pref-${field.key}`;
-  wrapper.appendChild(label);
+  wrapper.appendChild(createLabel(field.title || field.key, `pref-${field.key}`));
 
   if (field.summary) {
     const summary = document.createElement("div");
@@ -156,21 +198,91 @@ function renderPreferenceField(field) {
     wrapper.appendChild(summary);
   }
 
-  const current = state.preferences[field.key]?.value;
-  let input;
+  const knownValues = new Set((field.options || []).map((o) => String(o.value)));
+  const isCustom = currentValue !== undefined && currentValue !== null && !knownValues.has(String(currentValue));
 
-  if (field.type === "boolean") {
-    wrapper.classList.add("checkbox-row");
-    input = document.createElement("input");
-    input.type = "checkbox";
-    input.id = `pref-${field.key}`;
-    input.checked = current !== undefined ? Boolean(current) : field.default === "true";
-    input.addEventListener("change", () => setPreference(field.key, "boolean", input.checked));
-    wrapper.insertBefore(input, wrapper.firstChild.nextSibling);
+  const select = createSelect(
+    field.options || [],
+    isCustom ? "__custom__" : currentValue,
+    () => {}
+  );
+  select.id = `pref-${field.key}`;
+
+  let customInput = null;
+  if (field.allow_custom) {
+    customInput = document.createElement("input");
+    customInput.type = "text";
+    customInput.className = "custom-option-input";
+    customInput.placeholder = "Custom path or value";
+    customInput.hidden = !isCustom && select.value !== "__custom__";
+    if (isCustom) customInput.value = currentValue;
+  }
+
+  select.addEventListener("change", () => {
+    const value = select.value;
+    if (value === "") onChange(null);
+    else if (value === "__custom__") onChange(customInput?.value || null);
+    else onChange(value);
+    if (customInput) customInput.hidden = value !== "__custom__";
+  });
+
+  if (customInput) {
+    customInput.addEventListener("input", () => {
+      if (select.value === "__custom__") onChange(customInput.value || null);
+    });
+  }
+
+  wrapper.appendChild(select);
+  if (customInput) wrapper.appendChild(customInput);
+
+  return wrapper;
+}
+
+function renderPreferenceField(field) {
+  const current = state.preferences[field.key]?.value;
+  const prefType = field.type === "boolean" ? "boolean" : field.type === "multiselect" ? "set" : field.type;
+
+  if (field.type === "select" || (field.type === "boolean" && field.input === "select")) {
+    return renderSelectField(field, current, (value) => {
+      if (value === null || value === "") delete state.preferences[field.key];
+      else if (field.type === "boolean") {
+        state.preferences[field.key] = { type: "boolean", value: value === "true" };
+      } else {
+        state.preferences[field.key] = { type: "string", value };
+      }
+    });
+  }
+
+  if (field.type === "multiselect") {
+    const wrapper = document.createElement("div");
+    wrapper.className = "field";
+    wrapper.appendChild(createLabel(field.title || field.key));
+    if (field.summary) {
+      const summary = document.createElement("div");
+      summary.className = "summary";
+      summary.textContent = field.summary;
+      wrapper.appendChild(summary);
+    }
+    wrapper.appendChild(
+      createMultiSelect(field, current, (values) => {
+        if (!values.length) delete state.preferences[field.key];
+        else state.preferences[field.key] = { type: "set", value: values };
+      })
+    );
     return wrapper;
   }
 
-  input = document.createElement("input");
+  const wrapper = document.createElement("div");
+  wrapper.className = "field";
+  wrapper.appendChild(createLabel(field.title || field.key, `pref-${field.key}`));
+  if (field.summary) {
+    const summary = document.createElement("div");
+    summary.className = "summary";
+    summary.textContent = field.summary;
+    wrapper.appendChild(summary);
+  }
+
+  const input = document.createElement("input");
   input.id = `pref-${field.key}`;
   input.type = field.type === "integer" ? "number" : "text";
   if (current !== undefined && current !== null) input.value = current;
@@ -178,53 +290,50 @@ function renderPreferenceField(field) {
   input.placeholder = field.key;
   input.addEventListener("input", () => {
     const value = field.type === "integer" ? Number(input.value) : input.value;
-    setPreference(field.key, field.type || "string", value);
+    if (value === "" || Number.isNaN(value)) delete state.preferences[field.key];
+    else state.preferences[field.key] = { type: prefType || "string", value };
   });
   wrapper.appendChild(input);
   return wrapper;
 }
 
-function setPreference(key, type, value) {
-  if (value === "" || value === null || value === undefined) {
-    delete state.preferences[key];
-    return;
-  }
-  state.preferences[key] = { type, value };
+function parseConnectString(connectString = "") {
+  const parts = connectString.split(":");
+  return {
+    proto: parts[0] || "ssl",
+    host: parts[1] || "",
+    port: parts[2] || "8089",
+    iface: parts[3] || "stream",
+  };
+}
+
+function buildConnectString(parts) {
+  if (!parts.host) return "";
+  return `${parts.proto}:${parts.host}:${parts.port}:${parts.iface}`;
 }
 
 function renderConnectionsPanel() {
-  els.panelTitle.textContent = "Server Connections";
+  els.panelTitle.textContent = "TAK-CIV Server Connections";
   els.panelDescription.textContent =
-    "Configure CoT inputs, outputs, and streaming connections. These map to the cot_inputs, cot_outputs, and cot_streams preference groups in ATAK.";
+    "Configure CoT inputs, outputs, and streaming connections for TAK-CIV (cot_inputs, cot_outputs, cot_streams).";
   els.form.innerHTML = "";
 
   for (const group of state.schema.connections.groups) {
     const card = document.createElement("section");
     card.className = "section-card";
-    const heading = document.createElement("h3");
-    heading.textContent = group.title;
-    card.appendChild(heading);
-
-    const description = document.createElement("p");
-    description.className = "summary";
-    description.textContent = group.description;
-    card.appendChild(description);
+    card.appendChild(Object.assign(document.createElement("h3"), { textContent: group.title }));
+    card.appendChild(Object.assign(document.createElement("p"), { className: "summary", textContent: group.description }));
 
     const connections = state.connections[group.name] || [];
     const list = document.createElement("div");
-    list.dataset.group = group.name;
-
     if (!connections.length) {
-      const empty = document.createElement("div");
-      empty.className = "empty-state";
-      empty.textContent = "No connections configured yet.";
-      list.appendChild(empty);
+      list.appendChild(Object.assign(document.createElement("div"), {
+        className: "empty-state",
+        textContent: "No connections configured yet.",
+      }));
     } else {
-      connections.forEach((conn, index) => {
-        list.appendChild(renderConnectionCard(group.name, conn, index));
-      });
+      connections.forEach((conn, index) => list.appendChild(renderConnectionCard(group.name, conn, index)));
     }
-
     card.appendChild(list);
 
     const addBtn = document.createElement("button");
@@ -236,7 +345,6 @@ function renderConnectionsPanel() {
       renderConnectionsPanel();
     });
     card.appendChild(addBtn);
-
     els.form.appendChild(card);
   }
 }
@@ -244,7 +352,16 @@ function renderConnectionsPanel() {
 function defaultConnection() {
   const conn = {};
   for (const field of state.schema.connections.connection_fields) {
-    if (field.default !== undefined) conn[field.key] = field.default;
+    if (field.type === "connect_string") {
+      conn.connectString = buildConnectString({
+        proto: field.parts.proto.default,
+        host: "",
+        port: String(field.parts.port.default),
+        iface: field.parts.iface.default,
+      });
+    } else if (field.default !== undefined) {
+      conn[field.key] = field.default;
+    }
   }
   return conn;
 }
@@ -252,13 +369,11 @@ function defaultConnection() {
 function renderConnectionCard(groupName, connection, index) {
   const card = document.createElement("div");
   card.className = "connection-card";
-
   const header = document.createElement("div");
   header.className = "connection-header";
-  const title = document.createElement("h4");
-  title.textContent = connection.description || connection.connectString || `Connection ${index + 1}`;
-  header.appendChild(title);
-
+  header.appendChild(Object.assign(document.createElement("h4"), {
+    textContent: connection.description || connection.connectString || `Connection ${index + 1}`,
+  }));
   const removeBtn = document.createElement("button");
   removeBtn.type = "button";
   removeBtn.className = "btn btn-danger";
@@ -272,83 +387,103 @@ function renderConnectionCard(groupName, connection, index) {
 
   const grid = document.createElement("div");
   grid.className = "field-grid";
-
   for (const field of state.schema.connections.connection_fields) {
-    grid.appendChild(renderConnectionField(groupName, index, field, connection[field.key]));
+    grid.appendChild(renderConnectionField(groupName, index, field, connection));
   }
-
   card.appendChild(grid);
   return card;
 }
 
-function renderConnectionField(groupName, index, field, currentValue) {
+function renderConnectionField(groupName, index, field, connection) {
+  const currentValue = connection[field.key];
+
+  if (field.type === "connect_string") {
+    const wrapper = document.createElement("div");
+    wrapper.className = "field field-wide";
+    wrapper.appendChild(createLabel(field.title));
+    if (field.help) {
+      wrapper.appendChild(Object.assign(document.createElement("div"), { className: "help", textContent: field.help }));
+    }
+
+    const parts = parseConnectString(connection.connectString);
+    const subgrid = document.createElement("div");
+    subgrid.className = "field-grid";
+
+    const updateConnect = () => {
+      const next = buildConnectString(parts);
+      if (next) updateConnection(groupName, index, "connectString", next);
+      else delete state.connections[groupName][index].connectString;
+      renderConnectionsPanel();
+    };
+
+    for (const [partKey, partField] of Object.entries(field.parts)) {
+      const partWrap = document.createElement("div");
+      partWrap.className = "field";
+      partWrap.appendChild(createLabel(partField.label));
+
+      if (partField.type === "select") {
+        partWrap.appendChild(
+          createSelect(partField.options, parts[partKey] ?? partField.default, (value) => {
+            parts[partKey] = value;
+            updateConnect();
+          }, false)
+        );
+      } else {
+        const input = document.createElement("input");
+        input.type = partField.type === "integer" ? "number" : "text";
+        input.value = parts[partKey] ?? partField.default ?? "";
+        input.placeholder = partField.placeholder || "";
+        input.addEventListener("change", () => {
+          parts[partKey] = input.value;
+          updateConnect();
+        });
+        partWrap.appendChild(input);
+      }
+      subgrid.appendChild(partWrap);
+    }
+
+    wrapper.appendChild(subgrid);
+    const preview = document.createElement("div");
+    preview.className = "summary";
+    preview.textContent = `Connect string: ${connection.connectString || "(incomplete)"}`;
+    wrapper.appendChild(preview);
+    return wrapper;
+  }
+
+  if (field.type === "select" || (field.type === "boolean" && field.input === "select")) {
+    return renderSelectField(field, currentValue, (value) => {
+      if (value === null || value === "") delete state.connections[groupName][index][field.key];
+      else if (field.type === "boolean") updateConnection(groupName, index, field.key, value === "true");
+      else updateConnection(groupName, index, field.key, value);
+    });
+  }
+
   const wrapper = document.createElement("div");
   wrapper.className = "field";
+  wrapper.appendChild(createLabel(field.title));
+  if (field.help) wrapper.appendChild(Object.assign(document.createElement("div"), { className: "help", textContent: field.help }));
 
-  const label = document.createElement("label");
-  label.textContent = field.title;
-  wrapper.appendChild(label);
-
-  if (field.help) {
-    const help = document.createElement("div");
-    help.className = "help";
-    help.textContent = field.help;
-    wrapper.appendChild(help);
-  }
-
-  let input;
-  if (field.type === "boolean") {
-    wrapper.classList.add("checkbox-row");
-    input = document.createElement("input");
-    input.type = "checkbox";
-    input.checked = currentValue !== undefined ? Boolean(currentValue) : Boolean(field.default);
-    input.addEventListener("change", () => updateConnection(groupName, index, field.key, input.checked));
-    wrapper.insertBefore(input, wrapper.firstChild.nextSibling);
-    return wrapper;
-  }
-
-  if (field.options) {
-    input = document.createElement("select");
-    for (const option of field.options) {
-      const opt = document.createElement("option");
-      opt.value = option;
-      opt.textContent = option;
-      input.appendChild(opt);
-    }
-    if (currentValue) input.value = currentValue;
-    input.addEventListener("change", () => updateConnection(groupName, index, field.key, input.value));
-    wrapper.appendChild(input);
-    return wrapper;
-  }
-
-  input = document.createElement("input");
-  input.type = field.sensitive ? "password" : field.type === "long" ? "number" : "text";
+  const input = document.createElement("input");
+  input.type = field.input === "password" || field.sensitive ? "password" : field.type === "integer" ? "number" : "text";
   if (currentValue !== undefined && currentValue !== null) input.value = currentValue;
-  input.addEventListener("input", () => {
-    let value = input.value;
-    if (field.type === "long") value = Number(value);
-    updateConnection(groupName, index, field.key, value);
-  });
+  input.addEventListener("input", () => updateConnection(groupName, index, field.key, field.type === "integer" ? Number(input.value) : input.value));
   wrapper.appendChild(input);
   return wrapper;
 }
 
 function updateConnection(groupName, index, key, value) {
-  if (value === "") {
+  if (value === "" || value === null || value === undefined) {
     delete state.connections[groupName][index][key];
     return;
   }
   state.connections[groupName][index][key] = value;
-  if (key === "description" || key === "connectString") {
-    renderConnectionsPanel();
-  }
 }
 
 function buildPayload() {
   normalizeFilename();
   return {
     filename: els.filename.value,
-    preference_name: els.preferenceName.value.trim() || "com.atakmap.civ_preferences",
+    preference_name: PREFERENCE_GROUP,
     connections: state.connections,
     preferences: state.preferences,
   };
@@ -412,7 +547,6 @@ async function importPref(event) {
       cot_outputs: data.connections?.cot_outputs || [],
       cot_streams: data.connections?.cot_streams || [],
     };
-    if (data.preference_name) els.preferenceName.value = data.preference_name;
     renderPanel();
     showToast(`Imported ${file.name}`);
   } catch (error) {

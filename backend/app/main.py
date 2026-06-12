@@ -1,4 +1,4 @@
-"""ATAK Preference Configurator API."""
+"""TAK-CIV Preference Configurator API."""
 
 from __future__ import annotations
 
@@ -20,8 +20,8 @@ SCHEMA_PATH = DATA_DIR / "preference_schema.json"
 FRONTEND_DIR = APP_DIR.parent.parent / "frontend"
 
 app = FastAPI(
-    title="ATAK Preference Configurator",
-    description="Web tool for creating ATAK .pref configuration files",
+    title="TAK-CIV Preference Configurator",
+    description="Web tool for creating TAK-CIV .pref configuration files",
     version="1.0.0",
 )
 
@@ -39,7 +39,7 @@ class PreferenceValue(BaseModel):
 
 
 class GenerateRequest(BaseModel):
-    filename: str = Field(default="atak-config.pref", pattern=r"^[\w.\-]+$")
+    filename: str = Field(default="tak-civ-config.pref", pattern=r"^[\w.\-]+$")
     preference_name: str = "com.atakmap.civ_preferences"
     connections: dict[str, list[dict]] = Field(default_factory=dict)
     preferences: dict[str, PreferenceValue] = Field(default_factory=dict)

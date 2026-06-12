@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ATAK Preference Configurator</title>
+  <title>TAK-CIV Preference Configurator</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <header class="app-header">
     <div class="brand">
-      <h1>ATAK Preference Configurator</h1>
-      <p class="subtitle">Build ATAK <code>.pref</code> configuration files for deployment</p>
+      <h1>TAK-CIV Preference Configurator</h1>
+      <p class="subtitle">Build TAK-CIV <code>.pref</code> configuration files for deployment</p>
     </div>
     <div class="header-actions">
       <label class="btn btn-secondary import-btn">
@@ -30,10 +30,8 @@
       <nav id="category-nav" class="category-nav"></nav>
       <div class="sidebar-footer">
         <label for="filename">Output filename</label>
-        <input type="text" id="filename" value="atak-config.pref">
-        <label for="preference-name">Preference group name</label>
-        <input type="text" id="preference-name" value="com.atakmap.civ_preferences">
-        <p class="hint">Based on ATAK-CIV preference format</p>
+        <input type="text" id="filename" value="tak-civ-config.pref">
+        <p class="hint">Preference group: <code>com.atakmap.civ_preferences</code></p>
       </div>
     </aside>
 
@@ -46,7 +44,7 @@
 
   <dialog id="preview-dialog">
     <div class="dialog-header">
-      <h2>Generated .pref Preview</h2>
+      <h2>Generated TAK-CIV .pref Preview</h2>
       <button type="button" id="close-preview" class="icon-btn" aria-label="Close">&times;</button>
     </div>
     <pre id="preview-content"></pre>
