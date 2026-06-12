@@ -125,18 +125,24 @@ def infer_field(elem: ET.Element, strings: dict[str, str], arrays: dict[str, lis
         options = resolve_options(entries, entry_values or entries, arrays)
         field["type"] = "multiselect"
         field["options"] = options
+        field["storage_type"] = "set"
+        field["java_class"] = "class java.util.HashSet"
         return field
 
     if "ListPreference" in tag and entries:
         options = resolve_options(entries, entry_values or entries, arrays)
         field["type"] = "select"
         field["options"] = options
+        field["storage_type"] = "string"
+        field["java_class"] = "class java.lang.String"
         return field
 
     if "CheckBox" in tag or tag == "SwitchPreference":
         field["type"] = "boolean"
         field["input"] = "select"
         field["options"] = BOOLEAN_OPTIONS
+        field["storage_type"] = "boolean"
+        field["java_class"] = "class java.lang.Boolean"
         return field
 
     if tag == "SeekBarPreference":
@@ -146,6 +152,9 @@ def infer_field(elem: ET.Element, strings: dict[str, str], arrays: dict[str, lis
     input_type = get_attr(elem, "inputType")
     if "number" in input_type or "numeric" in input_type:
         field["type"] = "integer"
+        # TAK-CIV stores many numeric EditText preferences as java.lang.String.
+        field["storage_type"] = "string"
+        field["java_class"] = "class java.lang.String"
         return field
 
     field["type"] = "string"
@@ -346,12 +355,12 @@ def main() -> int:
         "version": "5.5.1",
         "source": "https://github.com/TAK-Product-Center/atak-civ",
         "main_prefs": {
-            "preference_group": "com.atakmap.civ_preferences",
+            "preference_group": "com.atakmap.app.civ_preferences",
             "preference_groups": [
                 "cot_inputs",
                 "cot_outputs",
                 "cot_streams",
-                "com.atakmap.civ_preferences",
+                "com.atakmap.app.civ_preferences",
             ],
             "excluded_keys": ["locationCallsign", "bestDeviceUID"],
         },

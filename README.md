@@ -81,7 +81,9 @@ Reference implementation: [`PreferenceControl.java`](https://github.com/TAK-Prod
 
 - Place generated `.pref` files in ATAK's config prefs directory or import through ATAK's preference management UI
 - Device-specific keys (`locationCallsign`, `bestDeviceUID`) are intentionally excluded
-- Default output group: `com.atakmap.civ_preferences`
+- Default output group: `com.atakmap.app.civ_preferences`
+- Generated files include `version="1"` preference blocks and empty connection groups, matching TAK-CIV exports
+- Numeric EditText preferences (ports, timeouts) are stored as `java.lang.String`, matching real EUD `.pref` files
 
 ## Project Structure
 

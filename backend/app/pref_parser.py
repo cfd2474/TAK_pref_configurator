@@ -1,4 +1,4 @@
-"""Parse ATAK .pref XML files into structured configuration data."""
+"""Parse TAK-CIV .pref XML files into structured configuration data."""
 
 from __future__ import annotations
 
@@ -9,6 +9,13 @@ from typing import Any
 from .xml_utils import decode_value
 
 CONNECTION_GROUPS = ("cot_inputs", "cot_outputs", "cot_streams")
+DEFAULT_APP_PREFS = "com.atakmap.app.civ_preferences"
+LEGACY_APP_PREFS = {
+    "com.atakmap.app_preferences",
+    "com.atakmap.civ_preferences",
+    "com.atakmap.fvey_preferences",
+    DEFAULT_APP_PREFS,
+}
 
 JAVA_TYPE_MAP = {
     "class java.lang.String": "string",
@@ -42,6 +49,12 @@ def _parse_value(class_name: str, entry: ET.Element) -> Any:
     return decoded
 
 
+def _type_from_java_class(class_name: str) -> str:
+    if "HashSet" in class_name or "Set" in class_name:
+        return "set"
+    return JAVA_TYPE_MAP.get(class_name, "string")
+
+
 def _parse_connections(entries: dict[str, Any]) -> list[dict[str, Any]]:
     count = int(entries.get("count", 0))
     connections: list[dict[str, Any]] = []
@@ -62,38 +75,41 @@ def _parse_connections(entries: dict[str, Any]) -> list[dict[str, Any]]:
     return connections
 
 
+def _is_app_preference_group(name: str) -> bool:
+    return name in LEGACY_APP_PREFS or name.endswith(".civ_preferences")
+
+
 def parse_pref_xml(content: str) -> dict[str, Any]:
     root = ET.fromstring(content)
     result: dict[str, Any] = {
-        "preference_name": "com.atakmap.civ_preferences",
+        "preference_name": DEFAULT_APP_PREFS,
         "connections": {group: [] for group in CONNECTION_GROUPS},
         "preferences": {},
     }
 
     for preference in root.findall("preference"):
         name = preference.get("name", "")
-        entries: dict[str, Any] = {}
+        parsed_entries: list[tuple[str, str, Any]] = []
 
         for entry in preference.findall("entry"):
             key = decode_value(entry.get("key", ""))
             class_name = entry.get("class", "class java.lang.String")
-            entries[key] = _parse_value(class_name, entry)
+            parsed_entries.append((key, class_name, _parse_value(class_name, entry)))
 
         if name in CONNECTION_GROUPS:
-            result["connections"][name] = _parse_connections(entries)
-        else:
-            result["preference_name"] = name
-            for key, value in entries.items():
-                if isinstance(value, bool):
-                    value_type = "boolean"
-                elif isinstance(value, int):
-                    value_type = "long" if abs(value) > 2_147_483_647 else "integer"
-                elif isinstance(value, float):
-                    value_type = "float"
-                elif isinstance(value, list):
-                    value_type = "set"
-                else:
-                    value_type = "string"
-                result["preferences"][key] = {"type": value_type, "value": value}
+            flat = {key: value for key, _class_name, value in parsed_entries}
+            result["connections"][name] = _parse_connections(flat)
+            continue
+
+        if not _is_app_preference_group(name):
+            continue
+
+        result["preference_name"] = DEFAULT_APP_PREFS
+        for key, class_name, value in parsed_entries:
+            result["preferences"][key] = {
+                "type": _type_from_java_class(class_name),
+                "value": value,
+                "java_class": class_name,
+            }
 
     return result

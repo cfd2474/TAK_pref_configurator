@@ -1,4 +1,4 @@
-const PREFERENCE_GROUP = "com.atakmap.civ_preferences";
+const PREFERENCE_GROUP = "com.atakmap.app.civ_preferences";
 
 const state = {
   schema: null,
@@ -238,19 +238,47 @@ function renderSelectField(field, currentValue, onChange) {
   return wrapper;
 }
 
+function storageMeta(field) {
+  const storageType =
+    field.storage_type ||
+    (field.type === "multiselect" ? "set" : field.type === "select" ? "string" : field.type);
+  return {
+    type: storageType,
+    java_class: field.java_class || null,
+  };
+}
+
+function normalizeStoredValue(field, value) {
+  if (value === null || value === undefined || value === "") return null;
+  const meta = storageMeta(field);
+  if (meta.type === "boolean") return value === true || value === "true";
+  if (meta.type === "set") return Array.isArray(value) ? value.map(String) : [];
+  if (meta.type === "string") return String(value);
+  if (meta.type === "integer") return Number(value);
+  if (meta.type === "float") return Number(value);
+  return value;
+}
+
+function setPreferenceFromField(field, value) {
+  const key = field.key;
+  const normalized = normalizeStoredValue(field, value);
+  if (normalized === null || normalized === "" || (Array.isArray(normalized) && !normalized.length)) {
+    delete state.preferences[key];
+    return;
+  }
+  const meta = storageMeta(field);
+  state.preferences[key] = {
+    type: meta.type,
+    value: normalized,
+    ...(meta.java_class ? { java_class: meta.java_class } : {}),
+  };
+}
+
 function renderPreferenceField(field) {
   const current = state.preferences[field.key]?.value;
-  const prefType = field.type === "boolean" ? "boolean" : field.type === "multiselect" ? "set" : field.type;
 
   if (field.type === "select" || (field.type === "boolean" && field.input === "select")) {
-    return renderSelectField(field, current, (value) => {
-      if (value === null || value === "") delete state.preferences[field.key];
-      else if (field.type === "boolean") {
-        state.preferences[field.key] = { type: "boolean", value: value === "true" };
-      } else {
-        state.preferences[field.key] = { type: "string", value };
-      }
-    });
+    return renderSelectField(field, current, (value) => setPreferenceFromField(field, value));
   }
 
   if (field.type === "multiselect") {
@@ -264,10 +292,7 @@ function renderPreferenceField(field) {
       wrapper.appendChild(summary);
     }
     wrapper.appendChild(
-      createMultiSelect(field, current, (values) => {
-        if (!values.length) delete state.preferences[field.key];
-        else state.preferences[field.key] = { type: "set", value: values };
-      })
+      createMultiSelect(field, current, (values) => setPreferenceFromField(field, values))
     );
     return wrapper;
   }
@@ -289,9 +314,8 @@ function renderPreferenceField(field) {
   else if (field.default) input.value = field.default;
   input.placeholder = field.key;
   input.addEventListener("input", () => {
-    const value = field.type === "integer" ? Number(input.value) : input.value;
-    if (value === "" || Number.isNaN(value)) delete state.preferences[field.key];
-    else state.preferences[field.key] = { type: prefType || "string", value };
+    const raw = field.type === "integer" ? input.value : input.value;
+    setPreferenceFromField(field, raw === "" ? null : field.type === "integer" ? Number(raw) : raw);
   });
   wrapper.appendChild(input);
   return wrapper;
@@ -484,6 +508,7 @@ function buildPayload() {
   return {
     filename: els.filename.value,
     preference_name: PREFERENCE_GROUP,
+    include_empty_connection_groups: true,
     connections: state.connections,
     preferences: state.preferences,
   };

@@ -11,7 +11,7 @@ from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from .pref_generator import generate_pref_xml
+from .pref_generator import DEFAULT_APP_PREFS, generate_pref_xml
 from .pref_parser import parse_pref_xml
 
 APP_DIR = Path(__file__).resolve().parent
@@ -36,11 +36,13 @@ app.add_middleware(
 class PreferenceValue(BaseModel):
     type: str = "string"
     value: str | bool | int | float | list[str] | None = None
+    java_class: str | None = None
 
 
 class GenerateRequest(BaseModel):
     filename: str = Field(default="tak-civ-config.pref", pattern=r"^[\w.\-]+$")
-    preference_name: str = "com.atakmap.civ_preferences"
+    preference_name: str = DEFAULT_APP_PREFS
+    include_empty_connection_groups: bool = True
     connections: dict[str, list[dict]] = Field(default_factory=dict)
     preferences: dict[str, PreferenceValue] = Field(default_factory=dict)
 
@@ -66,9 +68,10 @@ def get_schema() -> dict:
 def generate_pref(request: GenerateRequest) -> Response:
     config = {
         "preference_name": request.preference_name,
+        "include_empty_connection_groups": request.include_empty_connection_groups,
         "connections": request.connections,
         "preferences": {
-            key: pref.model_dump()
+            key: pref.model_dump(exclude_none=True)
             for key, pref in request.preferences.items()
             if pref.value is not None and pref.value != ""
         },

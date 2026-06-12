@@ -3,12 +3,12 @@
   "version": "5.5.1",
   "source": "https://github.com/TAK-Product-Center/atak-civ",
   "main_prefs": {
-    "preference_group": "com.atakmap.civ_preferences",
+    "preference_group": "com.atakmap.app.civ_preferences",
     "preference_groups": [
       "cot_inputs",
       "cot_outputs",
       "cot_streams",
-      "com.atakmap.civ_preferences"
+      "com.atakmap.app.civ_preferences"
     ],
     "excluded_keys": [
       "locationCallsign",
@@ -281,7 +281,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "loggingfile_error_only",
@@ -300,7 +302,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "loggingfile_upload_debug",
@@ -319,7 +323,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -344,7 +350,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "lognettraffictofile",
@@ -363,7 +371,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "generate_full_pool",
@@ -382,7 +392,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "generate_detail_pool",
@@ -401,7 +413,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -443,7 +457,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "individual_alert_notification",
@@ -462,7 +478,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "alert_audible",
@@ -481,7 +499,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "alert_vibration",
@@ -500,7 +520,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "sms_numbers",
@@ -541,7 +563,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "repoStartupSync",
@@ -560,7 +584,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -585,7 +611,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "atakUpdateServerUrl",
@@ -742,7 +770,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "map_eyealt_visible",
@@ -761,7 +791,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "map_scale_visible",
@@ -780,7 +812,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "map_scale_rounding",
@@ -799,7 +833,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "map_center_designator",
@@ -818,7 +854,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "self_coord_info_display",
@@ -840,7 +878,9 @@
                   "label": "Do Not Display",
                   "value": "none"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "sidepane_handle_shade",
@@ -858,7 +898,9 @@
                   "label": "Dark",
                   "value": "Dark"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "coordinate_entry_tabs",
@@ -892,7 +934,9 @@
                   "label": "ADDR",
                   "value": "addr_pane_id"
                 }
-              ]
+              ],
+              "storage_type": "set",
+              "java_class": "class java.util.HashSet"
             }
           ]
         }
@@ -925,7 +969,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "rab_bloodhound_large_textwidget",
@@ -944,7 +990,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "rab_bloodhound_flash_colors",
@@ -963,7 +1011,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "rab_bloodhound_zoom",
@@ -982,7 +1032,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -996,7 +1048,9 @@
               "summary": "Specify the ETA (in seconds) for when to flash when closing in",
               "default": "360",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bloodhound_outer_eta",
@@ -1004,7 +1058,9 @@
               "summary": "Specify the ETA (in seconds) for the outer/middle radius",
               "default": "180",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bloodhound_inner_eta",
@@ -1012,7 +1068,9 @@
               "summary": "Specify the ETA (in seconds) for the middle/inner radius",
               "default": "60",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bloodhound_flash_color_pref",
@@ -1054,7 +1112,9 @@
                   "label": "Black",
                   "value": "black"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bloodhound_outer_color_pref",
@@ -1096,7 +1156,9 @@
                   "label": "Black",
                   "value": "black"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bloodhound_middle_color_pref",
@@ -1138,7 +1200,9 @@
                   "label": "Black",
                   "value": "black"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bloodhound_inner_color_pref",
@@ -1180,7 +1244,9 @@
                   "label": "Black",
                   "value": "black"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -1194,7 +1260,9 @@
               "summary": "Specify the distance away from the route a point has to move before calculating a reroute.",
               "default": "20.0",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bloodhound_reroute_timer_pref",
@@ -1202,7 +1270,9 @@
               "summary": "Specify how frequently bloodhound will check to see if a reroute needs to be calculated.",
               "default": "3.0",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -1235,7 +1305,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "atakBluetoothReconnectSeconds",
@@ -1243,7 +1315,9 @@
               "summary": "Number of seconds to attempt to reconnect dropped Bluetooth connections.",
               "default": "180",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -1276,7 +1350,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "track_prefix",
@@ -1303,7 +1379,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "track_history_default_color",
@@ -1330,7 +1408,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "track_kml_export_timestamps",
@@ -1349,7 +1429,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "bread_track_timegap_threshold",
@@ -1357,7 +1439,9 @@
               "summary": "When searching the server for tracks, split into separate tracks when consecutive breadcrumbs are temporally more than this far apart (default: 10 minutes).",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -1382,7 +1466,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "max_num_bread_tracks",
@@ -1409,7 +1495,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "track_crumb_size",
@@ -1431,7 +1519,9 @@
                   "label": "X-Large",
                   "value": "20"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bread_dist_threshold",
@@ -1439,7 +1529,9 @@
               "summary": "Set how far you must move before dropping a crumb (default: 2 meters).",
               "default": "2",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -1527,7 +1619,9 @@
                   "label": "Brown",
                   "value": "Brown"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "atakRoleTypeAction",
@@ -1646,7 +1740,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "vibratePhone",
@@ -1665,7 +1761,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "audibleNotify",
@@ -1684,7 +1782,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -1728,7 +1828,9 @@
               "summary": "Port to send chat messages. Must match other GeoChat providers.",
               "default": "17012",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -1761,7 +1863,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "saAlternativeNumber",
@@ -1788,7 +1892,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "saSipAddressAssignment",
@@ -1814,7 +1920,9 @@
                   "label": "Use Callsign and IP Address",
                   "value": "Use Callsign and IP Address"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "saSipAddress",
@@ -1846,7 +1954,9 @@
               "summary": "Identifying number assigned to this device for use in legacy systems. This is an assigned number and should not be set unless provided.",
               "default": null,
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -1919,7 +2029,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -1944,7 +2056,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "forceEnglish",
@@ -1963,7 +2077,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "override_permission_request",
@@ -1982,7 +2098,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -2066,7 +2184,9 @@
               "label": "False",
               "value": "false"
             }
-          ]
+          ],
+          "storage_type": "boolean",
+          "java_class": "class java.lang.Boolean"
         }
       ]
     },
@@ -2175,7 +2295,9 @@
                   "label": "Brown",
                   "value": "Brown"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "atakRoleTypeAction",
@@ -2242,7 +2364,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -2359,7 +2483,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -2400,7 +2526,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -2449,7 +2577,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -2471,7 +2601,9 @@
               "summary": "The maximum delay between sending updates for the DP point, if enabled (in seconds) even if the DP is not modified.   Moving a DP point locally will generate updates immediately.",
               "default": "5",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "legacyFiresToolbarMode",
@@ -2490,7 +2622,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "firesNumberOfSpis",
@@ -2512,7 +2646,9 @@
                   "label": "3",
                   "value": "3"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "spiFahSize",
@@ -2520,7 +2656,9 @@
               "summary": "Sets the width of the FAH cone (in degrees) when enabled from a DP or the Red X (rounds to the closest increment of 10).",
               "default": "30",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "expandedDangerClose",
@@ -2539,7 +2677,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -2553,7 +2693,9 @@
               "summary": "The size of the bullseye as specified in meters when launched from the radial menu.   If using the bullseye tool directly this value will not be used",
               "default": "2000",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bullseyeNumRings",
@@ -2561,7 +2703,9 @@
               "summary": "The default number of rings in a bullseye.",
               "default": "4",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bullseyeRadiusRings",
@@ -2569,7 +2713,9 @@
               "summary": "The default spacing of the bullseye rings as specified in meters.",
               "default": "500",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "bullseyeRingsVisible",
@@ -2588,7 +2734,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "bullseyeDirection",
@@ -2607,7 +2755,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -2632,7 +2782,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "goto_tool_use_last_point",
@@ -2651,7 +2803,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -2687,7 +2841,9 @@
                   "label": "120",
                   "value": "120"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "autosendStaleEnabled",
@@ -2706,7 +2862,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "autosendStaleInterval",
@@ -2714,7 +2872,9 @@
               "summary": "The stale timeout period when auto broadcasting a marker. The marker will stale out on receiving devices if no update is received after the timeout period elapses. Only applies when auto broadcast stale time is enabled.",
               "default": "30",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "preference_broadcast_delete",
@@ -2733,7 +2893,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -2766,7 +2928,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "geocodeSupplier",
@@ -2826,7 +2990,9 @@
                   "label": "Custom",
                   "value": "Custom"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "prefs_grid_default_show",
@@ -2845,7 +3011,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "pref_grid_type",
@@ -2867,7 +3035,9 @@
                   "label": "Degrees, Minutes, Seconds",
                   "value": "Degrees, Minutes, Seconds"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -2930,7 +3100,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -3022,7 +3194,9 @@
                   "label": "Yellow",
                   "value": "#ffff00"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "prefs_layer_outlines_default_show",
@@ -3041,7 +3215,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -3074,7 +3250,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -3123,7 +3301,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "collect_metrics",
@@ -3142,7 +3322,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "realtime_metrics",
@@ -3161,7 +3343,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "advanced_logging",
@@ -3202,7 +3386,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -3316,7 +3502,9 @@
               "summary": "Amount of seconds to wait for deletions to finish before forcing shutdown.",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "mediaLayerCacheForceRescan",
@@ -3343,7 +3531,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -3367,7 +3557,9 @@
                   "label": "TakGeoCam",
                   "value": "TakGeoCam"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "prompt_photo_rename",
@@ -3386,7 +3578,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -3427,7 +3621,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "realtime_metrics",
@@ -3446,7 +3642,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "generate_full_pool",
@@ -3465,7 +3663,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "generate_detail_pool",
@@ -3484,7 +3684,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -3517,7 +3719,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "filesharingSizeThresholdNoGo",
@@ -3525,7 +3729,9 @@
               "summary": "Disallow transfer of files if total size (MB) is above this threshold.",
               "default": "20",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -3550,7 +3756,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -3564,7 +3772,9 @@
               "summary": "Number of times to attempt to download a file from the remote Server.",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "filesharingWebServerLegacyHttpEnabled",
@@ -3583,7 +3793,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "filesharingWebServerPort",
@@ -3591,7 +3803,9 @@
               "summary": "Port of the file sharing Server.",
               "default": "8080",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "filesharingSecureWebServerPort",
@@ -3599,7 +3813,9 @@
               "summary": "Secure port of the file sharing Server",
               "default": "8443",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "filesharingConnectionTimeoutSecs",
@@ -3607,7 +3823,9 @@
               "summary": "Re-attempt the transfer if no connection is detected within this period (in seconds).",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "filesharingTransferTimeoutSecs",
@@ -3615,7 +3833,9 @@
               "summary": "Re-attempt the transfer if not progress is detected within this period (in seconds).",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "filesharingAllServers",
@@ -3634,7 +3854,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -3755,7 +3977,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "monitorServerConnections",
@@ -3774,7 +3998,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "caLocation",
@@ -3844,7 +4070,9 @@
               "summary": "Secure port of the Server API.",
               "default": "8443",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "apiUnsecureServerPort",
@@ -3852,7 +4080,9 @@
               "summary": "Unsecure port of the Server API.",
               "default": "8080",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "apiCertEnrollmentPort",
@@ -3860,7 +4090,9 @@
               "summary": "Port for Certificate Enrollment API.",
               "default": "8446",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "apiCertEnrollmentKeyLength",
@@ -3868,7 +4100,9 @@
               "summary": "Length in bits for RSA private key.",
               "default": "4096",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "certEnrollmentExport",
@@ -3887,7 +4121,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "deviceProfileEnableOnConnect",
@@ -3906,7 +4142,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -3931,7 +4169,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "configureNonStreamingEncryption",
@@ -3958,7 +4198,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "manageInputsLink",
@@ -3988,7 +4230,9 @@
               "summary": "How long (in seconds) to wait for TCP connections to complete. Shorter values make failed connections happen sooner (more responsive), but if the value is too short for your network then you may get spurious connection failures",
               "default": "20",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "udpNoDataTimeout",
@@ -3996,7 +4240,9 @@
               "summary": "Interval between Multicast Network rejoin attempts (in seconds). Zero indicates do not try to rejoin.",
               "default": "30",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "multicastTTL",
@@ -4004,7 +4250,9 @@
               "summary": "Multicast TTL for outgoing multicast (requires restart).",
               "default": "64",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "network_multicast_loopback",
@@ -4023,7 +4271,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "network_quic_enabled",
@@ -4042,7 +4292,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "onlyStreamingWithVPN",
@@ -4061,7 +4313,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "ppp0_highspeed_capable",
@@ -4080,7 +4334,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "waveRelayRedirect",
@@ -4099,7 +4355,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "httpClientPermissiveMode",
@@ -4118,7 +4376,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "insertDestInDirectedCoT",
@@ -4137,7 +4397,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -4182,7 +4444,9 @@
                   "label": "External or Network GPS / Fallback Internal GPS",
                   "value": "WRGPS"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "listenPort",
@@ -4190,7 +4454,9 @@
               "summary": "Network port to listen on for incoming GPS/position updates.   This usually does not need to be modified; only modify this setting when directed to do so.   For some radios, such as the PRC-161, where the positional data is sent out over the network - this field should not be modified.",
               "default": "4349",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "useGPSTime",
@@ -4209,7 +4475,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "useTerrainElevationSelfMarker",
@@ -4228,7 +4496,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -4299,7 +4569,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "loc_notification",
@@ -4318,7 +4590,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "loc_self_overlay_box",
@@ -4337,7 +4611,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -4374,7 +4650,9 @@
               "label": "False",
               "value": "false"
             }
-          ]
+          ],
+          "storage_type": "boolean",
+          "java_class": "class java.lang.Boolean"
         }
       ]
     },
@@ -4404,7 +4682,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "offscreen_indicator_dist_threshold",
@@ -4412,7 +4692,9 @@
               "summary": "The distance from viewpoint at which off-screen indicators won\\'t show in KM, 0 for no threshold.",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "offscreen_indicator_timeout_threshold",
@@ -4420,7 +4702,9 @@
               "summary": "If a map item has been on the screen for more than the specified timeout and has not been touched, the offscreen indicator will be removed. Team members will always show an offscreen indicator. Zero will disable the timeout capability.",
               "default": "60",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -4451,7 +4735,9 @@
               "default": null,
               "widget": "com.atakmap.android.gui.PanListPreference",
               "type": "select",
-              "options": []
+              "options": [],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "pref_import_pref_action",
@@ -4473,7 +4759,9 @@
                   "label": "Deny",
                   "value": "DENY"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "prepareForClone",
@@ -4552,7 +4840,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "dispatchLocationHidden",
@@ -4571,7 +4861,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "restoreRecordedLocation",
@@ -4590,7 +4882,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "locationReportingStrategy",
@@ -4608,7 +4902,9 @@
                   "label": "Constant (Send on a regular interval)",
                   "value": "Constant"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "dynamicReportingRateStationaryUnreliable",
@@ -4616,7 +4912,9 @@
               "summary": "Reporting rate in seconds (e.g. once per 30 seconds when standing still) for unreliable protocols (e.g. multicast). Note: other events may also trigger reporting (e.g. a callsign change)",
               "default": "30",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "dynamicReportingRateMinUnreliable",
@@ -4624,7 +4922,9 @@
               "summary": "Minimum reporting rate in seconds (e.g. once per 20 seconds when moving slow) for unreliable protocols (e.g. multicast). Note: other events may also trigger reporting (e.g. a callsign change)",
               "default": "20",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "dynamicReportingRateMaxUnreliable",
@@ -4632,7 +4932,9 @@
               "summary": "Maximum reporting rate in seconds (e.g. every other second when moving fast) for unreliable protocols (e.g. multicast). Note: other events may also trigger reporting (e.g. a callsign change)",
               "default": "2",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "dynamicReportingRateStationaryReliable",
@@ -4640,7 +4942,9 @@
               "summary": "Reporting rate in seconds (e.g. once per 180 seconds when standing still) for reliable protocols (e.g. TAK Server). Note: other events may also trigger reporting (e.g. a callsign change)",
               "default": "180",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "dynamicReportingRateMinReliable",
@@ -4648,7 +4952,9 @@
               "summary": "Minimum reporting rate in seconds (e.g. once per 20 seconds when moving slow) for reliable protocols (e.g. TAK Server). Note: other events may also trigger reporting (e.g. a callsign change)",
               "default": "20",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "dynamicReportingRateMaxReliable",
@@ -4656,7 +4962,9 @@
               "summary": "Maximum reporting rate in seconds (e.g. every other second when moving fast) for reliable protocols (e.g. TAK Server). Note: other events may also trigger reporting (e.g. a callsign change)",
               "default": "2",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "constantReportingRateUnreliable",
@@ -4664,7 +4972,9 @@
               "summary": "Constant interval between reporting self-SA messages in seconds for unreliable protocols (e.g. multicast)",
               "default": "3",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "constantReportingRateReliable",
@@ -4672,7 +4982,9 @@
               "summary": "Constant interval between reporting self-SA messages in seconds for reliable protocols (e.g. TAK Server)",
               "default": "15",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "dispatchLocationCotExternalAtStart",
@@ -4691,7 +5003,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "dispatchTAKVersionNumber",
@@ -4710,7 +5024,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -4759,7 +5075,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "useRouteVoiceCues",
@@ -4778,7 +5096,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "route_vibrate_at_checkpoint",
@@ -4797,7 +5117,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -4811,7 +5133,9 @@
               "summary": "",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "waypointOffRouteBubble.Walking",
@@ -4819,7 +5143,9 @@
               "summary": "",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -4833,7 +5159,9 @@
               "summary": "",
               "default": "20",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "waypointOffRouteBubble.Driving",
@@ -4841,7 +5169,9 @@
               "summary": "",
               "default": "20",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -4855,7 +5185,9 @@
               "summary": "",
               "default": "1000",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "waypointOffRouteBubble.Flying",
@@ -4863,7 +5195,9 @@
               "summary": "",
               "default": "1000",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -4877,7 +5211,9 @@
               "summary": "",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "waypointOffRouteBubble.Swimming",
@@ -4885,7 +5221,9 @@
               "summary": "",
               "default": "10",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -4899,7 +5237,9 @@
               "summary": "",
               "default": "100",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "waypointOffRouteBubble.Watercraft",
@@ -4907,7 +5247,9 @@
               "summary": "",
               "default": "100",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -4932,7 +5274,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "route_billboard_distance_m",
@@ -4940,7 +5284,9 @@
               "summary": "",
               "default": "500",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -4965,7 +5311,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "elevProfileCenterOnSeeker",
@@ -4984,7 +5332,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "gpxImportCheckpointsForNamedRoutePoints",
@@ -5003,7 +5353,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "kmlExportGroundClamp",
@@ -5022,7 +5374,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "kmlExportCheckpointMode",
@@ -5044,7 +5398,9 @@
                   "label": "Both",
                   "value": "Both"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -5196,7 +5552,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "eud_api_sync_plugins",
@@ -5215,7 +5573,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         }
@@ -5289,7 +5649,9 @@
                   "label": "UTM",
                   "value": "UTM"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "alt_display_pref",
@@ -5307,7 +5669,9 @@
                   "label": "Mean Sea Level (MSL)",
                   "value": "MSL"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "alt_unit_pref",
@@ -5325,7 +5689,9 @@
                   "label": "Meters (m)",
                   "value": "1"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "alt_display_agl",
@@ -5344,7 +5710,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "speed_unit_pref",
@@ -5370,7 +5738,9 @@
                   "label": "Meters Per Second (mps)",
                   "value": "3"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "compass_heading_display",
@@ -5388,7 +5758,9 @@
                   "label": "Cardinal",
                   "value": "Cardinal"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "rab_dist_slant_range",
@@ -5406,7 +5778,9 @@
                   "label": "Clamped",
                   "value": "clamped"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -5430,7 +5804,9 @@
                   "label": "Mils",
                   "value": "1"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "rab_rng_units_pref",
@@ -5452,7 +5828,9 @@
                   "label": "Nautical Miles",
                   "value": "2"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "rab_north_ref_pref",
@@ -5474,7 +5852,9 @@
                   "label": "Grid North",
                   "value": "2"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -5488,7 +5868,9 @@
               "summary": "",
               "default": "5280",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "rng_meters_display_pref",
@@ -5496,7 +5878,9 @@
               "summary": "",
               "default": "2000",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         },
@@ -5544,7 +5928,9 @@
                   "label": "Black",
                   "value": "black"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             },
             {
               "key": "rab_preference_show_eta",
@@ -5563,7 +5949,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -5591,7 +5979,9 @@
                   "label": "Maritime",
                   "value": "Maritime"
                 }
-              ]
+              ],
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
@@ -5624,7 +6014,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "video_mute_when_hidden",
@@ -5643,7 +6035,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "recordUdpTool",
@@ -5700,7 +6094,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "prefs_layer_grg_map_interaction",
@@ -5719,7 +6115,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "grgRootVisibilityToggle",
@@ -5738,7 +6136,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             }
           ]
         },
@@ -5763,7 +6163,9 @@
                   "label": "False",
                   "value": "false"
                 }
-              ]
+              ],
+              "storage_type": "boolean",
+              "java_class": "class java.lang.Boolean"
             },
             {
               "key": "prefs_smart_cache_download_limit",
@@ -5771,7 +6173,9 @@
               "summary": "Byte Limit for individual smart cache requests",
               "default": "5000000",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
-              "type": "integer"
+              "type": "integer",
+              "storage_type": "string",
+              "java_class": "class java.lang.String"
             }
           ]
         }
