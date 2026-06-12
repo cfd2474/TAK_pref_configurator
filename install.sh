@@ -60,8 +60,13 @@ main() {
 
   APP_PORT="${APP_PORT}" ${COMPOSE} -f docker-compose.yml up -d --build
 
+  if [[ -x "${APP_DIR}/deploy/setup-nginx.sh" ]]; then
+    APP_DIR="${APP_DIR}" APP_PORT="${APP_PORT}" PREF_DOMAIN="${PREF_DOMAIN:-pref.tak-solutions.com}" \
+      CERTBOT_EMAIL="${CERTBOT_EMAIL:-}" bash "${APP_DIR}/deploy/setup-nginx.sh"
+  fi
+
   log "Installation complete."
-  log "Application URL: http://$(hostname -I | awk '{print $1}'):${APP_PORT}"
+  log "Application URL: http://${PREF_DOMAIN:-pref.tak-solutions.com}/"
   log "Local URL: http://127.0.0.1:${APP_PORT}"
 }
 

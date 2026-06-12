@@ -23,7 +23,7 @@ chmod +x install.sh update.sh
 ./install.sh
 ```
 
-Open `http://<server-ip>:8080`.
+Open [http://pref.tak-solutions.com/](http://pref.tak-solutions.com/) (nginx reverse proxy on port 80; no `:8080` needed).
 
 ## Configuration
 
@@ -31,6 +31,13 @@ Create or edit `.env`:
 
 ```env
 APP_PORT=8080
+PREF_DOMAIN=pref.tak-solutions.com
+```
+
+Optional HTTPS via Let's Encrypt (set your email, then re-run install or `deploy/setup-nginx.sh`):
+
+```env
+CERTBOT_EMAIL=you@example.com
 ```
 
 ## Updating

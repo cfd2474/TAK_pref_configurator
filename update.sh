@@ -36,8 +36,13 @@ main() {
   log "Rebuilding and restarting container..."
   ${COMPOSE} -f docker-compose.yml up -d --build
 
+  if [[ -x "${APP_DIR}/deploy/setup-nginx.sh" ]]; then
+    APP_DIR="${APP_DIR}" APP_PORT="${APP_PORT:-8080}" PREF_DOMAIN="${PREF_DOMAIN:-pref.tak-solutions.com}" \
+      CERTBOT_EMAIL="${CERTBOT_EMAIL:-}" bash "${APP_DIR}/deploy/setup-nginx.sh"
+  fi
+
   log "Update complete."
-  log "Application URL: http://127.0.0.1:${APP_PORT:-8080}"
+  log "Application URL: http://${PREF_DOMAIN:-pref.tak-solutions.com}/"
 }
 
 main "$@"
