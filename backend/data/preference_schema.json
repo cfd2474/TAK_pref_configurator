@@ -1,0 +1,3892 @@
+{
+  "version": "5.5.1",
+  "source": "https://github.com/TAK-Product-Center/atak-civ",
+  "main_prefs": {
+    "preference_groups": [
+      "cot_inputs",
+      "cot_outputs",
+      "cot_streams",
+      "com.atakmap.civ_preferences"
+    ],
+    "legacy_names": [
+      "com.atakmap.app_preferences",
+      "com.atakmap.civ_preferences",
+      "com.atakmap.fvey_preferences"
+    ],
+    "excluded_keys": [
+      "locationCallsign",
+      "bestDeviceUID"
+    ]
+  },
+  "connections": {
+    "groups": [
+      {
+        "name": "cot_inputs",
+        "title": "CoT Inputs",
+        "description": "Incoming connection endpoints"
+      },
+      {
+        "name": "cot_outputs",
+        "title": "CoT Outputs",
+        "description": "Outgoing connection endpoints"
+      },
+      {
+        "name": "cot_streams",
+        "title": "CoT Streams",
+        "description": "Streaming server connections"
+      }
+    ],
+    "connection_fields": [
+      {
+        "key": "connectString",
+        "title": "Connect String",
+        "type": "string",
+        "required": true,
+        "help": "e.g. ssl:server.example.com:8089:stream"
+      },
+      {
+        "key": "description",
+        "title": "Description",
+        "type": "string"
+      },
+      {
+        "key": "enabled",
+        "title": "Enabled",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "key": "useAuth",
+        "title": "Use Authentication",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "key": "compress",
+        "title": "Compress",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "key": "cacheCreds",
+        "title": "Cache Credentials",
+        "type": "string",
+        "options": [
+          "Do Not Cache",
+          "Cache Username",
+          "Cache Username and Password"
+        ]
+      },
+      {
+        "key": "caLocation",
+        "title": "CA Location",
+        "type": "string"
+      },
+      {
+        "key": "certificateLocation",
+        "title": "Certificate Location",
+        "type": "string"
+      },
+      {
+        "key": "caPassword",
+        "title": "CA Password",
+        "type": "string",
+        "sensitive": true
+      },
+      {
+        "key": "clientPassword",
+        "title": "Client Password",
+        "type": "string",
+        "sensitive": true
+      },
+      {
+        "key": "enrollForCertificateWithTrust",
+        "title": "Enroll For Certificate With Trust",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "key": "enrollUseTrust",
+        "title": "Enroll Use Trust",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "key": "expiration",
+        "title": "Expiration",
+        "type": "long",
+        "default": -1
+      }
+    ]
+  },
+  "categories": [
+    {
+      "id": "advanced_logging_preferences",
+      "file": "advanced_logging_preferences.xml",
+      "title": "Advanced Logging Preferences",
+      "sections": [
+        {
+          "title": "Debug Logging Preferences",
+          "key": "debug_logging_preferences_category",
+          "fields": [
+            {
+              "key": "loggingfile",
+              "title": "Enable Logcat File",
+              "summary": "If checked a log file will capture the Android (logcat) logging output while the app is running. The log file is generated in the app support directory, is named logcat.txt, and is overwritten after each run of the application.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "loggingfile_error_only",
+              "title": "Enable Logcat Errors only",
+              "summary": "If checked the log file will only capture error level diagnostic information while the app is running.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "loggingfile_upload_debug",
+              "title": "Upload Debug Logs",
+              "summary": "If checked debug logs (Logcat and Network Traffic) will be uploaded to TAK Server.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Network Logging Preferences",
+          "key": "network_logging_preferences_category",
+          "fields": [
+            {
+              "key": "collect_metrics",
+              "title": "Collect Metrics",
+              "summary": "Enable usage and metrics data to be collected and recorded in directory: support/logs\\nPlease note that this will cause an app performance penalty due to consumption of system resources.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "lognettraffictofile",
+              "title": "Log Network Traffic",
+              "summary": "If checked captures all outgoing network traffic to a Comma Separated Values (CSV) file.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "generate_full_pool",
+              "title": "Advanced CoT Recorder",
+              "summary": "If checked captures all incoming and outgoing Cursor on Target traffic and saves each message based on its event type into directory: tools/metrics/cot. Each message is saved under a subdirectory as an individual file [type]/[type]-timestamp.xml. This can be used to generate and refine XSD schemas.",
+              "type": "boolean",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "generate_detail_pool",
+              "title": "Advanced CoT Details Recorder",
+              "summary": "If checked captures all incoming and outgoing Cursor on Target traffic and extracts only the nested details into directory: tools/metrics/details. Each detail is saved under a subdirectory as an individual file [element]/[element]-timestamp.xml. This can be used to generate and refine XSD schemas.",
+              "type": "boolean",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "key": "loggingDisclaimer",
+          "title": "Logging Impact on Performance",
+          "summary": "Please note that logging and metrics collection will cause an app performance penalty. Care should be taken to only enable these settings during a diagnostic period, and should remain off during normal app usage due to consumption of system resources.",
+          "type": "string",
+          "default": null,
+          "widget": "Preference"
+        }
+      ]
+    },
+    {
+      "id": "alert_preferences",
+      "file": "alert_preferences.xml",
+      "title": "Alert Preferences",
+      "sections": [
+        {
+          "title": "Alert Preferences",
+          "key": "alert_preferences_category",
+          "fields": [
+            {
+              "key": "alert_notification",
+              "title": "Notification",
+              "summary": "Display an Android notification during alert.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "individual_alert_notification",
+              "title": "Individual Alert Notifications",
+              "summary": "Allows for individual notifications to be sent as well as a summary count of the number of alerts. If false, it will only produce the summary count.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "alert_audible",
+              "title": "Audible alert",
+              "summary": "Sound an audible alert during alert.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "alert_vibration",
+              "title": "Vibration alert",
+              "summary": "Vibrate device during alert.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "sms_numbers",
+              "title": "Alert SMS Numbers",
+              "summary": "When the \"Send SMS\" checkbox is checked and an alert is issued, these numbers will automatically receive an SMS.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.SMSNumberPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "app_mgmt_preferences",
+      "file": "app_mgmt_preferences.xml",
+      "title": "App Mgmt Preferences",
+      "sections": [
+        {
+          "title": "TAK Package Mgmt Preferences",
+          "key": "tak_package_mgmt_preferences_category",
+          "fields": [
+            {
+              "key": "atakPluginScanningOnStartup",
+              "title": "Plugin Loading",
+              "summary": "Enable to load plugins during startup",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "repoStartupSync",
+              "title": "Auto Sync",
+              "summary": "Enable to check for app updates during startup. Disable to only check after an ATAK version upgrade",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Remote Repository Configuration",
+          "key": "tak_package_mgmt_remote_preferences_category",
+          "fields": [
+            {
+              "key": "appMgmtEnableUpdateServer",
+              "title": "Update Server",
+              "summary": "Enable to allow Over the Air updates from a remote TAK Update Server",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakUpdateServerUrl",
+              "title": "Update Server URL",
+              "summary": "Edit URL of the remote TAK Update Server",
+              "type": "string",
+              "default": "@string/atakUpdateServerUrlDefault",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "atakQuickConfigUpdateServer",
+              "title": "Quick Configure Update Server URL from a TAK Server",
+              "summary": "Allows for quick configuration of the update server url based on a selected TAK Server.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "updateServerCaLocation",
+              "title": "Update Server SSL/TLS TrustStore Location",
+              "summary": "The PKCS12 keystore with your Update Server Certificate Authorities (.p12 file)",
+              "type": "string",
+              "default": "(built-in)",
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "updateServerCaPassword",
+              "title": "Update Server SSL/TLS TrustStore Password",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.EncryptedPanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Local Repository Configuration",
+          "key": "tak_package_mgmt_local_preferences_category",
+          "fields": [
+            {
+              "key": "atakUpdateLocalPath",
+              "title": "Local APK directory",
+              "summary": "Directory on the local device containing app/plugin APKs to load",
+              "type": "string",
+              "default": "@string/atakUpdateServerUrlDefault",
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "atakUpdateLocalPathReset",
+              "title": "Reset the Local APK Directory Choice",
+              "summary": "Resets the Local APK directory back to the default setting choice",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "atak_docs_preference",
+      "file": "atak_docs_preference.xml",
+      "title": "Atak Docs Preference",
+      "sections": [
+        {
+          "title": "Documentation",
+          "key": "documentation_category",
+          "fields": [
+            {
+              "key": "atakChangeLog",
+              "title": "ATAK Release Change Log",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "atakDocumentation",
+              "title": "ATAK User Manual",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "atakDocumentationTranslated",
+              "title": "ATAK User Manual Translated",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "atakIconGlossary",
+              "title": "ATAK Icon Glossary",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "atakFlavorAddendum",
+              "title": "Addendum",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "atakDatasets",
+              "title": "ATAK Dataset Instructions",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "bloodhound_preferences",
+      "file": "bloodhound_preferences.xml",
+      "title": "Bloodhound Preferences",
+      "sections": [
+        {
+          "title": "Bloodhound Preferences",
+          "key": "bloodhound_preference_category",
+          "fields": [
+            {
+              "key": "rab_bloodhound_display_textwidget",
+              "title": "Display Bloodhound Text Widget",
+              "summary": "Enable to display the Bloodhound widget.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "rab_bloodhound_large_textwidget",
+              "title": "Display Large Bloodhound Text Widget",
+              "summary": "Enable large text in the Bloodhound widget.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "rab_bloodhound_flash_colors",
+              "title": "Flash When Closing In",
+              "summary": "Flash the Bloodhound Text Widget and pairing line when close to the target.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "rab_bloodhound_zoom",
+              "title": "Toggle Auto Zoom",
+              "summary": "Enable Auto Zoom feature to display self and DP in map view when tool is first launched.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Bloodhound ETA Preferences",
+          "key": "bloodhound_eta_preference_category",
+          "fields": [
+            {
+              "key": "bloodhound_flash_eta",
+              "title": "Flash ETA Threshold",
+              "summary": "Specify the ETA (in seconds) for when to flash when closing in",
+              "type": "integer",
+              "default": "360",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "bloodhound_outer_eta",
+              "title": "Outer/Middle ETA Threshold",
+              "summary": "Specify the ETA (in seconds) for the outer/middle radius",
+              "type": "integer",
+              "default": "180",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "bloodhound_inner_eta",
+              "title": "Middle/Inner ETA Threshold",
+              "summary": "Specify the ETA (in seconds) for the middle/inner radius",
+              "type": "integer",
+              "default": "60",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "bloodhound_flash_color_pref",
+              "title": "Flash Color",
+              "summary": "Set the color of the bloodhound line\\'s flash.",
+              "type": "string",
+              "default": "black",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/colors_label"
+            },
+            {
+              "key": "bloodhound_outer_color_pref",
+              "title": "Outer ETA Color",
+              "summary": "Set the color of the bloodhound line\\'s outer radius.",
+              "type": "string",
+              "default": "green",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/colors_label"
+            },
+            {
+              "key": "bloodhound_middle_color_pref",
+              "title": "Middle ETA Color",
+              "summary": "Set the color of the bloodhound line\\'s middle radius.",
+              "type": "string",
+              "default": "yellow",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/colors_label"
+            },
+            {
+              "key": "bloodhound_inner_color_pref",
+              "title": "Inner ETA Color",
+              "summary": "Set the color of the bloodhound line\\'s inner radius.",
+              "type": "string",
+              "default": "red",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/colors_label"
+            }
+          ]
+        },
+        {
+          "title": "Bloodhound routing preferences",
+          "key": "bloodhound_routing_preference",
+          "fields": [
+            {
+              "key": "bloodhound_reroute_distance_pref",
+              "title": "Reroute distance",
+              "summary": "Specify the distance away from the route a point has to move before calculating a reroute.",
+              "type": "integer",
+              "default": "20.0",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "bloodhound_reroute_timer_pref",
+              "title": "Reroute timer frequency",
+              "summary": "Specify how frequently bloodhound will check to see if a reroute needs to be calculated.",
+              "type": "integer",
+              "default": "3.0",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "bluetooth_preferences",
+      "file": "bluetooth_preferences.xml",
+      "title": "Bluetooth Preferences",
+      "sections": [
+        {
+          "title": "Bluetooth Preferences",
+          "key": "bluetoorh_preferences_category",
+          "fields": [
+            {
+              "key": "atakControlBluetooth",
+              "title": "Bluetooth Support",
+              "summary": "Turn on scanning for bluetooth devices (e.g. LRF and GPS).",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakBluetoothReconnectSeconds",
+              "title": "Bluetooth Reconnect Time",
+              "summary": "Number of seconds to attempt to reconnect dropped Bluetooth connections.",
+              "type": "integer",
+              "default": "180",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "bread_preferences",
+      "file": "bread_preferences.xml",
+      "title": "Bread Preferences",
+      "sections": [
+        {
+          "title": "Track History Preferences",
+          "key": "track_history_preferences_category",
+          "fields": [
+            {
+              "key": "toggle_log_tracks",
+              "title": "Log Tracks",
+              "summary": "Log your tracks.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "track_prefix",
+              "title": "Track Prefix",
+              "summary": "Prefix for self-track history segments",
+              "type": "string",
+              "default": "track_",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "toggle_rotate_track_colors",
+              "title": "Auto Rotate Track Colors",
+              "summary": "Check to change color of each new track segment, uncheck to use default track color each time.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "track_history_default_color",
+              "title": "Default Color",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "track_csv_export_headers",
+              "title": "CSV Export Header",
+              "summary": "Include column headers for CSV exports.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "track_kml_export_timestamps",
+              "title": "KML Export Timestamps",
+              "summary": "Check to use gx:Track with timestamps (more detailed info), uncheck to use LineString (more compatibility).",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "bread_track_timegap_threshold",
+              "title": "Server track time gap (minutes)",
+              "summary": "When searching the server for tracks, split into separate tracks when consecutive breadcrumbs are temporally more than this far apart (default: 10 minutes).",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Bread Crumb Preferences",
+          "key": "bread_crumb_preferences_category",
+          "fields": [
+            {
+              "key": "track_infinite",
+              "title": "Persistent Self Track",
+              "summary": "Check to display all tracks since startup.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "max_num_bread_tracks",
+              "title": "Set Max Number of Bread Crumbs",
+              "summary": "Max number of Bread Crumbs on-screen.",
+              "type": "string",
+              "default": "200",
+              "widget": "com.atakmap.android.track.ui.SeekBarPreference"
+            },
+            {
+              "key": "track_line_to_surface",
+              "title": "Render bread crumb line to ground in 3-D",
+              "summary": "When rendering the bread crumb trail in 3-D view, draw a line to the ground for each crumb.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "track_crumb_size",
+              "title": "Default Crumb Size",
+              "summary": "The default size for breadcrumbs to appear on the map.",
+              "type": "string",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/crumb_size"
+            },
+            {
+              "key": "bread_dist_threshold",
+              "title": "Bread Crumb Distance Threshold",
+              "summary": "Set how far you must move before dropping a crumb (default: 2 meters).",
+              "type": "integer",
+              "default": "2",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "call_sign_preference",
+      "file": "call_sign_preference.xml",
+      "title": "Call Sign Preference",
+      "sections": [
+        {
+          "title": "Callsign",
+          "key": "callsign_category",
+          "fields": [
+            {
+              "key": "locationCallsign",
+              "title": "My Callsign",
+              "summary": "Specifies the callsign for this device.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "locationTeam",
+              "title": "My Team",
+              "summary": "Select your team.",
+              "type": "string",
+              "default": "Cyan",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/squad_names"
+            },
+            {
+              "key": "atakRoleTypeAction",
+              "title": "My Role",
+              "summary": "Specifies the role of this device",
+              "type": "string",
+              "default": "@string/preferences_text82",
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "userRemarks",
+              "title": "Remarks",
+              "summary": "Provides additional remarks to be transmitted when sending out information to other TAK users on the network. Note that this can include hashtags.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "callsign_device_preferences",
+      "file": "callsign_device_preferences.xml",
+      "title": "Callsign Device Preferences",
+      "sections": [
+        {
+          "title": "Callsign and Device Preferences",
+          "key": "callsign_and_device_preferences_category",
+          "fields": [
+            {
+              "key": "callSignPrefs",
+              "title": "Callsign Preferences",
+              "summary": "Adjust how this device is seen on the network",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "devicePrefs",
+              "title": "Device Preferences",
+              "summary": "Access general display preferences such as font size, icon scaling, brightness, and illumination of soft keys.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "bluetooth",
+              "title": "Bluetooth",
+              "summary": "Turn on scanning for bluetooth devices (e.g. LRF and GPS).",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "contactPrefs",
+              "title": "Contact Preferences",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "reportingPrefs",
+              "title": "Reporting Preferences",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "encryptPassword",
+              "title": "Encryption Password",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "prefManage",
+              "title": "Preference Management",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "chat_preferences",
+      "file": "chat_preferences.xml",
+      "title": "Chat Preferences",
+      "sections": [
+        {
+          "title": "Notification Preferences",
+          "key": "notification_preferences_category",
+          "fields": [
+            {
+              "key": "enableToast",
+              "title": "Display Notification",
+              "summary": "Display a notification whenever a new Chat message is received.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "vibratePhone",
+              "title": "Vibrate phone",
+              "summary": "Vibrate the phone whenever a new Chat message is received (notifications required).",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "audibleNotify",
+              "title": "Audible Chat notifications",
+              "summary": "Play default notification sound whenever a new Chat message is received (notifications required).",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "History Preferences",
+          "key": "history_preferences_category",
+          "fields": [
+            {
+              "key": "exportHistory",
+              "title": "Export Chat History",
+              "summary": "Write entire chat history to CSV file on disk.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "clearHistory",
+              "title": "Clear History",
+              "summary": "Clear Chat History.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        },
+        {
+          "title": "Geo Chat(Mesh) Network Preferences",
+          "key": "geochat_network_preferences_category",
+          "fields": [
+            {
+              "key": "chatAddress",
+              "title": "Chat Address",
+              "summary": "Address to send chat messages. Must match other GeoChat providers.",
+              "type": "string",
+              "default": "224.10.10.1",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "chatPort",
+              "title": "Chat Port",
+              "summary": "Port to send chat messages. Must match other GeoChat providers.",
+              "type": "integer",
+              "default": "17012",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "contact_preferences",
+      "file": "contact_preferences.xml",
+      "title": "Contact Preferences",
+      "sections": [
+        {
+          "title": "Contact Preferences",
+          "key": "alternateContactCategory",
+          "fields": [
+            {
+              "key": "saHasPhoneNumber",
+              "title": "Publish Phone Number",
+              "summary": "Display phone number (if available) to other users and allow direct phone calls and SMS messages (if supported) by both devices",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "saAlternativeNumber",
+              "title": "Alternative Phone Number",
+              "summary": "Specify a phone number instead of the one discovered on the device.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "preferAltNumber",
+              "title": "Prefer Alternative Number",
+              "summary": "Prioritize sending the alternative phone number when sending out contact information.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "saSipAddressAssignment",
+              "title": "Publish VoIP Number",
+              "summary": "Specifies whether to publish VoIP address, and whether to configure automatically or manually.",
+              "type": "string",
+              "default": "@string/voip_assignment_disabled",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/voip_assignment_values"
+            },
+            {
+              "key": "saSipAddress",
+              "title": "VoIP Number",
+              "summary": "VoIP number or SIP address for VoIP calling. Leave blank to not publish.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "saXmppUsername",
+              "title": "Publish XMPP Username",
+              "summary": "XMPP/Jabber chat username. Leave blank to not publish.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "saEmailAddress",
+              "title": "Publish Preferred Email",
+              "summary": "Preferred email address. Leave blank to not publish.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "saURN",
+              "title": "Unit Reference Number",
+              "summary": "Identifying number assigned to this device for use in legacy systems. This is an assigned number and should not be set unless provided.",
+              "type": "integer",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "control_preferences",
+      "file": "control_preferences.xml",
+      "title": "Control Preferences",
+      "sections": [
+        {
+          "title": "Control Preferences",
+          "key": "control_preferences_category",
+          "fields": [
+            {
+              "key": "mediaPreference",
+              "title": "Media Preferences",
+              "summary": "Adjust Image and Video Media Preferences",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "lockBehavior",
+              "title": "Lock Behavior",
+              "summary": "Enabling this preference will result in the self marker remaining centered while moving in track up mode. This overrides the default behavior of floating the self icon to the bottom of the screen when moving to give the user a more 360 degree view.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "staleData",
+              "title": "Stale Data Preferences",
+              "summary": "Enable to immediately stale out remote users when they disconnect from TAK Server, or when you disconnect from TAK Server. Disable to use last received stale time.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "userTouch",
+              "title": "User Touch Preferences",
+              "summary": "Preferences to modify how the device responds to user Touch",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "selfCoordinate",
+              "title": "Additional Self Coordinate Controls",
+              "summary": "Changes to the actions associated with the Self Coordinate Display",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "scrollToSelfOnStart",
+              "title": "Scroll to Self Marker Location on Start",
+              "summary": "During startup, attempt to center the screen on your self marker location.   If the self location is not known during startup, restore the last viewed location.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Other General Control Preferences",
+          "key": "other_general_control_preferences_category",
+          "fields": [
+            {
+              "key": "eud_api_disable_option",
+              "title": "Disable EUD Link Capability",
+              "summary": "Disables the ability for the device be linked to an enterprise account for distribution of plugins and data.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "forceEnglish",
+              "title": "Ignore Global Language Settings",
+              "summary": "Force the application to run in English only and ignore the global language setting in Android.  A restart is necessary for this option to take effect.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "override_permission_request",
+              "title": "Override Permission Request",
+              "summary": "Enabling this feature will allow for the required permissions to be bypassed and still allow for ATAK to be run.    The capabilities will be limited and this will not provide for an optimal user experience and is not recommended.  Plugins may crash as they expect access to the permissions.  Additionally, Android may remove previously approved permissions at any time degrading the user experience even further.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "custom_actionbar_preferences",
+      "file": "custom_actionbar_preferences.xml",
+      "title": "Custom Actionbar Preferences",
+      "sections": [],
+      "fields": [
+        {
+          "key": "nav_orientation_right",
+          "title": "Toolbar Side",
+          "summary": "Set which side of the screen to display the main toolbar.",
+          "type": "string",
+          "default": "true",
+          "widget": "com.atakmap.android.gui.PanSwitchPreference"
+        },
+        {
+          "key": "@string/selected_actionbar_icon_color",
+          "title": "Toolbar Icon Color",
+          "summary": "Set the color of the toolbar icons. Note: Some plugin icons may not blend well with the applied coloring.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "@string/selected_actionbar_background_color",
+          "title": "Toolbar Background Color",
+          "summary": "Set the background color of the toolbar. Note: Background color will be transparent.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "@string/default_actionbar_colors",
+          "title": "Reset Toolbar Colors To Default",
+          "summary": "Resets the toolbar icon and background color back to the default settings.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "landscape_extended_buttons",
+          "title": "Force Extra Icons in Landscape",
+          "summary": "If the device is primarily being used in landscape mode, force an extra number of tool slots to mimic legacy behavior.",
+          "type": "boolean",
+          "default": "false",
+          "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+        }
+      ]
+    },
+    {
+      "id": "device_details_preference",
+      "file": "device_details_preference.xml",
+      "title": "Device Details Preference",
+      "sections": [],
+      "fields": [
+        {
+          "key": "deviceDetails",
+          "title": "Device Details",
+          "summary": "",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "settingsDebugging",
+          "title": "Device Information",
+          "summary": "Hardware Details for remote help and support.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        }
+      ]
+    },
+    {
+      "id": "device_preferences",
+      "file": "device_preferences.xml",
+      "title": "Device Preferences",
+      "sections": [
+        {
+          "title": "Device Preferences",
+          "key": "device_preferences_category",
+          "fields": [
+            {
+              "key": "locationCallsign",
+              "title": "My Callsign",
+              "summary": "Specifies the callsign for this device.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "locationTeam",
+              "title": "My Team",
+              "summary": "Select your team.",
+              "type": "string",
+              "default": "Cyan",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/squad_names"
+            },
+            {
+              "key": "atakRoleTypeAction",
+              "title": "My Role",
+              "summary": "Specifies the role of this device",
+              "type": "string",
+              "default": "@string/preferences_text82",
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "locationUnitTypeAction",
+              "title": "My Display Type",
+              "summary": "Specifies the type that the world will see this device as",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "userRemarks",
+              "title": "Remarks",
+              "summary": "Provides additional remarks to be transmitted when sending out information to other TAK users on the network. Note that this can include hashtags.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "gpsSettings",
+              "title": "GPS Preferences",
+              "summary": "Adjust Network GPS Preferences",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "lrfSettings",
+              "title": "Laser Range Finder Preferences",
+              "summary": "Adjust the Laser Range Finder Preferences",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "symbologyProvider",
+              "title": "Symbology Provider",
+              "summary": "Choose Symbology",
+              "type": "string",
+              "default": "2525C",
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "locationUseWRCallsign",
+              "title": "Use Wave Relay Callsign",
+              "summary": "If available, use the Callsign of the WR radio for mocking.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "dex_options_prefs",
+      "file": "dex_options_prefs.xml",
+      "title": "Dex Options Prefs",
+      "sections": [
+        {
+          "title": "DEX Options",
+          "key": "dex_options_category",
+          "fields": [
+            {
+              "key": "dexControls",
+              "title": "Enable DEX Friendly Controls",
+              "summary": "Display 3-D and zoom controls to enable the user to perform multi-touch actions.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "display_preferences",
+      "file": "display_preferences.xml",
+      "title": "Display Preferences",
+      "sections": [
+        {
+          "title": "Adjust Toolbar Preferences",
+          "key": "adjust_toolbar_preferences_category",
+          "fields": [
+            {
+              "key": "basic_display_settings",
+              "title": "Basic Display Settings",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "usableSettings",
+              "title": "Usability Settings",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "dexOptions",
+              "title": "DEX Options",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "3DRendering",
+              "title": "3-D / Rendering Options",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "my_location_icon_color",
+              "title": "My Location Color / Size",
+              "summary": "Customize your location marker by color or size.",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "my_actionbar_settings",
+              "title": "Tool Bar Customization",
+              "summary": "Customize toolbar icon and background colors",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "additionalDisplay",
+              "title": "Additional Display Options",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "elevation_preferences",
+      "file": "elevation_preferences.xml",
+      "title": "Elevation Preferences",
+      "sections": [
+        {
+          "title": "Coordinate Entry Preferences",
+          "key": "coordEntryPreferences",
+          "fields": [
+            {
+              "key": "pull_elevation_mode",
+              "title": "Pull Elevation Mode",
+              "summary": "Configure the default behavior for pulling elevation during coordinate entry",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        },
+        {
+          "title": "Data Usage Preferences",
+          "key": "dataUsagePreferences",
+          "fields": [
+            {
+              "key": "force_dted_elevation_only",
+              "title": "Force DTED Elevation",
+              "summary": "When enabled, this will force the usage of DTED elevation data during usage of the Point Dropper Tool, Red X Tool, and Digital Pointer Tool. Note that other tool workflows will also be forced to use DTED elevation.",
+              "type": "boolean",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Elevation Data",
+          "key": "elevation_data_category",
+          "fields": [
+            {
+              "key": "prefs_dted_stream_server",
+              "title": "Elevation Server",
+              "summary": "The publicly facing elevation server to pull data from.",
+              "type": "string",
+              "default": "tak.gov",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "prefs_dted_download",
+              "title": "Elevation Downloader",
+              "summary": "Attempts to mass download elevation data for the entire world from the server and gives the user options for which hemisphere they are in.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "prefs_dted_stream",
+              "title": "Stream Elevation Data",
+              "summary": "Stream elevation data when missing instead of downloading the entire world.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "encrypt_preference",
+      "file": "encrypt_preference.xml",
+      "title": "Encrypt Preference",
+      "sections": [],
+      "fields": [
+        {
+          "key": "encryptionPassphrase",
+          "title": "Change Encryption Passphrase",
+          "summary": "Allow for changes to the encryption passphrase protecting databases containing map items, location information and chat.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        }
+      ]
+    },
+    {
+      "id": "file_overlay_preferences",
+      "file": "file_overlay_preferences.xml",
+      "title": "File Overlay Preferences",
+      "sections": [
+        {
+          "title": "File Overlays",
+          "key": "file_overlay_category",
+          "fields": [
+            {
+              "key": "prefs_file_label",
+              "title": "Display Shape Label",
+              "summary": "Display shape labels for File Overlays shapes.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "fires_preferences",
+      "file": "fires_preferences.xml",
+      "title": "Fires Preferences",
+      "sections": [
+        {
+          "title": "Digital Pointer Preferences",
+          "key": "fire_prefs_category",
+          "fields": [
+            {
+              "key": "spiUpdateDelay",
+              "title": "DP Update Period",
+              "summary": "The maximum delay between sending updates for the DP point, if enabled (in seconds) even if the DP is not modified.   Moving a DP point locally will generate updates immediately.",
+              "type": "integer",
+              "default": "5",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "legacyFiresToolbarMode",
+              "title": "Legacy SPI Toolbar Mode",
+              "summary": "Enables the display of the legacy toolbar which has an additional range and bearing tool.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "firesNumberOfSpis",
+              "title": "Number of DPs",
+              "summary": "Number of DPs to show in the Digital Pointer toolbar.",
+              "type": "string",
+              "default": "1",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/spi_number"
+            },
+            {
+              "key": "spiFahSize",
+              "title": "DP/RedX FAH Width",
+              "summary": "Sets the width of the FAH cone (in degrees) when enabled from a DP or the Red X (rounds to the closest increment of 10).",
+              "type": "integer",
+              "default": "30",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "expandedDangerClose",
+              "title": "Expanded Danger Close Search",
+              "summary": "Consider Neutrals and Unknowns when determining a danger close situation.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Bullseye Preference Category",
+          "key": "bullseye_preference_category",
+          "fields": [
+            {
+              "key": "bullseyeDistance",
+              "title": "Bullseye Radius",
+              "summary": "The size of the bullseye as specified in meters when launched from the radial menu.   If using the bullseye tool directly this value will not be used",
+              "type": "integer",
+              "default": "2000",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "bullseyeNumRings",
+              "title": "Bullseye Ring Count",
+              "summary": "The default number of rings in a bullseye.",
+              "type": "integer",
+              "default": "4",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "bullseyeRadiusRings",
+              "title": "Bullseye Ring Radius",
+              "summary": "The default spacing of the bullseye rings as specified in meters.",
+              "type": "integer",
+              "default": "500",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "bullseyeRingsVisible",
+              "title": "Bullseye Rings Visibility",
+              "summary": "If checked the rings will initially be visible when creating a bullseye.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "bullseyeDirection",
+              "title": "Bullseye Arrow Direction",
+              "summary": "If checked the arrow will point to the center of the bullseye by default.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Coordinate Entry Preferences",
+          "key": "coord_entry_prefs_category",
+          "fields": [
+            {
+              "key": "rapid_mgrs_dialog",
+              "title": "Rapid MGRS Entry Mode",
+              "summary": "When long pressing to drop a point from the point dropper tool, use the MGRS optimized coordinate entry.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "goto_tool_use_last_point",
+              "title": "GoTo Use Last Point",
+              "summary": "When starting up the GoTo tool, populate with last point entered during a session.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Auto Broadcast Preferences",
+          "key": "autosend_prefs_category",
+          "fields": [
+            {
+              "key": "hostileUpdateDelay",
+              "title": "Automatically Broadcast a Marker",
+              "summary": "Change the time between updates for markers being broadcasted.   This feature needs to be selected in the Detail page for the marker.   If the value is set to 0, then feature is disabled.",
+              "type": "string",
+              "default": "60",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/autobroadcast_update"
+            },
+            {
+              "key": "autosendStaleEnabled",
+              "title": "Enable Auto Broadcast Stale Timeout",
+              "summary": "Applies a stale timeout when auto broadcasting a marker.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "autosendStaleInterval",
+              "title": "Auto Broadcast Stale Timeout",
+              "summary": "The stale timeout period when auto broadcasting a marker. The marker will stale out on receiving devices if no update is received after the timeout period elapses. Only applies when auto broadcast stale time is enabled.",
+              "type": "integer",
+              "default": "30",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "preference_broadcast_delete",
+              "title": "Allow remote deletion of Auto Send items",
+              "summary": "If a marker is deleted when autobroadcast is enabled, attempt to delete the marker by sending a remote deletion command.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "gridlines_preferences",
+      "file": "gridlines_preferences.xml",
+      "title": "Gridlines Preferences",
+      "sections": [
+        {
+          "title": "Display Preference",
+          "key": "display_preference_category",
+          "fields": [
+            {
+              "key": "pref_grid_color",
+              "title": "Grid Line Color",
+              "summary": "Select a color to make grid lines more visible",
+              "type": "string",
+              "default": "#ffffff",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/gridline_color_names"
+            },
+            {
+              "key": "prefs_grid_default_show",
+              "title": "Show by Default",
+              "summary": "Default grid lines to showing on startup",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "pref_grid_type",
+              "title": "Grid Line Display Type",
+              "summary": "Select the type of values used to represent the grid lines.",
+              "type": "string",
+              "default": "MGRS",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/grid_type_names"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "importstyle_preferences",
+      "file": "importstyle_preferences.xml",
+      "title": "Importstyle Preferences",
+      "sections": [
+        {
+          "title": "Import Style Default Preferences",
+          "key": "import_style_default_preferences_category",
+          "fields": [
+            {
+              "key": "pref_overlay_style_outline_color",
+              "title": "Imported Shape Outline Color",
+              "summary": "Default outline color for imported shapes.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "isrv_preferences",
+      "file": "isrv_preferences.xml",
+      "title": "Isrv Preferences",
+      "sections": [
+        {
+          "title": "Configuration",
+          "key": "configuration_category",
+          "fields": [
+            {
+              "key": "network_config",
+              "title": "Internal Network Configuration",
+              "summary": "Attempt network configuration of a directly connected device.\\nPlease Note:    It is not recommended that ATAK handle the internal network configuration of USB ethernet devices.   This is better handled by an external application such as the Network Monitor Application, which can be found under Preferences:Apps.   External monitoring of the connection will better handle network disconnects and reconnects.",
+              "type": "string",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanSwitchPreference"
+            },
+            {
+              "key": "network_dhcp",
+              "title": "DHCP",
+              "summary": "Check to Enable DHCP.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Address",
+          "key": "address_category",
+          "fields": [
+            {
+              "key": "network_static_ip_address",
+              "title": "IP address",
+              "summary": "",
+              "type": "string",
+              "default": "192.168.80.200",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "network_static_subnet_mask",
+              "title": "Subnet mask",
+              "summary": "",
+              "type": "string",
+              "default": "255.255.255.0",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "network_static_gateway",
+              "title": "Default gateway",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "DNS Servers",
+          "key": "dns_servers_category",
+          "fields": [
+            {
+              "key": "network_static_dns1",
+              "title": "DNS 1",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "network_static_dns2",
+              "title": "DNS 2",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "layers_preferences",
+      "file": "layers_preferences.xml",
+      "title": "Layers Preferences",
+      "sections": [
+        {
+          "title": "Imagery Layer Outline Preferences",
+          "key": "imagery_layer_outline_preferences_category",
+          "fields": [
+            {
+              "key": "pref_layer_outline_color",
+              "title": "Layer Outline Color",
+              "summary": "Select a color to make the layer outlines more visible.",
+              "type": "string",
+              "default": "#00ff00",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/color_names"
+            },
+            {
+              "key": "prefs_layer_outlines_default_show",
+              "title": "Show by Default",
+              "summary": "Enable to display layer outlines on startup",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "legacy_prefs",
+      "file": "legacy_prefs.xml",
+      "title": "Legacy Prefs",
+      "sections": [
+        {
+          "title": "Legacy Preferences",
+          "key": "legacy_preferences_category",
+          "fields": [
+            {
+              "key": "pointDroppingBehavior",
+              "title": "Point Dropping Behavior",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "disableLeyGuard",
+              "title": "Disable KeyGuard",
+              "summary": "If checked the keyguard will be disabled system-wide!",
+              "type": "boolean",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakForceAirplaneRadioList",
+              "title": "Forced Airplane Mode",
+              "summary": "Force Airplane Mode on launch. This is only supported on certain older phones and probably will not work on newer devices running KitKat or newer. If the device does not turn off the radio or wifi on launch, it does not support this feature.",
+              "type": "string",
+              "default": "none",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/airplane_names"
+            },
+            {
+              "key": "atakContinuousRender",
+              "title": "Continuous Rendering",
+              "summary": "Continuous Rendering is the legacy model for updating graphics on the screen and has been replaced with a more efficient rendering mechanism. Enable this feature only if there are rendering issues observed when using the software.",
+              "type": "boolean",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakDeveloperTools",
+              "title": "Developer Tools",
+              "summary": "Enable the Developer Tools in the Overlay Manager.",
+              "type": "boolean",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "locking_preference",
+      "file": "locking_preference.xml",
+      "title": "Locking Preference",
+      "sections": [
+        {
+          "title": "Lock Behavior",
+          "key": "lock_behavior_category",
+          "fields": [
+            {
+              "key": "disableFloatToBottom",
+              "title": "Force Center while Moving",
+              "summary": "Enabling this preference will result in the self marker remaining centered while moving in track up mode. This overrides the default behavior of floating the self icon to the bottom of the screen when moving to give the user a more 360 degree view.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "logging_preferences",
+      "file": "logging_preferences.xml",
+      "title": "Logging Preferences",
+      "sections": [
+        {
+          "title": "App Logging Preferences",
+          "key": "app_logging_preferences_category",
+          "fields": [
+            {
+              "key": "collect_crashlogs",
+              "title": "Crash logs",
+              "summary": "Details about app crashes are recorded in directory: support/logs",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "atakExportCrashLogs",
+              "title": "Send App Logs Now",
+              "summary": "Touch to export app logs now.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "enableAutoUploadLogs",
+              "title": "Auto Upload App Logs",
+              "summary": "Enable to upload app logs to TAK Server during app startup.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "collect_metrics",
+              "title": "Collect Metrics",
+              "summary": "Enable usage and metrics data to be collected and recorded in directory: support/logs\\nPlease note that this will cause an app performance penalty due to consumption of system resources.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "realtime_metrics",
+              "title": "Live Metrics",
+              "summary": "Enable usage and metrics data to be sent to TAK Server periodically while app is running.   This will consume higher than normal bandwidth.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "advanced_logging",
+              "title": "Advanced Logging",
+              "summary": "Manage advanced logging of debug and low level app data.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "lrf_preferences",
+      "file": "lrf_preferences.xml",
+      "title": "Lrf Preferences",
+      "sections": [
+        {
+          "title": "Laser Range Finder Preferences",
+          "key": "lrfCategory",
+          "fields": [
+            {
+              "key": "nonBluetoothLaserRangeFinder",
+              "title": "Non-Bluetooth Laser Range Finders Support",
+              "summary": "Enable support for Laser Ranger Finders that are not attached by Bluetooth. This is a case for laser range finders that are managed by Serial Monitor",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "main_preferences",
+      "file": "main_preferences.xml",
+      "title": "Main Preferences",
+      "sections": [
+        {
+          "title": "Preferences",
+          "key": "preferences_category",
+          "fields": [
+            {
+              "key": "deviceSettings",
+              "title": "Device Preferences",
+              "summary": "Adjust how this device is seen on the network",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "generalDisplayPref",
+              "title": "Display Preferences",
+              "summary": "Access general display preferences such as font size, icon scaling, brightness, and illumination of soft keys.",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "settingsPref",
+              "title": "Network Preferences",
+              "summary": "Access network preferences such as identifying information, location preferences, and network configuration.",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "bluetoothPref",
+              "title": "Bluetooth Preferences",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "toolsPref",
+              "title": "Tool Preferences",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "atakControlOptions",
+              "title": "Control Preferences",
+              "summary": "Adjust Control Preferences",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "atakAccounts",
+              "title": "Accounts",
+              "summary": "Manage account credentials.",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            }
+          ]
+        },
+        {
+          "title": "Help",
+          "key": "",
+          "fields": [
+            {
+              "key": "documentation",
+              "title": "Support",
+              "summary": "Support & Program Documentation",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "about",
+              "title": "About",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "media_preferences",
+      "file": "media_preferences.xml",
+      "title": "Media Preferences",
+      "sections": [
+        {
+          "title": "Media Preferences",
+          "key": "media_preferences_category",
+          "fields": [
+            {
+              "key": "secureDeleteTimeout",
+              "title": "Secure Delete Timeout",
+              "summary": "Amount of seconds to wait for deletions to finish before forcing shutdown.",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "mediaLayerCacheForceRescan",
+              "title": "Force Reset Layer Cache",
+              "summary": "Forces a clean and rescan of layer data.",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            },
+            {
+              "key": "prefs_use_klv_elevation",
+              "title": "Prefer KLV Frame Center Elevation",
+              "summary": "Use Frame Center elevation data provided in KLV instead of local elevation data.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Quick Pic Preferences",
+          "key": "quick_pic_preferences",
+          "fields": [
+            {
+              "key": "quickpic.camera_chooser",
+              "title": "Camera Application",
+              "summary": "Select the application to be used for quick pictures",
+              "type": "string",
+              "default": "System",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/camera_app_entries"
+            },
+            {
+              "key": "prompt_photo_rename",
+              "title": "Prompt Name When Taking Photos",
+              "summary": "If checked, taking a photo with the QuicPic will prompt you to provide a name to be applied to the image.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "metrics_preferences",
+      "file": "metrics_preferences.xml",
+      "title": "Metrics Preferences",
+      "sections": [
+        {
+          "title": "Metrics Logging Preferences",
+          "key": "key_for_category",
+          "fields": [
+            {
+              "key": "loggingDisclaimer",
+              "title": "Logging Impact on Performance",
+              "summary": "Please note that logging and metrics collection will cause an app performance penalty. Care should be taken to only enable these settings during a diagnostic period, and should remain off during normal app usage due to consumption of system resources.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "collect_metrics",
+              "title": "Collect Metrics",
+              "summary": "Enable usage and metrics data to be collected and recorded in directory: support/logs\\nPlease note that this will cause an app performance penalty due to consumption of system resources.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "realtime_metrics",
+              "title": "Live Metrics",
+              "summary": "Enable usage and metrics data to be sent to TAK Server periodically while app is running.   This will consume higher than normal bandwidth.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "generate_full_pool",
+              "title": "Advanced CoT Recorder",
+              "summary": "If checked captures all incoming and outgoing Cursor on Target traffic and saves each message based on its event type into directory: tools/metrics/cot. Each message is saved under a subdirectory as an individual file [type]/[type]-timestamp.xml. This can be used to generate and refine XSD schemas.",
+              "type": "boolean",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "generate_detail_pool",
+              "title": "Advanced CoT Details Recorder",
+              "summary": "If checked captures all incoming and outgoing Cursor on Target traffic and extracts only the nested details into directory: tools/metrics/details. Each detail is saved under a subdirectory as an individual file [element]/[element]-timestamp.xml. This can be used to generate and refine XSD schemas.",
+              "type": "boolean",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "missionpackage_preferences",
+      "file": "missionpackage_preferences.xml",
+      "title": "Missionpackage Preferences",
+      "sections": [
+        {
+          "title": "General File Sharing Settings",
+          "key": "datapackage_general settings",
+          "fields": [
+            {
+              "key": "filesharingEnabled",
+              "title": "Enable file sharing.",
+              "summary": "Enable file sharing.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "filesharingSizeThresholdNoGo",
+              "title": "File Transfer Max size",
+              "summary": "Disallow transfer of files if total size (MB) is above this threshold.",
+              "type": "integer",
+              "default": "20",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "User Experience Settings",
+          "key": "datapackage_overlay_manager_settings",
+          "fields": [
+            {
+              "key": "dpgkRootVisibilityToggle",
+              "title": "Overlay Manager Mass Visibility Toggle",
+              "summary": "In the overlay manager, allow for the mass visibility toggle for all data packages at once. This does not impact the individual data package visibility toggle.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Advanced Network Settings",
+          "key": "advanced_network_settings",
+          "fields": [
+            {
+              "key": "fileshareDownloadAttempts",
+              "title": "Download attempts",
+              "summary": "Number of times to attempt to download a file from the remote Server.",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "filesharingWebServerLegacyHttpEnabled",
+              "title": "Allow HTTP transfers",
+              "summary": "Allow for HTTP transfers for legacy clients",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "filesharingWebServerPort",
+              "title": "Server port",
+              "summary": "Port of the file sharing Server.",
+              "type": "integer",
+              "default": "8080",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "filesharingSecureWebServerPort",
+              "title": "Secure Server port",
+              "summary": "Secure port of the file sharing Server",
+              "type": "integer",
+              "default": "8443",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "filesharingConnectionTimeoutSecs",
+              "title": "File Transfer Connection Timeout",
+              "summary": "Re-attempt the transfer if no connection is detected within this period (in seconds).",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "filesharingTransferTimeoutSecs",
+              "title": "File Transfer Failure Timeout",
+              "summary": "Re-attempt the transfer if not progress is detected within this period (in seconds).",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "filesharingAllServers",
+              "title": "Use All Servers",
+              "summary": "Allows for publication of a Data Package to any configured TAK server regardless of connection state.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "my_preferences",
+      "file": "my_preferences.xml",
+      "title": "My Preferences",
+      "sections": [],
+      "fields": [
+        {
+          "key": "callSignAndDevicePrefs",
+          "title": "Callsign and Device Preferences",
+          "summary": "Adjust how this device is seen on the network",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "networkPrefs",
+          "title": "Network Preferences",
+          "summary": "Access network preferences such as identifying information, location preferences, and network configuration.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "toolPrefs",
+          "title": "Tool Preferences",
+          "summary": "Adjust the Tools and Plugins Preferences",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "displayPrefs",
+          "title": "Display Preferences",
+          "summary": "Access general display preferences such as font size, icon scaling, brightness, and illumination of soft keys.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "controlPrefs",
+          "title": "Control Preferences",
+          "summary": "Adjust Control Preferences",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "legacyPrefs",
+          "title": "Legacy Preferences",
+          "summary": "Display older legacy device preferences. These preferences may be removed in future versions.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "accounts",
+          "title": "Accounts",
+          "summary": "Manage account credentials.",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "documentation",
+          "title": "Support",
+          "summary": "Support & Program Documentation",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        },
+        {
+          "key": "about",
+          "title": "About ATAK",
+          "summary": "",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.gui.PanPreference"
+        }
+      ]
+    },
+    {
+      "id": "network_connections_preferences",
+      "file": "network_connections_preferences.xml",
+      "title": "Network Connections Preferences",
+      "sections": [
+        {
+          "title": "Server Connections",
+          "key": "server_connections_category",
+          "fields": [
+            {
+              "key": "manageStreamingLink",
+              "title": "Manage Server Connections",
+              "summary": "Tap to manage connections to TAK Server",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "displayServerConnectionWidget",
+              "title": "Display Connection Widget",
+              "summary": "Enable to display connectivity indicator on map above local device location widget.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "monitorServerConnections",
+              "title": "Monitor Server Connections",
+              "summary": "Enable to monitor connections and ping server after periods of network inactivity. Please note that this generates extra traffic on the network.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "caLocation",
+              "title": "Default SSL/TLS TrustStore Location",
+              "summary": "The default PKCS12 keystore with your Certificate Authorities (.p12 file). May use this keystore for connections, or load per-connection Certificate Authorities.",
+              "type": "string",
+              "default": "(built-in)",
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "caPassword",
+              "title": "Default SSL/TLS TrustStore Password",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.EncryptedPanEditTextPreference"
+            },
+            {
+              "key": "certificateLocation",
+              "title": "Default SSL/TLS Client Certificate Store",
+              "summary": "The default PKCS12 keystore with your client Certificate (.p12 file). May use this keystore for connections, or load per-connection client certifcates",
+              "type": "string",
+              "default": "(built-in)",
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "clientPassword",
+              "title": "Default SSL/TLS Client Certificate Password",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.EncryptedPanEditTextPreference"
+            },
+            {
+              "key": "default_client_credentials",
+              "title": "Default SSL/TLS Credentials",
+              "summary": "The default username and password for server connections. May use this for connections, or load per-connection credentials.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.network.ui.CredentialsPreference"
+            },
+            {
+              "key": "apiSecureServerPort",
+              "title": "Secure Server API port",
+              "summary": "Secure port of the Server API.",
+              "type": "integer",
+              "default": "8443",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "apiUnsecureServerPort",
+              "title": "Unsecure Server API port",
+              "summary": "Unsecure port of the Server API.",
+              "type": "integer",
+              "default": "8080",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "apiCertEnrollmentPort",
+              "title": "Certificate Enrollment API port",
+              "summary": "Port for Certificate Enrollment API.",
+              "type": "integer",
+              "default": "8446",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "apiCertEnrollmentKeyLength",
+              "title": "Certificate Enrollment Key Length",
+              "summary": "Length in bits for RSA private key.",
+              "type": "integer",
+              "default": "4096",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "certEnrollmentExport",
+              "title": "Enable Client Certificate Export",
+              "summary": "Allows exporting of certificates obtained via enrollment.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "deviceProfileEnableOnConnect",
+              "title": "Apply TAK Server profile updates",
+              "summary": "Enable to allow ATAK and plugins to import server profiles (e.g. settings and data) from TAK Server.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Input/Output Management",
+          "key": "input_output_management_category",
+          "fields": [
+            {
+              "key": "enableNonStreamingConnections",
+              "title": "Enable Mesh Network Mode",
+              "summary": "Enable to allow multicast traffic. Disable to override and disable all inputs and outputs.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "configureNonStreamingEncryption",
+              "title": "Configure AES-256 Mesh Encryption",
+              "summary": "Allows for management AES-256 encryption of mesh network traffic.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "autoDisableMeshSAWhenStreaming",
+              "title": "Auto Manage Mesh Network Self SA Mode",
+              "summary": "Enable to automatically prefer sending data over the server if connected instead of the local mesh network. Recommended for some VPN configurations",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "manageInputsLink",
+              "title": "Manage Inputs",
+              "summary": "Add and remove inputs (Advanced)",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "manageOutputsLink",
+              "title": "Manage Outputs",
+              "summary": "Add and remove outputs (Advanced)",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        },
+        {
+          "title": "Network tweaks",
+          "key": "network_tweaks_category",
+          "fields": [
+            {
+              "key": "tcpConnectTimeout",
+              "title": "TCP Connection Timeout",
+              "summary": "How long (in seconds) to wait for TCP connections to complete. Shorter values make failed connections happen sooner (more responsive), but if the value is too short for your network then you may get spurious connection failures",
+              "type": "integer",
+              "default": "20",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "udpNoDataTimeout",
+              "title": "Multicast Network Rejoin interval",
+              "summary": "Interval between Multicast Network rejoin attempts (in seconds). Zero indicates do not try to rejoin.",
+              "type": "integer",
+              "default": "30",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "multicastTTL",
+              "title": "Multicast TTL",
+              "summary": "Multicast TTL for outgoing multicast (requires restart).",
+              "type": "integer",
+              "default": "64",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "network_multicast_loopback",
+              "title": "Multicast Traffic Loopback",
+              "summary": "Unless instructed, do not enable Multicast Traffic Loopback unless you are using another application on the same device to listen to traffic being sent by this application.   This will cause degradation in the performance of the network handling on this device because causes all outgoing traffic to be processed as incoming data to this application.    Filters exist to protect this application from consuming data it is generating, but require resources to run.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "network_quic_enabled",
+              "title": "QUIC Protocol",
+              "summary": "Enable the use of the QUIC protocol for direct device-to-device messaging on a mesh network. For server (streaming) connections, QUIC needs to be enabled in the servers specific configuration page. It is recommend to disable the \\'Monitor Server Connections\\' to further reduce server related network traffic unless required for your network.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "onlyStreamingWithVPN",
+              "title": "Enable Streaming Server on VPN Only",
+              "summary": "Only allow for a streaming server connection when a VPN is present and enabled. If the VPN is not running, the server connections will be disabled.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "ppp0_highspeed_capable",
+              "title": "Point-to-Point Link High Speed Capable",
+              "summary": "When selected, the Point-to-Point link on the system is considered high speed capable. This should not be enabled unless instructed. Newer radios are capable of supporting high speed tunnels that are point to point. Older radios support serial based point to point connections that are not high speed capable. For those older radios, turning this on will oversaturate link effectively disabling the capability.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "waveRelayRedirect",
+              "title": "Legacy Wave Relay Redirect",
+              "summary": "Enable when using ATAK with a Wave Relay Radio when the Wave Relay Radio Control Plugin is not installed. It is recommended that users install the Wave Relay Radio Plugin.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "httpClientPermissiveMode",
+              "title": "Enable VPN Proxy Mode",
+              "summary": "On some VPN proxies, https calls are rewritten in such a way that required more permissive handling on the connection. This should only be enabled if running one of these VPN clients.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "insertDestInDirectedCoT",
+              "title": "Gateway System Interoperability",
+              "summary": "On certain gateway systems, directed messages need to contain information on how to relay the message. Only enable if this is required.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "key": "showIP",
+          "title": "showIP",
+          "summary": "",
+          "type": "string",
+          "default": null,
+          "widget": "com.atakmap.android.util.MyIpPreference"
+        }
+      ]
+    },
+    {
+      "id": "network_gps_preferences",
+      "file": "network_gps_preferences.xml",
+      "title": "Network Gps Preferences",
+      "sections": [
+        {
+          "title": "GPS Preferences",
+          "key": "networkGpsCategory",
+          "fields": [
+            {
+              "key": "mockingOption",
+              "title": "GPS Option",
+              "summary": "Select method of obtaining a location fix.",
+              "type": "string",
+              "default": "WRGPS",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/option_names"
+            },
+            {
+              "key": "listenPort",
+              "title": "Network GPS Port",
+              "summary": "Network port to listen on for incoming GPS/position updates.   This usually does not need to be modified; only modify this setting when directed to do so.   For some radios, such as the PRC-161, where the positional data is sent out over the network - this field should not be modified.",
+              "type": "integer",
+              "default": "4349",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "useGPSTime",
+              "title": "Use GPS Time",
+              "summary": "If true, the device will use GPS time when available.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "useTerrainElevationSelfMarker",
+              "title": "Use Elevation Data instead of GPS Elevation",
+              "summary": "Discards GPS supplied elevation data in favor of digital terrain elevation data (DTED)",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "network_preferences",
+      "file": "network_preferences.xml",
+      "title": "Network Preferences",
+      "sections": [
+        {
+          "title": "Network Preferences",
+          "key": "network_preferences_category",
+          "fields": [
+            {
+              "key": "serverConnections",
+              "title": "Server Connections",
+              "summary": "Adjust network connections",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "networkSettings",
+              "title": "Network Connection Preferences",
+              "summary": "Adjust network connections",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "tadiljSettings",
+              "title": "Datalink Preferences",
+              "summary": "Adjust Datalink Messages Preferences",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "night_vision_preferences",
+      "file": "night_vision_preferences.xml",
+      "title": "Night Vision Preferences",
+      "sections": [
+        {
+          "title": "Location Options",
+          "key": "location_options_category",
+          "fields": [
+            {
+              "key": "loc_map_widget",
+              "title": "Activate from widget on left side of map",
+              "summary": "",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "loc_notification",
+              "title": "Activate from Notifications panel",
+              "summary": "",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "loc_self_overlay_box",
+              "title": "Activate from widget above local device location widget.",
+              "summary": "",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "External Application",
+          "key": "external_applications_category",
+          "fields": [
+            {
+              "key": "external_night_vision_launch",
+              "title": "External Night Vision Application Settings",
+              "summary": "Adjust Night Vision settings",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "key": "night_vision_widget",
+          "title": "Enable Night Vision control inside ATAK",
+          "summary": "If enabled, a Night Vision Activation Method will be available within ATAK",
+          "type": "boolean",
+          "default": "false",
+          "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+        }
+      ]
+    },
+    {
+      "id": "off_scr_indi_preferences",
+      "file": "off_scr_indi_preferences.xml",
+      "title": "Off Scr Indi Preferences",
+      "sections": [
+        {
+          "title": "Off-Screen Indicators Preferences",
+          "key": "offscreen_indicators_preferences_category",
+          "fields": [
+            {
+              "key": "toggle_offscreen_indicators",
+              "title": "Enabled on Start",
+              "summary": "Show off-screen indicators on start.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "offscreen_indicator_dist_threshold",
+              "title": "Set Distance Threshold (KM)",
+              "summary": "The distance from viewpoint at which off-screen indicators won\\'t show in KM, 0 for no threshold.",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "offscreen_indicator_timeout_threshold",
+              "title": "Set Timeout Threshold (seconds) or zero to disable",
+              "summary": "If a map item has been on the screen for more than the specified timeout and has not been touched, the offscreen indicator will be removed. Team members will always show an offscreen indicator. Zero will disable the timeout capability.",
+              "type": "integer",
+              "default": "60",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "other_display_prefs",
+      "file": "other_display_prefs.xml",
+      "title": "Other Display Prefs",
+      "sections": [
+        {
+          "title": "Other Miscellaneous Display Options",
+          "key": "other_miscellaneous_display_options",
+          "fields": [
+            {
+              "key": "gridLinesPreference",
+              "title": "Grid Line Preferences",
+              "summary": "Manage grid line behavior and appearance.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "layerOutlinesPreference",
+              "title": "Imagery Layer Outline Preferences",
+              "summary": "Manage layer outline behavior and appearance.",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "atakOffScrIndiOptions",
+              "title": "Off-Screen Indicators Preferences",
+              "summary": "Adjust Off-Screen Indicators Preferences",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "overlayStylePreference",
+              "title": "Import Style Default Preferences",
+              "summary": "Default shape styles are set during import of data formats which have no style support (e.g. Shapefile, GPX).",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "overlay_manager_width_height",
+              "title": "Overlay Manager Width/Height",
+              "summary": "Adjust width/height of Overlay Manager Window",
+              "type": "string",
+              "default": "33",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/overlay_manager_size_names"
+            },
+            {
+              "key": "atakForcedBrightness",
+              "title": "Forced Application Brightness",
+              "summary": "Incremental brightness for the program manually overriding Android Auto-Brightness.",
+              "type": "string",
+              "default": "-1",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/brightness_names"
+            },
+            {
+              "key": "atakScreenLock",
+              "title": "Disable Screen Saver / Screen Lock",
+              "summary": "If checked the screen will always stay on while the program is running.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakDisableSoftkeyIllumination",
+              "title": "Disable SoftKey Illumination",
+              "summary": "If checked the softkeys lights will be disabled on platforms that support this. If not supported, this setting will not do anything.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakControlReverseOrientation",
+              "title": "Reverse Landscape Orientation",
+              "summary": "Flip the landscape orientation.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakControlShortenLabels",
+              "title": "Shorten Long Marker Labels",
+              "summary": "Scrolling marker labels.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakControlShowLabels",
+              "title": "Show Marker Labels",
+              "summary": "Display labels under Markers.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakControlOtherUserNotification",
+              "title": "Display Notifications for other users",
+              "summary": "Display Android notifications when receiving SA report from other users.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "fade_notification",
+              "title": "Fade Notification Time",
+              "summary": "Default time that a transient notification stays in the notification bar before being removed automatically.",
+              "type": "string",
+              "default": "90",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/fade_notification_names"
+            },
+            {
+              "key": "imagery_tab_name",
+              "title": "Imagery Tab Name",
+              "summary": "Select either Imagery or Maps.",
+              "type": "string",
+              "default": "Imagery",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/imagery_tab_names"
+            },
+            {
+              "key": "frame_limit",
+              "title": "Render Speed",
+              "summary": "Render at full speed or limit to save battery.",
+              "type": "string",
+              "default": "0",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/frame_limit_names"
+            },
+            {
+              "key": "displayAsSymbologyGraphic",
+              "title": "Display Users as Symbols",
+              "summary": "Display TAK users as their associated symbology graphic instead of a circle with the role and team color.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "broadcast_disable",
+              "title": "Disable Broadcast Button",
+              "summary": "Disable the broadcast button while connected to a TAK server.  This prevents accidental broadcast to a large group of users.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "prompt_network_preference",
+      "file": "prompt_network_preference.xml",
+      "title": "Prompt Network Preference",
+      "sections": [
+        {
+          "title": "Network Preferences",
+          "key": "network_preferences_category",
+          "fields": [
+            {
+              "key": "dataPackage",
+              "title": "Data Package",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "quickConnect",
+              "title": "Quick Connect",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "advanced_network_settings",
+              "title": "Network Preferences",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "reporting_preferences",
+      "file": "reporting_preferences.xml",
+      "title": "Reporting Preferences",
+      "sections": [
+        {
+          "title": "Reporting Preferences",
+          "key": "publishCategory",
+          "fields": [
+            {
+              "key": "dispatchLocationCotExternal",
+              "title": "Send Contact Information",
+              "summary": "Send contact information announcements over the network.  Please take note that disabling this may impact some features and functionality.   If it is desired to send contact announcement but obfuscate or hide your location, then see \\'Hide my current position\\'.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "dispatchLocationHidden",
+              "title": "Hide my current position",
+              "summary": "This allows for people to chat or send you items without knowing your current position. If an emergency alert is sent, the alert will contain your current position.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "restoreRecordedLocation",
+              "title": "Restore my location on restart",
+              "summary": "In a GPS denied area, allows for your self marker to be placed at the last known location when restarting ATAK",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "locationReportingStrategy",
+              "title": "Reporting Strategy",
+              "summary": "Specifies whether to report location at a constant rate or dynamically send more often when moving",
+              "type": "string",
+              "default": "@string/preferences_text102",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/reporting_strategy_names"
+            },
+            {
+              "key": "dynamicReportingRateStationaryUnreliable",
+              "title": "Dynamic Reporting Rate Stationary (Mesh)",
+              "summary": "Reporting rate in seconds (e.g. once per 30 seconds when standing still) for unreliable protocols (e.g. multicast). Note: other events may also trigger reporting (e.g. a callsign change)",
+              "type": "integer",
+              "default": "30",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "dynamicReportingRateMinUnreliable",
+              "title": "Dynamic Reporting Rate Minimum (Mesh)",
+              "summary": "Minimum reporting rate in seconds (e.g. once per 20 seconds when moving slow) for unreliable protocols (e.g. multicast). Note: other events may also trigger reporting (e.g. a callsign change)",
+              "type": "integer",
+              "default": "20",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "dynamicReportingRateMaxUnreliable",
+              "title": "Dynamic Reporting Rate Maximum (Mesh)",
+              "summary": "Maximum reporting rate in seconds (e.g. every other second when moving fast) for unreliable protocols (e.g. multicast). Note: other events may also trigger reporting (e.g. a callsign change)",
+              "type": "integer",
+              "default": "2",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "dynamicReportingRateStationaryReliable",
+              "title": "Dynamic Reporting Rate Stationary (Server)",
+              "summary": "Reporting rate in seconds (e.g. once per 180 seconds when standing still) for reliable protocols (e.g. TAK Server). Note: other events may also trigger reporting (e.g. a callsign change)",
+              "type": "integer",
+              "default": "180",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "dynamicReportingRateMinReliable",
+              "title": "Dynamic Reporting Rate Minimum (Server)",
+              "summary": "Minimum reporting rate in seconds (e.g. once per 20 seconds when moving slow) for reliable protocols (e.g. TAK Server). Note: other events may also trigger reporting (e.g. a callsign change)",
+              "type": "integer",
+              "default": "20",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "dynamicReportingRateMaxReliable",
+              "title": "Dynamic Reporting Rate Maximum (Server)",
+              "summary": "Maximum reporting rate in seconds (e.g. every other second when moving fast) for reliable protocols (e.g. TAK Server). Note: other events may also trigger reporting (e.g. a callsign change)",
+              "type": "integer",
+              "default": "2",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "constantReportingRateUnreliable",
+              "title": "Constant Reporting Rate (Mesh)",
+              "summary": "Constant interval between reporting self-SA messages in seconds for unreliable protocols (e.g. multicast)",
+              "type": "integer",
+              "default": "3",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "constantReportingRateReliable",
+              "title": "Constant Reporting Rate (Server)",
+              "summary": "Constant interval between reporting self-SA messages in seconds for reliable protocols (e.g. TAK Server)",
+              "type": "integer",
+              "default": "15",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "dispatchLocationCotExternalAtStart",
+              "title": "Report Location before obtaining location fix",
+              "summary": "If true, report SA message with (lat=0,lon=0) before either GPS fix or manual placement of self-marker.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "dispatchTAKVersionNumber",
+              "title": "Report the TAK version number as part of the SA message",
+              "summary": "As part of SA message, report the tak version for enhanced situational awareness",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "route_preferences",
+      "file": "route_preferences.xml",
+      "title": "Route Preferences",
+      "sections": [
+        {
+          "title": "Route Preferences",
+          "key": "route_preferences_category",
+          "fields": [
+            {
+              "key": "waypointPrefix",
+              "title": "Checkpoint Name Prefix",
+              "summary": "",
+              "type": "string",
+              "default": "CP",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "defaultRouteColor",
+              "title": "Default for unspecified Route Colors",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "route_track_up_locked_on",
+              "title": "Traditional Navigation Mode",
+              "summary": "",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "useRouteVoiceCues",
+              "title": "Navigational Voice Cues",
+              "summary": "",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "route_vibrate_at_checkpoint",
+              "title": "Vibrate When Arriving at Checkpoint",
+              "summary": "",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Walking",
+          "key": "walking_category",
+          "fields": [
+            {
+              "key": "waypointBubble.Walking",
+              "title": "Walking Checkpoint Navigation Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "waypointOffRouteBubble.Walking",
+              "title": "Walking Off Route Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Driving",
+          "key": "driving_category",
+          "fields": [
+            {
+              "key": "waypointBubble.Driving",
+              "title": "Driving Checkpoint Navigation Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "20",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "waypointOffRouteBubble.Driving",
+              "title": "Driving Off Route Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "20",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Flying",
+          "key": "flying_category",
+          "fields": [
+            {
+              "key": "waypointBubble.Flying",
+              "title": "Flying Checkpoint Navigation Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "1000",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "waypointOffRouteBubble.Flying",
+              "title": "Flying Off Route Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "1000",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Swimming",
+          "key": "swimming_category",
+          "fields": [
+            {
+              "key": "waypointBubble.Swimming",
+              "title": "Swimming Checkpoint Navigation Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "waypointOffRouteBubble.Swimming",
+              "title": "Swimming Off Route Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "10",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Watercraft",
+          "key": "watercraft_category",
+          "fields": [
+            {
+              "key": "waypointBubble.Watercraft",
+              "title": "Watercraft Checkpoint Navigation Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "100",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "waypointOffRouteBubble.Watercraft",
+              "title": "Watercraft Off Route Bubble Radius",
+              "summary": "",
+              "type": "integer",
+              "default": "100",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Attachment Billboards",
+          "key": "attachment_billboards_category",
+          "fields": [
+            {
+              "key": "route_billboard_enabled",
+              "title": "Show Attachment Billboards",
+              "summary": "",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "route_billboard_distance_m",
+              "title": "Billboard Render Distance",
+              "summary": "",
+              "type": "integer",
+              "default": "500",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Other",
+          "key": "other_category",
+          "fields": [
+            {
+              "key": "elevProfileInterpolateAlt",
+              "title": "Elevation Profile Interpolate Altitudes",
+              "summary": "",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "elevProfileCenterOnSeeker",
+              "title": "Elevation Profile Center on Seeker",
+              "summary": "",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "gpxImportCheckpointsForNamedRoutePoints",
+              "title": "GPX Import Checkpoints",
+              "summary": "",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "kmlExportGroundClamp",
+              "title": "Ignore Elevation Data",
+              "summary": "",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "kmlExportCheckpointMode",
+              "title": "KML Export Checkpoint Mode",
+              "summary": "",
+              "type": "string",
+              "default": "@string/both",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/kml_exportroute_checkpointmode_strings"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "specific_tool_preference",
+      "file": "specific_tool_preference.xml",
+      "title": "Specific Tool Preference",
+      "sections": [
+        {
+          "title": "Specific Tool Preferences",
+          "key": "specific_tool_preferences_category",
+          "fields": []
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "stale_data_prefs",
+      "file": "stale_data_prefs.xml",
+      "title": "Stale Data Prefs",
+      "sections": [
+        {
+          "title": "Stale Data Preferences",
+          "key": "stale_data_preferences",
+          "fields": [
+            {
+              "key": "staleRemoteDisconnects",
+              "title": "Stale out remote users as they disconnect from TAK Server",
+              "summary": "Enable to immediately stale out remote users when they disconnect from TAK Server, or when you disconnect from TAK Server. Disable to use last received stale time.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "expireEverything",
+              "title": "Remove all marker types from map when they stale out",
+              "summary": "Enable to delete all non-archival types from device when their stale-out time is reached. Items will be deleted based on \\'Stale item clean up time\\' below.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "expireStaleItemsTime",
+              "title": "Stale item clean up time",
+              "summary": "Delete items from device after they have been stale for this many minutes.",
+              "type": "string",
+              "default": "5",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/delete_stale_names"
+            },
+            {
+              "key": "expireUnknowns",
+              "title": "Remove Unknown markers when they stale out",
+              "summary": "Enable to delete Unknown marker types from device when their stale-out time is reached.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "support_preferences",
+      "file": "support_preferences.xml",
+      "title": "Support Preferences",
+      "sections": [
+        {
+          "title": "Support",
+          "key": "support_category",
+          "fields": [
+            {
+              "key": "takSupportInfo",
+              "title": "TAK Support Information",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "resetHints",
+              "title": "Reset Hints",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "takInitDeviceConfig",
+              "title": "TAK Initial Device Configurations",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "loggingPrefs",
+              "title": "Logging Preferences",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "deviceDetails",
+              "title": "Device Details",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "atakdocs",
+              "title": "ATAK Documents",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "userFeedback",
+              "title": "User Feedback",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "tadilj_preferences",
+      "file": "tadilj_preferences.xml",
+      "title": "Tadilj Preferences",
+      "sections": [
+        {
+          "title": "Datalink Preferences",
+          "key": "tadilj_settings_category",
+          "fields": [
+            {
+              "key": "tadiljPersistedIds",
+              "title": "Manage Persisted IDs",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "takgov_eud_preferences",
+      "file": "takgov_eud_preferences.xml",
+      "title": "Takgov Eud Preferences",
+      "sections": [
+        {
+          "title": "General Preferences",
+          "key": "eud_api_general_preferences",
+          "fields": [
+            {
+              "key": "eud_api_client_status",
+              "title": "Status",
+              "summary": "EUD is not currently linked with TAK.GOV Account",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        },
+        {
+          "title": "Synchronized Resources",
+          "key": "eud_api_resource_sync_preferences",
+          "fields": [
+            {
+              "key": "eud_api_sync_mapsources",
+              "title": "Map Sources",
+              "summary": "Allow download of available map sources from TAK.GOV",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "eud_api_sync_plugins",
+              "title": "Plugins Listing",
+              "summary": "Allow download of available plugins from TAK.GOV",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "tools_preferences",
+      "file": "tools_preferences.xml",
+      "title": "Tools Preferences",
+      "sections": [
+        {
+          "title": "Tools Preferences",
+          "key": "tools_prefereces_category",
+          "fields": [
+            {
+              "key": "appsPref",
+              "title": "Package Management",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "specTools",
+              "title": "Specific Tool Preferences",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "unit_display_preferences",
+      "file": "unit_display_preferences.xml",
+      "title": "Unit Display Preferences",
+      "sections": [
+        {
+          "title": "Coordinate Preferences",
+          "key": "coordinate_preferences_category",
+          "fields": [
+            {
+              "key": "coord_display_pref",
+              "title": "Coordinate Display",
+              "summary": "",
+              "type": "string",
+              "default": "@string/coord_display_pref_default",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/coord_display_label"
+            },
+            {
+              "key": "alt_display_pref",
+              "title": "Altitude Display",
+              "summary": "",
+              "type": "string",
+              "default": "@string/msl",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/alt_display_label"
+            },
+            {
+              "key": "alt_unit_pref",
+              "title": "Altitude Units",
+              "summary": "",
+              "type": "string",
+              "default": "0",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/elevation_units_label"
+            },
+            {
+              "key": "alt_display_agl",
+              "title": "Display AGL",
+              "summary": "",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "speed_unit_pref",
+              "title": "Speed Units",
+              "summary": "",
+              "type": "string",
+              "default": "0",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/speed_units_label"
+            },
+            {
+              "key": "compass_heading_display",
+              "title": "Compass Heading Display",
+              "summary": "",
+              "type": "string",
+              "default": "Numeric",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/compass_heading_display_values"
+            },
+            {
+              "key": "rab_dist_slant_range",
+              "title": "Range and Bearing Line Distance Format",
+              "summary": "Select whether to display slant range (accounting for altitude change) or display ground clamped distances",
+              "type": "string",
+              "default": "clamped",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/rb_distance_label"
+            }
+          ]
+        },
+        {
+          "title": "Units",
+          "key": "units_category",
+          "fields": [
+            {
+              "key": "rab_brg_units_pref",
+              "title": "Bearing Units",
+              "summary": "",
+              "type": "string",
+              "default": "0",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/brg_units_label"
+            },
+            {
+              "key": "rab_rng_units_pref",
+              "title": "Range Units",
+              "summary": "",
+              "type": "string",
+              "default": "1",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/rng_units_label"
+            },
+            {
+              "key": "rab_north_ref_pref",
+              "title": "North Reference",
+              "summary": "",
+              "type": "string",
+              "default": "1",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/north_refs_label"
+            }
+          ]
+        },
+        {
+          "title": "Unit Threshold",
+          "key": "unit_threshold_category",
+          "fields": [
+            {
+              "key": "rng_feet_display_pref",
+              "title": "Feet to Miles",
+              "summary": "",
+              "type": "integer",
+              "default": "5280",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            },
+            {
+              "key": "rng_meters_display_pref",
+              "title": "Meters to Kilometers",
+              "summary": "",
+              "type": "integer",
+              "default": "2000",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        },
+        {
+          "title": "Visual Preferences",
+          "key": "visual_preferences_category",
+          "fields": [
+            {
+              "key": "rab_color_pref",
+              "title": "Default Range and Bearing Color",
+              "summary": "",
+              "type": "string",
+              "default": "red",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/colors_label"
+            },
+            {
+              "key": "rab_preference_show_eta",
+              "title": "Display ETA on Range and Bearing Labels",
+              "summary": "If checked, an attempt will be made to compute ETA based on your range and current speed. If speed cannot be detected, it can be manually entered through the Range and Bearing details.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Domain Preferences",
+          "key": "domain_preferences_category",
+          "fields": [
+            {
+              "key": "set_domain_pref",
+              "title": "Set Domain Preference",
+              "summary": "Updates various naming conventions based upon selected domain type. Supported actions: Ground: imagery tab set to IMAGERY, Aviation: imagery tab set to MAPS, Maritime: imagery tab set to IMAGERY",
+              "type": "string",
+              "default": "@string/ground",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/domain_labels"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "user_touch_prefs",
+      "file": "user_touch_prefs.xml",
+      "title": "User Touch Prefs",
+      "sections": [
+        {
+          "title": "User Touch Preferences",
+          "key": "user_touch_preferences_category",
+          "fields": [
+            {
+              "key": "atakControlQuitOnBack",
+              "title": "Quit On Back Press",
+              "summary": "",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakControlAskToQuit",
+              "title": "Ask Before Quit",
+              "summary": "",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakBackButtonCenterSelf",
+              "title": "Disable Back Button Center on Self",
+              "summary": "When enabled, this will block the default behavior of the back button centering on the self icon if no other action can be performed.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "atakLongPressMap",
+              "title": "Action for Long pressing the Map",
+              "summary": "",
+              "type": "string",
+              "default": "actionbar",
+              "widget": "com.atakmap.android.gui.PanListPreference",
+              "entries_ref": "@array/longpress_map_names"
+            },
+            {
+              "key": "atakDoubleTapToZoom",
+              "title": "Double tap to zoom 2X",
+              "summary": "",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "video_preferences",
+      "file": "video_preferences.xml",
+      "title": "Video Preferences",
+      "sections": [
+        {
+          "title": "Video Preferences",
+          "key": "video_preferences_category",
+          "fields": [
+            {
+              "key": "video_disable_audio",
+              "title": "Disable audio support",
+              "summary": "Ignores audio in all video streams",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "video_mute_when_hidden",
+              "title": "Mute Video when not Visible",
+              "summary": "Mute the video when the drop down is not showing but playing in the background",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "recordUdpTool",
+              "title": "Record UDP Tool",
+              "summary": "Allows for recording of UDP traffic to a file for playback by developers. Only should be used in case there is an issue playing a video that is being streamed by UDP",
+              "type": "string",
+              "default": null,
+              "widget": "Preference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    },
+    {
+      "id": "wms_preferences",
+      "file": "wms_preferences.xml",
+      "title": "Wms Preferences",
+      "sections": [
+        {
+          "title": "WMS Preferences",
+          "key": "wms_preferences_category",
+          "fields": [
+            {
+              "key": "redeploywms",
+              "title": "Redeploy WMS Sources",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "wmsconnecttimeout",
+              "title": "WMS Connect Timeout",
+              "summary": "",
+              "type": "string",
+              "default": null,
+              "widget": "com.atakmap.android.gui.PanPreference"
+            },
+            {
+              "key": "volumemapswitcher",
+              "title": "Enable Volume Keys rotating map layers",
+              "summary": "If checked, volume keys switch maps. Otherwise, use device default volume behavior.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "prefs_layer_grg_map_interaction",
+              "title": "Enable Image Overlay Map Interaction",
+              "summary": "Enable to allow interaction with Image Overlays on the map when the outline is visible.   If no outline is visible, then the Image Overlay cannot be interacted with.  If this is false, no interaction can occur even if the outline is visible.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "grgRootVisibilityToggle",
+              "title": "Overlay Manager (Image Overlays) Mass Visibility Toggle",
+              "summary": "In the overlay manager, allow for the mass visibility toggle for all image overlays at once. This does not impact the individual data package visibility toggle.",
+              "type": "boolean",
+              "default": "true",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            }
+          ]
+        },
+        {
+          "title": "Smart Cache Preferences",
+          "key": "smart_cache_preference_category",
+          "fields": [
+            {
+              "key": "prefs_enable_smart_cache",
+              "title": "Enable Smart Cache",
+              "summary": "Enables predictive download and cache of map tiles in the background.",
+              "type": "boolean",
+              "default": "false",
+              "widget": "com.atakmap.android.gui.PanCheckBoxPreference"
+            },
+            {
+              "key": "prefs_smart_cache_download_limit",
+              "title": "Smart Cache Download Limit",
+              "summary": "Byte Limit for individual smart cache requests",
+              "type": "integer",
+              "default": "5000000",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference"
+            }
+          ]
+        }
+      ],
+      "fields": []
+    }
+  ],
+  "stats": {
+    "category_count": 53,
+    "field_count": 349
+  }
+}
