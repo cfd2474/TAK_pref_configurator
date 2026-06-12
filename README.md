@@ -58,6 +58,19 @@ python3 tools/extract_schema.py
 ./update.sh
 ```
 
+## EUD Reference Validation
+
+Real TAK-CIV EUD exports are used as compliance references in `tests/fixtures/`:
+
+- `cfd-basic-pref-4-25.pref`
+- `leckliter-test-pref.pref`
+
+Run validation locally:
+
+```bash
+python3 tests/test_eud_pref_compliance.py
+```
+
 ## .pref File Format
 
 Generated files follow ATAK's `PreferenceControl` XML format:

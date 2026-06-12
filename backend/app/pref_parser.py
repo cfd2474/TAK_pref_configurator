@@ -6,7 +6,7 @@ import re
 import xml.etree.ElementTree as ET
 from typing import Any
 
-from .xml_utils import decode_value
+from .xml_utils import decode_value, sanitize_pref_xml
 
 CONNECTION_GROUPS = ("cot_inputs", "cot_outputs", "cot_streams")
 DEFAULT_APP_PREFS = "com.atakmap.app.civ_preferences"
@@ -80,7 +80,7 @@ def _is_app_preference_group(name: str) -> bool:
 
 
 def parse_pref_xml(content: str) -> dict[str, Any]:
-    root = ET.fromstring(content)
+    root = ET.fromstring(sanitize_pref_xml(content))
     result: dict[str, Any] = {
         "preference_name": DEFAULT_APP_PREFS,
         "connections": {group: [] for group in CONNECTION_GROUPS},
