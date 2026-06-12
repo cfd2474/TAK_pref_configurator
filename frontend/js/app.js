@@ -25,6 +25,7 @@ const els = {
   previewContent: document.getElementById("preview-content"),
   closePreview: document.getElementById("close-preview"),
   toast: document.getElementById("toast"),
+  content: document.querySelector(".content"),
 };
 
 async function init() {
@@ -62,6 +63,12 @@ function showToast(message, isError = false) {
   setTimeout(() => els.toast.classList.remove("show"), 3200);
 }
 
+function scrollContentToTop() {
+  if (els.content) {
+    els.content.scrollTop = 0;
+  }
+}
+
 function buildNavigation(filter = "") {
   const lower = filter.toLowerCase();
   const items = [{ id: "connections", label: "Server Connections", group: "TAK-CIV" }];
@@ -87,9 +94,11 @@ function buildNavigation(filter = "") {
     button.className = "nav-item" + (state.activePanel === item.id ? " active" : "");
     button.textContent = item.label;
     button.addEventListener("click", () => {
+      if (state.activePanel === item.id) return;
       state.activePanel = item.id;
       buildNavigation(filter);
       renderPanel();
+      scrollContentToTop();
     });
     els.nav.appendChild(button);
   }
