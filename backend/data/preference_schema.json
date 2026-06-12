@@ -2,6 +2,17 @@
   "product": "TAK-CIV",
   "version": "5.5.1",
   "source": "https://github.com/TAK-Product-Center/atak-civ",
+  "mdm_reference": {
+    "guide": "Watchtower 22.4.1",
+    "sections": {
+      "atak_app_preferences": "ATAK Shared Preferences (com.atakmap.app.civ_preferences)",
+      "cot_settings": "CoT Inputs, Outputs, and Streams map to cot_inputs, cot_outputs, cot_streams",
+      "nw_settings": "NWSharedPreferences plugin settings — use Custom Preferences for keys not in the schema",
+      "pref_types": ["boolean", "integer", "string", "float"],
+      "unset_behavior": "Leave fields blank or Off to omit from the generated .pref file"
+    },
+    "cot_required_fields": ["description", "connectString"]
+  },
   "main_prefs": {
     "preference_group": "com.atakmap.app.civ_preferences",
     "preference_groups": [
@@ -19,18 +30,18 @@
     "groups": [
       {
         "name": "cot_inputs",
-        "title": "CoT Inputs",
-        "description": "Incoming connection endpoints"
+        "title": "CoT Input",
+        "description": "Receive CoT messages on the device (e.g. multicast on a specified port)."
       },
       {
         "name": "cot_outputs",
-        "title": "CoT Outputs",
-        "description": "Outgoing connection endpoints"
+        "title": "CoT Output",
+        "description": "Send CoT messages to configured endpoints."
       },
       {
         "name": "cot_streams",
-        "title": "CoT Streams",
-        "description": "Streaming server connections"
+        "title": "CoT Stream",
+        "description": "Streaming TAK server connections. Required fields: Description and Connect String."
       }
     ],
     "connection_fields": [
@@ -94,7 +105,8 @@
       {
         "key": "description",
         "title": "Description",
-        "type": "string"
+        "type": "string",
+        "required": true
       },
       {
         "key": "enabled",

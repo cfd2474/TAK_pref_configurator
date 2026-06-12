@@ -14,6 +14,7 @@ from pydantic import BaseModel, Field
 from .pref_generator import DEFAULT_APP_PREFS, generate_pref_xml
 from .pref_parser import parse_pref_xml
 from .secrets import redact_preferences
+from .validation import validate_connections
 
 APP_DIR = Path(__file__).resolve().parent
 DATA_DIR = APP_DIR.parent / "data"
@@ -67,6 +68,10 @@ def get_schema() -> dict:
 
 @app.post("/api/generate")
 def generate_pref(request: GenerateRequest) -> Response:
+    connection_errors = validate_connections(request.connections)
+    if connection_errors:
+        raise HTTPException(status_code=400, detail="; ".join(connection_errors))
+
     config = {
         "preference_name": request.preference_name,
         "include_empty_connection_groups": request.include_empty_connection_groups,

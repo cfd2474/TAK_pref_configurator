@@ -1,8 +1,25 @@
 const PREFERENCE_GROUP = "com.atakmap.app.civ_preferences";
 
+const COT_PANELS = ["cot_inputs", "cot_outputs", "cot_streams"];
+
+const CUSTOM_PREF_TYPES = [
+  { value: "string", label: "String" },
+  { value: "boolean", label: "Boolean" },
+  { value: "integer", label: "Integer" },
+  { value: "float", label: "Float" },
+];
+
+const JAVA_CLASSES = {
+  boolean: "class java.lang.Boolean",
+  integer: "class java.lang.Integer",
+  string: "class java.lang.String",
+  float: "class java.lang.Float",
+};
+
 const state = {
   schema: null,
-  activePanel: "connections",
+  schemaFieldKeys: new Set(),
+  activePanel: "cot_streams",
   preferences: {},
   connections: {
     cot_inputs: [],
@@ -33,6 +50,7 @@ async function init() {
     const response = await fetch("/api/schema");
     if (!response.ok) throw new Error("Failed to load schema");
     state.schema = await response.json();
+    state.schemaFieldKeys = buildSchemaFieldKeys();
     buildNavigation();
     renderPanel();
     bindEvents();
@@ -69,14 +87,40 @@ function scrollContentToTop() {
   }
 }
 
+function buildSchemaFieldKeys() {
+  const keys = new Set();
+  for (const category of state.schema.categories) {
+    for (const field of category.fields || []) keys.add(field.key);
+    for (const section of category.sections || []) {
+      for (const field of section.fields || []) keys.add(field.key);
+    }
+  }
+  return keys;
+}
+
+function isCotPanel(panelId) {
+  return COT_PANELS.includes(panelId);
+}
+
+function getConnectionGroup(panelId) {
+  return state.schema.connections.groups.find((group) => group.name === panelId);
+}
+
 function buildNavigation(filter = "") {
   const lower = filter.toLowerCase();
-  const items = [{ id: "connections", label: "Server Connections", group: "TAK-CIV" }];
+  const items = [];
+
+  for (const group of state.schema.connections.groups) {
+    if (lower && !group.title.toLowerCase().includes(lower) && !group.name.includes(lower)) continue;
+    items.push({ id: group.name, label: group.title, group: "CoT Settings" });
+  }
+
+  items.push({ id: "custom_prefs", label: "Custom Preferences", group: "ATAK Settings" });
 
   for (const category of state.schema.categories) {
     const label = category.title || category.id;
     if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
-    items.push({ id: category.id, label, group: "Preferences" });
+    items.push({ id: category.id, label, group: "ATAK Settings" });
   }
 
   els.nav.innerHTML = "";
@@ -105,8 +149,13 @@ function buildNavigation(filter = "") {
 }
 
 function renderPanel() {
-  if (state.activePanel === "connections") {
-    renderConnectionsPanel();
+  if (isCotPanel(state.activePanel)) {
+    renderSingleConnectionGroup(state.activePanel);
+    return;
+  }
+
+  if (state.activePanel === "custom_prefs") {
+    renderCustomPreferencesPanel();
     return;
   }
 
@@ -115,7 +164,7 @@ function renderPanel() {
 
   els.panelTitle.textContent = category.title || category.id;
   els.panelDescription.textContent =
-    `TAK-CIV settings from ${category.file}. Leave fields unset to omit them from the generated .pref file.`;
+    "ATAK Shared Preferences (com.atakmap.app.civ_preferences). Leave fields unset or Off to omit them from the generated .pref file.";
   els.form.innerHTML = "";
 
   for (const section of category.sections) {
@@ -142,10 +191,11 @@ function renderSection(title, fields) {
   return card;
 }
 
-function createLabel(text, id) {
+function createLabel(text, id, required = false) {
   const label = document.createElement("label");
   label.textContent = text;
   if (id) label.htmlFor = id;
+  if (required) label.classList.add("required");
   return label;
 }
 
@@ -318,13 +368,26 @@ function renderPreferenceField(field) {
 
   const input = document.createElement("input");
   input.id = `pref-${field.key}`;
-  input.type = field.type === "integer" ? "number" : "text";
+  if (field.type === "integer" || field.type === "float") {
+    input.type = "number";
+    if (field.type === "float") input.step = "any";
+  } else {
+    input.type = "text";
+  }
   if (current !== undefined && current !== null) input.value = current;
   else if (field.default) input.value = field.default;
   input.placeholder = field.key;
   input.addEventListener("input", () => {
-    const raw = field.type === "integer" ? input.value : input.value;
-    setPreferenceFromField(field, raw === "" ? null : field.type === "integer" ? Number(raw) : raw);
+    const raw = input.value;
+    if (raw === "") {
+      setPreferenceFromField(field, null);
+      return;
+    }
+    if (field.type === "integer" || field.type === "float") {
+      setPreferenceFromField(field, Number(raw));
+      return;
+    }
+    setPreferenceFromField(field, raw);
   });
   wrapper.appendChild(input);
   return wrapper;
@@ -345,41 +408,193 @@ function buildConnectString(parts) {
   return `${parts.proto}:${parts.host}:${parts.port}:${parts.iface}`;
 }
 
-function renderConnectionsPanel() {
-  els.panelTitle.textContent = "TAK-CIV Server Connections";
+function renderSingleConnectionGroup(groupName) {
+  const group = getConnectionGroup(groupName);
+  if (!group) return;
+
+  els.panelTitle.textContent = group.title;
   els.panelDescription.textContent =
-    "Configure CoT inputs, outputs, and streaming connections for TAK-CIV (cot_inputs, cot_outputs, cot_streams).";
+    `${group.description} Description and Connect String are required for each entry (Watchtower MDM).`;
   els.form.innerHTML = "";
 
-  for (const group of state.schema.connections.groups) {
-    const card = document.createElement("section");
-    card.className = "section-card";
-    card.appendChild(Object.assign(document.createElement("h3"), { textContent: group.title }));
-    card.appendChild(Object.assign(document.createElement("p"), { className: "summary", textContent: group.description }));
+  const card = document.createElement("section");
+  card.className = "section-card";
 
-    const connections = state.connections[group.name] || [];
-    const list = document.createElement("div");
-    if (!connections.length) {
-      list.appendChild(Object.assign(document.createElement("div"), {
+  const connections = state.connections[groupName] || [];
+  const list = document.createElement("div");
+  if (!connections.length) {
+    list.appendChild(
+      Object.assign(document.createElement("div"), {
         className: "empty-state",
         textContent: "No connections configured yet.",
-      }));
-    } else {
-      connections.forEach((conn, index) => list.appendChild(renderConnectionCard(group.name, conn, index)));
-    }
-    card.appendChild(list);
-
-    const addBtn = document.createElement("button");
-    addBtn.type = "button";
-    addBtn.className = "btn btn-secondary";
-    addBtn.textContent = "Add Connection";
-    addBtn.addEventListener("click", () => {
-      state.connections[group.name].push(defaultConnection());
-      renderConnectionsPanel();
-    });
-    card.appendChild(addBtn);
-    els.form.appendChild(card);
+      })
+    );
+  } else {
+    connections.forEach((conn, index) => list.appendChild(renderConnectionCard(groupName, conn, index)));
   }
+  card.appendChild(list);
+
+  const addBtn = document.createElement("button");
+  addBtn.type = "button";
+  addBtn.className = "btn btn-secondary";
+  addBtn.textContent = "Add Connection";
+  addBtn.addEventListener("click", () => {
+    state.connections[groupName].push(defaultConnection());
+    renderSingleConnectionGroup(groupName);
+  });
+  card.appendChild(addBtn);
+  els.form.appendChild(card);
+}
+
+function listCustomPreferenceKeys() {
+  return Object.keys(state.preferences)
+    .filter((key) => !state.schemaFieldKeys.has(key))
+    .sort();
+}
+
+function normalizeCustomValue(type, raw) {
+  if (raw === null || raw === undefined || raw === "") return null;
+  if (type === "boolean") return raw === true || raw === "true";
+  if (type === "integer") return Number.parseInt(String(raw), 10);
+  if (type === "float") return Number.parseFloat(String(raw));
+  return String(raw);
+}
+
+function setCustomPreference(key, type, value) {
+  const normalized = normalizeCustomValue(type, value);
+  if (normalized === null || normalized === "" || Number.isNaN(normalized)) {
+    delete state.preferences[key];
+    return;
+  }
+  state.preferences[key] = {
+    type,
+    value: normalized,
+    java_class: JAVA_CLASSES[type] || JAVA_CLASSES.string,
+  };
+}
+
+function renderCustomPreferencesPanel() {
+  els.panelTitle.textContent = "Custom ATAK Preferences";
+  els.panelDescription.textContent =
+    "Add ATAK Shared Preferences not covered by the schema. Use this for plugin settings (including NWSharedPreferences Scope/Key/Value pairs). Unset values are omitted from export.";
+  els.form.innerHTML = "";
+
+  const addCard = document.createElement("section");
+  addCard.className = "section-card";
+  addCard.appendChild(Object.assign(document.createElement("h3"), { textContent: "Add Preference" }));
+
+  const grid = document.createElement("div");
+  grid.className = "field-grid";
+
+  const keyInput = document.createElement("input");
+  keyInput.type = "text";
+  keyInput.placeholder = "preference_key";
+  grid.appendChild(wrapField(createLabel("Key"), keyInput));
+
+  const typeSelect = createSelect(CUSTOM_PREF_TYPES, "string", () => {}, false);
+  grid.appendChild(wrapField(createLabel("Type"), typeSelect));
+
+  const valueInput = document.createElement("input");
+  valueInput.type = "text";
+  valueInput.placeholder = "Value";
+  grid.appendChild(wrapField(createLabel("Value"), valueInput));
+
+  addCard.appendChild(grid);
+
+  const addBtn = document.createElement("button");
+  addBtn.type = "button";
+  addBtn.className = "btn btn-secondary";
+  addBtn.textContent = "Add Preference";
+  addBtn.addEventListener("click", () => {
+    const key = keyInput.value.trim();
+    if (!key) {
+      showToast("Preference key is required", true);
+      return;
+    }
+    if (state.schemaFieldKeys.has(key)) {
+      showToast("Key is already defined in ATAK Settings — use that category instead", true);
+      return;
+    }
+    setCustomPreference(key, typeSelect.value, valueInput.value);
+    renderCustomPreferencesPanel();
+  });
+  addCard.appendChild(addBtn);
+  els.form.appendChild(addCard);
+
+  const listCard = document.createElement("section");
+  listCard.className = "section-card";
+  listCard.appendChild(Object.assign(document.createElement("h3"), { textContent: "Custom Preferences" }));
+
+  const keys = listCustomPreferenceKeys();
+  if (!keys.length) {
+    listCard.appendChild(
+      Object.assign(document.createElement("div"), {
+        className: "empty-state",
+        textContent: "No custom preferences yet.",
+      })
+    );
+  } else {
+    for (const key of keys) {
+      listCard.appendChild(renderCustomPreferenceRow(key));
+    }
+  }
+  els.form.appendChild(listCard);
+}
+
+function wrapField(label, control) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "field";
+  wrapper.appendChild(label);
+  wrapper.appendChild(control);
+  return wrapper;
+}
+
+function renderCustomPreferenceRow(key) {
+  const pref = state.preferences[key] || { type: "string", value: "" };
+  const row = document.createElement("div");
+  row.className = "connection-card";
+
+  const header = document.createElement("div");
+  header.className = "connection-header";
+  header.appendChild(Object.assign(document.createElement("h4"), { textContent: key }));
+  const removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.className = "btn btn-danger";
+  removeBtn.textContent = "Remove";
+  removeBtn.addEventListener("click", () => {
+    delete state.preferences[key];
+    renderCustomPreferencesPanel();
+  });
+  header.appendChild(removeBtn);
+  row.appendChild(header);
+
+  const grid = document.createElement("div");
+  grid.className = "field-grid";
+
+  const typeSelect = createSelect(
+    CUSTOM_PREF_TYPES,
+    pref.type || "string",
+    (value) => setCustomPreference(key, value, pref.value),
+    false
+  );
+  grid.appendChild(wrapField(createLabel("Type"), typeSelect));
+
+  const valueInput = document.createElement("input");
+  valueInput.type = pref.type === "integer" || pref.type === "float" ? "number" : "text";
+  if (pref.type === "float") valueInput.step = "any";
+  if (pref.type === "boolean") {
+    valueInput.type = "text";
+    valueInput.placeholder = "true or false";
+  }
+  valueInput.value = pref.value ?? "";
+  valueInput.addEventListener("input", () => setCustomPreference(key, typeSelect.value, valueInput.value));
+  typeSelect.addEventListener("change", () => {
+    setCustomPreference(key, typeSelect.value, valueInput.value);
+    renderCustomPreferencesPanel();
+  });
+  grid.appendChild(wrapField(createLabel("Value"), valueInput));
+  row.appendChild(grid);
+  return row;
 }
 
 function defaultConnection() {
@@ -413,7 +628,7 @@ function renderConnectionCard(groupName, connection, index) {
   removeBtn.textContent = "Remove";
   removeBtn.addEventListener("click", () => {
     state.connections[groupName].splice(index, 1);
-    renderConnectionsPanel();
+    renderSingleConnectionGroup(groupName);
   });
   header.appendChild(removeBtn);
   card.appendChild(header);
@@ -433,7 +648,7 @@ function renderConnectionField(groupName, index, field, connection) {
   if (field.type === "connect_string") {
     const wrapper = document.createElement("div");
     wrapper.className = "field field-wide";
-    wrapper.appendChild(createLabel(field.title));
+    wrapper.appendChild(createLabel(field.title, null, field.required));
     if (field.help) {
       wrapper.appendChild(Object.assign(document.createElement("div"), { className: "help", textContent: field.help }));
     }
@@ -446,7 +661,7 @@ function renderConnectionField(groupName, index, field, connection) {
       const next = buildConnectString(parts);
       if (next) updateConnection(groupName, index, "connectString", next);
       else delete state.connections[groupName][index].connectString;
-      renderConnectionsPanel();
+      renderSingleConnectionGroup(groupName);
     };
 
     for (const [partKey, partField] of Object.entries(field.parts)) {
@@ -493,7 +708,7 @@ function renderConnectionField(groupName, index, field, connection) {
 
   const wrapper = document.createElement("div");
   wrapper.className = "field";
-  wrapper.appendChild(createLabel(field.title));
+  wrapper.appendChild(createLabel(field.title, null, field.required));
   if (field.help) wrapper.appendChild(Object.assign(document.createElement("div"), { className: "help", textContent: field.help }));
 
   const input = document.createElement("input");
@@ -512,6 +727,28 @@ function updateConnection(groupName, index, key, value) {
   state.connections[groupName][index][key] = value;
 }
 
+function validateConnectionsClient() {
+  const labels = {
+    cot_inputs: "CoT Input",
+    cot_outputs: "CoT Output",
+    cot_streams: "CoT Stream",
+  };
+  const errors = [];
+  for (const group of COT_PANELS) {
+    for (let index = 0; index < (state.connections[group] || []).length; index += 1) {
+      const conn = state.connections[group][index];
+      const name = conn.description || conn.connectString || `#${index + 1}`;
+      if (!String(conn.description || "").trim()) {
+        errors.push(`${labels[group]} (${name}): Description is required`);
+      }
+      if (!String(conn.connectString || "").trim()) {
+        errors.push(`${labels[group]} (${name}): Connect string is required`);
+      }
+    }
+  }
+  return errors;
+}
+
 function buildPayload() {
   normalizeFilename();
   return {
@@ -525,6 +762,10 @@ function buildPayload() {
 
 async function downloadPref() {
   try {
+    const validationErrors = validateConnectionsClient();
+    if (validationErrors.length) {
+      throw new Error(validationErrors.join("; "));
+    }
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -549,6 +790,10 @@ async function downloadPref() {
 
 async function previewPref() {
   try {
+    const validationErrors = validateConnectionsClient();
+    if (validationErrors.length) {
+      throw new Error(validationErrors.join("; "));
+    }
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
