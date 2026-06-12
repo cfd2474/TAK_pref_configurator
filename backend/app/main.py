@@ -13,6 +13,7 @@ from pydantic import BaseModel, Field
 
 from .pref_generator import DEFAULT_APP_PREFS, generate_pref_xml
 from .pref_parser import parse_pref_xml
+from .secrets import redact_preferences
 
 APP_DIR = Path(__file__).resolve().parent
 DATA_DIR = APP_DIR.parent / "data"
@@ -76,6 +77,7 @@ def generate_pref(request: GenerateRequest) -> Response:
             if pref.value is not None and pref.value != ""
         },
     }
+    config["preferences"] = redact_preferences(config["preferences"])
     xml_content = generate_pref_xml(config)
     filename = request.filename if request.filename.endswith(".pref") else f"{request.filename}.pref"
     return Response(
@@ -91,7 +93,9 @@ async def parse_pref(file: UploadFile = File(...)) -> dict:
         raise HTTPException(status_code=400, detail="Upload a .pref or .xml file")
     content = (await file.read()).decode("utf-8", errors="replace")
     try:
-        return parse_pref_xml(content)
+        parsed = parse_pref_xml(content)
+        parsed["preferences"] = redact_preferences(parsed["preferences"])
+        return parsed
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"Failed to parse preference file: {exc}") from exc
 

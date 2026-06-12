@@ -67,6 +67,12 @@ def test_reference_pref_structure() -> None:
         assert groups[3].get("name") == DEFAULT_APP_PREFS, reference["name"]
 
 
+def test_fixtures_do_not_contain_leaked_secrets() -> None:
+    for reference in REFERENCE_PREFS:
+        content = _load_reference(reference["path"])
+        assert "AIzaSy" not in content, reference["name"]
+
+
 def test_parse_reference_prefs() -> None:
     for reference in REFERENCE_PREFS:
         parsed = parse_pref_xml(_load_reference(reference["path"]))
@@ -154,6 +160,7 @@ def test_round_trip_subset_from_references() -> None:
 
 if __name__ == "__main__":
     test_reference_pref_structure()
+    test_fixtures_do_not_contain_leaked_secrets()
     test_parse_reference_prefs()
     test_schema_overlap_storage_classes_match_references()
     test_generated_ports_use_string_storage_from_ui()
