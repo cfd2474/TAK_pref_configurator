@@ -432,7 +432,43 @@ function categoryFields(category) {
 }
 
 function exportableFields(fields) {
-  return (fields || []).filter((field) => field.exportable !== false);
+  return (fields || []).filter((field) => shouldShowField(field));
+}
+
+function shouldShowField(field) {
+  if (field.exportable === false) return false;
+  if (field.key === "custom_color_selected" || field.key === "custom_outline_color_selected") {
+    const mode = getGpsIconColorMode();
+    if (mode && mode !== "custom") return false;
+  }
+  return true;
+}
+
+const GPS_ICON_COLOR_KEYS = {
+  default: "default_gps_icon",
+  team: "team_color_gps_icon",
+  custom: "custom_color_gps_icon_pref",
+};
+
+function getGpsIconColorMode() {
+  if (state.preferences[GPS_ICON_COLOR_KEYS.custom]?.value) return "custom";
+  if (state.preferences[GPS_ICON_COLOR_KEYS.team]?.value) return "team";
+  if (state.preferences[GPS_ICON_COLOR_KEYS.default]?.value) return "default";
+  return "";
+}
+
+function setGpsIconColorMode(mode) {
+  for (const key of Object.values(GPS_ICON_COLOR_KEYS)) {
+    delete state.preferences[key];
+  }
+  if (!mode) return;
+  const prefKey = GPS_ICON_COLOR_KEYS[mode];
+  if (!prefKey) return;
+  state.preferences[prefKey] = {
+    type: "boolean",
+    value: true,
+    java_class: JAVA_CLASSES.boolean,
+  };
 }
 
 function hasExportableFields(category) {
@@ -778,6 +814,13 @@ function isDropdownField(field) {
 
 function renderPreferenceField(field) {
   const current = state.preferences[field.key]?.value;
+
+  if (field.input === "gps_icon_color_mode") {
+    return renderSelectField(field, getGpsIconColorMode(), (value) => {
+      setGpsIconColorMode(value === "" ? null : value);
+      renderPanel();
+    });
+  }
 
   if (isColorField(field)) {
     return renderColorField(field, current, (value) => setPreferenceFromField(field, value));

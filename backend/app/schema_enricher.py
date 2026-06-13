@@ -24,9 +24,61 @@ BOOLEAN_OPTION_LABEL_OVERRIDES: dict[str, list[dict[str, str]]] = {
         {"label": "Left", "value": "false"},
         {"label": "Right", "value": "true"},
     ],
+    "landscape_extended_buttons": [
+        {"label": "Disabled", "value": "false"},
+        {"label": "Enabled", "value": "true"},
+    ],
 }
 
-HIDDEN_NAV_CATEGORY_IDS = frozenset({"call_sign_preference"})
+NON_EXPORTABLE_MENU_LAUNCHERS = frozenset({"my_location_icon_color", "my_actionbar_settings"})
+
+ADJUST_TOOLBAR_SECTION_KEY = "adjust_toolbar_preferences_category"
+
+GPS_ICON_COLOR_MODE_FIELD: dict[str, Any] = {
+    "key": "gps_icon_color_mode",
+    "title": "Self Icon Color Mode",
+    "summary": "Choose whether the self icon uses default colors, your team color, or custom colors.",
+    "type": "select",
+    "input": "gps_icon_color_mode",
+    "options": [
+        {"label": "Default", "value": "default"},
+        {"label": "Team color", "value": "team"},
+        {"label": "Custom colors", "value": "custom"},
+    ],
+    "exportable": True,
+}
+
+TOOLBAR_MENU_EXPANSIONS: list[tuple[str, str, list[str]]] = [
+    (
+        "My Location Color / Size",
+        "my_location_icon_color_fields",
+        [
+            "location_marker_scale_key",
+            "gps_icon_color_mode",
+            "custom_color_selected",
+            "custom_outline_color_selected",
+        ],
+    ),
+    (
+        "Tool Bar Customization",
+        "my_actionbar_settings_fields",
+        [
+            "nav_orientation_right",
+            "actionbar_icon_color_key",
+            "actionbar_background_color_key",
+            "landscape_extended_buttons",
+        ],
+    ),
+]
+
+HIDDEN_NAV_CATEGORY_IDS = frozenset(
+    {
+        "call_sign_preference",
+        "custom_actionbar_preferences",
+        "ref_color_category",
+        "ref_size_category",
+    }
+)
 
 CATEGORY_TITLE_OVERRIDES = {
     "device_preferences": "Device/Callsign Preferences",
@@ -163,9 +215,73 @@ def _apply_color_field_metadata(field: dict[str, Any], ref: dict[str, Any]) -> N
 def mark_non_exportable_navigation_fields(field: dict[str, Any]) -> None:
     if field.get("options") or field.get("exportable") is False:
         return
-    widget = field.get("widget", "")
-    if field["key"].endswith("Action") or widget.endswith("PanPreference"):
+    if field["key"] in NON_EXPORTABLE_MENU_LAUNCHERS:
         field["exportable"] = False
+        return
+    widget = field.get("widget", "")
+    if field["key"].endswith("Action") or widget == "Preference" or widget.endswith("PanPreference"):
+        field["exportable"] = False
+
+
+def _reference_field_from_key(key: str, ref_keys: dict[str, Any]) -> dict[str, Any] | None:
+    ref = ref_keys.get(key)
+    if not ref:
+        return None
+    field = reference_field_to_schema_field(ref)
+    apply_reference_to_field(field, ref)
+    return field
+
+
+def _find_schema_field(schema: dict[str, Any], key: str) -> dict[str, Any] | None:
+    for _, _, field in iter_schema_fields(schema):
+        if field["key"] == key:
+            return copy.deepcopy(field)
+    return None
+
+
+def expand_adjust_toolbar_sections(schema: dict[str, Any], reference: dict[str, Any]) -> None:
+    ref_keys = reference.get("keys", {})
+    display = next((category for category in schema.get("categories", []) if category.get("id") == "display_preferences"), None)
+    if not display:
+        return
+
+    new_sections: list[dict[str, Any]] = []
+    replaced = False
+    for section in display.get("sections", []):
+        if section.get("key") != ADJUST_TOOLBAR_SECTION_KEY:
+            new_sections.append(section)
+            continue
+
+        replaced = True
+        for title, section_key, field_keys in TOOLBAR_MENU_EXPANSIONS:
+            fields: list[dict[str, Any]] = []
+            for key in field_keys:
+                if key == "gps_icon_color_mode":
+                    fields.append(copy.deepcopy(GPS_ICON_COLOR_MODE_FIELD))
+                    continue
+                ref_field = _reference_field_from_key(key, ref_keys)
+                if ref_field:
+                    if key == "custom_color_selected":
+                        ref_field["title"] = "Custom Icon Fill Color"
+                        ref_field["summary"] = "Main fill color when Self Icon Color Mode is set to Custom colors."
+                    elif key == "custom_outline_color_selected":
+                        ref_field["title"] = "Custom Icon Outline Color"
+                        ref_field["summary"] = "Outline color when Self Icon Color Mode is set to Custom colors."
+                    elif key == "location_marker_scale_key":
+                        ref_field["summary"] = "Size of the self-location marker on the map."
+                    elif key == "actionbar_icon_color_key":
+                        ref_field["summary"] = "Toolbar icon tint color."
+                    elif key == "actionbar_background_color_key":
+                        ref_field["summary"] = "Toolbar background color (rendered with transparency on device)."
+                    fields.append(ref_field)
+                    continue
+                schema_field = _find_schema_field(schema, key)
+                if schema_field:
+                    fields.append(schema_field)
+            new_sections.append({"title": title, "key": section_key, "fields": fields})
+
+    if replaced:
+        display["sections"] = new_sections
 
 
 def add_missing_reference_categories(schema: dict[str, Any], reference: dict[str, Any]) -> None:
@@ -234,6 +350,8 @@ def enrich_schema(schema: dict[str, Any], reference: dict[str, Any] | None = Non
         category for category in enriched.get("categories", []) if category.get("source") == "atak_pref_reference"
     ]
     enriched["categories"] = base_categories + reference_categories
+
+    expand_adjust_toolbar_sections(enriched, reference)
 
     enriched.setdefault("reference", {})
     enriched["reference"]["atak_core"] = {

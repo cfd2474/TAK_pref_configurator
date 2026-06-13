@@ -86,6 +86,32 @@ def test_nav_orientation_right_uses_left_right_labels() -> None:
     assert [option["value"] for option in toolbar_side["options"]] == ["false", "true"]
 
 
+def test_adjust_toolbar_section_expands_to_actionable_fields() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    display = next(category for category in enriched["categories"] if category["id"] == "display_preferences")
+    section_titles = [section["title"] for section in display.get("sections", [])]
+    assert "My Location Color / Size" in section_titles
+    assert "Tool Bar Customization" in section_titles
+    assert "Adjust Toolbar Preferences" not in section_titles
+
+    fields = _schema_fields(enriched)
+    assert fields["location_marker_scale_key"]["type"] == "select"
+    assert fields["gps_icon_color_mode"]["input"] == "gps_icon_color_mode"
+    assert fields["nav_orientation_right"]["options"][0]["label"] == "Left"
+    display_keys = {
+        field["key"]
+        for section in display.get("sections", [])
+        for field in section.get("fields", [])
+    }
+    assert "my_location_icon_color" not in display_keys
+    assert "my_actionbar_settings" not in display_keys
+
+    by_id = {category["id"]: category for category in enriched["categories"]}
+    assert by_id["ref_color_category"].get("nav_hidden") is True
+    assert by_id["custom_actionbar_preferences"].get("nav_hidden") is True
+
+
 def test_device_preferences_nav_label_and_duplicate_hidden() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     enriched = enrich_schema(schema)
