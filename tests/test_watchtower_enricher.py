@@ -1,4 +1,4 @@
-"""Validate Watchtower MDM enrichment against scraped ATAK settings."""
+"""Validate supplemental ATAK settings enrichment."""
 
 from __future__ import annotations
 
@@ -80,10 +80,10 @@ def test_action_keys_are_not_exportable() -> None:
         assert fields[key]["exportable"] is False
 
 
-def test_enriched_schema_includes_watchtower_metadata() -> None:
+def test_enriched_schema_includes_atak_settings_metadata() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     enriched = enrich_schema(schema)
-    assert enriched["reference"]["watchtower"]["source"] == "Watchtower MDM System ATAK Settings"
+    assert enriched["reference"]["atak_settings"]["source"] == "ATAK Settings metadata"
 
 
 def test_truncated_watchtower_descriptions_keep_schema_summary() -> None:

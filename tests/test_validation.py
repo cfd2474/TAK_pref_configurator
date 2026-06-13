@@ -1,4 +1,4 @@
-"""Tests for Watchtower-aligned connection validation."""
+"""Tests for CoT connection validation."""
 
 from backend.app.validation import validate_connections
 

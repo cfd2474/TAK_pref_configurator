@@ -1,4 +1,4 @@
-"""Apply Watchtower MDM ATAK Settings metadata to the UI schema."""
+"""Apply supplemental ATAK settings metadata to the UI schema."""
 
 from __future__ import annotations
 
@@ -93,7 +93,7 @@ def _is_truncated_watchtower_description(description: str) -> bool:
         return False
     if text[-1] in ".!?\"'":
         return False
-    # Watchtower MDM preview text is capped around 48 characters without ellipsis.
+    # Settings UI preview text is capped around 48 characters without ellipsis.
     return len(text) >= 40
 
 
@@ -151,8 +151,6 @@ def apply_watchtower_to_field(
             field.pop("input", None)
             field.pop("options", None)
 
-    field["watchtower"] = True
-
 
 def apply_watchtower_enrichment(
     schema: dict[str, Any],
@@ -178,7 +176,7 @@ def apply_watchtower_enrichment(
             field["exportable"] = False
 
     enriched.setdefault("reference", {})
-    enriched["reference"]["watchtower"] = {
+    enriched["reference"]["atak_settings"] = {
         "source": watchtower.get("source"),
         "pages": watchtower.get("pages"),
         "stats": watchtower.get("stats", {}),

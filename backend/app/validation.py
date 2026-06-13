@@ -16,7 +16,7 @@ PREF_TYPES = frozenset({"boolean", "integer", "string", "float", "set"})
 
 
 def validate_connections(connections: dict[str, list[dict[str, Any]]]) -> list[str]:
-    """Watchtower requires Description and Connect String for each CoT setting."""
+    """Description and Connect String are required for each CoT setting."""
     errors: list[str] = []
     for group in CONNECTION_GROUPS:
         for index, conn in enumerate(connections.get(group, [])):

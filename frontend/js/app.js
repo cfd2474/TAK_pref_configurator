@@ -980,7 +980,7 @@ function renderSingleConnectionGroup(groupName) {
 
   els.panelTitle.textContent = group.title;
   els.panelDescription.textContent =
-    `${group.description} Description and Connect String are required for each entry (Watchtower MDM).`;
+    `${group.description} Description and Connect String are required for each entry.`;
   els.form.innerHTML = "";
 
   const card = document.createElement("section");
