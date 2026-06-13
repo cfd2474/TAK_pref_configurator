@@ -1339,7 +1339,7 @@
     {
       "id": "bread_preferences",
       "file": "bread_preferences.xml",
-      "title": "Bread Preferences",
+      "title": "Breadcrumb Preferences",
       "sections": [
         {
           "title": "Track History Preferences",
