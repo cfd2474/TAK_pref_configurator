@@ -113,6 +113,24 @@ def test_duplicate_grid_line_color_hidden_from_misc_display_category() -> None:
     assert "pref_grid_color_value" not in misc_keys
 
 
+def test_specific_tool_preferences_category_is_hidden_for_civ() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    by_id = {category["id"]: category for category in enriched["categories"]}
+    assert by_id["specific_tool_preference"].get("nav_hidden") is True
+    assert "ref_specific_tool_preferences_category" not in by_id
+
+    fields = _schema_fields(enriched)
+    assert fields["specTools"]["exportable"] is False
+    for key in (
+        "autostart_nineline",
+        "fahDistance",
+        "laserBasketDistance",
+        "selected_geocoder_uid",
+    ):
+        assert key not in fields
+
+
 def test_adjust_toolbar_section_expands_to_actionable_fields() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     enriched = enrich_schema(schema)

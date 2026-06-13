@@ -31,7 +31,7 @@ BOOLEAN_OPTION_LABEL_OVERRIDES: dict[str, list[dict[str, str]]] = {
     ],
 }
 
-NON_EXPORTABLE_MENU_LAUNCHERS = frozenset({"my_location_icon_color", "my_actionbar_settings"})
+NON_EXPORTABLE_MENU_LAUNCHERS = frozenset({"my_location_icon_color", "my_actionbar_settings", "specTools"})
 
 ADJUST_TOOLBAR_SECTION_KEY = "adjust_toolbar_preferences_category"
 
@@ -78,6 +78,8 @@ HIDDEN_NAV_CATEGORY_IDS = frozenset(
         "custom_actionbar_preferences",
         "ref_color_category",
         "ref_size_category",
+        "ref_specific_tool_preferences_category",
+        "specific_tool_preference",
     }
 )
 
@@ -85,6 +87,13 @@ HIDDEN_NAV_CATEGORY_IDS = frozenset(
 HIDDEN_REFERENCE_FIELD_KEYS = frozenset(
     {
         "pref_grid_color_value",
+    }
+)
+
+# ATAK Core reference categories that are mil-only and not applicable to TAK-CIV.
+HIDDEN_REFERENCE_CATEGORY_KEYS = frozenset(
+    {
+        "specific_tool_preferences_category",
     }
 )
 
@@ -397,6 +406,8 @@ def add_missing_reference_categories(schema: dict[str, Any], reference: dict[str
         if ref.get("type") in {"selection_action", "information", "menu_item", "category"}:
             continue
         category_key = ref.get("category_key") or "reference_misc"
+        if category_key in HIDDEN_REFERENCE_CATEGORY_KEYS:
+            continue
         grouped[category_key].append(ref)
 
     for category_key, refs in sorted(grouped.items()):
