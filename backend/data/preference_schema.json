@@ -2917,7 +2917,7 @@
     {
       "id": "geocoder_preference_fragment",
       "file": "geocoder_preference_fragment.xml",
-      "title": "Geocoder Preference Fragment",
+      "title": "GeoCoder",
       "sections": [
         {
           "title": "Address Lookup Preferences",

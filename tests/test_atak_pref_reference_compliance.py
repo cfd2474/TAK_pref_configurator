@@ -127,6 +127,7 @@ def test_device_preferences_nav_label_and_duplicate_hidden() -> None:
     by_id = {category["id"]: category for category in enriched["categories"]}
     assert by_id["device_preferences"]["title"] == "Device/Callsign Preferences"
     assert by_id["call_sign_preference"].get("nav_hidden") is True
+    assert by_id["geocoder_preference_fragment"]["title"] == "GeoCoder"
     assert by_id["missionpackage_preferences"]["title"] == "Mission Package Preferences"
     assert by_id["lrf_preferences"]["title"] == "LRF Preferences"
     assert by_id["off_scr_indi_preferences"]["title"] == "Off Screen Indicator Preferences"
