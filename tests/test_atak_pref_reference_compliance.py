@@ -172,6 +172,24 @@ def test_device_preferences_nav_label_and_duplicate_hidden() -> None:
     assert by_id["wms_preferences"]["title"] == "WMS Preferences"
 
 
+def test_wms_preferences_consolidated_in_single_category() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    by_id = {category["id"]: category for category in enriched["categories"]}
+    assert "ref_wms_preferences_category" not in by_id
+
+    wms = by_id["wms_preferences"]
+    wms_keys = {field["key"] for section in wms.get("sections", []) for field in section.get("fields", [])}
+    assert "wms_connect_timeout" in wms_keys
+    assert "wmsconnecttimeout" not in wms_keys
+
+    fields = _schema_fields(enriched)
+    timeout = fields["wms_connect_timeout"]
+    assert timeout["exportable"] is True
+    assert timeout["title"] == "WMS Connect Timeout (ms)"
+    assert "milliseconds" in timeout["summary"].lower()
+
+
 def test_route_and_radius_fields_clarify_meter_units() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     enriched = enrich_schema(schema)

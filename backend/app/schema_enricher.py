@@ -94,6 +94,7 @@ HIDDEN_REFERENCE_FIELD_KEYS = frozenset(
 HIDDEN_REFERENCE_CATEGORY_KEYS = frozenset(
     {
         "specific_tool_preferences_category",
+        "wms_preferences_category",
     }
 )
 
@@ -171,6 +172,11 @@ def _build_field_display_overrides() -> dict[str, dict[str, str]]:
                     "Default: 5000000 bytes (5 MB)."
                 ),
                 "placeholder": "Limit in bytes (e.g. 5000000)",
+            },
+            "wms_connect_timeout": {
+                "title": "WMS Connect Timeout (ms)",
+                "summary": "Connection timeout in milliseconds when contacting WMS servers. Default: 3000 ms.",
+                "placeholder": "Timeout in milliseconds (e.g. 3000)",
             },
         }
     )

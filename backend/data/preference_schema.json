@@ -6082,12 +6082,14 @@
               "type": "string"
             },
             {
-              "key": "wmsconnecttimeout",
+              "key": "wms_connect_timeout",
               "title": "WMS Connect Timeout",
               "summary": "",
-              "default": null,
-              "widget": "com.atakmap.android.gui.PanPreference",
-              "type": "string"
+              "default": "3000",
+              "widget": "com.atakmap.android.gui.PanEditTextPreference",
+              "type": "integer",
+              "storage_type": "integer",
+              "java_class": "class java.lang.Integer"
             },
             {
               "key": "volumemapswitcher",
