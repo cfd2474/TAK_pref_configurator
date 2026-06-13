@@ -142,6 +142,7 @@ function buildNavigation(filter = "") {
   items.push({ id: "custom_prefs", label: "Custom Preferences", group: "ATAK Settings" });
 
   for (const category of state.schema.categories) {
+    if (!hasExportableFields(category)) continue;
     const label = category.title || category.id;
     if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
     items.push({ id: category.id, label, group: "ATAK Settings" });
@@ -152,6 +153,8 @@ function buildNavigation(filter = "") {
     if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
     items.push({ id: category.id, label, group: "ATAK Settings", plugin: true, deletable: true });
   }
+
+  ensureActivePanelVisible(items);
 
   els.nav.innerHTML = "";
   let currentGroup = "";
@@ -248,12 +251,7 @@ function renderPanel() {
 }
 
 function categoryFieldKeys(category) {
-  const keys = [];
-  for (const field of category.fields || []) keys.push(field.key);
-  for (const section of category.sections || []) {
-    for (const field of section.fields || []) keys.push(field.key);
-  }
-  return keys;
+  return categoryFields(category).map((field) => field.key);
 }
 
 function countCategoryFields(category) {
@@ -424,8 +422,26 @@ async function importPluginApk(event) {
   }
 }
 
+function categoryFields(category) {
+  const fields = [];
+  for (const field of category.fields || []) fields.push(field);
+  for (const section of category.sections || []) {
+    for (const field of section.fields || []) fields.push(field);
+  }
+  return fields;
+}
+
 function exportableFields(fields) {
   return (fields || []).filter((field) => field.exportable !== false);
+}
+
+function hasExportableFields(category) {
+  return exportableFields(categoryFields(category)).length > 0;
+}
+
+function ensureActivePanelVisible(items) {
+  if (items.some((item) => item.id === state.activePanel)) return;
+  state.activePanel = items[0]?.id || "custom_prefs";
 }
 
 function renderSection(title, fields) {
