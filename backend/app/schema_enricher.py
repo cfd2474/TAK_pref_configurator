@@ -83,6 +83,7 @@ HIDDEN_NAV_CATEGORY_IDS = frozenset(
 
 CATEGORY_TITLE_OVERRIDES = {
     "device_preferences": "Device/Callsign Preferences",
+    "missionpackage_preferences": "Mission Package Preferences",
 }
 
 

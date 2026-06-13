@@ -3708,7 +3708,7 @@
     {
       "id": "missionpackage_preferences",
       "file": "missionpackage_preferences.xml",
-      "title": "Missionpackage Preferences",
+      "title": "Mission Package Preferences",
       "sections": [
         {
           "title": "General File Sharing Settings",
