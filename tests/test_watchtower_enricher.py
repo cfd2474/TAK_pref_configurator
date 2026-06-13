@@ -38,7 +38,7 @@ def test_tristate_boolean_fields() -> None:
     assert log_tracks["input"] == "tristate"
     assert log_tracks["type"] == "boolean"
     assert len(log_tracks["options"]) == 3
-    assert log_tracks["options"][0]["label"] == "-Not Set-"
+    assert log_tracks["options"][0]["label"] == "— Not set —"
 
 
 def test_select_fields_keep_unset_behavior() -> None:

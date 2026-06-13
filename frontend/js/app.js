@@ -16,7 +16,7 @@ const JAVA_CLASSES = {
   float: "class java.lang.Float",
 };
 
-const UNSET_OPTION_LABEL = "-Not Set-";
+const UNSET_OPTION_LABEL = "— Not set —";
 
 function isUnsetOption(option) {
   const value = String(option.value ?? "");

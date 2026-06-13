@@ -18,7 +18,7 @@ WATCHTOWER_KEY_ALIASES = {
 }
 
 TRISTATE_OPTIONS = [
-    {"label": "-Not Set-", "value": ""},
+    {"label": "— Not set —", "value": ""},
     {"label": "Off", "value": "false"},
     {"label": "On", "value": "true"},
 ]
