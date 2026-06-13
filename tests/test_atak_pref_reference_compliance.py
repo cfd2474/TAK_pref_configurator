@@ -86,6 +86,15 @@ def test_nav_orientation_right_uses_left_right_labels() -> None:
     assert [option["value"] for option in toolbar_side["options"]] == ["false", "true"]
 
 
+def test_pref_grid_color_uses_palette_picker() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    fields = _schema_fields(enriched)
+    grid_color = fields["pref_grid_color"]
+    assert grid_color["input"] == "palette_color"
+    assert len([option for option in grid_color["options"] if option["value"].startswith("#")]) >= 4
+
+
 def test_adjust_toolbar_section_expands_to_actionable_fields() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     enriched = enrich_schema(schema)

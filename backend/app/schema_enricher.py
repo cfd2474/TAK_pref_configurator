@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -329,6 +330,23 @@ def apply_category_nav_overrides(schema: dict[str, Any]) -> None:
             category["title"] = CATEGORY_TITLE_OVERRIDES[category_id]
 
 
+_HEX_COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
+
+
+def _is_hex_color(value: str) -> bool:
+    return bool(_HEX_COLOR_RE.match(value))
+
+
+def apply_palette_color_fields(schema: dict[str, Any]) -> None:
+    for _, _, field in iter_schema_fields(schema):
+        options = field.get("options") or []
+        hex_options = [option for option in options if _is_hex_color(str(option.get("value", "")))]
+        if len(hex_options) < 2:
+            continue
+        field["input"] = "palette_color"
+        field["type"] = "select"
+
+
 def enrich_schema(schema: dict[str, Any], reference: dict[str, Any] | None = None) -> dict[str, Any]:
     reference = reference or load_reference()
     enriched = copy.deepcopy(schema)
@@ -360,4 +378,6 @@ def enrich_schema(schema: dict[str, Any], reference: dict[str, Any] | None = Non
         "stats": reference.get("stats", {}),
     }
     apply_category_nav_overrides(enriched)
-    return apply_watchtower_enrichment(enriched, reference=reference)
+    enriched = apply_watchtower_enrichment(enriched, reference=reference)
+    apply_palette_color_fields(enriched)
+    return enriched

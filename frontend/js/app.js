@@ -801,7 +801,69 @@ function renderColorField(field, current, onChange) {
   return wrapper;
 }
 
+function isHexColorValue(value) {
+  return /^#[0-9a-fA-F]{6}$/.test(String(value ?? ""));
+}
+
+function paletteColorOptions(field) {
+  return (field.options || []).filter((option) => isHexColorValue(option.value));
+}
+
+function otherSelectOptions(field) {
+  return (field.options || []).filter((option) => !isHexColorValue(option.value));
+}
+
+function isPaletteColorField(field) {
+  return field.input === "palette_color";
+}
+
+function renderPaletteColorField(field, current, onChange) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "field palette-color-field";
+  wrapper.appendChild(createLabel(field.title || field.key, `pref-${field.key}`));
+  appendFieldDescription(wrapper, field);
+
+  const row = document.createElement("div");
+  row.className = "palette-color-row";
+
+  const unset = document.createElement("button");
+  unset.type = "button";
+  unset.className = "palette-swatch palette-swatch-unset" + (current ? "" : " selected");
+  unset.textContent = "Not set";
+  unset.addEventListener("click", () => onChange(null));
+  row.appendChild(unset);
+
+  for (const option of paletteColorOptions(field)) {
+    const swatch = document.createElement("button");
+    swatch.type = "button";
+    swatch.className = "palette-swatch";
+    swatch.style.backgroundColor = option.value;
+    swatch.title = option.label && option.label !== option.value ? option.label : option.value;
+    swatch.setAttribute("aria-label", swatch.title);
+    if (String(current ?? "").toLowerCase() === String(option.value).toLowerCase()) {
+      swatch.classList.add("selected");
+    }
+    swatch.addEventListener("click", () => onChange(option.value));
+    row.appendChild(swatch);
+  }
+
+  for (const option of otherSelectOptions(field)) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "palette-option-btn" + (String(current) === String(option.value) ? " selected" : "");
+    button.textContent = option.label || option.value;
+    button.addEventListener("click", () => onChange(option.value));
+    row.appendChild(button);
+  }
+
+  wrapper.appendChild(row);
+  return wrapper;
+}
+
 function isDropdownField(field) {
+  if (field.input === "palette_color") {
+    return false;
+  }
   if (
     field.input === "tristate" ||
     field.type === "select" ||
@@ -820,6 +882,10 @@ function renderPreferenceField(field) {
       setGpsIconColorMode(value === "" ? null : value);
       renderPanel();
     });
+  }
+
+  if (isPaletteColorField(field)) {
+    return renderPaletteColorField(field, current, (value) => setPreferenceFromField(field, value));
   }
 
   if (isColorField(field)) {
