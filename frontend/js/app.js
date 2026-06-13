@@ -147,6 +147,10 @@ function getConnectionGroup(panelId) {
   return state.schema.connections.groups.find((group) => group.name === panelId);
 }
 
+function compareNavLabels(a, b) {
+  return a.localeCompare(b, undefined, { sensitivity: "base" });
+}
+
 function buildNavigation(filter = "") {
   const lower = filter.toLowerCase();
   const items = [];
@@ -158,18 +162,24 @@ function buildNavigation(filter = "") {
 
   items.push({ id: "custom_prefs", label: "Custom Preferences", group: "ATAK Settings" });
 
+  const schemaItems = [];
   for (const category of state.schema.categories) {
     if (category.nav_hidden || !hasExportableFields(category)) continue;
     const label = category.title || category.id;
     if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
-    items.push({ id: category.id, label, group: "ATAK Settings" });
+    schemaItems.push({ id: category.id, label, group: "ATAK Settings" });
   }
+  schemaItems.sort((a, b) => compareNavLabels(a.label, b.label));
+  items.push(...schemaItems);
 
+  const pluginItems = [];
   for (const category of state.pluginCategories) {
     const label = category.title || category.id;
     if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
-    items.push({ id: category.id, label, group: "ATAK Settings", plugin: true, deletable: true });
+    pluginItems.push({ id: category.id, label, group: "ATAK Settings", plugin: true, deletable: true });
   }
+  pluginItems.sort((a, b) => compareNavLabels(a.label, b.label));
+  items.push(...pluginItems);
 
   ensureActivePanelVisible(items);
 
