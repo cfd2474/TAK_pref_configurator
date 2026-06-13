@@ -93,6 +93,24 @@ def test_pref_grid_color_uses_palette_picker() -> None:
     grid_color = fields["pref_grid_color"]
     assert grid_color["input"] == "palette_color"
     assert len([option for option in grid_color["options"] if option["value"].startswith("#")]) >= 4
+    assert "pref_grid_color_value" not in fields
+
+
+def test_duplicate_grid_line_color_hidden_from_misc_display_category() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    misc = next(
+        category
+        for category in enriched["categories"]
+        if category.get("id") == "ref_other_miscellaneous_display_options"
+    )
+    misc_keys = {
+        field["key"]
+        for section in misc.get("sections", [])
+        for field in section.get("fields", [])
+    }
+    assert "pref_grid_color" not in misc_keys
+    assert "pref_grid_color_value" not in misc_keys
 
 
 def test_adjust_toolbar_section_expands_to_actionable_fields() -> None:

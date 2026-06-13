@@ -81,6 +81,13 @@ HIDDEN_NAV_CATEGORY_IDS = frozenset(
     }
 )
 
+# Reference-only keys omitted from UI when the canonical pref already lives elsewhere.
+HIDDEN_REFERENCE_FIELD_KEYS = frozenset(
+    {
+        "pref_grid_color_value",
+    }
+)
+
 CATEGORY_TITLE_OVERRIDES = {
     "device_preferences": "Device/Callsign Preferences",
     "geocoder_preference_fragment": "GeoCoder Preference",
@@ -385,7 +392,7 @@ def add_missing_reference_categories(schema: dict[str, Any], reference: dict[str
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
 
     for key, ref in reference.get("keys", {}).items():
-        if key in schema_keys or not ref.get("exportable"):
+        if key in schema_keys or key in HIDDEN_REFERENCE_FIELD_KEYS or not ref.get("exportable"):
             continue
         if ref.get("type") in {"selection_action", "information", "menu_item", "category"}:
             continue
