@@ -96,9 +96,14 @@ function showToast(message, isError = false) {
 }
 
 function scrollContentToTop() {
-  if (els.content) {
-    els.content.scrollTop = 0;
-  }
+  const scroll = () => {
+    if (els.content) {
+      els.content.scrollTop = 0;
+    }
+    window.scrollTo(0, 0);
+  };
+  scroll();
+  requestAnimationFrame(scroll);
 }
 
 function allCategories() {
@@ -273,6 +278,7 @@ function removePluginCategory(categoryId) {
   rebuildSchemaFieldKeys();
   buildNavigation(els.search.value.trim());
   renderPanel();
+  scrollContentToTop();
   showToast("Plugin category removed");
 }
 
