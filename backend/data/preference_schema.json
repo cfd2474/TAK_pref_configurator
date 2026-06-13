@@ -6067,7 +6067,7 @@
     {
       "id": "wms_preferences",
       "file": "wms_preferences.xml",
-      "title": "Wms Preferences",
+      "title": "WMS Preferences",
       "sections": [
         {
           "title": "WMS Preferences",

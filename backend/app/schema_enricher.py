@@ -89,6 +89,7 @@ CATEGORY_TITLE_OVERRIDES = {
     "missionpackage_preferences": "Mission Package Preferences",
     "off_scr_indi_preferences": "Off Screen Indicator Preferences",
     "takgov_eud_preferences": "TAK.GOV EUD Preferences",
+    "wms_preferences": "WMS Preferences",
 }
 
 _ROUTE_CHECKPOINT_BUBBLE_SUMMARY = (
