@@ -6,7 +6,7 @@
       "category": "Reporting",
       "key": "dynamicReportingRateStationaryUnreliable",
       "title": "Dynamic Reporting Rate Stationary (Unreliable)",
-      "description": "Reporting rate in seconds (e.g. once per 30 second... Read More",
+      "description": "Reporting rate in seconds (e.g. once per 30 second",
       "inputType": "number",
       "options": []
     },
@@ -14,7 +14,7 @@
       "category": "Reporting",
       "key": "dynamicReportingRateMinUnreliable",
       "title": "Dynamic Reporting Rate Minimum (Unreliable)",
-      "description": "Minimum reporting rate in seconds (e.g. once per 2... Read More",
+      "description": "Minimum reporting rate in seconds (e.g. once per 2",
       "inputType": "number",
       "options": []
     },
@@ -22,7 +22,7 @@
       "category": "Reporting",
       "key": "dynamicReportingRateMaxUnreliable",
       "title": "Dynamic Reporting Rate Maximum (Unreliable)",
-      "description": "Maximum reporting rate in seconds (e.g. once per 2... Read More",
+      "description": "Maximum reporting rate in seconds (e.g. once per 2",
       "inputType": "number",
       "options": []
     },
@@ -30,7 +30,7 @@
       "category": "Reporting",
       "key": "dynamicReportingRateStationaryReliable",
       "title": "Dynamic Reporting Rate Stationary (Reliable)",
-      "description": "Reporting rate in seconds (e.g. once per 180 secon... Read More",
+      "description": "Reporting rate in seconds (e.g. once per 180 secon",
       "inputType": "number",
       "options": []
     },
@@ -38,7 +38,7 @@
       "category": "Reporting",
       "key": "dynamicReportingRateMinReliable",
       "title": "Dynamic Reporting Rate Minimum (Reliable)",
-      "description": "Minimum reporting rate in seconds (e.g. once per 2... Read More",
+      "description": "Minimum reporting rate in seconds (e.g. once per 2",
       "inputType": "number",
       "options": []
     },
@@ -46,7 +46,7 @@
       "category": "Reporting",
       "key": "dynamicReportingRateMaxReliable",
       "title": "Dynamic Reporting Rate Maximum (Reliable)",
-      "description": "Maximum reporting rate in seconds (e.g. every othe... Read More",
+      "description": "Maximum reporting rate in seconds (e.g. every othe",
       "inputType": "number",
       "options": []
     },
@@ -54,7 +54,7 @@
       "category": "Reporting",
       "key": "constantReportingRateUnreliable",
       "title": "Constant Reporting Rate (Unreliable)",
-      "description": "Constant interval between reporting self-SA messag... Read More",
+      "description": "Constant interval between reporting self-SA messag",
       "inputType": "number",
       "options": []
     },
@@ -62,7 +62,7 @@
       "category": "Reporting",
       "key": "constantReportingRateReliable",
       "title": "Constant Reporting Rate (Reliable)",
-      "description": "Constant interval between reporting self-SA messag... Read More",
+      "description": "Constant interval between reporting self-SA messag",
       "inputType": "number",
       "options": []
     },
@@ -70,7 +70,7 @@
       "category": "Reporting",
       "key": "dispatchLocationCotExternalAtStart",
       "title": "Report Location before obtaining location fix",
-      "description": "If true, report SA message with (lat=0,lon=0) befo... Read More",
+      "description": "If true, report SA message with (lat=0,lon=0) befo",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -82,7 +82,7 @@
       "category": "Route",
       "key": "waypointPrefix",
       "title": "Checkpoint Name Prefix",
-      "description": "Value to prepend to all automatically generated ch... Read More",
+      "description": "Value to prepend to all automatically generated ch",
       "inputType": "text",
       "options": []
     },
@@ -90,7 +90,7 @@
       "category": "Route",
       "key": "route_track_up_locked_on",
       "title": "Traditional Navigation Mode",
-      "description": "When navigating a route, the self icon will be eit... Read More",
+      "description": "When navigating a route, the self icon will be eit",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -102,7 +102,7 @@
       "category": "Route",
       "key": "useRouteVoiceCues",
       "title": "Navigational Voice Cues",
-      "description": "Enable narration of navigational cues using text-t... Read More",
+      "description": "Enable narration of navigational cues using text-t",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -114,7 +114,7 @@
       "category": "Route",
       "key": "route_vibrate_at_checkpoint",
       "title": "Vibrate When Arriving at Checkpoint",
-      "description": "When navigating a route, the device will vibrate w... Read More",
+      "description": "When navigating a route, the device will vibrate w",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -126,7 +126,7 @@
       "category": "Route",
       "key": "doghouseShowNorthReference",
       "title": "Display \u00b0M Unit in Doghouse",
-      "description": "Check to show the North Reference units (\u00b0M) on be... Read More",
+      "description": "Check to show the North Reference units (\u00b0M) on be",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -138,7 +138,7 @@
       "category": "Route",
       "key": "elevProfileInterpolateAlt",
       "title": "Elevation Profile Interpolate Altitudes",
-      "description": "Enable to interpolate elevation profile graph alti... Read More",
+      "description": "Enable to interpolate elevation profile graph alti",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -150,7 +150,7 @@
       "category": "Route",
       "key": "elevProfileCenterOnSeeker",
       "title": "Elevation Profile Center on Seeker",
-      "description": "Enable to focus map on elevation profile graph see... Read More",
+      "description": "Enable to focus map on elevation profile graph see",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -162,7 +162,7 @@
       "category": "Route",
       "key": "gpxImportCheckpointsForNamedRoutePoints",
       "title": "GPX Import Checkpoints",
-      "description": "Enable to create checkpoint for each named GPX rou... Read More",
+      "description": "Enable to create checkpoint for each named GPX rou",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -174,7 +174,7 @@
       "category": "Route",
       "key": "kmlExportGroundClamp",
       "title": "Ignore Elevation Data",
-      "description": "If enabled, the exported route will not contain an... Read More",
+      "description": "If enabled, the exported route will not contain an",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -198,7 +198,7 @@
       "category": "Fires",
       "key": "spiUpdateDelay",
       "title": "SPI Update Period",
-      "description": "The maximum delay between sending updates for the ... Read More",
+      "description": "The maximum delay between sending updates for the",
       "inputType": "number",
       "options": []
     },
@@ -206,7 +206,7 @@
       "category": "Fires",
       "key": "hostileUpdateDelay",
       "title": "Automatically Broadcast a Marker",
-      "description": "Change the time between updates for markers being ... Read More",
+      "description": "Change the time between updates for markers being",
       "inputType": "select",
       "options": [
         "0",
@@ -219,7 +219,7 @@
       "category": "Fires",
       "key": "legacyFiresToolbarMode",
       "title": "Legacy Toolbar Mode",
-      "description": "Enables the legacy display of fires tools from pre... Read More",
+      "description": "Enables the legacy display of fires tools from pre",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -243,7 +243,7 @@
       "category": "Fires",
       "key": "spiFahSize",
       "title": "SPI/RedX FAH Width",
-      "description": "Sets the width of the FAH cone (in degrees) when e... Read More",
+      "description": "Sets the width of the FAH cone (in degrees) when e",
       "inputType": "number",
       "options": []
     },
@@ -251,7 +251,7 @@
       "category": "Video",
       "key": "video_dropdown_hidden_disconnect",
       "title": "Idle Stream",
-      "description": "Specify when to disconnect from a video stream whe... Read More",
+      "description": "Specify when to disconnect from a video stream whe",
       "inputType": "number",
       "options": []
     },
@@ -259,7 +259,7 @@
       "category": "WMS",
       "key": "volumemapswitcher",
       "title": "Enable Volume Keys rotating map layers",
-      "description": "If checked, volume keys switch maps. Otherwise use... Read More",
+      "description": "If checked, volume keys switch maps. Otherwise use",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -271,7 +271,7 @@
       "category": "WMS",
       "key": "prefs_layer_grg_map_interaction",
       "title": "Enable GRG Map Interaction",
-      "description": "Enable to allow interaction with GRGs on the map w... Read More",
+      "description": "Enable to allow interaction with GRGs on the map w",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -283,7 +283,7 @@
       "category": "Advanced logging",
       "key": "loggingfile_error_only",
       "title": "Enable Logcat Errors only",
-      "description": "If checked the log file will only capture error le... Read More",
+      "description": "If checked the log file will only capture error le",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -295,7 +295,7 @@
       "category": "Advanced logging",
       "key": "loggingfile_upload_debug",
       "title": "Upload Debug Logs",
-      "description": "If checked debug logs (Logcat and Network Traffic)... Read More",
+      "description": "If checked debug logs (Logcat and Network Traffic)",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -307,7 +307,7 @@
       "category": "Advanced logging",
       "key": "collect_metrics",
       "title": "Collect Metrics",
-      "description": "Enable usage and metrics data to be collected and ... Read More",
+      "description": "Enable usage and metrics data to be collected and",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -319,7 +319,7 @@
       "category": "Metrics",
       "key": "realtime_metrics",
       "title": "Live Metrics",
-      "description": "Enable usage and metrics data to be sent to TAK Se... Read More",
+      "description": "Enable usage and metrics data to be sent to TAK Se",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -331,7 +331,7 @@
       "category": "Advanced logging",
       "key": "lognettraffictofile",
       "title": "Log Network Traffic",
-      "description": "If checked captures all outgoing network traffic t... Read More",
+      "description": "If checked captures all outgoing network traffic t",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -343,7 +343,7 @@
       "category": "Advanced logging",
       "key": "generate_full_pool",
       "title": "Advanced CoT Recorder",
-      "description": "If checked captures all incoming and outgoing Curs... Read More",
+      "description": "If checked captures all incoming and outgoing Curs",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -355,7 +355,7 @@
       "category": "Advanced logging",
       "key": "generate_detail_pool",
       "title": "Advanced CoT Details Recorder",
-      "description": "If checked captures all incoming and outgoing Curs... Read More",
+      "description": "If checked captures all incoming and outgoing Curs",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -379,7 +379,7 @@
       "category": "App Management",
       "key": "repoStartupSync",
       "title": "Auto Sync",
-      "description": "Enable to check for app updates during startup. Di... Read More",
+      "description": "Enable to check for app updates during startup. Di",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -391,7 +391,7 @@
       "category": "App Management",
       "key": "appMgmtEnableUpdateServer",
       "title": "Update Server",
-      "description": "Enable to allow Over the Air updates from a remote... Read More",
+      "description": "Enable to allow Over the Air updates from a remote",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -419,7 +419,7 @@
       "category": "Network Connections Preferences",
       "key": "displayServerConnectionWidget",
       "title": "Display Connection Widget",
-      "description": "Enable to display connectivity indicator on map ab... Read More",
+      "description": "Enable to display connectivity indicator on map ab",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -431,7 +431,7 @@
       "category": "Network Connections Preferences",
       "key": "monitorServerConnections",
       "title": "Monitor Server Connections",
-      "description": "Enable to monitor connections and ping server afte... Read More",
+      "description": "Enable to monitor connections and ping server afte",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -491,7 +491,7 @@
       "category": "Network Connections Preferences",
       "key": "certEnrollmentExport",
       "title": "Enable Client Certificate Export",
-      "description": "Allows exporting of certificates obtained via enro... Read More",
+      "description": "Allows exporting of certificates obtained via enro",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -503,7 +503,7 @@
       "category": "Network Connections Preferences",
       "key": "deviceProfileEnableOnConnect",
       "title": "Apply TAK Server profile updates",
-      "description": "Enable to allow ATAK and plugins to import server ... Read More",
+      "description": "Enable to allow ATAK and plugins to import server",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -515,7 +515,7 @@
       "category": "Network Connections Preferences",
       "key": "enableNonStreamingConnections",
       "title": "Enable Mesh Network Mode",
-      "description": "Enable to allow multicast traffic. Disable to over... Read More",
+      "description": "Enable to allow multicast traffic. Disable to over",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -527,7 +527,7 @@
       "category": "Network Connections Preferences",
       "key": "autoDisableMeshSAWhenStreaming",
       "title": "Auto Manage Mesh Network Self SA Mode",
-      "description": "Enable to automatically prefer sending data over t... Read More",
+      "description": "Enable to automatically prefer sending data over t",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -539,7 +539,7 @@
       "category": "Network Connections Preferences",
       "key": "tcpConnectTimeout",
       "title": "TCP Connection Timeout",
-      "description": "How long (in sec) to wait for TCP connections to c... Read More",
+      "description": "How long (in sec) to wait for TCP connections to c",
       "inputType": "number",
       "options": []
     },
@@ -547,7 +547,7 @@
       "category": "Network Connections Preferences",
       "key": "udpNoDataTimeout",
       "title": "MulticastRejoin interval",
-      "description": "Interval between Multicast rejoin attempts (in sec... Read More",
+      "description": "Interval between Multicast rejoin attempts (in sec",
       "inputType": "number",
       "options": []
     },
@@ -555,7 +555,7 @@
       "category": "Network Connections Preferences",
       "key": "multicastTTL",
       "title": "Multicast TTL",
-      "description": "Multicast TTL for outgoing multicast (requires res... Read More",
+      "description": "Multicast TTL for outgoing multicast (requires res",
       "inputType": "number",
       "options": []
     },
@@ -563,7 +563,7 @@
       "category": "Network Connections Preferences",
       "key": "network_multicast_loopback",
       "title": "Multicast Traffic Loopback",
-      "description": "Unless instructed, do not enable Multicast Traffic... Read More",
+      "description": "Unless instructed, do not enable Multicast Traffic",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -575,7 +575,7 @@
       "category": "Network Connections Preferences",
       "key": "ppp0_highspeed_capable",
       "title": "Point-to-Point Link High Speed Capable",
-      "description": "When selected, the Point-to-Point link on the syst... Read More",
+      "description": "When selected, the Point-to-Point link on the syst",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -587,7 +587,7 @@
       "category": "Network Connections Preferences",
       "key": "waveRelayRedirect",
       "title": "Legacy Wave Relay Redirect",
-      "description": "Enable when using ATAK with a Wave Relay Radio whe... Read More",
+      "description": "Enable when using ATAK with a Wave Relay Radio whe",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -599,7 +599,7 @@
       "category": "Night Vision",
       "key": "night_vision_widget",
       "title": "Enable Night Vision control inside ATAK",
-      "description": "If enabled, a Night Vision Activation Method will ... Read More",
+      "description": "If enabled, a Night Vision Activation Method will",
       "inputType": "tristate_boolean",
       "options": [
         "unset",
@@ -659,7 +659,7 @@
       "category": "Offscreen Indicators",
       "key": "offscreen_indicator_dist_threshold",
       "title": "Set Distance Threshold (KM)",
-      "description": "The distance from viewpoint at which off-screen in... Read More",
+      "description": "The distance from viewpoint at which off-screen in",
       "inputType": "number",
       "options": []
     },
@@ -667,7 +667,7 @@
       "category": "Offscreen Indicators",
       "key": "offscreen_indicator_timeout_threshold",
       "title": "Set Timeout Threshold (seconds) or zero to disable",
-      "description": "If a map item has been on the screen for more than... Read More",
+      "description": "If a map item has been on the screen for more than",
       "inputType": "number",
       "options": []
     }

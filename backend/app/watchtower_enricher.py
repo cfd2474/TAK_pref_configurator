@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -77,6 +78,30 @@ def _reference_select_options(ref: dict[str, Any]) -> list[dict[str, str]]:
     return [{"label": opt["label"], "value": str(opt["value"])} for opt in ref.get("options", [])]
 
 
+def _clean_watchtower_description(description: str) -> str:
+    text = description.strip()
+    text = re.sub(r"\s*\.\.\.\s*Read More\s*$", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s*Read More\s*$", "", text, flags=re.IGNORECASE)
+    return text.strip()
+
+
+def _is_truncated_watchtower_description(description: str) -> bool:
+    return bool(re.search(r"\.\.\.|Read More", description, flags=re.IGNORECASE))
+
+
+def _choose_field_summary(existing_summary: str, watchtower_description: str) -> str:
+    existing = (existing_summary or "").strip()
+    cleaned = _clean_watchtower_description(watchtower_description)
+    if not cleaned:
+        return existing
+    if _is_truncated_watchtower_description(watchtower_description):
+        if existing and len(existing) >= len(cleaned):
+            return existing
+    if len(cleaned) > len(existing):
+        return cleaned
+    return existing or cleaned
+
+
 def apply_watchtower_to_field(
     field: dict[str, Any],
     wt: dict[str, Any],
@@ -87,7 +112,7 @@ def apply_watchtower_to_field(
     if wt.get("title"):
         field["title"] = wt["title"]
     if wt.get("description"):
-        field["summary"] = wt["description"]
+        field["summary"] = _choose_field_summary(field.get("summary") or "", wt["description"])
 
     wt_type = wt.get("inputType")
     ref_options = _reference_select_options(ref) if ref.get("options") else []

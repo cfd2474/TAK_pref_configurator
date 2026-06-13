@@ -84,3 +84,17 @@ def test_enriched_schema_includes_watchtower_metadata() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     enriched = enrich_schema(schema)
     assert enriched["reference"]["watchtower"]["source"] == "Watchtower MDM System ATAK Settings"
+
+
+def test_truncated_watchtower_descriptions_keep_schema_summary() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    fields = _schema_fields(enriched)
+
+    bread_dist = fields["bread_dist_threshold"]["summary"]
+    assert "Read More" not in bread_dist
+    assert "2 meters" in bread_dist
+
+    timegap = fields["bread_track_timegap_threshold"]["summary"]
+    assert "Read More" not in timegap
+    assert "split into separate tracks" in timegap

@@ -516,8 +516,16 @@ function createMultiSelect(field, currentValue, onChange) {
   return box;
 }
 
+function normalizeFieldDescription(text) {
+  if (!text) return "";
+  return text
+    .replace(/\s*\.\.\.\s*Read More\s*$/i, "")
+    .replace(/\s*Read More\s*$/i, "")
+    .trim();
+}
+
 function getFieldDescription(field) {
-  return field.summary || field.reference_hint || "";
+  return normalizeFieldDescription(field.summary || field.reference_hint || "");
 }
 
 function appendFieldDescription(wrapper, field) {
