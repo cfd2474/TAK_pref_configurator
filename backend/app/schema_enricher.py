@@ -90,6 +90,86 @@ CATEGORY_TITLE_OVERRIDES = {
     "off_scr_indi_preferences": "Off Screen Indicator Preferences",
 }
 
+_ROUTE_CHECKPOINT_BUBBLE_SUMMARY = (
+    "When inside this distance to a checkpoint, you are considered at the checkpoint while navigating."
+)
+_ROUTE_OFF_ROUTE_BUBBLE_SUMMARY = (
+    "When outside this distance from the route, you are considered off route while navigating."
+)
+_METER_DISTANCE_SUFFIX = " Distance in meters (m)."
+_METER_RADIUS_PLACEHOLDER = "Enter distance in meters (m)"
+
+
+def _build_field_display_overrides() -> dict[str, dict[str, str]]:
+    overrides: dict[str, dict[str, str]] = {}
+    for mode in ("Walking", "Driving", "Flying", "Swimming", "Watercraft"):
+        overrides[f"waypointBubble.{mode}"] = {
+            "summary": _ROUTE_CHECKPOINT_BUBBLE_SUMMARY + _METER_DISTANCE_SUFFIX,
+            "placeholder": _METER_RADIUS_PLACEHOLDER,
+            "title_suffix": " (m)",
+        }
+        overrides[f"waypointOffRouteBubble.{mode}"] = {
+            "summary": _ROUTE_OFF_ROUTE_BUBBLE_SUMMARY + _METER_DISTANCE_SUFFIX,
+            "placeholder": _METER_RADIUS_PLACEHOLDER,
+            "title_suffix": " (m)",
+        }
+
+    overrides.update(
+        {
+            "bullseyeDistance": {
+                "title_suffix": " (m)",
+            },
+            "bullseyeRadiusRings": {
+                "title_suffix": " (m)",
+            },
+            "route_billboard_distance_m": {
+                "summary": (
+                    "Image attachment billboards within this distance will be shown while navigating."
+                    + _METER_DISTANCE_SUFFIX
+                ),
+                "placeholder": _METER_RADIUS_PLACEHOLDER,
+                "title_suffix": " (m)",
+            },
+            "bloodhound_reroute_distance_pref": {
+                "title": "Reroute Distance (m)",
+                "summary": (
+                    "Specify the distance away from the route a point has to move before calculating a reroute."
+                    + _METER_DISTANCE_SUFFIX
+                ),
+                "placeholder": _METER_RADIUS_PLACEHOLDER,
+            },
+            "bloodhound_reroute_timer_pref": {
+                "title": "Reroute Timer Frequency (seconds)",
+                "summary": (
+                    "Specify how frequently bloodhound will check to see if a reroute needs to be calculated. "
+                    "Interval in seconds."
+                ),
+                "placeholder": "Interval in seconds",
+            },
+        }
+    )
+    return overrides
+
+
+FIELD_DISPLAY_OVERRIDES = _build_field_display_overrides()
+
+
+def apply_field_display_overrides(schema: dict[str, Any]) -> None:
+    for _, _, field in iter_schema_fields(schema):
+        override = FIELD_DISPLAY_OVERRIDES.get(field["key"])
+        if not override:
+            continue
+        if override.get("title"):
+            field["title"] = override["title"]
+        elif title_suffix := override.get("title_suffix"):
+            title = field.get("title") or field["key"]
+            if not title.endswith(title_suffix):
+                field["title"] = title + title_suffix
+        if override.get("summary"):
+            field["summary"] = override["summary"]
+        if override.get("placeholder"):
+            field["placeholder"] = override["placeholder"]
+
 
 def load_reference(path: Path | None = None) -> dict[str, Any]:
     reference_path = path or REFERENCE_PATH
@@ -385,4 +465,5 @@ def enrich_schema(schema: dict[str, Any], reference: dict[str, Any] | None = Non
     apply_category_nav_overrides(enriched)
     enriched = apply_watchtower_enrichment(enriched, reference=reference)
     apply_palette_color_fields(enriched)
+    apply_field_display_overrides(enriched)
     return enriched

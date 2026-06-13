@@ -134,6 +134,33 @@ def test_device_preferences_nav_label_and_duplicate_hidden() -> None:
     assert by_id["off_scr_indi_preferences"]["title"] == "Off Screen Indicator Preferences"
 
 
+def test_route_and_radius_fields_clarify_meter_units() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    fields = _schema_fields(enriched)
+
+    walking_bubble = fields["waypointBubble.Walking"]
+    assert walking_bubble["title"].endswith("(m)")
+    assert "meters" in walking_bubble["summary"].lower()
+    assert walking_bubble["placeholder"] == "Enter distance in meters (m)"
+
+    off_route = fields["waypointOffRouteBubble.Driving"]
+    assert off_route["title"].endswith("(m)")
+    assert "off route" in off_route["summary"].lower()
+    assert "meters" in off_route["summary"].lower()
+
+    billboard = fields["route_billboard_distance_m"]
+    assert billboard["title"].endswith("(m)")
+    assert "meters" in billboard["summary"].lower()
+
+    bullseye = fields["bullseyeRadiusRings"]
+    assert bullseye["title"] == "Bullseye Ring Radius (m)"
+
+    reroute = fields["bloodhound_reroute_distance_pref"]
+    assert reroute["title"] == "Reroute Distance (m)"
+    assert "meters" in reroute["summary"].lower()
+
+
 def test_missing_reference_keys_are_added() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     base_keys = set(_schema_fields(schema))
