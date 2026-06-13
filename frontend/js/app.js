@@ -142,7 +142,7 @@ function buildNavigation(filter = "") {
   items.push({ id: "custom_prefs", label: "Custom Preferences", group: "ATAK Settings" });
 
   for (const category of state.schema.categories) {
-    if (!hasExportableFields(category)) continue;
+    if (category.nav_hidden || !hasExportableFields(category)) continue;
     const label = category.title || category.id;
     if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
     items.push({ id: category.id, label, group: "ATAK Settings" });

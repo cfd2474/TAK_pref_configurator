@@ -86,6 +86,14 @@ def test_nav_orientation_right_uses_left_right_labels() -> None:
     assert [option["value"] for option in toolbar_side["options"]] == ["false", "true"]
 
 
+def test_device_preferences_nav_label_and_duplicate_hidden() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    by_id = {category["id"]: category for category in enriched["categories"]}
+    assert by_id["device_preferences"]["title"] == "Device/Callsign Preferences"
+    assert by_id["call_sign_preference"].get("nav_hidden") is True
+
+
 def test_missing_reference_keys_are_added() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     base_keys = set(_schema_fields(schema))

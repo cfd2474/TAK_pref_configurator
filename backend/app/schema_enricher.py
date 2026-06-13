@@ -26,6 +26,12 @@ BOOLEAN_OPTION_LABEL_OVERRIDES: dict[str, list[dict[str, str]]] = {
     ],
 }
 
+HIDDEN_NAV_CATEGORY_IDS = frozenset({"call_sign_preference"})
+
+CATEGORY_TITLE_OVERRIDES = {
+    "device_preferences": "Device/Callsign Preferences",
+}
+
 
 def load_reference(path: Path | None = None) -> dict[str, Any]:
     reference_path = path or REFERENCE_PATH
@@ -198,6 +204,15 @@ def add_missing_reference_categories(schema: dict[str, Any], reference: dict[str
         )
 
 
+def apply_category_nav_overrides(schema: dict[str, Any]) -> None:
+    for category in schema.get("categories", []):
+        category_id = category.get("id")
+        if category_id in HIDDEN_NAV_CATEGORY_IDS:
+            category["nav_hidden"] = True
+        if category_id in CATEGORY_TITLE_OVERRIDES:
+            category["title"] = CATEGORY_TITLE_OVERRIDES[category_id]
+
+
 def enrich_schema(schema: dict[str, Any], reference: dict[str, Any] | None = None) -> dict[str, Any]:
     reference = reference or load_reference()
     enriched = copy.deepcopy(schema)
@@ -226,4 +241,5 @@ def enrich_schema(schema: dict[str, Any], reference: dict[str, Any] | None = Non
         "sheet": reference.get("sheet"),
         "stats": reference.get("stats", {}),
     }
+    apply_category_nav_overrides(enriched)
     return apply_watchtower_enrichment(enriched, reference=reference)

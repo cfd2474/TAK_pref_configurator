@@ -2229,7 +2229,7 @@
     {
       "id": "device_preferences",
       "file": "device_preferences.xml",
-      "title": "Device Preferences",
+      "title": "Device/Callsign Preferences",
       "sections": [
         {
           "title": "Device Preferences",
