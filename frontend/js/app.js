@@ -86,7 +86,10 @@ async function init() {
 }
 
 function bindEvents() {
-  els.search.addEventListener("input", () => buildNavigation(els.search.value.trim()));
+  els.search.addEventListener("input", () => {
+    buildNavigation(getActiveSearchFilter());
+    renderPanel();
+  });
   els.downloadBtn.addEventListener("click", downloadPref);
   els.previewBtn.addEventListener("click", previewPref);
   els.importFile.addEventListener("change", importPref);
@@ -147,6 +150,98 @@ function getConnectionGroup(panelId) {
   return state.schema.connections.groups.find((group) => group.name === panelId);
 }
 
+function getActiveSearchFilter() {
+  return els.search?.value.trim() || "";
+}
+
+function fieldSearchHaystack(field) {
+  const parts = [
+    field.title,
+    field.key,
+    field.summary,
+    field.reference_hint,
+    field.placeholder,
+  ];
+  for (const option of field.options || []) {
+    parts.push(option.label, option.value);
+  }
+  return parts.filter(Boolean).join(" ").toLowerCase();
+}
+
+function fieldMatchesSearch(field, lower) {
+  if (!lower) return true;
+  return fieldSearchHaystack(field).includes(lower);
+}
+
+function formatFieldMatchHint(matches) {
+  if (!matches.length) return "";
+  const titles = matches.map((match) => match.field.title || match.field.key);
+  const first = titles[0];
+  if (titles.length === 1) return `Matches: ${first}`;
+  return `Matches: ${first} +${titles.length - 1} more`;
+}
+
+function formatKeyMatchHint(keys) {
+  if (!keys.length) return "";
+  if (keys.length === 1) return `Matches: ${keys[0]}`;
+  return `Matches: ${keys[0]} +${keys.length - 1} more`;
+}
+
+function searchCategory(category, lower) {
+  const label = category.title || category.id;
+  const nameMatch =
+    !lower ||
+    label.toLowerCase().includes(lower) ||
+    category.id.toLowerCase().includes(lower);
+
+  const matchingFields = [];
+  const collectFields = (fields, sectionTitle = null) => {
+    for (const field of fields || []) {
+      if (fieldMatchesSearch(field, lower)) {
+        matchingFields.push({ field, sectionTitle });
+      }
+    }
+  };
+
+  if (lower) {
+    for (const section of category.sections || []) {
+      collectFields(section.fields, section.title || null);
+    }
+    collectFields(category.fields || []);
+  }
+
+  return {
+    nameMatch,
+    matchingFields,
+    matches: nameMatch || matchingFields.length > 0,
+  };
+}
+
+function connectionGroupMatchesSearch(group, lower) {
+  if (!lower) return { matches: true, nameMatch: true, matchHint: "" };
+  const nameMatch =
+    group.title.toLowerCase().includes(lower) || group.name.toLowerCase().includes(lower);
+  const descriptionMatch = (group.description || "").toLowerCase().includes(lower);
+  return {
+    matches: nameMatch || descriptionMatch,
+    nameMatch,
+    matchHint: descriptionMatch && !nameMatch ? "Matches: description" : "",
+  };
+}
+
+function customPreferencesMatchesSearch(lower) {
+  const label = "Custom Preferences";
+  if (!lower) return { matches: true, nameMatch: true, matchHint: "", matchingKeys: [] };
+  const nameMatch = label.toLowerCase().includes(lower);
+  const matchingKeys = listCustomPreferenceKeys().filter((key) => key.toLowerCase().includes(lower));
+  return {
+    matches: nameMatch || matchingKeys.length > 0,
+    nameMatch,
+    matchingKeys,
+    matchHint: matchingKeys.length && !nameMatch ? formatKeyMatchHint(matchingKeys) : "",
+  };
+}
+
 function compareNavLabels(a, b) {
   return a.localeCompare(b, undefined, { sensitivity: "base" });
 }
@@ -156,18 +251,46 @@ function buildNavigation(filter = "") {
   const items = [];
 
   for (const group of state.schema.connections.groups) {
-    if (lower && !group.title.toLowerCase().includes(lower) && !group.name.includes(lower)) continue;
-    items.push({ id: group.name, label: group.title, group: "CoT Settings" });
+    const groupMatch = connectionGroupMatchesSearch(group, lower);
+    if (lower && !groupMatch.matches) continue;
+    items.push({
+      id: group.name,
+      label: group.title,
+      group: "CoT Settings",
+      matchHint: groupMatch.matchHint,
+      nameMatch: groupMatch.nameMatch,
+    });
   }
 
-  items.push({ id: "custom_prefs", label: "Custom Preferences", group: "ATAK Settings" });
+  const customMatch = customPreferencesMatchesSearch(lower);
+  if (customMatch.matches) {
+    items.push({
+      id: "custom_prefs",
+      label: "Custom Preferences",
+      group: "ATAK Settings",
+      matchHint: customMatch.matchHint,
+      nameMatch: customMatch.nameMatch,
+      matchingKeys: customMatch.matchingKeys,
+    });
+  }
 
   const schemaItems = [];
   for (const category of state.schema.categories) {
     if (category.nav_hidden || !hasExportableFields(category)) continue;
     const label = category.title || category.id;
-    if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
-    schemaItems.push({ id: category.id, label, group: "ATAK Settings" });
+    const categoryMatch = searchCategory(category, lower);
+    if (lower && !categoryMatch.matches) continue;
+    schemaItems.push({
+      id: category.id,
+      label,
+      group: "ATAK Settings",
+      matchHint:
+        categoryMatch.matchingFields.length && !categoryMatch.nameMatch
+          ? formatFieldMatchHint(categoryMatch.matchingFields)
+          : "",
+      nameMatch: categoryMatch.nameMatch,
+      matchingFields: categoryMatch.matchingFields,
+    });
   }
   schemaItems.sort((a, b) => compareNavLabels(a.label, b.label));
   items.push(...schemaItems);
@@ -175,8 +298,21 @@ function buildNavigation(filter = "") {
   const pluginItems = [];
   for (const category of state.pluginCategories) {
     const label = category.title || category.id;
-    if (lower && !label.toLowerCase().includes(lower) && !category.id.includes(lower)) continue;
-    pluginItems.push({ id: category.id, label, group: "ATAK Settings", plugin: true, deletable: true });
+    const categoryMatch = searchCategory(category, lower);
+    if (lower && !categoryMatch.matches) continue;
+    pluginItems.push({
+      id: category.id,
+      label,
+      group: "ATAK Settings",
+      plugin: true,
+      deletable: true,
+      matchHint:
+        categoryMatch.matchingFields.length && !categoryMatch.nameMatch
+          ? formatFieldMatchHint(categoryMatch.matchingFields)
+          : "",
+      nameMatch: categoryMatch.nameMatch,
+      matchingFields: categoryMatch.matchingFields,
+    });
   }
   pluginItems.sort((a, b) => compareNavLabels(a.label, b.label));
   items.push(...pluginItems);
@@ -199,8 +335,23 @@ function buildNavigation(filter = "") {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "nav-item" + (state.activePanel === item.id ? " active" : "");
-    button.textContent = item.label;
     if (item.plugin) button.classList.add("plugin-nav-item");
+    if (item.matchHint) button.classList.add("nav-item-has-match");
+
+    const content = document.createElement("span");
+    content.className = "nav-item-content";
+    const labelEl = document.createElement("span");
+    labelEl.className = "nav-item-label";
+    labelEl.textContent = item.label;
+    content.appendChild(labelEl);
+    if (item.matchHint) {
+      const hintEl = document.createElement("span");
+      hintEl.className = "nav-item-match";
+      hintEl.textContent = item.matchHint;
+      content.appendChild(hintEl);
+    }
+    button.appendChild(content);
+
     button.addEventListener("click", () => {
       if (state.activePanel === item.id) return;
       state.activePanel = item.id;
@@ -254,6 +405,16 @@ function renderPanel() {
   }
   els.form.innerHTML = "";
 
+  const searchContext = getCategorySearchContext(category);
+  if (searchContext.lower) {
+    const categoryMatch = searchCategory(category, searchContext.lower);
+    prependSearchFilterBanner(els.form, {
+      lower: searchContext.lower,
+      matchCount: categoryMatch.nameMatch ? null : categoryMatch.matchingFields.length,
+      label: "field",
+    });
+  }
+
   if (category.source === "plugin_apk") {
     const meta = document.createElement("div");
     meta.className = "plugin-meta";
@@ -268,13 +429,23 @@ function renderPanel() {
   }
 
   for (const section of category.sections || []) {
-    const card = renderSection(section.title, section.fields);
+    const card = renderSection(section.title, section.fields, getCategorySearchContext(category));
     if (card) els.form.appendChild(card);
   }
   if (category.fields?.length) {
-    const card = renderSection("General", category.fields);
+    const card = renderSection("General", category.fields, getCategorySearchContext(category));
     if (card) els.form.appendChild(card);
   }
+}
+
+function getCategorySearchContext(category) {
+  const lower = getActiveSearchFilter().toLowerCase();
+  if (!lower) return { lower: "", nameMatch: true };
+  const categoryMatch = searchCategory(category, lower);
+  return {
+    lower,
+    nameMatch: categoryMatch.nameMatch,
+  };
 }
 
 function categoryFieldKeys(category) {
@@ -507,12 +678,18 @@ function ensureActivePanelVisible(items) {
   state.activePanel = items[0]?.id || "custom_prefs";
 }
 
-function renderSection(title, fields) {
-  const visibleFields = exportableFields(fields);
+function renderSection(title, fields, searchContext = {}) {
+  const { lower = "", nameMatch = true } = searchContext;
+  const sectionTitleMatch = lower && title.toLowerCase().includes(lower);
+  let visibleFields = exportableFields(fields);
+  if (lower && !nameMatch && !sectionTitleMatch) {
+    visibleFields = visibleFields.filter((field) => fieldMatchesSearch(field, lower));
+  }
   if (!visibleFields.length) return null;
 
   const card = document.createElement("section");
   card.className = "section-card";
+  if (lower && sectionTitleMatch) card.classList.add("search-section-match");
   const heading = document.createElement("h3");
   heading.textContent = title;
   card.appendChild(heading);
@@ -520,7 +697,11 @@ function renderSection(title, fields) {
   const grid = document.createElement("div");
   grid.className = "field-grid";
   for (const field of visibleFields) {
-    grid.appendChild(renderPreferenceField(field));
+    const fieldEl = renderPreferenceField(field);
+    if (lower && fieldMatchesSearch(field, lower)) {
+      fieldEl.classList.add("search-match");
+    }
+    grid.appendChild(fieldEl);
   }
   card.appendChild(grid);
   return card;
@@ -1049,11 +1230,31 @@ function setCustomPreference(key, type, value) {
   };
 }
 
+function prependSearchFilterBanner(container, { lower, matchCount = null, label = "settings" } = {}) {
+  if (!lower) return;
+  const banner = document.createElement("div");
+  banner.className = "search-filter-banner";
+  const countText =
+    matchCount === null ? "" : ` (${matchCount} matching ${label}${matchCount === 1 ? "" : "s"})`;
+  banner.textContent = `Filtering for “${lower}”${countText}`;
+  container.prepend(banner);
+}
+
 function renderCustomPreferencesPanel() {
   els.panelTitle.textContent = "Custom ATAK Preferences";
   els.panelDescription.textContent =
     "Add ATAK Shared Preferences not covered by the schema. Use this for plugin settings (including NWSharedPreferences Scope/Key/Value pairs). Unset values are omitted from export.";
   els.form.innerHTML = "";
+
+  const lower = getActiveSearchFilter().toLowerCase();
+  const customMatch = customPreferencesMatchesSearch(lower);
+  if (lower) {
+    prependSearchFilterBanner(els.form, {
+      lower,
+      matchCount: customMatch.nameMatch ? null : customMatch.matchingKeys.length,
+      label: "key",
+    });
+  }
 
   const addCard = document.createElement("section");
   addCard.className = "section-card";
@@ -1101,17 +1302,21 @@ function renderCustomPreferencesPanel() {
   listCard.className = "section-card";
   listCard.appendChild(Object.assign(document.createElement("h3"), { textContent: "Custom Preferences" }));
 
-  const keys = listCustomPreferenceKeys();
+  const keys = listCustomPreferenceKeys().filter(
+    (key) => !lower || customMatch.nameMatch || key.toLowerCase().includes(lower)
+  );
   if (!keys.length) {
     listCard.appendChild(
       Object.assign(document.createElement("div"), {
         className: "empty-state",
-        textContent: "No custom preferences yet.",
+        textContent: lower ? "No custom preferences match this search." : "No custom preferences yet.",
       })
     );
   } else {
     for (const key of keys) {
-      listCard.appendChild(renderCustomPreferenceRow(key));
+      const row = renderCustomPreferenceRow(key);
+      if (lower && key.toLowerCase().includes(lower)) row.classList.add("search-match");
+      listCard.appendChild(row);
     }
   }
   els.form.appendChild(listCard);
