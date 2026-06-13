@@ -238,10 +238,12 @@ function renderPanel() {
   }
 
   for (const section of category.sections || []) {
-    els.form.appendChild(renderSection(section.title, section.fields));
+    const card = renderSection(section.title, section.fields);
+    if (card) els.form.appendChild(card);
   }
   if (category.fields?.length) {
-    els.form.appendChild(renderSection("General", category.fields));
+    const card = renderSection("General", category.fields);
+    if (card) els.form.appendChild(card);
   }
 }
 
@@ -422,7 +424,14 @@ async function importPluginApk(event) {
   }
 }
 
+function exportableFields(fields) {
+  return (fields || []).filter((field) => field.exportable !== false);
+}
+
 function renderSection(title, fields) {
+  const visibleFields = exportableFields(fields);
+  if (!visibleFields.length) return null;
+
   const card = document.createElement("section");
   card.className = "section-card";
   const heading = document.createElement("h3");
@@ -431,8 +440,7 @@ function renderSection(title, fields) {
 
   const grid = document.createElement("div");
   grid.className = "field-grid";
-  for (const field of fields) {
-    if (field.exportable === false) continue;
+  for (const field of visibleFields) {
     grid.appendChild(renderPreferenceField(field));
   }
   card.appendChild(grid);
@@ -593,6 +601,27 @@ function setPreferenceFromField(field, value) {
   };
 }
 
+function isAndroidResourceRef(value) {
+  return typeof value === "string" && value.startsWith("@");
+}
+
+function fieldPlaceholder(field) {
+  if (field.placeholder) return field.placeholder;
+  if (field.reference_hint) return field.reference_hint;
+  const key = field.key.toLowerCase();
+  if (key.includes("url")) return "https://your-server:8443/update";
+  if (key.includes("path") || key.includes("directory")) return "/path/on/device";
+  if (field.summary) return field.summary;
+  return "";
+}
+
+function defaultFieldValue(field) {
+  const value = field.default;
+  if (value === null || value === undefined || value === "") return null;
+  if (isAndroidResourceRef(value) || value === "(built-in)") return null;
+  return value;
+}
+
 function isDropdownField(field) {
   if (
     field.input === "tristate" ||
@@ -636,8 +665,11 @@ function renderPreferenceField(field) {
     input.type = "text";
   }
   if (current !== undefined && current !== null) input.value = current;
-  else if (field.default) input.value = field.default;
-  input.placeholder = field.key;
+  else {
+    const defaultValue = defaultFieldValue(field);
+    if (defaultValue !== null) input.value = defaultValue;
+  }
+  input.placeholder = fieldPlaceholder(field);
   input.addEventListener("input", () => {
     const raw = input.value;
     if (raw === "") {
