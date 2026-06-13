@@ -148,6 +148,14 @@ def _build_field_display_overrides() -> dict[str, dict[str, str]]:
                 ),
                 "placeholder": "Interval in seconds",
             },
+            "prefs_smart_cache_download_limit": {
+                "title_suffix": " (bytes)",
+                "summary": (
+                    "Maximum download size in bytes for an individual smart cache request. "
+                    "Default: 5000000 bytes (5 MB)."
+                ),
+                "placeholder": "Limit in bytes (e.g. 5000000)",
+            },
         }
     )
     return overrides

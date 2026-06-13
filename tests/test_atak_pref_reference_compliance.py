@@ -162,6 +162,11 @@ def test_route_and_radius_fields_clarify_meter_units() -> None:
     assert reroute["title"] == "Reroute Distance (m)"
     assert "meters" in reroute["summary"].lower()
 
+    smart_cache_limit = fields["prefs_smart_cache_download_limit"]
+    assert smart_cache_limit["title"].endswith("(bytes)")
+    assert "bytes" in smart_cache_limit["summary"].lower()
+    assert smart_cache_limit["placeholder"] == "Limit in bytes (e.g. 5000000)"
+
 
 def test_missing_reference_keys_are_added() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))

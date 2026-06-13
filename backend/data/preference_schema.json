@@ -6182,7 +6182,7 @@
             {
               "key": "prefs_smart_cache_download_limit",
               "title": "Smart Cache Download Limit",
-              "summary": "Byte Limit for individual smart cache requests",
+              "summary": "Maximum download size in bytes for an individual smart cache request. Default: 5000000 bytes (5 MB).",
               "default": "5000000",
               "widget": "com.atakmap.android.gui.PanEditTextPreference",
               "type": "integer",
