@@ -96,14 +96,11 @@ function showToast(message, isError = false) {
 }
 
 function scrollContentToTop() {
-  const scroll = () => {
-    if (els.content) {
-      els.content.scrollTop = 0;
-    }
-    window.scrollTo(0, 0);
-  };
-  scroll();
-  requestAnimationFrame(scroll);
+  if (!els.content) return;
+  els.content.scrollTop = 0;
+  requestAnimationFrame(() => {
+    if (els.content) els.content.scrollTop = 0;
+  });
 }
 
 function allCategories() {

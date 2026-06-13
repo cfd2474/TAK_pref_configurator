@@ -21,6 +21,9 @@
 body {
   margin: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: linear-gradient(180deg, #0b1017 0%, var(--bg) 100%);
   color: var(--text);
 }
@@ -66,7 +69,8 @@ code {
 .layout {
   display: grid;
   grid-template-columns: 300px 1fr;
-  height: calc(100vh - 78px);
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -75,6 +79,8 @@ code {
   background: var(--surface);
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .sidebar-search {
@@ -95,6 +101,7 @@ code {
 .category-nav {
   flex: 1;
   overflow-y: auto;
+  min-height: 0;
   padding: 0.5rem;
 }
 
@@ -564,14 +571,22 @@ dialog::backdrop {
 }
 
 @media (max-width: 900px) {
+  body {
+    display: block;
+    overflow: visible;
+  }
+
   .layout {
     grid-template-columns: 1fr;
-    height: auto;
+    flex: none;
+    min-height: auto;
     overflow: visible;
   }
 
   .sidebar {
     max-height: 280px;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .app-header {
