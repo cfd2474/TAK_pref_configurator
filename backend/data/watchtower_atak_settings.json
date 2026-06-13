@@ -1,0 +1,2094 @@
+{
+  "source": "Watchtower MDM System ATAK Settings",
+  "pages": 2,
+  "keys": {
+    "toggle_log_tracks": {
+      "category": "Breadcrumb",
+      "key": "toggle_log_tracks",
+      "title": "Log Tracks",
+      "description": "Log your tracks",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "track_prefix": {
+      "category": "Breadcrumb",
+      "key": "track_prefix",
+      "title": "Track Prefix",
+      "description": "Prefix for self track history segments",
+      "inputType": "text",
+      "options": []
+    },
+    "toggle_rotate_track_colors": {
+      "category": "Breadcrumb",
+      "key": "toggle_rotate_track_colors",
+      "title": "Auto Rotate Track Colors",
+      "description": "Check to change color of each new track segment, u... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "track_csv_export_headers": {
+      "category": "Breadcrumb",
+      "key": "track_csv_export_headers",
+      "title": "CSV Export Header",
+      "description": "Include Column Headers for CSV exports",
+      "inputType": "text",
+      "options": []
+    },
+    "track_kml_export_timestamps": {
+      "category": "Breadcrumb",
+      "key": "track_kml_export_timestamps",
+      "title": "KML Export Timestamps",
+      "description": "Check to use gx:Track with timestamps (more detail... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "bread_track_timegap_threshold": {
+      "category": "Breadcrumb",
+      "key": "bread_track_timegap_threshold",
+      "title": "Server track time gap (minutes)",
+      "description": "When searching the server for tracks, split into s... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "track_infinite": {
+      "category": "Breadcrumb",
+      "key": "track_infinite",
+      "title": "Persistent Self Track",
+      "description": "Check to display all tracks since startup",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "max_num_bread_tracks": {
+      "category": "Breadcrumb",
+      "key": "max_num_bread_tracks",
+      "title": "Set Max Number of Bread Crumbs",
+      "description": "Max number of Bread Crumbs on-screen",
+      "inputType": "number",
+      "options": []
+    },
+    "track_line_to_surface": {
+      "category": "Breadcrumb",
+      "key": "track_line_to_surface",
+      "title": "Render bread crumb line to ground in 3-D",
+      "description": "When rendering the bread crumb trail in 3-D view, ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "track_crumb_size": {
+      "category": "Breadcrumb",
+      "key": "track_crumb_size",
+      "title": "Default Crumb Size",
+      "description": "The default size for breadcrumbs to appear on the ... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "bread_dist_threshold": {
+      "category": "Breadcrumb",
+      "key": "bread_dist_threshold",
+      "title": "Bread Crumb Distance Threshold",
+      "description": "Set how far you must move before dropping a crumb ... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "atakControlBluetooth": {
+      "category": "My Preferences",
+      "key": "atakControlBluetooth",
+      "title": "Bluetooth Support",
+      "description": "Turn on scanning for bluetooth devices e.g. LRF an... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "alert_notification": {
+      "category": "Alert",
+      "key": "alert_notification",
+      "title": "Notification",
+      "description": "Display an Android notification during alert",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "individual_alert_notification": {
+      "category": "Alert",
+      "key": "individual_alert_notification",
+      "title": "Individual Alert Notifications",
+      "description": "Allows for individual notifications to be sent as ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "alert_audible": {
+      "category": "Alert",
+      "key": "alert_audible",
+      "title": "Audible Alert",
+      "description": "Sound an audible alert during alert",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "alert_vibration": {
+      "category": "Alert",
+      "key": "alert_vibration",
+      "title": "Vibration Alert",
+      "description": "Vibrate device during alert",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "sms_numbers": {
+      "category": "Alert",
+      "key": "sms_numbers",
+      "title": "Alert SMS Numbers",
+      "description": "When the \"Send SMS\" checkbox is checked and an ale... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "rab_bloodhound_display_text_widget": {
+      "category": "Bloodhound",
+      "key": "rab_bloodhound_display_text_widget",
+      "title": "Display Bloodhound Text Widget",
+      "description": "Enable to display the Bloodhound widget",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "rab_bloodhound_large_textwidget": {
+      "category": "Bloodhound",
+      "key": "rab_bloodhound_large_textwidget",
+      "title": "Display Large Bloodhound Text Widget",
+      "description": "Enable large text in the bloodhound widget",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "rab_bloodhound_flash_colors": {
+      "category": "Bloodhound",
+      "key": "rab_bloodhound_flash_colors",
+      "title": "Flash When Closing In",
+      "description": "Flash the bloodhound text widget and pairing line ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "rab_bloodhound_zoom": {
+      "category": "Bloodhound",
+      "key": "rab_bloodhound_zoom",
+      "title": "Toggle Auto Zoom",
+      "description": "Enable Auto Zoom feature to display self and SPI i... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "bloodhound_flash_eta": {
+      "category": "Bloodhound ETA",
+      "key": "bloodhound_flash_eta",
+      "title": "Specify Threshold ETA in Seconds",
+      "description": "Specify the ETA in seconds for when to flash when ... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "bloodhound_outer_eta": {
+      "category": "Bloodhound ETA",
+      "key": "bloodhound_outer_eta",
+      "title": "Outer/Middle ETA Threshold",
+      "description": "Specify the ETA in seconds for the outer/middle ra... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "bloodhound_inner_eta": {
+      "category": "Bloodhound ETA",
+      "key": "bloodhound_inner_eta",
+      "title": "Middle/Inner ETA Threshold",
+      "description": "Specify the ETA in seconds for the middle/inner ra... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "bloodhound_flash_color_pref": {
+      "category": "Bloodhound ETA",
+      "key": "bloodhound_flash_color_pref",
+      "title": "Flash Color",
+      "description": "Set the color of the bloodhound line's flash.",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "Red",
+        "Yellow",
+        "Green",
+        "Cyan",
+        "Blue",
+        "Magenta",
+        "White",
+        "Black"
+      ]
+    },
+    "bloodhound_outer_color_pref": {
+      "category": "Bloodhound ETA",
+      "key": "bloodhound_outer_color_pref",
+      "title": "Outer ETA Color",
+      "description": "Set the color of the bloodhound line's outer radiu... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "Red",
+        "Yellow",
+        "Green",
+        "Cyan",
+        "Blue",
+        "Magenta",
+        "White",
+        "Black"
+      ]
+    },
+    "bloodhound_middle_color_pref": {
+      "category": "Bloodhound ETA",
+      "key": "bloodhound_middle_color_pref",
+      "title": "Middle ETA Color",
+      "description": "Set the color of the bloodhound line's middle radi... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "Red",
+        "Yellow",
+        "Green",
+        "Cyan",
+        "Blue",
+        "Magenta",
+        "White",
+        "Black"
+      ]
+    },
+    "bloodhound_inner_color_pref": {
+      "category": "Bloodhound ETA",
+      "key": "bloodhound_inner_color_pref",
+      "title": "Inner ETA Color",
+      "description": "Set the color of the bloodhound line's inner radiu... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "Red",
+        "Yellow",
+        "Green",
+        "Cyan",
+        "Blue",
+        "Magenta",
+        "White",
+        "Black"
+      ]
+    },
+    "bloodhound_reroute_distance_pref": {
+      "category": "Bloodhound Routing",
+      "key": "bloodhound_reroute_distance_pref",
+      "title": "Reroute distance",
+      "description": "Specify the distance away from the route a point h... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "bloodhound_reroute_timer_pref": {
+      "category": "Bloodhound Routing",
+      "key": "bloodhound_reroute_timer_pref",
+      "title": "Reroute Timer Frequency",
+      "description": "Specify how frequently bloodhound will check to se... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "atakBluetoothReconnectSeconds": {
+      "category": "Bluetooth",
+      "key": "atakBluetoothReconnectSeconds",
+      "title": "Bluetooth Reconnect Time",
+      "description": "Number of seconds to attempt to reconnect dropped ... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "enableToast": {
+      "category": "Chat Notification",
+      "key": "enableToast",
+      "title": "Display Notification",
+      "description": "Display a notification whenever a new Chat message... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "vibratePhone": {
+      "category": "Chat Notification",
+      "key": "vibratePhone",
+      "title": "Vibrate Phone",
+      "description": "Vibrate the phone whenever a new Chat message is r... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "audibleNotify": {
+      "category": "Chat Notification",
+      "key": "audibleNotify",
+      "title": "Audible Chat Notifications",
+      "description": "Play default notification sound whenever a new Cha... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "exportHistory": {
+      "category": "Chat History",
+      "key": "exportHistory",
+      "title": "Export Chat History",
+      "description": "Write entire chat history to CSV",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "chatAddress": {
+      "category": "Chat Geo Chat (Mesh) Network",
+      "key": "chatAddress",
+      "title": "Chat Address",
+      "description": "Address to send chat messages. Must match other Ge... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "chatPort": {
+      "category": "Chat Geo Chat (Mesh) Network",
+      "key": "chatPort",
+      "title": "Chat Port",
+      "description": "Port to send chat messages. Must match other GeoCh... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "legacyPointDropNaming": {
+      "category": "Control",
+      "key": "legacyPointDropNaming",
+      "title": "Legacy Point Drop Naming convention",
+      "description": "Uses the legacy method of naming a point based on ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "disableFloatToBottom": {
+      "category": "Control",
+      "key": "disableFloatToBottom",
+      "title": "Force Center while Moving",
+      "description": "Enabling this preference will result in the self m... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "staleRemoteDisconnects": {
+      "category": "Stale Data",
+      "key": "staleRemoteDisconnects",
+      "title": "Stale out remote users as they disconnect from TAK Server",
+      "description": "Enable to immediately stale out remote users when ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "expireEverything": {
+      "category": "Stale Data",
+      "key": "expireEverything",
+      "title": "Remove all marker types from map when they stale out",
+      "description": "Enable to delete all non-archival types from devic... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "expireStaleItemsTime": {
+      "category": "Stale Data",
+      "key": "expireStaleItemsTime",
+      "title": "Stale item clean up time",
+      "description": "Delete items from device after they've been stale ... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "0",
+        "1",
+        "5",
+        "20",
+        "60",
+        "360",
+        "1440"
+      ]
+    },
+    "atakControlQuitOnBack": {
+      "category": "User Touch",
+      "key": "atakControlQuitOnBack",
+      "title": "Quit on Back Press",
+      "description": "Quit when the back button is pressed",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakControlAskToQuit": {
+      "category": "User Touch",
+      "key": "atakControlAskToQuit",
+      "title": "Ask Before Quit",
+      "description": "Prompt a dialog asking to quit instead of closing ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakLongPressMap": {
+      "category": "User Touch",
+      "key": "atakLongPressMap",
+      "title": "Action for Long pressing the Map",
+      "description": "Determines what occurs when long pressing the map",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "Nothing",
+        "Action Bar",
+        "Drop Icon"
+      ]
+    },
+    "atakDoubleTapToZoom": {
+      "category": "User Touch",
+      "key": "atakDoubleTapToZoom",
+      "title": "Double tap to zoom 2x",
+      "description": "If checked, double tapping the map (without draggi... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "self_coord_action": {
+      "category": "Self Coordinate",
+      "key": "self_coord_action",
+      "title": "Tap Coordinate Action",
+      "description": "The default action for tapping on your coordinate ... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "Nothing",
+        "Cycle Coordinate",
+        "Panto"
+      ]
+    },
+    "selfcoord_legacy_enlarge": {
+      "category": "Self Coordinate",
+      "key": "selfcoord_legacy_enlarge",
+      "title": "Enable enlarging of coordinate display",
+      "description": "Enables the long press to enlarge the coordinate d... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "disable_mediaserver": {
+      "category": "Other Control",
+      "key": "disable_mediaserver",
+      "title": "Attempt to Disable Media Scanner",
+      "description": "Many versions of the Android Operating System cont... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakDisableKeyguard": {
+      "category": "Other Control",
+      "key": "atakDisableKeyguard",
+      "title": "Disable KeyGuard",
+      "description": "If checked the keyguard will be disabled system-wi... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakForceAirplaneRadioList": {
+      "category": "Other Control",
+      "key": "atakForceAirplaneRadioList",
+      "title": "Forced Airplane Mode",
+      "description": "Force Airplane Mode on launch. This is only suppor... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "None",
+        "Cell",
+        "Cell, Wifi"
+      ]
+    },
+    "atakControlMaximumTextureUnits": {
+      "category": "Other Control",
+      "key": "atakControlMaximumTextureUnits",
+      "title": "Use the maximum number of texture units",
+      "description": "Uncheck if there are rendering issues with Markers... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakControlEnableTextureCopy": {
+      "category": "Other Control",
+      "key": "atakControlEnableTextureCopy",
+      "title": "Enable texture copies",
+      "description": "Uncheck if app crashes when zooming out on maps",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakContinuousRender": {
+      "category": "Other Control",
+      "key": "atakContinuousRender",
+      "title": "Continuous Rendering",
+      "description": "Continuous Rendering is the legacy model for updat... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "locationCallsign": {
+      "category": "Device",
+      "key": "locationCallsign",
+      "title": "My Callsign",
+      "description": "Specifies the callsign for this device",
+      "inputType": "text",
+      "options": []
+    },
+    "locationTeam": {
+      "category": "Device",
+      "key": "locationTeam",
+      "title": "My Team",
+      "description": "The default action for tapping on your coordinate ... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "White",
+        "Yellow",
+        "Orange",
+        "Magenta",
+        "Red",
+        "Maroon",
+        "Purple",
+        "Dark Blue",
+        "Blue",
+        "Cyan",
+        "Teal",
+        "Green",
+        "Dark Green"
+      ]
+    },
+    "atakRoleType": {
+      "category": "Device",
+      "key": "atakRoleType",
+      "title": "My Role",
+      "description": "Specifies the role of this device",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "Team Member",
+        "Team Lead",
+        "HQ",
+        "Sniper",
+        "Medic",
+        "Forward Observer",
+        "RTO",
+        "K9"
+      ]
+    },
+    "locationUnitType": {
+      "category": "Device",
+      "key": "locationUnitType",
+      "title": "My Display Type",
+      "description": "Specifies the type that the world shall see this d... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "locationUseWRCallsign": {
+      "category": "Device",
+      "key": "locationUseWRCallsign",
+      "title": "Use WR Callsign",
+      "description": "If available use the Callsign of the WR radio for ... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "saHasPhoneNumber": {
+      "category": "Contact",
+      "key": "saHasPhoneNumber",
+      "title": "Publish phone number",
+      "description": "Display phone number (if available) to other users... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "saSipAddressAssignment": {
+      "category": "Contact",
+      "key": "saSipAddressAssignment",
+      "title": "Publish VoIP Number",
+      "description": "Specifies whether to publish VoIP address, and whe... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "No Volp",
+        "Manual Entry",
+        "Use IP Address",
+        "Use Callsign and IP Address"
+      ]
+    },
+    "saSipAddress": {
+      "category": "Contact",
+      "key": "saSipAddress",
+      "title": "VoIP Number",
+      "description": "VoIP number or SIP address for VoIP calling. Leave... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "saXmppUsername": {
+      "category": "Contact",
+      "key": "saXmppUsername",
+      "title": "Publish XMPP Username",
+      "description": "XMPP/Jabber chat username. Leave blank to not publ... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "savePrefs": {
+      "category": "Preference Management",
+      "key": "savePrefs",
+      "title": "Save Preferences",
+      "description": "Save the current preference settings",
+      "inputType": "text",
+      "options": []
+    },
+    "loadPrefs": {
+      "category": "Preference Management",
+      "key": "loadPrefs",
+      "title": "Load Preferences",
+      "description": "Load preference settings from file",
+      "inputType": "text",
+      "options": []
+    },
+    "loadPartialPrefs": {
+      "category": "Preference Management",
+      "key": "loadPartialPrefs",
+      "title": "Load Preferences Category",
+      "description": "Load a category of settings from file. A category ... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "map_scale_visible": {
+      "category": "Display",
+      "key": "map_scale_visible",
+      "title": "Enable Map Scale Display",
+      "description": "Enables a visual Map Scale on the Map",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "map_scale_rounding": {
+      "category": "Display",
+      "key": "map_scale_rounding",
+      "title": "Enable Map Scale Rounding",
+      "description": "Adjust scale line to the nearest power of 10",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "map_center_designator": {
+      "category": "Display",
+      "key": "map_center_designator",
+      "title": "Designate the Map Center",
+      "description": "Display a cross hair that is visible on the screen... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "show_self_coordinate_overlay": {
+      "category": "Display",
+      "key": "show_self_coordinate_overlay",
+      "title": "Display the Self Coordinate Information",
+      "description": "Display the self coordinate information at the bot... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "largeTextMode": {
+      "category": "Usability Setting",
+      "key": "largeTextMode",
+      "title": "Enable Large Text Mode",
+      "description": "Enables large tool bar (top menu), icons, and text... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "largeActionBar": {
+      "category": "Usability Setting",
+      "key": "largeActionBar",
+      "title": "Enable Large Tool Bar",
+      "description": "Enables larger buttons in the tool bar (top menu)",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "relativeOverlaysScalingRadioList": {
+      "category": "Usability Setting",
+      "key": "relativeOverlaysScalingRadioList",
+      "title": "Icon and Text Size",
+      "description": "Relative scaling that gets applied to icons and te... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "1.00",
+        "1.25",
+        "1.50",
+        "1.75",
+        "2.00"
+      ]
+    },
+    "label_text_size": {
+      "category": "Usability Setting",
+      "key": "label_text_size",
+      "title": "Default Label Size",
+      "description": "Default size of the font used for labeling entitie... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "14",
+        "16",
+        "18"
+      ]
+    },
+    "dim_map_with_brightness_key": {
+      "category": "Usability Setting",
+      "key": "dim_map_with_brightness_key",
+      "title": "Map Overlay's Dimming/Brightening",
+      "description": "Enables All Map Items To Dim/Brighten With The Bri... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakAdjustCurvedDisplay": {
+      "category": "Usability Setting",
+      "key": "atakAdjustCurvedDisplay",
+      "title": "Adjust for Curved Display",
+      "description": "Enable to adjust content so it fits within a displ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "faux_nav_bar": {
+      "category": "Usability Setting",
+      "key": "faux_nav_bar",
+      "title": "Enable the Faux Navigation Bar",
+      "description": "On newer devices from Samsung, the navigation bar ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "faux_nav_bar_reverse": {
+      "category": "Usability Setting",
+      "key": "faux_nav_bar_reverse",
+      "title": "Reverse the buttons on the Faux Navigation Bar",
+      "description": "Reverses the buttons on the faux nav bar so that t... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "dexControls": {
+      "category": "DEX Option",
+      "key": "dexControls",
+      "title": "Enable DEX Friendly Controls",
+      "description": "Display 3-D and zoom controls to enable the user t... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakGlobeModeEnabled": {
+      "category": "DEX Option",
+      "key": "atakGlobeModeEnabled",
+      "title": "Enable Globe Display Mode",
+      "description": "When enabled, will display the earth as a globe. T... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "overlay_manager_width_height": {
+      "category": "Other Miscellaneous Display",
+      "key": "overlay_manager_width_height",
+      "title": "Overlay Manager Width/Height",
+      "description": "Adjust Width/Height Of Overlay Manager Window",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "50",
+        "33",
+        "25"
+      ]
+    },
+    "atakForcedBrightness": {
+      "category": "Other Miscellaneous Display",
+      "key": "atakForcedBrightness",
+      "title": "Forced Application Brightness",
+      "description": "Incremental brightness for the program manually ov... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "-1",
+        "0-25",
+        "50",
+        "75",
+        "100"
+      ]
+    },
+    "atakDisableSoftkeyIllumination": {
+      "category": "Other Miscellaneous Display",
+      "key": "atakDisableSoftkeyIllumination",
+      "title": "Disable SoftKey Illumination",
+      "description": "If checked the softkeys lights will be disabled on... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakControlShortenLabels": {
+      "category": "Other Miscellaneous Display",
+      "key": "atakControlShortenLabels",
+      "title": "Shorten Long Marker Labels",
+      "description": "Shorten Long Marker Labels",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakControlShowLabels": {
+      "category": "Other Miscellaneous Display",
+      "key": "atakControlShowLabels",
+      "title": "Show Marker Labels",
+      "description": "Display labels under Markers",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakControlOtherUserNotification": {
+      "category": "Other Miscellaneous Display",
+      "key": "atakControlOtherUserNotification",
+      "title": "Display Notifications for other users",
+      "description": "Display Android notifications when receiving SA re... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "fade_notification": {
+      "category": "Other Miscellaneous Display",
+      "key": "fade_notification",
+      "title": "Fade Notification Time",
+      "description": "Default time that a transient notification stays i... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "30",
+        "60",
+        "90",
+        "120",
+        "300",
+        "600",
+        "3600",
+        "1"
+      ]
+    },
+    "imagery_tab_name": {
+      "category": "Other Miscellaneous Display",
+      "key": "imagery_tab_name",
+      "title": "Imagery Tab Name",
+      "description": "Select either Imagery or Maps",
+      "inputType": "text",
+      "options": []
+    },
+    "frame_limit": {
+      "category": "Other Miscellaneous Display",
+      "key": "frame_limit",
+      "title": "Render Speed",
+      "description": "Render at full speed or limit to save battery",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "0",
+        "1"
+      ]
+    },
+    "prefs_dted_visible": {
+      "category": "Elevation",
+      "key": "prefs_dted_visible",
+      "title": "Show by Default",
+      "description": "Default Elevation Heat Map to showing on startup.",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "pref_grid_color": {
+      "category": "Guidelines",
+      "key": "pref_grid_color",
+      "title": "Grid Line Color",
+      "description": "Select a color to make grid-lines more visible.",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "#ffffff",
+        "#ff00ff",
+        "#00ff00",
+        "#ffff00"
+      ]
+    },
+    "prefs_grid_default_show": {
+      "category": "Guidelines",
+      "key": "prefs_grid_default_show",
+      "title": "Show by Default",
+      "description": "Default gridlines to showing on startup",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "pref_grid_type": {
+      "category": "Guidelines",
+      "key": "pref_grid_type",
+      "title": "Grid Line Display Type",
+      "description": "Select the type of values used to represent the li... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "MGRS",
+        "Decimal Degrees",
+        "Degrees",
+        "Minutes",
+        "Seconds"
+      ]
+    },
+    "pref_overlay_style_outline_width": {
+      "category": "Import Style",
+      "key": "pref_overlay_style_outline_width",
+      "title": "Imported Line Width",
+      "description": "Prefix for self track history segments",
+      "inputType": "number",
+      "options": []
+    },
+    "network_config": {
+      "category": "ISRV",
+      "key": "network_config",
+      "title": "Internal Network Configuration",
+      "description": "Attempt network configuration of a directly connec... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "network_dhcp": {
+      "category": "ISRV",
+      "key": "network_dhcp",
+      "title": "DHCP",
+      "description": "Check to enable DHCP",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "network_static_ip_address": {
+      "category": "ISRV",
+      "key": "network_static_ip_address",
+      "title": "IP Address",
+      "description": "Network Static IP Address",
+      "inputType": "text",
+      "options": []
+    },
+    "network_static_gateway": {
+      "category": "ISRV",
+      "key": "network_static_gateway",
+      "title": "Default gateway",
+      "description": "Network Static Gateway",
+      "inputType": "text",
+      "options": []
+    },
+    "network_static_dns1": {
+      "category": "DNS Servers",
+      "key": "network_static_dns1",
+      "title": "DNS 1",
+      "description": "",
+      "inputType": "text",
+      "options": []
+    },
+    "network_static_dns2": {
+      "category": "DNS Servers",
+      "key": "network_static_dns2",
+      "title": "DNS 2",
+      "description": "",
+      "inputType": "text",
+      "options": []
+    },
+    "pref_layer_outline_color": {
+      "category": "Layers",
+      "key": "pref_layer_outline_color",
+      "title": "Layer Outline Color",
+      "description": "Select a color to make the Layer outlines more vis... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "#ffffff",
+        "#ff00ff",
+        "#00ff00",
+        "#ffff00"
+      ]
+    },
+    "prefs_layer_outlines_default_show": {
+      "category": "Layers",
+      "key": "prefs_layer_outlines_default_show",
+      "title": "Show by Default",
+      "description": "Enable to display layer outlines on startup",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "legacy_settings": {
+      "category": "Main Preferences",
+      "key": "legacy_settings",
+      "title": "Legacy Settings View",
+      "description": "Enable to display all preferences when opening set... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "secureDeleteTimeout": {
+      "category": "Media Preferences",
+      "key": "secureDeleteTimeout",
+      "title": "Secure Delete Timeout",
+      "description": "Amount of seconds to wait for deletions to finish ... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "prefs_use_klv_elevation": {
+      "category": "Main Preferences",
+      "key": "prefs_use_klv_elevation",
+      "title": "Prefer KLV Frame Center Elevation",
+      "description": "Use Frame Center elevation data provided in KLV in... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "filesharingEnabled": {
+      "category": "Mission Package",
+      "key": "filesharingEnabled",
+      "title": "Enable File Sharing",
+      "description": "Enable file sharing",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "filesharingSizeThresholdNoGo": {
+      "category": "Mission Package",
+      "key": "filesharingSizeThresholdNoGo",
+      "title": "File Transfer Max size",
+      "description": "Disallow transfer of files if total size (MB) is a... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "fileshareDownloadAttempts": {
+      "category": "Mission Package",
+      "key": "fileshareDownloadAttempts",
+      "title": "Download attempts",
+      "description": "Number of times to attempt to download a file from... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "filesharingWebServerPort": {
+      "category": "Mission Package",
+      "key": "filesharingWebServerPort",
+      "title": "Server port",
+      "description": "Port of the file sharing Server",
+      "inputType": "number",
+      "options": []
+    },
+    "filesharingSecureWebServerPort": {
+      "category": "Mission Package",
+      "key": "filesharingSecureWebServerPort",
+      "title": "Secure Server port",
+      "description": "Secure Port of the file sharing Server",
+      "inputType": "number",
+      "options": []
+    },
+    "filesharingTransferTimeoutSecs": {
+      "category": "Mission Package",
+      "key": "filesharingTransferTimeoutSecs",
+      "title": "File Transfer Connection Timeout",
+      "description": "Re-Attempt the transfer if no connection is detect... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "filesharingAllServers": {
+      "category": "Mission Package",
+      "key": "filesharingAllServers",
+      "title": "Use All Servers",
+      "description": "Allows for publication of a Data Package to any co... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "autostart_nineline": {
+      "category": "Nineline",
+      "key": "autostart_nineline",
+      "title": "Auto Start on Placement",
+      "description": "Begin a 9-line as soon as a hostile marker is plac... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "autostart_nineline_type": {
+      "category": "Nineline",
+      "key": "autostart_nineline_type",
+      "title": "Auto Start Menu",
+      "description": "Set which 9-line menu to open upon placement",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "cas",
+        "caf"
+      ]
+    },
+    "prone_standing_coloring": {
+      "category": "Nineline",
+      "key": "prone_standing_coloring",
+      "title": "Danger Close Coloring",
+      "description": "Show danger close rings (prone and standing) as di... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "keyhole_cas": {
+      "category": "Nineline",
+      "key": "keyhole_cas",
+      "title": "Use Keyhole CAS",
+      "description": "Specify Initial Point using Keyhole CAS",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "fahDistance": {
+      "category": "Mission Package",
+      "key": "fahDistance",
+      "title": "FAH Distance (NM)",
+      "description": "Size of the FAH in Nautical Miles. Note: If thi... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "fahOnCreation": {
+      "category": "Nineline",
+      "key": "fahOnCreation",
+      "title": "Automatically Display FAH",
+      "description": "Display FAH when a new 9-line is created",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "laserBasketDistance": {
+      "category": "Nineline",
+      "key": "laserBasketDistance",
+      "title": "Laser Basket Distance (NM)",
+      "description": "Size of the laser basket in Nautical Miles. Note... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "laserBasketDegrees": {
+      "category": "Nineline",
+      "key": "laserBasketDegrees",
+      "title": "Laser Basket Measurements",
+      "description": "Enable or Disable the degree measurements displaye... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "nineline_fah_edit_always": {
+      "category": "Nineline",
+      "key": "nineline_fah_edit_always",
+      "title": "FAH Always Edit Mode",
+      "description": "Allow for editing the FAH whenever the FAH is visi... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "dispatchLocationCotExternal": {
+      "category": "Reporting",
+      "key": "dispatchLocationCotExternal",
+      "title": "Send Location Over Network",
+      "description": "Send CoT event based on location gathering.",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "dispatchLocationHidden": {
+      "category": "Reporting",
+      "key": "dispatchLocationHidden",
+      "title": "Hide my current position",
+      "description": "This allows for people to chat or send you items w... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "locationReportingStrategy": {
+      "category": "Reporting",
+      "key": "locationReportingStrategy",
+      "title": "Reporting Strategy",
+      "description": "Specifies whether to report location at a constant... Read More",
+      "inputType": "select",
+      "options": [
+        "Unset",
+        "Dynamic",
+        "Constant"
+      ]
+    },
+    "dynamicReportingRateStationaryUnreliable": {
+      "category": "Reporting",
+      "key": "dynamicReportingRateStationaryUnreliable",
+      "title": "Dynamic Reporting Rate Stationary (Unreliable)",
+      "description": "Reporting rate in seconds (e.g. once per 30 second... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "dynamicReportingRateMinUnreliable": {
+      "category": "Reporting",
+      "key": "dynamicReportingRateMinUnreliable",
+      "title": "Dynamic Reporting Rate Minimum (Unreliable)",
+      "description": "Minimum reporting rate in seconds (e.g. once per 2... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "dynamicReportingRateMaxUnreliable": {
+      "category": "Reporting",
+      "key": "dynamicReportingRateMaxUnreliable",
+      "title": "Dynamic Reporting Rate Maximum (Unreliable)",
+      "description": "Maximum reporting rate in seconds (e.g. once per 2... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "dynamicReportingRateStationaryReliable": {
+      "category": "Reporting",
+      "key": "dynamicReportingRateStationaryReliable",
+      "title": "Dynamic Reporting Rate Stationary (Reliable)",
+      "description": "Reporting rate in seconds (e.g. once per 180 secon... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "dynamicReportingRateMinReliable": {
+      "category": "Reporting",
+      "key": "dynamicReportingRateMinReliable",
+      "title": "Dynamic Reporting Rate Minimum (Reliable)",
+      "description": "Minimum reporting rate in seconds (e.g. once per 2... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "dynamicReportingRateMaxReliable": {
+      "category": "Reporting",
+      "key": "dynamicReportingRateMaxReliable",
+      "title": "Dynamic Reporting Rate Maximum (Reliable)",
+      "description": "Maximum reporting rate in seconds (e.g. every othe... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "constantReportingRateUnreliable": {
+      "category": "Reporting",
+      "key": "constantReportingRateUnreliable",
+      "title": "Constant Reporting Rate (Unreliable)",
+      "description": "Constant interval between reporting self-SA messag... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "constantReportingRateReliable": {
+      "category": "Reporting",
+      "key": "constantReportingRateReliable",
+      "title": "Constant Reporting Rate (Reliable)",
+      "description": "Constant interval between reporting self-SA messag... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "dispatchLocationCotExternalAtStart": {
+      "category": "Reporting",
+      "key": "dispatchLocationCotExternalAtStart",
+      "title": "Report Location before obtaining location fix",
+      "description": "If true, report SA message with (lat=0,lon=0) befo... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "waypointPrefix": {
+      "category": "Route",
+      "key": "waypointPrefix",
+      "title": "Checkpoint Name Prefix",
+      "description": "Value to prepend to all automatically generated ch... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    "route_track_up_locked_on": {
+      "category": "Route",
+      "key": "route_track_up_locked_on",
+      "title": "Traditional Navigation Mode",
+      "description": "When navigating a route, the self icon will be eit... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "useRouteVoiceCues": {
+      "category": "Route",
+      "key": "useRouteVoiceCues",
+      "title": "Navigational Voice Cues",
+      "description": "Enable narration of navigational cues using text-t... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "route_vibrate_at_checkpoint": {
+      "category": "Route",
+      "key": "route_vibrate_at_checkpoint",
+      "title": "Vibrate When Arriving at Checkpoint",
+      "description": "When navigating a route, the device will vibrate w... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "doghouseShowNorthReference": {
+      "category": "Route",
+      "key": "doghouseShowNorthReference",
+      "title": "Display \u00b0M Unit in Doghouse",
+      "description": "Check to show the North Reference units (\u00b0M) on be... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "elevProfileInterpolateAlt": {
+      "category": "Route",
+      "key": "elevProfileInterpolateAlt",
+      "title": "Elevation Profile Interpolate Altitudes",
+      "description": "Enable to interpolate elevation profile graph alti... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "elevProfileCenterOnSeeker": {
+      "category": "Route",
+      "key": "elevProfileCenterOnSeeker",
+      "title": "Elevation Profile Center on Seeker",
+      "description": "Enable to focus map on elevation profile graph see... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "gpxImportCheckpointsForNamedRoutePoints": {
+      "category": "Route",
+      "key": "gpxImportCheckpointsForNamedRoutePoints",
+      "title": "GPX Import Checkpoints",
+      "description": "Enable to create checkpoint for each named GPX rou... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "kmlExportGroundClamp": {
+      "category": "Route",
+      "key": "kmlExportGroundClamp",
+      "title": "Ignore Elevation Data",
+      "description": "If enabled, the exported route will not contain an... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "kmlExportCheckpointMode": {
+      "category": "Route",
+      "key": "kmlExportCheckpointMode",
+      "title": "KML Export Checkpoint Mode",
+      "description": "Export check points as KML points, line, or both.",
+      "inputType": "select",
+      "options": [
+        "Points",
+        "Line",
+        "Both"
+      ]
+    },
+    "spiUpdateDelay": {
+      "category": "Fires",
+      "key": "spiUpdateDelay",
+      "title": "SPI Update Period",
+      "description": "The maximum delay between sending updates for the ... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "hostileUpdateDelay": {
+      "category": "Fires",
+      "key": "hostileUpdateDelay",
+      "title": "Automatically Broadcast a Marker",
+      "description": "Change the time between updates for markers being ... Read More",
+      "inputType": "select",
+      "options": [
+        "0",
+        "60",
+        "90",
+        "120"
+      ]
+    },
+    "legacyFiresToolbarMode": {
+      "category": "Fires",
+      "key": "legacyFiresToolbarMode",
+      "title": "Legacy Toolbar Mode",
+      "description": "Enables the legacy display of fires tools from pre... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "firesNumberOfSpis": {
+      "category": "Fires",
+      "key": "firesNumberOfSpis",
+      "title": "Number of SPIs",
+      "description": "Number of SPIs to show in the Fires toolbar.",
+      "inputType": "select",
+      "options": [
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    "spiFahSize": {
+      "category": "Fires",
+      "key": "spiFahSize",
+      "title": "SPI/RedX FAH Width",
+      "description": "Sets the width of the FAH cone (in degrees) when e... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "video_dropdown_hidden_disconnect": {
+      "category": "Video",
+      "key": "video_dropdown_hidden_disconnect",
+      "title": "Idle Stream",
+      "description": "Specify when to disconnect from a video stream whe... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "volumemapswitcher": {
+      "category": "WMS",
+      "key": "volumemapswitcher",
+      "title": "Enable Volume Keys rotating map layers",
+      "description": "If checked, volume keys switch maps. Otherwise use... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "prefs_layer_grg_map_interaction": {
+      "category": "WMS",
+      "key": "prefs_layer_grg_map_interaction",
+      "title": "Enable GRG Map Interaction",
+      "description": "Enable to allow interaction with GRGs on the map w... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "loggingfile_error_only": {
+      "category": "Advanced logging",
+      "key": "loggingfile_error_only",
+      "title": "Enable Logcat Errors only",
+      "description": "If checked the log file will only capture error le... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "loggingfile_upload_debug": {
+      "category": "Advanced logging",
+      "key": "loggingfile_upload_debug",
+      "title": "Upload Debug Logs",
+      "description": "If checked debug logs (Logcat and Network Traffic)... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "collect_metrics": {
+      "category": "Advanced logging",
+      "key": "collect_metrics",
+      "title": "Collect Metrics",
+      "description": "Enable usage and metrics data to be collected and ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "realtime_metrics": {
+      "category": "Metrics",
+      "key": "realtime_metrics",
+      "title": "Live Metrics",
+      "description": "Enable usage and metrics data to be sent to TAK Se... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "lognettraffictofile": {
+      "category": "Advanced logging",
+      "key": "lognettraffictofile",
+      "title": "Log Network Traffic",
+      "description": "If checked captures all outgoing network traffic t... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "generate_full_pool": {
+      "category": "Advanced logging",
+      "key": "generate_full_pool",
+      "title": "Advanced CoT Recorder",
+      "description": "If checked captures all incoming and outgoing Curs... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "generate_detail_pool": {
+      "category": "Advanced logging",
+      "key": "generate_detail_pool",
+      "title": "Advanced CoT Details Recorder",
+      "description": "If checked captures all incoming and outgoing Curs... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakPluginScanningOnStartup": {
+      "category": "App Management",
+      "key": "atakPluginScanningOnStartup",
+      "title": "Plugin Loading",
+      "description": "Enable to load plugins during startup.",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "repoStartupSync": {
+      "category": "App Management",
+      "key": "repoStartupSync",
+      "title": "Auto Sync",
+      "description": "Enable to check for app updates during startup. Di... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "appMgmtEnableUpdateServer": {
+      "category": "App Management",
+      "key": "appMgmtEnableUpdateServer",
+      "title": "Update Server",
+      "description": "Enable to allow Over the Air updates from a remote... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "atakUpdateServerUrl": {
+      "category": "App Management",
+      "key": "atakUpdateServerUrl",
+      "title": "Update Server URL",
+      "description": "Edit URL of the remote TAK Update Server.",
+      "inputType": "text",
+      "options": []
+    },
+    "updateServerCaPassword": {
+      "category": "App Management",
+      "key": "updateServerCaPassword",
+      "title": "Update Server SSL/TLS TrustStore Password",
+      "description": "",
+      "inputType": "text",
+      "options": []
+    },
+    "displayServerConnectionWidget": {
+      "category": "Network Connections Preferences",
+      "key": "displayServerConnectionWidget",
+      "title": "Display Connection Widget",
+      "description": "Enable to display connectivity indicator on map ab... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "monitorServerConnections": {
+      "category": "Network Connections Preferences",
+      "key": "monitorServerConnections",
+      "title": "Monitor Server Connections",
+      "description": "Enable to monitor connections and ping server afte... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "caPassword": {
+      "category": "Network Connections Preferences",
+      "key": "caPassword",
+      "title": "Default SSL/TLS TrustStore Password",
+      "description": "",
+      "inputType": "text",
+      "options": []
+    },
+    "clientPassword": {
+      "category": "Network Connections Preferences",
+      "key": "clientPassword",
+      "title": "Default SSL/TLS Client Certificate Password",
+      "description": "",
+      "inputType": "text",
+      "options": []
+    },
+    "apiSecureServerPort": {
+      "category": "Network Connections Preferences",
+      "key": "apiSecureServerPort",
+      "title": "Secure Server API port",
+      "description": "Secure Port of the Server API",
+      "inputType": "number",
+      "options": []
+    },
+    "apiUnsecureServerPort": {
+      "category": "Network Connections Preferences",
+      "key": "apiUnsecureServerPort",
+      "title": "Unsecure Server API port",
+      "description": "Unsecure Port of the Server API",
+      "inputType": "number",
+      "options": []
+    },
+    "apiCertEnrollmentPort": {
+      "category": "Network Connections Preferences",
+      "key": "apiCertEnrollmentPort",
+      "title": "Certificate Enrollment API port",
+      "description": "Port for Certificate Enrollment API",
+      "inputType": "number",
+      "options": []
+    },
+    "apiCertEnrollmentKeyLength": {
+      "category": "Network Connections Preferences",
+      "key": "apiCertEnrollmentKeyLength",
+      "title": "Certificate Enrollment Key Length",
+      "description": "Length in bits for RSA private key",
+      "inputType": "number",
+      "options": []
+    },
+    "certEnrollmentExport": {
+      "category": "Network Connections Preferences",
+      "key": "certEnrollmentExport",
+      "title": "Enable Client Certificate Export",
+      "description": "Allows exporting of certificates obtained via enro... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "deviceProfileEnableOnConnect": {
+      "category": "Network Connections Preferences",
+      "key": "deviceProfileEnableOnConnect",
+      "title": "Apply TAK Server profile updates",
+      "description": "Enable to allow ATAK and plugins to import server ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "enableNonStreamingConnections": {
+      "category": "Network Connections Preferences",
+      "key": "enableNonStreamingConnections",
+      "title": "Enable Mesh Network Mode",
+      "description": "Enable to allow multicast traffic. Disable to over... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "autoDisableMeshSAWhenStreaming": {
+      "category": "Network Connections Preferences",
+      "key": "autoDisableMeshSAWhenStreaming",
+      "title": "Auto Manage Mesh Network Self SA Mode",
+      "description": "Enable to automatically prefer sending data over t... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "tcpConnectTimeout": {
+      "category": "Network Connections Preferences",
+      "key": "tcpConnectTimeout",
+      "title": "TCP Connection Timeout",
+      "description": "How long (in sec) to wait for TCP connections to c... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "udpNoDataTimeout": {
+      "category": "Network Connections Preferences",
+      "key": "udpNoDataTimeout",
+      "title": "MulticastRejoin interval",
+      "description": "Interval between Multicast rejoin attempts (in sec... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "multicastTTL": {
+      "category": "Network Connections Preferences",
+      "key": "multicastTTL",
+      "title": "Multicast TTL",
+      "description": "Multicast TTL for outgoing multicast (requires res... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "network_multicast_loopback": {
+      "category": "Network Connections Preferences",
+      "key": "network_multicast_loopback",
+      "title": "Multicast Traffic Loopback",
+      "description": "Unless instructed, do not enable Multicast Traffic... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "ppp0_highspeed_capable": {
+      "category": "Network Connections Preferences",
+      "key": "ppp0_highspeed_capable",
+      "title": "Point-to-Point Link High Speed Capable",
+      "description": "When selected, the Point-to-Point link on the syst... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "waveRelayRedirect": {
+      "category": "Network Connections Preferences",
+      "key": "waveRelayRedirect",
+      "title": "Legacy Wave Relay Redirect",
+      "description": "Enable when using ATAK with a Wave Relay Radio whe... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "night_vision_widget": {
+      "category": "Night Vision",
+      "key": "night_vision_widget",
+      "title": "Enable Night Vision control inside ATAK",
+      "description": "If enabled, a Night Vision Activation Method will ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "loc_map_widget": {
+      "category": "Night Vision",
+      "key": "loc_map_widget",
+      "title": "Activate from widget on left side of map",
+      "description": "",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "loc_notification": {
+      "category": "Night Vision",
+      "key": "loc_notification",
+      "title": "Activate from Notifications panel",
+      "description": "",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "loc_self_overlay_box": {
+      "category": "Night Vision",
+      "key": "loc_self_overlay_box",
+      "title": "Activate from widget above local device location widget",
+      "description": "",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "toggle_offscreen_indicators": {
+      "category": "Offscreen Indicators",
+      "key": "toggle_offscreen_indicators",
+      "title": "Enabled on Start",
+      "description": "Show off-screen indicators on start",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    "offscreen_indicator_dist_threshold": {
+      "category": "Offscreen Indicators",
+      "key": "offscreen_indicator_dist_threshold",
+      "title": "Set Distance Threshold (KM)",
+      "description": "The distance from viewpoint at which off-screen in... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    "offscreen_indicator_timeout_threshold": {
+      "category": "Offscreen Indicators",
+      "key": "offscreen_indicator_timeout_threshold",
+      "title": "Set Timeout Threshold (seconds) or zero to disable",
+      "description": "If a map item has been on the screen for more than... Read More",
+      "inputType": "number",
+      "options": []
+    }
+  },
+  "stats": {
+    "total": 188,
+    "tristate_boolean": 101,
+    "select": 25,
+    "text": 23,
+    "number": 39
+  }
+}

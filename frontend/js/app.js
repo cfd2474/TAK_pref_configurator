@@ -512,10 +512,12 @@ function renderSelectField(field, currentValue, onChange) {
   const knownValues = new Set((field.options || []).map((o) => String(o.value)));
   const isCustom = currentValue !== undefined && currentValue !== null && !knownValues.has(String(currentValue));
 
+  const includeBlank = field.input !== "tristate";
   const select = createSelect(
     field.options || [],
     isCustom ? "__custom__" : currentValue,
-    () => {}
+    () => {},
+    includeBlank
   );
   select.id = `pref-${field.key}`;
 
@@ -562,7 +564,10 @@ function storageMeta(field) {
 function normalizeStoredValue(field, value) {
   if (value === null || value === undefined || value === "") return null;
   const meta = storageMeta(field);
-  if (meta.type === "boolean") return value === true || value === "true";
+  if (meta.type === "boolean") {
+    if (value === false || value === "false") return false;
+    return value === true || value === "true";
+  }
   if (meta.type === "set") return Array.isArray(value) ? value.map(String) : [];
   if (meta.type === "string") return String(value);
   if (meta.type === "integer") return Number(value);
@@ -586,7 +591,11 @@ function setPreferenceFromField(field, value) {
 }
 
 function isDropdownField(field) {
-  if (field.type === "select" || (field.type === "boolean" && field.input === "select")) {
+  if (
+    field.input === "tristate" ||
+    field.type === "select" ||
+    (field.type === "boolean" && field.input === "select")
+  ) {
     return true;
   }
   return Array.isArray(field.options) && field.options.length >= 2;

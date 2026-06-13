@@ -8,6 +8,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
+from .watchtower_enricher import apply_watchtower_enrichment
+
 REFERENCE_PATH = Path(__file__).resolve().parent.parent / "data" / "atak_pref_reference.json"
 
 # ATAK preference XML often uses *Action keys for navigation while .pref export keys differ.
@@ -185,4 +187,4 @@ def enrich_schema(schema: dict[str, Any], reference: dict[str, Any] | None = Non
         "sheet": reference.get("sheet"),
         "stats": reference.get("stats", {}),
     }
-    return enriched
+    return apply_watchtower_enrichment(enriched, reference=reference)

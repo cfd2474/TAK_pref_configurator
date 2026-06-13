@@ -23,7 +23,6 @@
       "com.atakmap.app.civ_preferences"
     ],
     "excluded_keys": [
-      "locationCallsign",
       "bestDeviceUID"
     ]
   },

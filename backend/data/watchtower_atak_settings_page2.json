@@ -1,0 +1,675 @@
+{
+  "page": 2,
+  "count": 79,
+  "rows": [
+    {
+      "category": "Reporting",
+      "key": "dynamicReportingRateStationaryUnreliable",
+      "title": "Dynamic Reporting Rate Stationary (Unreliable)",
+      "description": "Reporting rate in seconds (e.g. once per 30 second... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Reporting",
+      "key": "dynamicReportingRateMinUnreliable",
+      "title": "Dynamic Reporting Rate Minimum (Unreliable)",
+      "description": "Minimum reporting rate in seconds (e.g. once per 2... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Reporting",
+      "key": "dynamicReportingRateMaxUnreliable",
+      "title": "Dynamic Reporting Rate Maximum (Unreliable)",
+      "description": "Maximum reporting rate in seconds (e.g. once per 2... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Reporting",
+      "key": "dynamicReportingRateStationaryReliable",
+      "title": "Dynamic Reporting Rate Stationary (Reliable)",
+      "description": "Reporting rate in seconds (e.g. once per 180 secon... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Reporting",
+      "key": "dynamicReportingRateMinReliable",
+      "title": "Dynamic Reporting Rate Minimum (Reliable)",
+      "description": "Minimum reporting rate in seconds (e.g. once per 2... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Reporting",
+      "key": "dynamicReportingRateMaxReliable",
+      "title": "Dynamic Reporting Rate Maximum (Reliable)",
+      "description": "Maximum reporting rate in seconds (e.g. every othe... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Reporting",
+      "key": "constantReportingRateUnreliable",
+      "title": "Constant Reporting Rate (Unreliable)",
+      "description": "Constant interval between reporting self-SA messag... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Reporting",
+      "key": "constantReportingRateReliable",
+      "title": "Constant Reporting Rate (Reliable)",
+      "description": "Constant interval between reporting self-SA messag... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Reporting",
+      "key": "dispatchLocationCotExternalAtStart",
+      "title": "Report Location before obtaining location fix",
+      "description": "If true, report SA message with (lat=0,lon=0) befo... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "waypointPrefix",
+      "title": "Checkpoint Name Prefix",
+      "description": "Value to prepend to all automatically generated ch... Read More",
+      "inputType": "text",
+      "options": []
+    },
+    {
+      "category": "Route",
+      "key": "route_track_up_locked_on",
+      "title": "Traditional Navigation Mode",
+      "description": "When navigating a route, the self icon will be eit... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "useRouteVoiceCues",
+      "title": "Navigational Voice Cues",
+      "description": "Enable narration of navigational cues using text-t... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "route_vibrate_at_checkpoint",
+      "title": "Vibrate When Arriving at Checkpoint",
+      "description": "When navigating a route, the device will vibrate w... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "doghouseShowNorthReference",
+      "title": "Display \u00b0M Unit in Doghouse",
+      "description": "Check to show the North Reference units (\u00b0M) on be... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "elevProfileInterpolateAlt",
+      "title": "Elevation Profile Interpolate Altitudes",
+      "description": "Enable to interpolate elevation profile graph alti... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "elevProfileCenterOnSeeker",
+      "title": "Elevation Profile Center on Seeker",
+      "description": "Enable to focus map on elevation profile graph see... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "gpxImportCheckpointsForNamedRoutePoints",
+      "title": "GPX Import Checkpoints",
+      "description": "Enable to create checkpoint for each named GPX rou... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "kmlExportGroundClamp",
+      "title": "Ignore Elevation Data",
+      "description": "If enabled, the exported route will not contain an... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Route",
+      "key": "kmlExportCheckpointMode",
+      "title": "KML Export Checkpoint Mode",
+      "description": "Export check points as KML points, line, or both.",
+      "inputType": "select",
+      "options": [
+        "Points",
+        "Line",
+        "Both"
+      ]
+    },
+    {
+      "category": "Fires",
+      "key": "spiUpdateDelay",
+      "title": "SPI Update Period",
+      "description": "The maximum delay between sending updates for the ... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Fires",
+      "key": "hostileUpdateDelay",
+      "title": "Automatically Broadcast a Marker",
+      "description": "Change the time between updates for markers being ... Read More",
+      "inputType": "select",
+      "options": [
+        "0",
+        "60",
+        "90",
+        "120"
+      ]
+    },
+    {
+      "category": "Fires",
+      "key": "legacyFiresToolbarMode",
+      "title": "Legacy Toolbar Mode",
+      "description": "Enables the legacy display of fires tools from pre... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Fires",
+      "key": "firesNumberOfSpis",
+      "title": "Number of SPIs",
+      "description": "Number of SPIs to show in the Fires toolbar.",
+      "inputType": "select",
+      "options": [
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "category": "Fires",
+      "key": "spiFahSize",
+      "title": "SPI/RedX FAH Width",
+      "description": "Sets the width of the FAH cone (in degrees) when e... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Video",
+      "key": "video_dropdown_hidden_disconnect",
+      "title": "Idle Stream",
+      "description": "Specify when to disconnect from a video stream whe... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "WMS",
+      "key": "volumemapswitcher",
+      "title": "Enable Volume Keys rotating map layers",
+      "description": "If checked, volume keys switch maps. Otherwise use... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "WMS",
+      "key": "prefs_layer_grg_map_interaction",
+      "title": "Enable GRG Map Interaction",
+      "description": "Enable to allow interaction with GRGs on the map w... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Advanced logging",
+      "key": "loggingfile_error_only",
+      "title": "Enable Logcat Errors only",
+      "description": "If checked the log file will only capture error le... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Advanced logging",
+      "key": "loggingfile_upload_debug",
+      "title": "Upload Debug Logs",
+      "description": "If checked debug logs (Logcat and Network Traffic)... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Advanced logging",
+      "key": "collect_metrics",
+      "title": "Collect Metrics",
+      "description": "Enable usage and metrics data to be collected and ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Metrics",
+      "key": "realtime_metrics",
+      "title": "Live Metrics",
+      "description": "Enable usage and metrics data to be sent to TAK Se... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Advanced logging",
+      "key": "lognettraffictofile",
+      "title": "Log Network Traffic",
+      "description": "If checked captures all outgoing network traffic t... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Advanced logging",
+      "key": "generate_full_pool",
+      "title": "Advanced CoT Recorder",
+      "description": "If checked captures all incoming and outgoing Curs... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Advanced logging",
+      "key": "generate_detail_pool",
+      "title": "Advanced CoT Details Recorder",
+      "description": "If checked captures all incoming and outgoing Curs... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "App Management",
+      "key": "atakPluginScanningOnStartup",
+      "title": "Plugin Loading",
+      "description": "Enable to load plugins during startup.",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "App Management",
+      "key": "repoStartupSync",
+      "title": "Auto Sync",
+      "description": "Enable to check for app updates during startup. Di... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "App Management",
+      "key": "appMgmtEnableUpdateServer",
+      "title": "Update Server",
+      "description": "Enable to allow Over the Air updates from a remote... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "App Management",
+      "key": "atakUpdateServerUrl",
+      "title": "Update Server URL",
+      "description": "Edit URL of the remote TAK Update Server.",
+      "inputType": "text",
+      "options": []
+    },
+    {
+      "category": "App Management",
+      "key": "updateServerCaPassword",
+      "title": "Update Server SSL/TLS TrustStore Password",
+      "description": "",
+      "inputType": "text",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "displayServerConnectionWidget",
+      "title": "Display Connection Widget",
+      "description": "Enable to display connectivity indicator on map ab... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "monitorServerConnections",
+      "title": "Monitor Server Connections",
+      "description": "Enable to monitor connections and ping server afte... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "caPassword",
+      "title": "Default SSL/TLS TrustStore Password",
+      "description": "",
+      "inputType": "text",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "clientPassword",
+      "title": "Default SSL/TLS Client Certificate Password",
+      "description": "",
+      "inputType": "text",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "apiSecureServerPort",
+      "title": "Secure Server API port",
+      "description": "Secure Port of the Server API",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "apiUnsecureServerPort",
+      "title": "Unsecure Server API port",
+      "description": "Unsecure Port of the Server API",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "apiCertEnrollmentPort",
+      "title": "Certificate Enrollment API port",
+      "description": "Port for Certificate Enrollment API",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "apiCertEnrollmentKeyLength",
+      "title": "Certificate Enrollment Key Length",
+      "description": "Length in bits for RSA private key",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "certEnrollmentExport",
+      "title": "Enable Client Certificate Export",
+      "description": "Allows exporting of certificates obtained via enro... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "deviceProfileEnableOnConnect",
+      "title": "Apply TAK Server profile updates",
+      "description": "Enable to allow ATAK and plugins to import server ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "enableNonStreamingConnections",
+      "title": "Enable Mesh Network Mode",
+      "description": "Enable to allow multicast traffic. Disable to over... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "autoDisableMeshSAWhenStreaming",
+      "title": "Auto Manage Mesh Network Self SA Mode",
+      "description": "Enable to automatically prefer sending data over t... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "tcpConnectTimeout",
+      "title": "TCP Connection Timeout",
+      "description": "How long (in sec) to wait for TCP connections to c... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "udpNoDataTimeout",
+      "title": "MulticastRejoin interval",
+      "description": "Interval between Multicast rejoin attempts (in sec... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "multicastTTL",
+      "title": "Multicast TTL",
+      "description": "Multicast TTL for outgoing multicast (requires res... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "network_multicast_loopback",
+      "title": "Multicast Traffic Loopback",
+      "description": "Unless instructed, do not enable Multicast Traffic... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "ppp0_highspeed_capable",
+      "title": "Point-to-Point Link High Speed Capable",
+      "description": "When selected, the Point-to-Point link on the syst... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Network Connections Preferences",
+      "key": "waveRelayRedirect",
+      "title": "Legacy Wave Relay Redirect",
+      "description": "Enable when using ATAK with a Wave Relay Radio whe... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Night Vision",
+      "key": "night_vision_widget",
+      "title": "Enable Night Vision control inside ATAK",
+      "description": "If enabled, a Night Vision Activation Method will ... Read More",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Night Vision",
+      "key": "loc_map_widget",
+      "title": "Activate from widget on left side of map",
+      "description": "",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Night Vision",
+      "key": "loc_notification",
+      "title": "Activate from Notifications panel",
+      "description": "",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Night Vision",
+      "key": "loc_self_overlay_box",
+      "title": "Activate from widget above local device location widget",
+      "description": "",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Offscreen Indicators",
+      "key": "toggle_offscreen_indicators",
+      "title": "Enabled on Start",
+      "description": "Show off-screen indicators on start",
+      "inputType": "tristate_boolean",
+      "options": [
+        "unset",
+        "false",
+        "true"
+      ]
+    },
+    {
+      "category": "Offscreen Indicators",
+      "key": "offscreen_indicator_dist_threshold",
+      "title": "Set Distance Threshold (KM)",
+      "description": "The distance from viewpoint at which off-screen in... Read More",
+      "inputType": "number",
+      "options": []
+    },
+    {
+      "category": "Offscreen Indicators",
+      "key": "offscreen_indicator_timeout_threshold",
+      "title": "Set Timeout Threshold (seconds) or zero to disable",
+      "description": "If a map item has been on the screen for more than... Read More",
+      "inputType": "number",
+      "options": []
+    }
+  ]
+}

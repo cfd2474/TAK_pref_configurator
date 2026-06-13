@@ -362,7 +362,7 @@ def main() -> int:
                 "cot_streams",
                 "com.atakmap.app.civ_preferences",
             ],
-            "excluded_keys": ["locationCallsign", "bestDeviceUID"],
+            "excluded_keys": ["bestDeviceUID"],
         },
         "connections": {
             "groups": [
