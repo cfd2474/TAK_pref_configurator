@@ -77,6 +77,15 @@ def test_color_fields_use_color_picker() -> None:
     assert toolbar_color["color_format"] == "hex"
 
 
+def test_nav_orientation_right_uses_left_right_labels() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    fields = _schema_fields(enriched)
+    toolbar_side = fields["nav_orientation_right"]
+    assert [option["label"] for option in toolbar_side["options"]] == ["Left", "Right"]
+    assert [option["value"] for option in toolbar_side["options"]] == ["false", "true"]
+
+
 def test_missing_reference_keys_are_added() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     base_keys = set(_schema_fields(schema))

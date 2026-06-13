@@ -18,6 +18,14 @@ EXPLICIT_REFERENCE_ALIASES = {
     "locationUnitTypeAction": "locationUnitType",
 }
 
+# ATAK boolean prefs where the xlsx lists True/False but the UI is a semantic switch.
+BOOLEAN_OPTION_LABEL_OVERRIDES: dict[str, list[dict[str, str]]] = {
+    "nav_orientation_right": [
+        {"label": "Left", "value": "false"},
+        {"label": "Right", "value": "true"},
+    ],
+}
+
 
 def load_reference(path: Path | None = None) -> dict[str, Any]:
     reference_path = path or REFERENCE_PATH
@@ -60,6 +68,7 @@ def reference_field_to_schema_field(ref: dict[str, Any]) -> dict[str, Any]:
     if ref.get("reference_hint"):
         field["reference_hint"] = ref["reference_hint"]
     _apply_color_field_metadata(field, ref)
+    _apply_boolean_option_label_overrides(field)
     return field
 
 
@@ -116,6 +125,19 @@ def apply_reference_to_field(
         field["java_class"] = ref["java_class"]
 
     _apply_color_field_metadata(field, ref)
+    _apply_boolean_option_label_overrides(field)
+
+
+def _apply_boolean_option_label_overrides(field: dict[str, Any]) -> None:
+    overrides = BOOLEAN_OPTION_LABEL_OVERRIDES.get(field["key"])
+    if not overrides:
+        return
+    field["options"] = overrides
+    field["type"] = "boolean"
+    field["input"] = "select"
+    field["storage_type"] = "boolean"
+    if not field.get("java_class"):
+        field["java_class"] = "class java.lang.Boolean"
 
 
 def _apply_color_field_metadata(field: dict[str, Any], ref: dict[str, Any]) -> None:
