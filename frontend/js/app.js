@@ -66,6 +66,7 @@ const els = {
   apkScanAck: document.getElementById("apk-scan-ack"),
   previewDialog: document.getElementById("preview-dialog"),
   previewContent: document.getElementById("preview-content"),
+  copyPreview: document.getElementById("copy-preview"),
   closePreview: document.getElementById("close-preview"),
   toast: document.getElementById("toast"),
   content: document.querySelector(".content"),
@@ -99,6 +100,7 @@ function bindEvents() {
     event.preventDefault();
   });
   els.closePreview.addEventListener("click", () => els.previewDialog.close());
+  els.copyPreview.addEventListener("click", () => copyPreviewToClipboard());
   els.filename.addEventListener("change", normalizeFilename);
 }
 
@@ -1566,6 +1568,30 @@ async function downloadPref() {
     showToast("Download started");
   } catch (error) {
     showToast(error.message, true);
+  }
+}
+
+async function copyPreviewToClipboard() {
+  const text = els.previewContent.textContent || "";
+  if (!text.trim()) {
+    showToast("Nothing to copy", true);
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast("Copied to clipboard");
+  } catch {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    const copied = document.execCommand("copy");
+    textarea.remove();
+    if (copied) showToast("Copied to clipboard");
+    else showToast("Failed to copy", true);
   }
 }
 
