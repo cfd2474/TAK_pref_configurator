@@ -3059,7 +3059,7 @@
     {
       "id": "importstyle_preferences",
       "file": "importstyle_preferences.xml",
-      "title": "Importstyle Preferences",
+      "title": "Import Style Preferences",
       "sections": [
         {
           "title": "Import Style Default Preferences",

@@ -84,6 +84,7 @@ HIDDEN_NAV_CATEGORY_IDS = frozenset(
 CATEGORY_TITLE_OVERRIDES = {
     "device_preferences": "Device/Callsign Preferences",
     "geocoder_preference_fragment": "GeoCoder Preference",
+    "importstyle_preferences": "Import Style Preferences",
     "lrf_preferences": "LRF Preferences",
     "missionpackage_preferences": "Mission Package Preferences",
     "off_scr_indi_preferences": "Off Screen Indicator Preferences",
