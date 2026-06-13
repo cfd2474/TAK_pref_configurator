@@ -4671,7 +4671,7 @@
     {
       "id": "off_scr_indi_preferences",
       "file": "off_scr_indi_preferences.xml",
-      "title": "Off Scr Indi Preferences",
+      "title": "Off Screen Indicator Preferences",
       "sections": [
         {
           "title": "Off-Screen Indicators Preferences",
