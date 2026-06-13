@@ -585,10 +585,17 @@ function setPreferenceFromField(field, value) {
   };
 }
 
+function isDropdownField(field) {
+  if (field.type === "select" || (field.type === "boolean" && field.input === "select")) {
+    return true;
+  }
+  return Array.isArray(field.options) && field.options.length >= 2;
+}
+
 function renderPreferenceField(field) {
   const current = state.preferences[field.key]?.value;
 
-  if (field.type === "select" || (field.type === "boolean" && field.input === "select")) {
+  if (isDropdownField(field)) {
     return renderSelectField(field, current, (value) => setPreferenceFromField(field, value));
   }
 

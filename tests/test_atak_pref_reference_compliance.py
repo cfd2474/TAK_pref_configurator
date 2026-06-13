@@ -44,6 +44,19 @@ def test_reference_enumerations_become_select_fields() -> None:
     assert any(option["value"] == "Team Lead" for option in fields["atakRoleType"]["options"])
 
 
+def test_action_keys_map_to_reference_pref_keys() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    fields = _schema_fields(enriched)
+    role_field = fields["atakRoleType"]
+    assert role_field["type"] == "select"
+    assert len(role_field["options"]) == 8
+    assert "atakRoleTypeAction" not in fields
+    display_field = fields["locationUnitType"]
+    assert display_field["type"] == "select"
+    assert len(display_field["options"]) >= 6
+
+
 def test_reference_string_ports_use_string_storage() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     enriched = enrich_schema(schema)

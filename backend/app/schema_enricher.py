@@ -10,6 +10,12 @@ from typing import Any
 
 REFERENCE_PATH = Path(__file__).resolve().parent.parent / "data" / "atak_pref_reference.json"
 
+# ATAK preference XML often uses *Action keys for navigation while .pref export keys differ.
+EXPLICIT_REFERENCE_ALIASES = {
+    "atakRoleTypeAction": "atakRoleType",
+    "locationUnitTypeAction": "locationUnitType",
+}
+
 
 def load_reference(path: Path | None = None) -> dict[str, Any]:
     reference_path = path or REFERENCE_PATH
@@ -54,7 +60,32 @@ def reference_field_to_schema_field(ref: dict[str, Any]) -> dict[str, Any]:
     return field
 
 
-def apply_reference_to_field(field: dict[str, Any], ref: dict[str, Any]) -> None:
+def resolve_reference_key(field_key: str, ref_keys: dict[str, Any]) -> tuple[str, dict[str, Any]] | tuple[None, None]:
+    if field_key in ref_keys:
+        return field_key, ref_keys[field_key]
+
+    alias = EXPLICIT_REFERENCE_ALIASES.get(field_key)
+    if alias and alias in ref_keys:
+        return alias, ref_keys[alias]
+
+    if field_key.endswith("Action"):
+        candidate = field_key[: -len("Action")]
+        if candidate in ref_keys:
+            return candidate, ref_keys[candidate]
+
+    return None, None
+
+
+def apply_reference_to_field(
+    field: dict[str, Any],
+    ref: dict[str, Any],
+    *,
+    canonical_key: str | None = None,
+) -> None:
+    if canonical_key and canonical_key != field.get("key"):
+        field["schema_key"] = field["key"]
+        field["key"] = canonical_key
+
     field["reference_type"] = ref.get("reference_type")
     field["exportable"] = ref.get("exportable", True)
     if ref.get("item"):
@@ -64,20 +95,30 @@ def apply_reference_to_field(field: dict[str, Any], ref: dict[str, Any]) -> None
         if not field.get("summary"):
             field["summary"] = ref["reference_hint"]
 
-    ref_type = ref.get("type")
-    if ref_type in {"boolean", "integer", "string", "select"}:
-        field["type"] = ref_type
-    if ref.get("options"):
+    if ref.get("options") and len(ref["options"]) >= 2:
+        if ref.get("storage_type") == "boolean":
+            field["type"] = "boolean"
+        else:
+            field["type"] = "select"
         field["options"] = ref["options"]
         field["input"] = ref.get("input", "select")
-        if ref_type == "boolean" or ref.get("storage_type") == "boolean":
-            field["type"] = "boolean"
-        elif ref_type == "select":
-            field["type"] = "select"
+    else:
+        ref_type = ref.get("type")
+        if ref_type in {"boolean", "integer", "string", "select"}:
+            field["type"] = ref_type
+
     if ref.get("storage_type"):
         field["storage_type"] = ref["storage_type"]
     if ref.get("java_class"):
         field["java_class"] = ref["java_class"]
+
+
+def mark_non_exportable_navigation_fields(field: dict[str, Any]) -> None:
+    if field.get("options") or field.get("exportable") is False:
+        return
+    widget = field.get("widget", "")
+    if field["key"].endswith("Action") or widget.endswith("PanPreference"):
+        field["exportable"] = False
 
 
 def add_missing_reference_categories(schema: dict[str, Any], reference: dict[str, Any]) -> None:
@@ -122,9 +163,11 @@ def enrich_schema(schema: dict[str, Any], reference: dict[str, Any] | None = Non
     ref_keys = reference.get("keys", {})
 
     for _, _, field in iter_schema_fields(enriched):
-        ref = ref_keys.get(field["key"])
+        ref_key, ref = resolve_reference_key(field["key"], ref_keys)
         if ref:
-            apply_reference_to_field(field, ref)
+            apply_reference_to_field(field, ref, canonical_key=ref_key)
+        else:
+            mark_non_exportable_navigation_fields(field)
 
     add_missing_reference_categories(enriched, reference)
 

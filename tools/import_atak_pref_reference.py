@@ -89,6 +89,11 @@ def normalize_reference_row(item: str, key: str, raw_type: str, raw_values: str)
             reference_hint = bullets[0]
             field_type = "string"
             storage_type = "string"
+        elif len(bullets) == 2 and {bullet.lower() for bullet in bullets} == {"true", "false"}:
+            field_type = "boolean"
+            storage_type = "boolean"
+            input_mode = "select"
+            options = [{"label": "True", "value": "true"}, {"label": "False", "value": "false"}]
         elif len(bullets) > 1:
             field_type = "select"
             storage_type = "string"
