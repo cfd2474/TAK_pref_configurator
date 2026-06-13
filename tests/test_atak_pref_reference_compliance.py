@@ -65,6 +65,18 @@ def test_reference_string_ports_use_string_storage() -> None:
     assert fields["apiSecureServerPort"]["storage_type"] == "string"
 
 
+def test_color_fields_use_color_picker() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    fields = _schema_fields(enriched)
+    track_color = fields["track_history_default_color"]
+    assert track_color["input"] == "color"
+    assert track_color["color_format"] == "android_int"
+    toolbar_color = fields["actionbar_icon_color_key"]
+    assert toolbar_color["input"] == "color"
+    assert toolbar_color["color_format"] == "hex"
+
+
 def test_missing_reference_keys_are_added() -> None:
     schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
     base_keys = set(_schema_fields(schema))

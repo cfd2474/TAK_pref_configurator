@@ -638,6 +638,125 @@ function defaultFieldValue(field) {
   return value;
 }
 
+function isColorField(field) {
+  return field.input === "color";
+}
+
+function colorFormat(field) {
+  if (field.color_format) return field.color_format;
+  if (field.reference_hint === "-1 through -16777216") return "android_int";
+  return "hex";
+}
+
+function androidColorToHex(value) {
+  const n = Number(value);
+  if (Number.isNaN(n)) return "#ffffff";
+  const u = n >>> 0;
+  const r = (u >> 16) & 255;
+  const g = (u >> 8) & 255;
+  const b = u & 255;
+  return `#${[r, g, b].map((part) => part.toString(16).padStart(2, "0")).join("")}`;
+}
+
+function hexToAndroidColorInt(hex) {
+  const normalized = normalizeHexColor(hex);
+  if (!normalized) return null;
+  const raw = normalized.slice(1);
+  const r = parseInt(raw.slice(0, 2), 16);
+  const g = parseInt(raw.slice(2, 4), 16);
+  const b = parseInt(raw.slice(4, 6), 16);
+  const argb = (255 << 24) | (r << 16) | (g << 8) | b;
+  return String(argb | 0);
+}
+
+function normalizeHexColor(value) {
+  const raw = String(value ?? "").trim();
+  if (/^#[0-9a-fA-F]{6}$/.test(raw)) return raw.toLowerCase();
+  if (/^[0-9a-fA-F]{6}$/.test(raw)) return `#${raw.toLowerCase()}`;
+  return null;
+}
+
+function colorValueToHex(field, value) {
+  if (value === null || value === undefined || value === "") {
+    return "#ffffff";
+  }
+  if (colorFormat(field) === "android_int") {
+    return androidColorToHex(value);
+  }
+  return normalizeHexColor(value) || "#ffffff";
+}
+
+function storedColorValue(field, hex) {
+  if (colorFormat(field) === "android_int") {
+    return hexToAndroidColorInt(hex);
+  }
+  return normalizeHexColor(hex);
+}
+
+function renderColorField(field, current, onChange) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "field color-field";
+  wrapper.appendChild(createLabel(field.title || field.key, `pref-${field.key}-picker`));
+  appendFieldDescription(wrapper, field);
+
+  const row = document.createElement("div");
+  row.className = "color-input-row";
+
+  const picker = document.createElement("input");
+  picker.type = "color";
+  picker.id = `pref-${field.key}-picker`;
+  picker.className = "color-picker";
+  picker.value = colorValueToHex(field, current ?? defaultFieldValue(field));
+
+  const valueInput = document.createElement("input");
+  valueInput.type = "text";
+  valueInput.id = `pref-${field.key}`;
+  valueInput.className = "color-value-input";
+  valueInput.placeholder =
+    colorFormat(field) === "android_int" ? "Android color int (e.g. -256)" : "#RRGGBB";
+  if (current !== undefined && current !== null && current !== "") {
+    valueInput.value = String(current);
+  } else {
+    const defaultValue = defaultFieldValue(field);
+    if (defaultValue !== null) valueInput.value = String(defaultValue);
+  }
+
+  const syncFromPicker = () => {
+    const stored = storedColorValue(field, picker.value);
+    valueInput.value = stored ?? "";
+    onChange(stored);
+  };
+
+  const syncFromText = () => {
+    const raw = valueInput.value.trim();
+    if (raw === "") {
+      onChange(null);
+      return;
+    }
+    if (colorFormat(field) === "android_int") {
+      if (!/^-?\d+$/.test(raw)) return;
+      picker.value = androidColorToHex(raw);
+      onChange(raw);
+      return;
+    }
+    const hex = normalizeHexColor(raw);
+    if (!hex) return;
+    picker.value = hex;
+    onChange(hex);
+  };
+
+  picker.addEventListener("input", syncFromPicker);
+  valueInput.addEventListener("change", syncFromText);
+  valueInput.addEventListener("input", () => {
+    if (valueInput.value.trim() === "") onChange(null);
+  });
+
+  row.appendChild(picker);
+  row.appendChild(valueInput);
+  wrapper.appendChild(row);
+  return wrapper;
+}
+
 function isDropdownField(field) {
   if (
     field.input === "tristate" ||
@@ -651,6 +770,10 @@ function isDropdownField(field) {
 
 function renderPreferenceField(field) {
   const current = state.preferences[field.key]?.value;
+
+  if (isColorField(field)) {
+    return renderColorField(field, current, (value) => setPreferenceFromField(field, value));
+  }
 
   if (isDropdownField(field)) {
     return renderSelectField(field, current, (value) => setPreferenceFromField(field, value));

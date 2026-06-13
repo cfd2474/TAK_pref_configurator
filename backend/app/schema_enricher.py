@@ -59,6 +59,7 @@ def reference_field_to_schema_field(ref: dict[str, Any]) -> dict[str, Any]:
         field["java_class"] = ref["java_class"]
     if ref.get("reference_hint"):
         field["reference_hint"] = ref["reference_hint"]
+    _apply_color_field_metadata(field, ref)
     return field
 
 
@@ -113,6 +114,22 @@ def apply_reference_to_field(
         field["storage_type"] = ref["storage_type"]
     if ref.get("java_class"):
         field["java_class"] = ref["java_class"]
+
+    _apply_color_field_metadata(field, ref)
+
+
+def _apply_color_field_metadata(field: dict[str, Any], ref: dict[str, Any]) -> None:
+    hint = ref.get("reference_hint") or ""
+    if hint == "-1 through -16777216":
+        field["input"] = "color"
+        field["color_format"] = "android_int"
+        if field.get("summary") in {hint, ""}:
+            field["summary"] = "Pick a color or enter an Android ARGB integer (e.g. -256 for yellow)."
+    elif hint == "16-bit Hexadecimal Color":
+        field["input"] = "color"
+        field["color_format"] = "hex"
+        if field.get("summary") in {hint, ""}:
+            field["summary"] = "Pick a color or enter a hex value (#RRGGBB)."
 
 
 def mark_non_exportable_navigation_fields(field: dict[str, Any]) -> None:
