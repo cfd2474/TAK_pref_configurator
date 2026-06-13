@@ -16,6 +16,23 @@ const JAVA_CLASSES = {
   float: "class java.lang.Float",
 };
 
+const UNSET_OPTION_LABEL = "-Not Set-";
+
+function isUnsetOption(option) {
+  const value = String(option.value ?? "");
+  if (value !== "") return false;
+  const label = String(option.label ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/^[-—–\s]+|[-—–\s]+$/g, "");
+  return !label || label === "not set" || label === "unset";
+}
+
+function optionLabel(option) {
+  if (isUnsetOption(option)) return UNSET_OPTION_LABEL;
+  return option.label ?? option.value;
+}
+
 const state = {
   schema: null,
   schemaFieldKeys: new Set(),
@@ -512,13 +529,13 @@ function createSelect(options, currentValue, onChange, includeBlank = true) {
   if (includeBlank) {
     const blank = document.createElement("option");
     blank.value = "";
-    blank.textContent = "— Not set —";
+    blank.textContent = UNSET_OPTION_LABEL;
     select.appendChild(blank);
   }
   for (const option of options) {
     const opt = document.createElement("option");
     opt.value = String(option.value);
-    opt.textContent = option.label ?? option.value;
+    opt.textContent = optionLabel(option);
     select.appendChild(opt);
   }
   if (currentValue !== undefined && currentValue !== null && currentValue !== "") {
@@ -829,7 +846,7 @@ function renderPaletteColorField(field, current, onChange) {
   const unset = document.createElement("button");
   unset.type = "button";
   unset.className = "palette-swatch palette-swatch-unset" + (current ? "" : " selected");
-  unset.textContent = "Not set";
+  unset.textContent = UNSET_OPTION_LABEL;
   unset.addEventListener("click", () => onChange(null));
   row.appendChild(unset);
 
