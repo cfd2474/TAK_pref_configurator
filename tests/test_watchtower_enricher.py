@@ -98,3 +98,22 @@ def test_truncated_watchtower_descriptions_keep_schema_summary() -> None:
     timegap = fields["bread_track_timegap_threshold"]["summary"]
     assert "Read More" not in timegap
     assert "split into separate tracks" in timegap
+
+
+def test_hard_truncated_watchtower_descriptions_keep_schema_summary() -> None:
+    schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+    enriched = enrich_schema(schema)
+    fields = _schema_fields(enriched)
+
+    interpolate = fields["elevProfileInterpolateAlt"]["summary"]
+    assert "DTED altitudes" in interpolate
+    assert interpolate.endswith(".")
+
+    seeker = fields["elevProfileCenterOnSeeker"]["summary"]
+    assert "seeker marker" in seeker
+
+    gpx = fields["gpxImportCheckpointsForNamedRoutePoints"]["summary"]
+    assert "GPX checkpoints along the route" in gpx
+
+    ignore_elev = fields["kmlExportGroundClamp"]["summary"]
+    assert "elevation data contained within the route" in ignore_elev

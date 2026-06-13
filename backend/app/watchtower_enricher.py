@@ -86,7 +86,15 @@ def _clean_watchtower_description(description: str) -> str:
 
 
 def _is_truncated_watchtower_description(description: str) -> bool:
-    return bool(re.search(r"\.\.\.|Read More", description, flags=re.IGNORECASE))
+    if re.search(r"\.\.\.|Read More", description, flags=re.IGNORECASE):
+        return True
+    text = description.strip()
+    if not text:
+        return False
+    if text[-1] in ".!?\"'":
+        return False
+    # Watchtower MDM preview text is capped around 48 characters without ellipsis.
+    return len(text) >= 40
 
 
 def _choose_field_summary(existing_summary: str, watchtower_description: str) -> str:
@@ -95,8 +103,12 @@ def _choose_field_summary(existing_summary: str, watchtower_description: str) ->
     if not cleaned:
         return existing
     if _is_truncated_watchtower_description(watchtower_description):
-        if existing and len(existing) >= len(cleaned):
+        if existing and (
+            len(existing) > len(cleaned)
+            or existing[-1] in ".!?\"'"
+        ):
             return existing
+        return existing
     if len(cleaned) > len(existing):
         return cleaned
     return existing or cleaned
