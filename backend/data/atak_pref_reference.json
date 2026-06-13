@@ -1,0 +1,6372 @@
+{
+  "source": "ATAK-Preferences-Key.xlsx",
+  "sheet": "ATAK Core",
+  "keys": {
+    "locationCallsign": {
+      "item": "My Callsign",
+      "key": "locationCallsign",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "device_preferences_category",
+      "category_title": "Device Preferences",
+      "menu_key": "devicePrefs",
+      "menu_title": "Device Preferences"
+    },
+    "locationTeam": {
+      "item": "My Team",
+      "key": "locationTeam",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "White",
+          "value": "White"
+        },
+        {
+          "label": "Yellow",
+          "value": "Yellow"
+        },
+        {
+          "label": "Orange",
+          "value": "Orange"
+        },
+        {
+          "label": "Magenta",
+          "value": "Magenta"
+        },
+        {
+          "label": "Red",
+          "value": "Red"
+        },
+        {
+          "label": "Maroon",
+          "value": "Maroon"
+        },
+        {
+          "label": "Purple",
+          "value": "Purple"
+        },
+        {
+          "label": "Dark Blue",
+          "value": "Dark Blue"
+        },
+        {
+          "label": "Blue",
+          "value": "Blue"
+        },
+        {
+          "label": "Cyan",
+          "value": "Cyan"
+        },
+        {
+          "label": "Teal",
+          "value": "Teal"
+        },
+        {
+          "label": "Green",
+          "value": "Green"
+        },
+        {
+          "label": "Dark Green",
+          "value": "Dark Green"
+        },
+        {
+          "label": "Brown",
+          "value": "Brown"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "device_preferences_category",
+      "category_title": "Device Preferences",
+      "menu_key": "devicePrefs",
+      "menu_title": "Device Preferences"
+    },
+    "atakRoleType": {
+      "item": "My Role",
+      "key": "atakRoleType",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Team Member",
+          "value": "Team Member"
+        },
+        {
+          "label": "Team Lead",
+          "value": "Team Lead"
+        },
+        {
+          "label": "HQ",
+          "value": "HQ"
+        },
+        {
+          "label": "Sniper",
+          "value": "Sniper"
+        },
+        {
+          "label": "Medic",
+          "value": "Medic"
+        },
+        {
+          "label": "Forward Observer",
+          "value": "Forward Observer"
+        },
+        {
+          "label": "RTO",
+          "value": "RTO"
+        },
+        {
+          "label": "K9",
+          "value": "K9"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "device_preferences_category",
+      "category_title": "Device Preferences",
+      "menu_key": "devicePrefs",
+      "menu_title": "Device Preferences"
+    },
+    "locationUnitType": {
+      "item": "My Display Type",
+      "key": "locationUnitType",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Ground Troop",
+          "value": "Ground Troop"
+        },
+        {
+          "label": "Armored Vehicle",
+          "value": "Armored Vehicle"
+        },
+        {
+          "label": "Civilian Vehicle",
+          "value": "Civilian Vehicle"
+        },
+        {
+          "label": "Generic Air Unit",
+          "value": "Generic Air Unit"
+        },
+        {
+          "label": "Generic Ground Unit",
+          "value": "Generic Ground Unit"
+        },
+        {
+          "label": "Generic Sea Surface Unit",
+          "value": "Generic Sea Surface Unit"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "device_preferences_category",
+      "category_title": "Device Preferences",
+      "menu_key": "devicePrefs",
+      "menu_title": "Device Preferences"
+    },
+    "mockingOption": {
+      "item": "GPS Option",
+      "key": "mockingOption",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Ignore Internal GPS / Use External or Network GPS Only",
+          "value": "IgnoreInternalGPS"
+        },
+        {
+          "label": "Internal GPS Only",
+          "value": "LocalGPS"
+        },
+        {
+          "label": "External or Network GPS / Fallback Internal GPS",
+          "value": "WRGPS"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "networkGpsCategory",
+      "category_title": "GPS Preferences",
+      "menu_key": "gpsSettings",
+      "menu_title": "GPS Preferences"
+    },
+    "listenPort": {
+      "item": "Network GPS Port",
+      "key": "listenPort",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0 - 65535 (Default 4349)",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "networkGpsCategory",
+      "category_title": "GPS Preferences",
+      "menu_key": "gpsSettings",
+      "menu_title": "GPS Preferences"
+    },
+    "useGPSTime": {
+      "item": "Use GPS Time",
+      "key": "useGPSTime",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "networkGpsCategory",
+      "category_title": "GPS Preferences",
+      "menu_key": "gpsSettings",
+      "menu_title": "GPS Preferences"
+    },
+    "useTerrainElevationSelfMarker": {
+      "item": "Use Elevation Data instead of GPS Elevation",
+      "key": "useTerrainElevationSelfMarker",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "networkGpsCategory",
+      "category_title": "GPS Preferences",
+      "menu_key": "gpsSettings",
+      "menu_title": "GPS Preferences"
+    },
+    "nonBluetoothLaserRangeFinder": {
+      "item": "Non-Bluetooth Laser Range Finders Support",
+      "key": "nonBluetoothLaserRangeFinder",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "lrfCategory",
+      "category_title": "Laser Range Finder Preferences",
+      "menu_key": "lrfSettings",
+      "menu_title": "Laser Range Finder Preferences"
+    },
+    "locationUseWRCallsign": {
+      "item": "Use Wave Relay Callsign",
+      "key": "locationUseWRCallsign",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "lrfCategory",
+      "category_title": "Laser Range Finder Preferences",
+      "menu_key": "lrfSettings",
+      "menu_title": "Laser Range Finder Preferences"
+    },
+    "atakControlBluetooth": {
+      "item": "Bluetooth Support",
+      "key": "atakControlBluetooth",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "bluetooth_preferences_category",
+      "category_title": "Bluetooth Preferences",
+      "menu_key": "bluetooth",
+      "menu_title": "Bluetooth"
+    },
+    "atakBluetoothReconnectSeconds": {
+      "item": "Bluetooth Reconnect Time",
+      "key": "atakBluetoothReconnectSeconds",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bluetooth_preferences_category",
+      "category_title": "Bluetooth Preferences",
+      "menu_key": "bluetooth",
+      "menu_title": "Bluetooth"
+    },
+    "saHasPhoneNumber": {
+      "item": "Publish Phone Number",
+      "key": "saHasPhoneNumber",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "alternateContactCategory",
+      "category_title": "Contact Preferences",
+      "menu_key": "contactPrefs",
+      "menu_title": "Contact Preferences"
+    },
+    "saSipAddressAssignment": {
+      "item": "Publish VoIP Number",
+      "key": "saSipAddressAssignment",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "alternateContactCategory",
+      "category_title": "Contact Preferences",
+      "menu_key": "contactPrefs",
+      "menu_title": "Contact Preferences"
+    },
+    "saSipAddress": {
+      "item": "VoIP Number",
+      "key": "saSipAddress",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "No VOIP",
+          "value": "No VOIP"
+        },
+        {
+          "label": "Manual Entry",
+          "value": "Manual Entry"
+        },
+        {
+          "label": "Use IP Address",
+          "value": "Use IP Address"
+        },
+        {
+          "label": "Use Callsign and IP Address",
+          "value": "Use Callsign and IP Address"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "alternateContactCategory",
+      "category_title": "Contact Preferences",
+      "menu_key": "contactPrefs",
+      "menu_title": "Contact Preferences"
+    },
+    "saXmppUsername": {
+      "item": "Publish XMPP Username",
+      "key": "saXmppUsername",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "alternateContactCategory",
+      "category_title": "Contact Preferences",
+      "menu_key": "contactPrefs",
+      "menu_title": "Contact Preferences"
+    },
+    "saEmailAddress": {
+      "item": "Publish Preferred Email",
+      "key": "saEmailAddress",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "alternateContactCategory",
+      "category_title": "Contact Preferences",
+      "menu_key": "contactPrefs",
+      "menu_title": "Contact Preferences"
+    },
+    "saURN": {
+      "item": "Unit Reference Number",
+      "key": "saURN",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0 - 16777215",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "alternateContactCategory",
+      "category_title": "Contact Preferences",
+      "menu_key": "contactPrefs",
+      "menu_title": "Contact Preferences"
+    },
+    "dispatchLocationCotExternal": {
+      "item": "Send Location Over Network",
+      "key": "dispatchLocationCotExternal",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "dispatchLocationHidden": {
+      "item": "Hide my current position",
+      "key": "dispatchLocationHidden",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "locationReportingStrategy": {
+      "item": "Reporting Strategy",
+      "key": "locationReportingStrategy",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Dynamic",
+          "value": "Dynamic"
+        },
+        {
+          "label": "Constant",
+          "value": "Constant"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "dynamicReportingRateStationaryUnreliable": {
+      "item": "Dynamic Reporting Rate Stationary (Unreliable)",
+      "key": "dynamicReportingRateStationaryUnreliable",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "dynamicReportingRateMinUnreliable": {
+      "item": "Dynamic Reporting Rate Minimum (Unreliable)",
+      "key": "dynamicReportingRateMinUnreliable",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "dynamicReportingRateMaxUnreliable": {
+      "item": "Dynamic Reporting Rate Maximum (Unreliable)",
+      "key": "dynamicReportingRateMaxUnreliable",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "dynamicReportingRateStationaryReliable": {
+      "item": "Dynamic Reporting Rate Stationary (Reliable)",
+      "key": "dynamicReportingRateStationaryReliable",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "dynamicReportingRateMinReliable": {
+      "item": "Dynamic Reporting Rate Minimum (Reliable)",
+      "key": "dynamicReportingRateMinReliable",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "dynamicReportingRateMaxReliable": {
+      "item": "Dynamic Reporting Rate Maximum (Reliable)",
+      "key": "dynamicReportingRateMaxReliable",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "constantReportingRateUnreliable": {
+      "item": "Constant Reporting Rate (Unreliable)",
+      "key": "constantReportingRateUnreliable",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "constantReportingRateReliable": {
+      "item": "Constant Reporting Rate (Reliable)",
+      "key": "constantReportingRateReliable",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "dispatchLocationCotExternalAtStart": {
+      "item": "Report Location before obtaining location fix",
+      "key": "dispatchLocationCotExternalAtStart",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "encryptionPassphrase": {
+      "item": "Change Encryption Passphrase",
+      "key": "encryptionPassphrase",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "publishCategory",
+      "category_title": "Reporting Preferences",
+      "menu_key": "encryptPassword",
+      "menu_title": "Encryption Password"
+    },
+    "savePrefs": {
+      "item": "Save Preferences",
+      "key": "savePrefs",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "preference_management_category",
+      "category_title": "Preference Management",
+      "menu_key": "prefManage",
+      "menu_title": "Preference Management"
+    },
+    "loadPrefs": {
+      "item": "Load Preferences",
+      "key": "loadPrefs",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "preference_management_category",
+      "category_title": "Preference Management",
+      "menu_key": "prefManage",
+      "menu_title": "Preference Management"
+    },
+    "loadPartialPrefs": {
+      "item": "Load Preference Category",
+      "key": "loadPartialPrefs",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "preference_management_category",
+      "category_title": "Preference Management",
+      "menu_key": "prefManage",
+      "menu_title": "Preference Management"
+    },
+    "prepareForClone": {
+      "item": "Prepare for Cloning / Clear Device unique information",
+      "key": "prepareForClone",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "preference_management_category",
+      "category_title": "Preference Management",
+      "menu_key": "prefManage",
+      "menu_title": "Preference Management"
+    },
+    "dataPackage": {
+      "item": "Data Package",
+      "key": "dataPackage",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_preferences_category",
+      "category_title": "Network Preferences",
+      "menu_key": "serverConnections",
+      "menu_title": "Server Connections"
+    },
+    "quickConnect": {
+      "item": "Quick Connect",
+      "key": "quickConnect",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_preferences_category",
+      "category_title": "Network Preferences",
+      "menu_key": "serverConnections",
+      "menu_title": "Server Connections"
+    },
+    "advanced_network_settings": {
+      "item": "Network Preferences",
+      "key": "advanced_network_settings",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_preferences_category",
+      "category_title": "Network Preferences",
+      "menu_key": "serverConnections",
+      "menu_title": "Server Connections"
+    },
+    "showIP": {
+      "item": "My Primary IP Address:",
+      "key": "showIP",
+      "reference_type": "Information",
+      "type": "information",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_preferences_category",
+      "category_title": "Network Preferences",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "manageStreamingLink": {
+      "item": "Manage Server Connections",
+      "key": "manageStreamingLink",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "displayServerConnectionWidget": {
+      "item": "Display Connection Widget",
+      "key": "displayServerConnectionWidget",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "monitorServerConnections": {
+      "item": "Monitor Server Connections",
+      "key": "monitorServerConnections",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "caLocation": {
+      "item": "Default SSL/TLS TrustStore Location",
+      "key": "caLocation",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "caPassword": {
+      "item": "Default SSL/TLS TrustStore Password",
+      "key": "caPassword",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "certificateLocation": {
+      "item": "Default SSL/TLS Client Certificate Store",
+      "key": "certificateLocation",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "clientPassword": {
+      "item": "Default SSL/TLS Client Certificate Password",
+      "key": "clientPassword",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "default_client_credentials": {
+      "item": "Default SSL/TLS Credentials",
+      "key": "default_client_credentials",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "apiSecureServerPort": {
+      "item": "Secure Server API port",
+      "key": "apiSecureServerPort",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-65535",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "apiUnsecureServerPort": {
+      "item": "Unsecure Server API port",
+      "key": "apiUnsecureServerPort",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-65535",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "apiCertEnrollmentPort": {
+      "item": "Certificate Enrollment API port",
+      "key": "apiCertEnrollmentPort",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-65535",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "apiCertEnrollmentKeyLength": {
+      "item": "Certificate Enrollment Key Length",
+      "key": "apiCertEnrollmentKeyLength",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "certEnrollmentExport": {
+      "item": "Enable Client Certificate Export",
+      "key": "certEnrollmentExport",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "deviceProfileEnableOnConnect": {
+      "item": "Apply TAK Server profile updates",
+      "key": "deviceProfileEnableOnConnect",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "server_connections_category",
+      "category_title": "Server Connections",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "enableNonStreamingConnections": {
+      "item": "Enable Mesh Network Mode",
+      "key": "enableNonStreamingConnections",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "input_output_management_category",
+      "category_title": "Input/Output Management",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "configureNonStreamingEncryption": {
+      "item": "Configure AES-256 Mesh Encryption",
+      "key": "configureNonStreamingEncryption",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "input_output_management_category",
+      "category_title": "Input/Output Management",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "autoDisableMeshSAWhenStreaming": {
+      "item": "Auto Manage Mesh Network Self SA Mode",
+      "key": "autoDisableMeshSAWhenStreaming",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "input_output_management_category",
+      "category_title": "Input/Output Management",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "manageInputsLink": {
+      "item": "Manage Inputs",
+      "key": "manageInputsLink",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "input_output_management_category",
+      "category_title": "Input/Output Management",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "manageOutputsLink": {
+      "item": "Manage Outputs",
+      "key": "manageOutputsLink",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "input_output_management_category",
+      "category_title": "Input/Output Management",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "tcpConnectTimeout": {
+      "item": "TCP Connection Timeout",
+      "key": "tcpConnectTimeout",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_tweaks_category",
+      "category_title": "Network Tweaks",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "udpNoDataTimeout": {
+      "item": "Multicast Network Rejoin interval",
+      "key": "udpNoDataTimeout",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_tweaks_category",
+      "category_title": "Network Tweaks",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "multicastTTL": {
+      "item": "Multicast TTL",
+      "key": "multicastTTL",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_tweaks_category",
+      "category_title": "Network Tweaks",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "network_multicast_loopback": {
+      "item": "Multicast Traffic Loopback",
+      "key": "network_multicast_loopback",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "network_tweaks_category",
+      "category_title": "Network Tweaks",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "ppp0_highspeed_capable": {
+      "item": "Point-to-Point Link High Speed Capable",
+      "key": "ppp0_highspeed_capable",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "network_tweaks_category",
+      "category_title": "Network Tweaks",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "waveRelayRedirect": {
+      "item": "Legacy Wave Relay Redirect",
+      "key": "waveRelayRedirect",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "network_tweaks_category",
+      "category_title": "Network Tweaks",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "httpClientPermissiveMode": {
+      "item": "Enable VPN Proxy Mode",
+      "key": "httpClientPermissiveMode",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "network_tweaks_category",
+      "category_title": "Network Tweaks",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "tadiljPersistedIds": {
+      "item": "Manage Persisted IDs",
+      "key": "tadiljPersistedIds",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "tadilj_settings_category",
+      "category_title": "Datalink Preferences",
+      "menu_key": "tadiljSettings",
+      "menu_title": "Datalink Preferences"
+    },
+    "appsPref": {
+      "item": "Package Management",
+      "key": "appsPref",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "tools_preferences_category",
+      "category_title": "Tools Preferences",
+      "menu_key": "toolPrefs",
+      "menu_title": "Tool Preferences"
+    },
+    "autostart_nineline": {
+      "item": "Auto Start on Placement",
+      "key": "autostart_nineline",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "autostart_nineline_type": {
+      "item": "Auto Start Menu",
+      "key": "autostart_nineline_type",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "cas",
+          "value": "cas"
+        },
+        {
+          "label": "cff",
+          "value": "cff"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "prone_standing_coloring": {
+      "item": "Danger Close Coloring",
+      "key": "prone_standing_coloring",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "keyhole_cas": {
+      "item": "Use Keyhole CAS",
+      "key": "keyhole_cas",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "fahDistance": {
+      "item": "FAH Distance (NM)",
+      "key": "fahDistance",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-21600",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "fahWidth": {
+      "item": "Default FAH Width",
+      "key": "fahWidth",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-180",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "fahOnCreation": {
+      "item": "Automatically Display FAH",
+      "key": "fahOnCreation",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "fahReciprocalOnCreation": {
+      "item": "Automatically Display Reciprocal FAH",
+      "key": "fahReciprocalOnCreation",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "laserBasketDistance": {
+      "item": "Laser Basket Distance (NM)",
+      "key": "laserBasketDistance",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-21600",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "laserBasketDegrees": {
+      "item": "Laser Basket Measurements",
+      "key": "laserBasketDegrees",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "nineline_fah_edit_always": {
+      "item": "FAH Always Edit Mode",
+      "key": "nineline_fah_edit_always",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "enableGeocoder": {
+      "item": "Enable Address Lookup (Geocoder)",
+      "key": "enableGeocoder",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "selected_geocoder_uid": {
+      "item": "Address Provider",
+      "key": "selected_geocoder_uid",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "geocodeTestConnection": {
+      "item": "Test Address Provider",
+      "key": "geocodeTestConnection",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "specific_tool_preferences_category",
+      "category_title": "Specific Tool Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "alert_notification": {
+      "item": "Notification",
+      "key": "alert_notification",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "alert_preferences_category",
+      "category_title": "Alert Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "individual_alert_notification": {
+      "item": "Individual Alert Notifications",
+      "key": "individual_alert_notification",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "alert_preferences_category",
+      "category_title": "Alert Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "alert_audible": {
+      "item": "Audible alert",
+      "key": "alert_audible",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "alert_preferences_category",
+      "category_title": "Alert Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "alert_vibration": {
+      "item": "Vibration alert",
+      "key": "alert_vibration",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "alert_preferences_category",
+      "category_title": "Alert Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "sms_numbers": {
+      "item": "Alert SMS Numbers",
+      "key": "sms_numbers",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric 11-15 digits",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "alert_preferences_category",
+      "category_title": "Alert Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "rab_bloodhound_display_textwidget": {
+      "item": "Display Bloodhound Text Widget",
+      "key": "rab_bloodhound_display_textwidget",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "bloodhound_preference_category",
+      "category_title": "Bloodhound Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "rab_bloodhound_large_textwidget": {
+      "item": "Display Large Bloodhound Text Widget",
+      "key": "rab_bloodhound_large_textwidget",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "bloodhound_preference_category",
+      "category_title": "Bloodhound Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "rab_bloodhound_flash_colors": {
+      "item": "Flash When Closing In",
+      "key": "rab_bloodhound_flash_colors",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "bloodhound_preference_category",
+      "category_title": "Bloodhound Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "rab_bloodhound_zoom": {
+      "item": "Toggle Auto Zoom",
+      "key": "rab_bloodhound_zoom",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "bloodhound_preference_category",
+      "category_title": "Bloodhound Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_flash_eta": {
+      "item": "Flash ETA Threshold",
+      "key": "bloodhound_flash_eta",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_eta_preference_category",
+      "category_title": "Bloodhound ETA Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_outer_eta": {
+      "item": "Outer/Middle ETA Threshold",
+      "key": "bloodhound_outer_eta",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_eta_preference_category",
+      "category_title": "Bloodhound ETA Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_inner_eta": {
+      "item": "Middle/Inner ETA Threshold",
+      "key": "bloodhound_inner_eta",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_eta_preference_category",
+      "category_title": "Bloodhound ETA Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_flash_color_pref": {
+      "item": "Flash Color",
+      "key": "bloodhound_flash_color_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "red",
+          "value": "red"
+        },
+        {
+          "label": "yellow",
+          "value": "yellow"
+        },
+        {
+          "label": "green",
+          "value": "green"
+        },
+        {
+          "label": "cyan",
+          "value": "cyan"
+        },
+        {
+          "label": "blue",
+          "value": "blue"
+        },
+        {
+          "label": "magenta",
+          "value": "magenta"
+        },
+        {
+          "label": "white",
+          "value": "white"
+        },
+        {
+          "label": "black",
+          "value": "black"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_eta_preference_category",
+      "category_title": "Bloodhound ETA Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_outer_color_pref": {
+      "item": "Outer ETA Color",
+      "key": "bloodhound_outer_color_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "red",
+          "value": "red"
+        },
+        {
+          "label": "yellow",
+          "value": "yellow"
+        },
+        {
+          "label": "green",
+          "value": "green"
+        },
+        {
+          "label": "cyan",
+          "value": "cyan"
+        },
+        {
+          "label": "blue",
+          "value": "blue"
+        },
+        {
+          "label": "magenta",
+          "value": "magenta"
+        },
+        {
+          "label": "white",
+          "value": "white"
+        },
+        {
+          "label": "black",
+          "value": "black"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_eta_preference_category",
+      "category_title": "Bloodhound ETA Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_middle_color_pref": {
+      "item": "Middle ETA Color",
+      "key": "bloodhound_middle_color_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "red",
+          "value": "red"
+        },
+        {
+          "label": "yellow",
+          "value": "yellow"
+        },
+        {
+          "label": "green",
+          "value": "green"
+        },
+        {
+          "label": "cyan",
+          "value": "cyan"
+        },
+        {
+          "label": "blue",
+          "value": "blue"
+        },
+        {
+          "label": "magenta",
+          "value": "magenta"
+        },
+        {
+          "label": "white",
+          "value": "white"
+        },
+        {
+          "label": "black",
+          "value": "black"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_eta_preference_category",
+      "category_title": "Bloodhound ETA Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_inner_color_pref": {
+      "item": "Inner ETA Color",
+      "key": "bloodhound_inner_color_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "red",
+          "value": "red"
+        },
+        {
+          "label": "yellow",
+          "value": "yellow"
+        },
+        {
+          "label": "green",
+          "value": "green"
+        },
+        {
+          "label": "cyan",
+          "value": "cyan"
+        },
+        {
+          "label": "blue",
+          "value": "blue"
+        },
+        {
+          "label": "magenta",
+          "value": "magenta"
+        },
+        {
+          "label": "white",
+          "value": "white"
+        },
+        {
+          "label": "black",
+          "value": "black"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_eta_preference_category",
+      "category_title": "Bloodhound ETA Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_reroute_distance_pref": {
+      "item": "Reroute distance",
+      "key": "bloodhound_reroute_distance_pref",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_routing_preference",
+      "category_title": "Bloodhound Routing Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_reroute_timer_pref": {
+      "item": "Reroute timer frequency",
+      "key": "bloodhound_reroute_timer_pref",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bloodhound_routing_preference",
+      "category_title": "Bloodhound Routing Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "enableToast": {
+      "item": "Display Notification",
+      "key": "enableToast",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "notification_preferences_category",
+      "category_title": "Notification Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "vibratePhone": {
+      "item": "Vibrate phone",
+      "key": "vibratePhone",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "notification_preferences_category",
+      "category_title": "Notification Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "audibleNotify": {
+      "item": "Audible Chat notifications",
+      "key": "audibleNotify",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "notification_preferences_category",
+      "category_title": "Notification Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "exportHistory": {
+      "item": "Export Chat History",
+      "key": "exportHistory",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "history_preferences_category",
+      "category_title": "History Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "clearHistory": {
+      "item": "Clear History",
+      "key": "clearHistory",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "history_preferences_category",
+      "category_title": "History Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "chatAddress": {
+      "item": "Chat Address",
+      "key": "chatAddress",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "1.1.1.1 - 255.255.255.255",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "geochat_network_preferences_category",
+      "category_title": "Geo Chat(Mesh) Network Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "chatPort": {
+      "item": "Chat Port",
+      "key": "chatPort",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-65535",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "geochat_network_preferences_category",
+      "category_title": "Geo Chat(Mesh) Network Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "filesharingEnabled": {
+      "item": "Enable file sharing.",
+      "key": "filesharingEnabled",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "geochat_network_preferences_category",
+      "category_title": "Geo Chat(Mesh) Network Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "filesharingSizeThresholdNoGo": {
+      "item": "File Transfer Max size",
+      "key": "filesharingSizeThresholdNoGo",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "geochat_network_preferences_category",
+      "category_title": "Geo Chat(Mesh) Network Preferences",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "fileshareDownloadAttempts": {
+      "item": "Download attempts",
+      "key": "fileshareDownloadAttempts",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "advanced_network_settings",
+      "category_title": "Advanced Network Settings",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "filesharingWebServerLegacyHttpEnabled": {
+      "item": "Allow HTTP transfers",
+      "key": "filesharingWebServerLegacyHttpEnabled",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "advanced_network_settings",
+      "category_title": "Advanced Network Settings",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "filesharingWebServerPort": {
+      "item": "Server port",
+      "key": "filesharingWebServerPort",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-65535",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "advanced_network_settings",
+      "category_title": "Advanced Network Settings",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "filesharingSecureWebServerPort": {
+      "item": "Secure Server port",
+      "key": "filesharingSecureWebServerPort",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-65535",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "advanced_network_settings",
+      "category_title": "Advanced Network Settings",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "filesharingConnectionTimeoutSecs": {
+      "item": "File Transfer Connection Timeout",
+      "key": "filesharingConnectionTimeoutSecs",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "advanced_network_settings",
+      "category_title": "Advanced Network Settings",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "filesharingTransferTimeoutSecs": {
+      "item": "File Transfer Failure Timeout",
+      "key": "filesharingTransferTimeoutSecs",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "advanced_network_settings",
+      "category_title": "Advanced Network Settings",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "filesharingAllServers": {
+      "item": "Use All Servers",
+      "key": "filesharingAllServers",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "advanced_network_settings",
+      "category_title": "Advanced Network Settings",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "prefs_dted_stream_server": {
+      "item": "Elevation Server",
+      "key": "prefs_dted_stream_server",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "prefs_dted_download": {
+      "item": "Elevation Downloader",
+      "key": "prefs_dted_download",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "prefs_dted_stream": {
+      "item": "Stream Elevation Data",
+      "key": "prefs_dted_stream",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "prefs_dted_visible": {
+      "item": "Show by Default",
+      "key": "prefs_dted_visible",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "rapid_mgrs_dialog": {
+      "item": "Rapid MGRS Entry Mode",
+      "key": "rapid_mgrs_dialog",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "spiUpdateDelay": {
+      "item": "DP/SPI Update Period",
+      "key": "spiUpdateDelay",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "hostileUpdateDelay": {
+      "item": "Automatically Broadcast a Marker",
+      "key": "hostileUpdateDelay",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        },
+        {
+          "label": "60",
+          "value": "60"
+        },
+        {
+          "label": "90",
+          "value": "90"
+        },
+        {
+          "label": "120",
+          "value": "120"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "legacyFiresToolbarMode": {
+      "item": "Legacy Toolbar Mode",
+      "key": "legacyFiresToolbarMode",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "firesNumberOfSpis": {
+      "item": "Number of DP/SPIs",
+      "key": "firesNumberOfSpis",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "1",
+          "value": "1"
+        },
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "spiFahSize": {
+      "item": "DP/RedX FAH Width",
+      "key": "spiFahSize",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "0-180",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "expandedDangerClose": {
+      "item": "Expanded Danger Close Search",
+      "key": "expandedDangerClose",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "elevation_data_category",
+      "category_title": "Elevation Data",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "redeploywms": {
+      "item": "Redeploy WMS Sources",
+      "key": "redeploywms",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "wms_preferences_category",
+      "category_title": "WMS Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "wms_connect_timeout": {
+      "item": "WMS Connect Timeout",
+      "key": "wms_connect_timeout",
+      "reference_type": "Integer",
+      "type": "integer",
+      "exportable": true,
+      "reference_hint": "3000",
+      "storage_type": "integer",
+      "java_class": "class java.lang.Integer",
+      "category_key": "wms_preferences_category",
+      "category_title": "WMS Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "volumemapswitcher": {
+      "item": "Enable Volume Keys rotating map layers",
+      "key": "volumemapswitcher",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "wms_preferences_category",
+      "category_title": "WMS Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "prefs_layer_grg_map_interaction": {
+      "item": "Enable Image Overlay Map Interaction",
+      "key": "prefs_layer_grg_map_interaction",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "wms_preferences_category",
+      "category_title": "WMS Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "collect_metrics": {
+      "item": "Collect Metrics",
+      "key": "collect_metrics",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "realtime_metrics": {
+      "item": "Live Metrics",
+      "key": "realtime_metrics",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "app_logging_preferences_category",
+      "category_title": "App Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "generate_full_pool": {
+      "item": "Advanced CoT Recorder",
+      "key": "generate_full_pool",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "generate_detail_pool": {
+      "item": "Advanced CoT Details Recorder",
+      "key": "generate_detail_pool",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "waypointPrefix": {
+      "item": "Checkpoint Name Prefix",
+      "key": "waypointPrefix",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "route_preferences_category",
+      "category_title": "Route Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "defaultRouteColor": {
+      "item": "Default for unspecified Route Colors",
+      "key": "defaultRouteColor",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "-1 through -16777216",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "route_preferences_category",
+      "category_title": "Route Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "route_track_up_locked_on": {
+      "item": "Traditional Navigation Mode",
+      "key": "route_track_up_locked_on",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "route_preferences_category",
+      "category_title": "Route Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "useRouteVoiceCues": {
+      "item": "Navigational Voice Cues",
+      "key": "useRouteVoiceCues",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "route_preferences_category",
+      "category_title": "Route Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "route_vibrate_at_checkpoint": {
+      "item": "Vibrate When Arriving at Checkpoint",
+      "key": "route_vibrate_at_checkpoint",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "route_preferences_category",
+      "category_title": "Route Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointBubble.Walking": {
+      "item": "Walking Checkpoint Navigation Bubble Radius",
+      "key": "waypointBubble.Walking",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "walking_category",
+      "category_title": "Walking",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointOffRouteBubble.Walking": {
+      "item": "Walking Off Route Bubble Radius",
+      "key": "waypointOffRouteBubble.Walking",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "walking_category",
+      "category_title": "Walking",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointBubble.Driving": {
+      "item": "Driving Checkpoint Navigation Bubble Radius",
+      "key": "waypointBubble.Driving",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "driving_category",
+      "category_title": "Driving",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointOffRouteBubble.Driving": {
+      "item": "Driving Off Route Bubble Radius",
+      "key": "waypointOffRouteBubble.Driving",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "driving_category",
+      "category_title": "Driving",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointBubble.Flying": {
+      "item": "Flying Checkpoint Navigation Bubble Radius",
+      "key": "waypointBubble.Flying",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "flying_category",
+      "category_title": "Flying",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointOffRouteBubble.Flying": {
+      "item": "Flying Off Route Bubble Radius",
+      "key": "waypointOffRouteBubble.Flying",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "flying_category",
+      "category_title": "Flying",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointBubble.Swimming": {
+      "item": "Swimming Checkpoint Navigation Bubble Radius",
+      "key": "waypointBubble.Swimming",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "swimming_category",
+      "category_title": "Swimming",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointOffRouteBubble.Swimming": {
+      "item": "Swimming Off Route Bubble Radius",
+      "key": "waypointOffRouteBubble.Swimming",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "swimming_category",
+      "category_title": "Swimming",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointBubble.Watercraft": {
+      "item": "Watercraft Checkpoint Navigation Bubble Radius",
+      "key": "waypointBubble.Watercraft",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "watercraft_category",
+      "category_title": "Watercraft",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "waypointOffRouteBubble.Watercraft": {
+      "item": "Watercraft Off Route Bubble Radius",
+      "key": "waypointOffRouteBubble.Watercraft",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "watercraft_category",
+      "category_title": "Watercraft",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "route_billboard_enabled": {
+      "item": "Show Attachment Billboards",
+      "key": "route_billboard_enabled",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "attachment_billboards_category",
+      "category_title": "Attachment Billboards",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "route_billboard_distance_m": {
+      "item": "Billboard Render Distance",
+      "key": "route_billboard_distance_m",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "attachment_billboards_category",
+      "category_title": "Attachment Billboards",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "elevProfileInterpolateAlt": {
+      "item": "Elevation Profile Interpolate Altitudes",
+      "key": "elevProfileInterpolateAlt",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_category",
+      "category_title": "Other",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "elevProfileCenterOnSeeker": {
+      "item": "Elevation Profile Center on Seeker",
+      "key": "elevProfileCenterOnSeeker",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_category",
+      "category_title": "Other",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "gpxImportCheckpointsForNamedRoutePoints": {
+      "item": "GPX Import Checkpoints",
+      "key": "gpxImportCheckpointsForNamedRoutePoints",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_category",
+      "category_title": "Other",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "kmlExportGroundClamp": {
+      "item": "Ignore Elevation Data",
+      "key": "kmlExportGroundClamp",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_category",
+      "category_title": "Other",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "kmlExportCheckpointMode": {
+      "item": "KML Export Checkpoint Mode",
+      "key": "kmlExportCheckpointMode",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Points",
+          "value": "Points"
+        },
+        {
+          "label": "Line",
+          "value": "Line"
+        },
+        {
+          "label": "Both",
+          "value": "Both"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_category",
+      "category_title": "Other",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "network_config": {
+      "item": "Internal Network Configuration",
+      "key": "network_config",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "configuration_category",
+      "category_title": "Configuration",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "network_dhcp": {
+      "item": "DHCP",
+      "key": "network_dhcp",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "configuration_category",
+      "category_title": "Configuration",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "network_static_ip_address": {
+      "item": "IP address",
+      "key": "network_static_ip_address",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "1.1.1.1 - 255.255.255.255",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "address_category",
+      "category_title": "Address",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "network_static_subnet_mask": {
+      "item": "Subnet mask",
+      "key": "network_static_subnet_mask",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "1.1.1.1 - 255.255.255.255",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "address_category",
+      "category_title": "Address",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "network_static_gateway": {
+      "item": "Default gateway",
+      "key": "network_static_gateway",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "1.1.1.1 - 255.255.255.255",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "address_category",
+      "category_title": "Address",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "network_static_dns1": {
+      "item": "DNS 1",
+      "key": "network_static_dns1",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "1.1.1.1 - 255.255.255.255",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "dns_servers_category",
+      "category_title": "DNS Servers",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "network_static_dns2": {
+      "item": "DNS 2",
+      "key": "network_static_dns2",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "1.1.1.1 - 255.255.255.255",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "dns_servers_category",
+      "category_title": "DNS Servers",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "toggle_log_tracks": {
+      "item": "Log Tracks",
+      "key": "toggle_log_tracks",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "track_history_preferences_category",
+      "category_title": "Track History Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "track_prefix": {
+      "item": "Track Prefix",
+      "key": "track_prefix",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Alphanumeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "track_history_preferences_category",
+      "category_title": "Track History Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "toggle_rotate_track_colors": {
+      "item": "Auto Rotate Track Colors",
+      "key": "toggle_rotate_track_colors",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "track_history_preferences_category",
+      "category_title": "Track History Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "track_history_default_color": {
+      "item": "Default Color",
+      "key": "track_history_default_color",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "-1 through -16777216",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "track_history_preferences_category",
+      "category_title": "Track History Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "track_csv_export_headers": {
+      "item": "CSV Export Header",
+      "key": "track_csv_export_headers",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "track_history_preferences_category",
+      "category_title": "Track History Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "track_kml_export_timestamps": {
+      "item": "KML Export Timestamps",
+      "key": "track_kml_export_timestamps",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "track_history_preferences_category",
+      "category_title": "Track History Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "bread_track_timegap_threshold": {
+      "item": "Server track time gap (minutes)",
+      "key": "bread_track_timegap_threshold",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "track_history_preferences_category",
+      "category_title": "Track History Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "track_infinite": {
+      "item": "Persistent Self Track",
+      "key": "track_infinite",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "track_history_preferences_category",
+      "category_title": "Track History Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "max_num_bread_tracks": {
+      "item": "Set Max Number of Bread Crumbs",
+      "key": "max_num_bread_tracks",
+      "reference_type": "Integer",
+      "type": "integer",
+      "exportable": true,
+      "reference_hint": "0-500",
+      "storage_type": "integer",
+      "java_class": "class java.lang.Integer",
+      "category_key": "bread_crumb_preferences_category",
+      "category_title": "Bread Crumb Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "track_line_to_surface": {
+      "item": "Render bread crumb line to ground in 3-D",
+      "key": "track_line_to_surface",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "bread_crumb_preferences_category",
+      "category_title": "Bread Crumb Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "track_crumb_size": {
+      "item": "Default Crumb Size",
+      "key": "track_crumb_size",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "10",
+          "value": "10"
+        },
+        {
+          "label": "15",
+          "value": "15"
+        },
+        {
+          "label": "20",
+          "value": "20"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bread_crumb_preferences_category",
+      "category_title": "Bread Crumb Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "bread_dist_threshold": {
+      "item": "Bread Crumb Distance Threshold",
+      "key": "bread_dist_threshold",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "bread_crumb_preferences_category",
+      "category_title": "Bread Crumb Preferences",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "coord_display_pref": {
+      "item": "Coordinate Display",
+      "key": "coord_display_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "MGRS",
+          "value": "MGRS"
+        },
+        {
+          "label": "DD",
+          "value": "DD"
+        },
+        {
+          "label": "DM",
+          "value": "DM"
+        },
+        {
+          "label": "DMS",
+          "value": "DMS"
+        },
+        {
+          "label": "UTM",
+          "value": "UTM"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "coordinate_preferences_category",
+      "category_title": "Coordinate Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "alt_display_pref": {
+      "item": "Altitude Display",
+      "key": "alt_display_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "HAE",
+          "value": "HAE"
+        },
+        {
+          "label": "MSL",
+          "value": "MSL"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "coordinate_preferences_category",
+      "category_title": "Coordinate Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "alt_unit_pref": {
+      "item": "Altitude Units",
+      "key": "alt_unit_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Feet (ft)",
+          "value": "0"
+        },
+        {
+          "label": "Meters (m)",
+          "value": "1"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "coordinate_preferences_category",
+      "category_title": "Coordinate Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "alt_display_agl": {
+      "item": "Display AGL",
+      "key": "alt_display_agl",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "coordinate_preferences_category",
+      "category_title": "Coordinate Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "speed_unit_pref": {
+      "item": "Speed Units",
+      "key": "speed_unit_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Miles per hour (mph)",
+          "value": "0"
+        },
+        {
+          "label": "KM per hour (kmph)",
+          "value": "1"
+        },
+        {
+          "label": "KGS (kts)",
+          "value": "2"
+        },
+        {
+          "label": "Meters Per Second (mps)",
+          "value": "3"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "coordinate_preferences_category",
+      "category_title": "Coordinate Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "rab_dist_slant_range": {
+      "item": "Range and Bearing Line Distance Format",
+      "key": "rab_dist_slant_range",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "slantrange",
+          "value": "slantrange"
+        },
+        {
+          "label": "clamped",
+          "value": "clamped"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "coordinate_preferences_category",
+      "category_title": "Coordinate Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "rab_brg_units_pref": {
+      "item": "Bearing Units",
+      "key": "rab_brg_units_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Degrees",
+          "value": "0"
+        },
+        {
+          "label": "Mils",
+          "value": "1"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "units_category",
+      "category_title": "Units",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "rab_rng_units_pref": {
+      "item": "Range Units",
+      "key": "rab_rng_units_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Feet/Miles",
+          "value": "0"
+        },
+        {
+          "label": "Meters/Kilometers",
+          "value": "1"
+        },
+        {
+          "label": "Nautical Miles",
+          "value": "2"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "units_category",
+      "category_title": "Units",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "rab_north_ref_pref": {
+      "item": "North Reference",
+      "key": "rab_north_ref_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True North",
+          "value": "0"
+        },
+        {
+          "label": "Magnetic North",
+          "value": "1"
+        },
+        {
+          "label": "Grid North",
+          "value": "2"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "units_category",
+      "category_title": "Units",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "rng_feet_display_pref": {
+      "item": "Feet to Miles",
+      "key": "rng_feet_display_pref",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "unit_threshold_category",
+      "category_title": "Unit Threshold",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "rng_meters_display_pref": {
+      "item": "Meters to Kilometers",
+      "key": "rng_meters_display_pref",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "unit_threshold_category",
+      "category_title": "Unit Threshold",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "rab_color_pref": {
+      "item": "Default Range and Bearing Color",
+      "key": "rab_color_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "red",
+          "value": "red"
+        },
+        {
+          "label": "yellow",
+          "value": "yellow"
+        },
+        {
+          "label": "green",
+          "value": "green"
+        },
+        {
+          "label": "cyan",
+          "value": "cyan"
+        },
+        {
+          "label": "blue",
+          "value": "blue"
+        },
+        {
+          "label": "magenta",
+          "value": "magenta"
+        },
+        {
+          "label": "white",
+          "value": "white"
+        },
+        {
+          "label": "black",
+          "value": "black"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "visual_preferences_category",
+      "category_title": "Visual Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "rab_preference_show_eta": {
+      "item": "Display ETA on Range and Bearing Labels",
+      "key": "rab_preference_show_eta",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "visual_preferences_category",
+      "category_title": "Visual Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "set_domain_pref": {
+      "item": "Set Domain Preference",
+      "key": "set_domain_pref",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Ground",
+          "value": "Ground"
+        },
+        {
+          "label": "Aviation",
+          "value": "Aviation"
+        },
+        {
+          "label": "Maritime",
+          "value": "Maritime"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "domain_preferences_category",
+      "category_title": "Domain Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "map_zoom_visible": {
+      "item": "Enable Zoom Controls",
+      "key": "map_zoom_visible",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "domain_preferences_category",
+      "category_title": "Domain Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "map_scale_visible": {
+      "item": "Enable Map Scale Display",
+      "key": "map_scale_visible",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "domain_preferences_category",
+      "category_title": "Domain Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "map_scale_rounding": {
+      "item": "Enable Map Scale Rounding",
+      "key": "map_scale_rounding",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "domain_preferences_category",
+      "category_title": "Domain Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "map_center_designator": {
+      "item": "Designate the Map Center",
+      "key": "map_center_designator",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "domain_preferences_category",
+      "category_title": "Domain Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "self_coord_info_display": {
+      "item": "Self Coordinate Information",
+      "key": "self_coord_info_display",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "bottom_right",
+          "value": "bottom_right"
+        },
+        {
+          "label": "bottom_bar",
+          "value": "bottom_bar"
+        },
+        {
+          "label": "none",
+          "value": "none"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "self_coordinate_category",
+      "category_title": "Self Coordinate",
+      "menu_key": "selfCoordinate",
+      "menu_title": "Additional Self Coordinate Controls"
+    },
+    "sidepane_handle_shade": {
+      "item": "SidePane Handle Shade",
+      "key": "sidepane_handle_shade",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Light",
+          "value": "Light"
+        },
+        {
+          "label": "Dark",
+          "value": "Dark"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "domain_preferences_category",
+      "category_title": "Domain Preferences",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "largeTextMode": {
+      "item": "Enable Large Text Mode",
+      "key": "largeTextMode",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "largeActionBar": {
+      "item": "Enable Large Tool Bar",
+      "key": "largeActionBar",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "relativeOverlaysScalingRadioList": {
+      "item": "Icon and Text Size",
+      "key": "relativeOverlaysScalingRadioList",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Normal",
+          "value": "1.00"
+        },
+        {
+          "label": "1.25x",
+          "value": "1.25"
+        },
+        {
+          "label": "1.5x",
+          "value": "1.50"
+        },
+        {
+          "label": "1.75x",
+          "value": "1.75"
+        },
+        {
+          "label": "2x",
+          "value": "2.00"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "label_text_size": {
+      "item": "Default Label Size",
+      "key": "label_text_size",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Normal",
+          "value": "14"
+        },
+        {
+          "label": "Large",
+          "value": "16"
+        },
+        {
+          "label": "X-Large",
+          "value": "18"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "dim_map_with_brightness_key": {
+      "item": "Map Overlay's Dimming/Brightening",
+      "key": "dim_map_with_brightness_key",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "atakAdjustCurvedDisplay": {
+      "item": "Adjust for Curved Display",
+      "key": "atakAdjustCurvedDisplay",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "faux_nav_bar": {
+      "item": "Enable the Faux Navigation Bar",
+      "key": "faux_nav_bar",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "faux_nav_bar_reverse": {
+      "item": "Reverse the buttons on the Faux Navigation Bar",
+      "key": "faux_nav_bar_reverse",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "disable_autolink_mapitem_links": {
+      "item": "Disable AutoLink launching for Associated Links",
+      "key": "disable_autolink_mapitem_links",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "usability_settings_category",
+      "category_title": "Usability Settings",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "dexControls": {
+      "item": "Enable DEX Controls",
+      "key": "dexControls",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "dex_options_category",
+      "category_title": "DEX Options",
+      "menu_key": "dexOptions",
+      "menu_title": "DEX Options"
+    },
+    "atakGlobeModeEnabled": {
+      "item": "Enable Globe Display Mode",
+      "key": "atakGlobeModeEnabled",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "3D_rendering_options_category",
+      "category_title": "3-D / Rendering Options",
+      "menu_key": "3DRendering",
+      "menu_title": "3-D / Rendering Options"
+    },
+    "location_marker_scale_key": {
+      "item": "Marker Size",
+      "key": "location_marker_scale_key",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Default",
+          "value": "-1"
+        },
+        {
+          "label": "1x",
+          "value": "40"
+        },
+        {
+          "label": "2x",
+          "value": "48"
+        },
+        {
+          "label": "3x",
+          "value": "56"
+        },
+        {
+          "label": "4x",
+          "value": "64"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "size_category",
+      "category_title": "Size",
+      "menu_key": "my_location_icon_color",
+      "menu_title": "My Location Color / Size"
+    },
+    "default_gps_icon": {
+      "item": "Default",
+      "key": "default_gps_icon",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_location_icon_color",
+      "menu_title": "My Location Color / Size"
+    },
+    "team_color_gps_icon": {
+      "item": "Team Color",
+      "key": "team_color_gps_icon",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_location_icon_color",
+      "menu_title": "My Location Color / Size"
+    },
+    "custom_color_gps_icon_pref": {
+      "item": "Custom",
+      "key": "custom_color_gps_icon_pref",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_location_icon_color",
+      "menu_title": "My Location Color / Size"
+    },
+    "custom_color_selected": {
+      "item": "Change/Create Icon Main Custom Color",
+      "key": "custom_color_selected",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "16-bit Hexadecimal Color",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_location_icon_color",
+      "menu_title": "My Location Color / Size"
+    },
+    "custom_outline_color_selected": {
+      "item": "Change/Create Icon Outline Custom Color",
+      "key": "custom_outline_color_selected",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "16-bit Hexadecimal Color",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_location_icon_color",
+      "menu_title": "My Location Color / Size"
+    },
+    "nav_orientation_right": {
+      "item": "Toolbar Side",
+      "key": "nav_orientation_right",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_actionbar_settings",
+      "menu_title": "Tool Bar Customization"
+    },
+    "actionbar_icon_color_key": {
+      "item": "Toolbar Icon Color",
+      "key": "actionbar_icon_color_key",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "16-bit Hexadecimal Color",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_actionbar_settings",
+      "menu_title": "Tool Bar Customization"
+    },
+    "actionbar_background_color_key": {
+      "item": "Toolbar Background Color",
+      "key": "actionbar_background_color_key",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "16-bit Hexadecimal Color",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_actionbar_settings",
+      "menu_title": "Tool Bar Customization"
+    },
+    "default_actionbar_colors": {
+      "item": "Reset Toolbar Colors To Default",
+      "key": "default_actionbar_colors",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "color_category",
+      "category_title": "Color",
+      "menu_key": "my_actionbar_settings",
+      "menu_title": "Tool Bar Customization"
+    },
+    "pref_grid_color": {
+      "item": "Grid Line Color",
+      "key": "pref_grid_color",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "White",
+          "value": "#ffffff"
+        },
+        {
+          "label": "Magenta",
+          "value": "#ff00ff"
+        },
+        {
+          "label": "Green",
+          "value": "#00ff00"
+        },
+        {
+          "label": "Yellow",
+          "value": "#ffff00"
+        },
+        {
+          "label": "Custom",
+          "value": "Custom"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "gridLinesPreference",
+      "menu_title": "Grid Line Preferences"
+    },
+    "pref_grid_color_value": {
+      "item": "Grid Line Color",
+      "key": "pref_grid_color_value",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "White",
+          "value": "#ffffff"
+        },
+        {
+          "label": "Magenta",
+          "value": "#ff00ff"
+        },
+        {
+          "label": "Green",
+          "value": "#00ff00"
+        },
+        {
+          "label": "Yellow",
+          "value": "#ffff00"
+        },
+        {
+          "label": "Custom",
+          "value": "Any other HEX RGB value"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "gridLinesPreference",
+      "menu_title": "Grid Line Preferences"
+    },
+    "prefs_grid_default_show": {
+      "item": "Show by Default",
+      "key": "prefs_grid_default_show",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "gridLinesPreference",
+      "menu_title": "Grid Line Preferences"
+    },
+    "pref_layer_outline_color": {
+      "item": "Layer Outline Color",
+      "key": "pref_layer_outline_color",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "White",
+          "value": "#ffffff"
+        },
+        {
+          "label": "Magenta",
+          "value": "#ff00ff"
+        },
+        {
+          "label": "Green",
+          "value": "#00ff00"
+        },
+        {
+          "label": "Yellow",
+          "value": "#ffff00"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "layerOutlinesPreference",
+      "menu_title": "Imagery Layer Outline Preferences"
+    },
+    "prefs_layer_outlines_default_show": {
+      "item": "Show by Default",
+      "key": "prefs_layer_outlines_default_show",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "layerOutlinesPreference",
+      "menu_title": "Imagery Layer Outline Preferences"
+    },
+    "toggle_offscreen_indicators": {
+      "item": "Enabled on Start",
+      "key": "toggle_offscreen_indicators",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "atakOffScrIndiOptions",
+      "menu_title": "Off-Screen Indicators Preferences"
+    },
+    "offscreen_indicator_dist_threshold": {
+      "item": "Set Distance Threshold (KM)",
+      "key": "offscreen_indicator_dist_threshold",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "atakOffScrIndiOptions",
+      "menu_title": "Off-Screen Indicators Preferences"
+    },
+    "offscreen_indicator_timeout_threshold": {
+      "item": "Set Timeout Threshold (seconds) or zero to disable",
+      "key": "offscreen_indicator_timeout_threshold",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "atakOffScrIndiOptions",
+      "menu_title": "Off-Screen Indicators Preferences"
+    },
+    "pref_overlay_style_outline_color": {
+      "item": "Imported Shape Outline Color",
+      "key": "pref_overlay_style_outline_color",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "-1 through -16777216",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "overlay_manager_width_height": {
+      "item": "Overlay Manager Width/Height",
+      "key": "overlay_manager_width_height",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "50",
+          "value": "50"
+        },
+        {
+          "label": "33",
+          "value": "33"
+        },
+        {
+          "label": "25",
+          "value": "25"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "atakForcedBrightness": {
+      "item": "Forced Application Brightness",
+      "key": "atakForcedBrightness",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "None",
+          "value": "-1"
+        },
+        {
+          "label": "Lowest",
+          "value": "0"
+        },
+        {
+          "label": "25 percent",
+          "value": "25"
+        },
+        {
+          "label": "50 percent",
+          "value": "50"
+        },
+        {
+          "label": "75 percent",
+          "value": "75"
+        },
+        {
+          "label": "Highest",
+          "value": "100"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "atakScreenLock": {
+      "item": "Disable Screen Saver / Screen Lock",
+      "key": "atakScreenLock",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "atakDisableSoftkeyIllumination": {
+      "item": "Disable SoftKey Illumination",
+      "key": "atakDisableSoftkeyIllumination",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "atakControlReverseOrientation": {
+      "item": "Reverse Landscape Orientation",
+      "key": "atakControlReverseOrientation",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "atakControlShortenLabels": {
+      "item": "Shorten Long Marker Labels",
+      "key": "atakControlShortenLabels",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "atakControlShowLabels": {
+      "item": "Show Marker Labels",
+      "key": "atakControlShowLabels",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "atakControlOtherUserNotification": {
+      "item": "Display Notifications for other users",
+      "key": "atakControlOtherUserNotification",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "fade_notification": {
+      "item": "Fade Notification Time",
+      "key": "fade_notification",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "30 seconds",
+          "value": "30"
+        },
+        {
+          "label": "60 seconds",
+          "value": "60"
+        },
+        {
+          "label": "90 seconds",
+          "value": "90"
+        },
+        {
+          "label": "2 minutes",
+          "value": "120"
+        },
+        {
+          "label": "5 minutes",
+          "value": "300"
+        },
+        {
+          "label": "10 minutes",
+          "value": "600"
+        },
+        {
+          "label": "1 hour",
+          "value": "3600"
+        },
+        {
+          "label": "Do Not Fade",
+          "value": "-1"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "imagery_tab_name": {
+      "item": "Imagery Tab Name",
+      "key": "imagery_tab_name",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Imagery",
+          "value": "Imagery"
+        },
+        {
+          "label": "Maps",
+          "value": "Maps"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "frame_limit": {
+      "item": "Render Speed",
+      "key": "frame_limit",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Full speed",
+          "value": "0"
+        },
+        {
+          "label": "Battery saver",
+          "value": "1"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "other_miscellaneous_display_options",
+      "category_title": "Other Miscellaneous Display Options",
+      "menu_key": "overlayStylePreference",
+      "menu_title": "Import Style Default Preferences"
+    },
+    "secureDeleteTimeout": {
+      "item": "Secure Delete Timeout",
+      "key": "secureDeleteTimeout",
+      "reference_type": "String",
+      "type": "string",
+      "exportable": true,
+      "reference_hint": "Numeric",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "media_preferences_category",
+      "category_title": "Media Preferences",
+      "menu_key": "mediaPreference",
+      "menu_title": "Media Preferences"
+    },
+    "mediaLayerCacheForceRescan": {
+      "item": "Force Reset Layer Cache",
+      "key": "mediaLayerCacheForceRescan",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "media_preferences_category",
+      "category_title": "Media Preferences",
+      "menu_key": "mediaPreference",
+      "menu_title": "Media Preferences"
+    },
+    "prefs_use_klv_elevation": {
+      "item": "Prefer KLV Frame Center Elevation",
+      "key": "prefs_use_klv_elevation",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "media_preferences_category",
+      "category_title": "Media Preferences",
+      "menu_key": "mediaPreference",
+      "menu_title": "Media Preferences"
+    },
+    "quickpic.camera_chooser": {
+      "item": "Camera Application",
+      "key": "quickpic.camera_chooser",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "System",
+          "value": "System"
+        },
+        {
+          "label": "TakGeoCam",
+          "value": "TakGeoCam"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "quick_pic_preferences",
+      "category_title": "Quick Pic Preferences",
+      "menu_key": "mediaPreference",
+      "menu_title": "Media Preferences"
+    },
+    "disableFloatToBottom": {
+      "item": "Force Center while Moving",
+      "key": "disableFloatToBottom",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "lock_behavior_category",
+      "category_title": "Lock Behavior",
+      "menu_key": "lockBehavior",
+      "menu_title": "Lock Behavior"
+    },
+    "staleRemoteDisconnects": {
+      "item": "Stale out remote users as they disconnect from TAK Servers",
+      "key": "staleRemoteDisconnects",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "stale_data_preferences",
+      "category_title": "Stale Data Preferences",
+      "menu_key": "staleData",
+      "menu_title": "Stale Data Preferences"
+    },
+    "expireEverything": {
+      "item": "Remove all marker types from map when they stale out",
+      "key": "expireEverything",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "stale_data_preferences",
+      "category_title": "Stale Data Preferences",
+      "menu_key": "staleData",
+      "menu_title": "Stale Data Preferences"
+    },
+    "expireStaleItemsTime": {
+      "item": "Stale item cleanup time",
+      "key": "expireStaleItemsTime",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Immediately",
+          "value": "0"
+        },
+        {
+          "label": "1 minute",
+          "value": "1"
+        },
+        {
+          "label": "5 minutes",
+          "value": "5"
+        },
+        {
+          "label": "20 minutes",
+          "value": "20"
+        },
+        {
+          "label": "1 hour",
+          "value": "60"
+        },
+        {
+          "label": "6 hours",
+          "value": "360"
+        },
+        {
+          "label": "1 day",
+          "value": "1440"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "stale_data_preferences",
+      "category_title": "Stale Data Preferences",
+      "menu_key": "staleData",
+      "menu_title": "Stale Data Preferences"
+    },
+    "expireUnknowns": {
+      "item": "Remove Unknown markers when they stale out",
+      "key": "expireUnknowns",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "stale_data_preferences",
+      "category_title": "Stale Data Preferences",
+      "menu_key": "staleData",
+      "menu_title": "Stale Data Preferences"
+    },
+    "atakControlQuitOnBack": {
+      "item": "Quit on Back Press",
+      "key": "atakControlQuitOnBack",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "user_touch_preferences_category",
+      "category_title": "User Touch Preferences",
+      "menu_key": "userTouch",
+      "menu_title": "User Touch Preferences"
+    },
+    "atakControlAskToQuit": {
+      "item": "Ask Before Quit",
+      "key": "atakControlAskToQuit",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "user_touch_preferences_category",
+      "category_title": "User Touch Preferences",
+      "menu_key": "userTouch",
+      "menu_title": "User Touch Preferences"
+    },
+    "atakLongPressMap": {
+      "item": "Action for Long Pressing the Map",
+      "key": "atakLongPressMap",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Do Nothing",
+          "value": "nothing"
+        },
+        {
+          "label": "Toggle the Toolbar",
+          "value": "actionbar"
+        },
+        {
+          "label": "Drop a Point",
+          "value": "dropicon"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "user_touch_preferences_category",
+      "category_title": "User Touch Preferences",
+      "menu_key": "userTouch",
+      "menu_title": "User Touch Preferences"
+    },
+    "atakDoubleTapToZoom": {
+      "item": "Double tap to zoom 2X",
+      "key": "atakDoubleTapToZoom",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "user_touch_preferences_category",
+      "category_title": "User Touch Preferences",
+      "menu_key": "userTouch",
+      "menu_title": "User Touch Preferences"
+    },
+    "self_coord_action": {
+      "item": "Tap Coordinate Action",
+      "key": "self_coord_action",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Do Nothing",
+          "value": "nothing"
+        },
+        {
+          "label": "Change Coordinates",
+          "value": "cyclecoordinate"
+        },
+        {
+          "label": "Pan to Self",
+          "value": "panto"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "self_coordinate_category",
+      "category_title": "Self Coordinate",
+      "menu_key": "selfCoordinate",
+      "menu_title": "Additional Self Coordinate Controls"
+    },
+    "selfcoord_legacy_enlarge": {
+      "item": "Enable enlarging the coordinate display",
+      "key": "selfcoord_legacy_enlarge",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "self_coordinate_category",
+      "category_title": "Self Coordinate",
+      "menu_key": "selfCoordinate",
+      "menu_title": "Additional Self Coordinate Controls"
+    },
+    "legacyPointDropNaming": {
+      "item": "Legacy Point Drop Naming Convention",
+      "key": "legacyPointDropNaming",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "legacy_preferences_category",
+      "category_title": "Legacy Preferences",
+      "menu_key": "pointDroppingBehavior",
+      "menu_title": "Point Dropping Behavior"
+    },
+    "disableLeyGuard": {
+      "item": "Disable KeyGuard",
+      "key": "disableLeyGuard",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "legacy_preferences_category",
+      "category_title": "Legacy Preferences",
+      "menu_key": "pointDroppingBehavior",
+      "menu_title": "Point Dropping Behavior"
+    },
+    "atakForceAirplaneRadioList": {
+      "item": "Forced Airplane Mode",
+      "key": "atakForceAirplaneRadioList",
+      "reference_type": "String",
+      "type": "select",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "Do not Force",
+          "value": "none"
+        },
+        {
+          "label": "Force General Radio Off",
+          "value": "cell"
+        },
+        {
+          "label": "Force General Radio and Wireless Off",
+          "value": "cell,wifi"
+        }
+      ],
+      "input": "select",
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "legacy_preferences_category",
+      "category_title": "Legacy Preferences",
+      "menu_key": "pointDroppingBehavior",
+      "menu_title": "Point Dropping Behavior"
+    },
+    "atakContinuousRender": {
+      "item": "Continuous Rendering",
+      "key": "atakContinuousRender",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "legacy_preferences_category",
+      "category_title": "Legacy Preferences",
+      "menu_key": "pointDroppingBehavior",
+      "menu_title": "Point Dropping Behavior"
+    },
+    "atakDeveloperTools": {
+      "item": "Developer Tools",
+      "key": "atakDeveloperTools",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "legacy_preferences_category",
+      "category_title": "Legacy Preferences",
+      "menu_key": "pointDroppingBehavior",
+      "menu_title": "Point Dropping Behavior"
+    },
+    "resetHints": {
+      "item": "Reset Hints",
+      "key": "resetHints",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "legacy_preferences_category",
+      "category_title": "Legacy Preferences",
+      "menu_key": "takSupportInfo",
+      "menu_title": "TAK Support Information"
+    },
+    "takInitDeviceConfig": {
+      "item": "TAK Initial Device Configurations",
+      "key": "takInitDeviceConfig",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "legacy_preferences_category",
+      "category_title": "Legacy Preferences",
+      "menu_key": "takSupportInfo",
+      "menu_title": "TAK Support Information"
+    },
+    "collect_crashlogs": {
+      "item": "Crash logs",
+      "key": "collect_crashlogs",
+      "reference_type": "Information",
+      "type": "information",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "app_logging_preferences_category",
+      "category_title": "App Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "atakExportCrashLogs": {
+      "item": "Send App Logs Now",
+      "key": "atakExportCrashLogs",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "app_logging_preferences_category",
+      "category_title": "App Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "enableAutoUploadLogs": {
+      "item": "Auto Upload App Logs",
+      "key": "enableAutoUploadLogs",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "app_logging_preferences_category",
+      "category_title": "App Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "loggingDisclaimer": {
+      "item": "Logging Impact on Performance",
+      "key": "loggingDisclaimer",
+      "reference_type": "Information",
+      "type": "information",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "advanced_logging",
+      "category_title": "Advanced Logging",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "loggingfile": {
+      "item": "Enable Logcat File",
+      "key": "loggingfile",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "debug_logging_preferences_category",
+      "category_title": "Debug Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "loggingfile_error_only": {
+      "item": "Enable Logcat Errors Only",
+      "key": "loggingfile_error_only",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "debug_logging_preferences_category",
+      "category_title": "Debug Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "loggingfile_upload_debug": {
+      "item": "Upload Debug Logs",
+      "key": "loggingfile_upload_debug",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "debug_logging_preferences_category",
+      "category_title": "Debug Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "lognettraffictofile": {
+      "item": "Log Network Traffic",
+      "key": "lognettraffictofile",
+      "reference_type": "Boolean",
+      "type": "boolean",
+      "exportable": true,
+      "reference_hint": null,
+      "options": [
+        {
+          "label": "True",
+          "value": "true"
+        },
+        {
+          "label": "False",
+          "value": "false"
+        }
+      ],
+      "input": "select",
+      "storage_type": "boolean",
+      "java_class": "class java.lang.Boolean",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "deviceDetails": {
+      "item": "Device Details",
+      "key": "deviceDetails",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "deviceDetails",
+      "menu_title": "Device Details"
+    },
+    "settingsDebugging": {
+      "item": "Device Information",
+      "key": "settingsDebugging",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "deviceDetails",
+      "menu_title": "Device Details"
+    },
+    "atakChangeLog": {
+      "item": "ATAK Release Change Log",
+      "key": "atakChangeLog",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "atakdocs",
+      "menu_title": "ATAK Documents"
+    },
+    "atakDocumentation": {
+      "item": "ATAK User Manual",
+      "key": "atakDocumentation",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "atakdocs",
+      "menu_title": "ATAK Documents"
+    },
+    "atakFlavorAddendum": {
+      "item": "Addendum",
+      "key": "atakFlavorAddendum",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "atakdocs",
+      "menu_title": "ATAK Documents"
+    },
+    "atakDatasets": {
+      "item": "ATAK Dataset Instructions",
+      "key": "atakDatasets",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "atakdocs",
+      "menu_title": "ATAK Documents"
+    },
+    "userFeedback": {
+      "item": "User Feedback",
+      "key": "userFeedback",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "atakdocs",
+      "menu_title": "ATAK Documents"
+    },
+    "about": {
+      "item": "About ATAK",
+      "key": "about",
+      "reference_type": "Selection",
+      "type": "selection_action",
+      "exportable": false,
+      "reference_hint": null,
+      "storage_type": "string",
+      "java_class": "class java.lang.String",
+      "category_key": "network_logging_preferences_category",
+      "category_title": "Network Logging Preferences",
+      "menu_key": "atakdocs",
+      "menu_title": "ATAK Documents"
+    }
+  },
+  "categories": {
+    "callsign_and_device_preferences_category": {
+      "title": "Callsign and Device Preferences",
+      "key": "callsign_and_device_preferences_category",
+      "menu_key": "callSignAndDevicePrefs",
+      "menu_title": "Callsign and Device Preferences"
+    },
+    "callsign_category": {
+      "title": "Callsign",
+      "key": "callsign_category",
+      "menu_key": "callSignPrefs",
+      "menu_title": "Callsign Preferences"
+    },
+    "device_preferences_category": {
+      "title": "Device Preferences",
+      "key": "device_preferences_category",
+      "menu_key": "devicePrefs",
+      "menu_title": "Device Preferences"
+    },
+    "networkGpsCategory": {
+      "title": "GPS Preferences",
+      "key": "networkGpsCategory",
+      "menu_key": "gpsSettings",
+      "menu_title": "GPS Preferences"
+    },
+    "lrfCategory": {
+      "title": "Laser Range Finder Preferences",
+      "key": "lrfCategory",
+      "menu_key": "lrfSettings",
+      "menu_title": "Laser Range Finder Preferences"
+    },
+    "bluetooth_preferences_category": {
+      "title": "Bluetooth Preferences",
+      "key": "bluetooth_preferences_category",
+      "menu_key": "bluetooth",
+      "menu_title": "Bluetooth"
+    },
+    "alternateContactCategory": {
+      "title": "Contact Preferences",
+      "key": "alternateContactCategory",
+      "menu_key": "contactPrefs",
+      "menu_title": "Contact Preferences"
+    },
+    "publishCategory": {
+      "title": "Reporting Preferences",
+      "key": "publishCategory",
+      "menu_key": "reportingPrefs",
+      "menu_title": "Reporting Preferences"
+    },
+    "preference_management_category": {
+      "title": "Preference Management",
+      "key": "preference_management_category",
+      "menu_key": "prefManage",
+      "menu_title": "Preference Management"
+    },
+    "network_preferences_category": {
+      "title": "Network Preferences",
+      "key": "network_preferences_category",
+      "menu_key": "networkPrefs",
+      "menu_title": "Network Preferences"
+    },
+    "server_connections_category": {
+      "title": "Server Connections",
+      "key": "server_connections_category",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "input_output_management_category": {
+      "title": "Input/Output Management",
+      "key": "input_output_management_category",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "network_tweaks_category": {
+      "title": "Network Tweaks",
+      "key": "network_tweaks_category",
+      "menu_key": "networkSettings",
+      "menu_title": "Network Connection Preferences"
+    },
+    "tadilj_settings_category": {
+      "title": "Datalink Preferences",
+      "key": "tadilj_settings_category",
+      "menu_key": "tadiljSettings",
+      "menu_title": "Datalink Preferences"
+    },
+    "tools_preferences_category": {
+      "title": "Tools Preferences",
+      "key": "tools_preferences_category",
+      "menu_key": "toolPrefs",
+      "menu_title": "Tool Preferences"
+    },
+    "specific_tool_preferences_category": {
+      "title": "Specific Tool Preferences",
+      "key": "specific_tool_preferences_category",
+      "menu_key": "specTools",
+      "menu_title": "Specific Tool Preferences"
+    },
+    "alert_preferences_category": {
+      "title": "Alert Preferences",
+      "key": "alert_preferences_category",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_preference_category": {
+      "title": "Bloodhound Preferences",
+      "key": "bloodhound_preference_category",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_eta_preference_category": {
+      "title": "Bloodhound ETA Preferences",
+      "key": "bloodhound_eta_preference_category",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "bloodhound_routing_preference": {
+      "title": "Bloodhound Routing Preferences",
+      "key": "bloodhound_routing_preference",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "notification_preferences_category": {
+      "title": "Notification Preferences",
+      "key": "notification_preferences_category",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "history_preferences_category": {
+      "title": "History Preferences",
+      "key": "history_preferences_category",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "geochat_network_preferences_category": {
+      "title": "Geo Chat(Mesh) Network Preferences",
+      "key": "geochat_network_preferences_category",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "advanced_network_settings": {
+      "title": "Advanced Network Settings",
+      "key": "advanced_network_settings",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "elevation_data_category": {
+      "title": "Elevation Data",
+      "key": "elevation_data_category",
+      "menu_key": "address_lookup_preferences",
+      "menu_title": "Address Lookup Preferences"
+    },
+    "wms_preferences_category": {
+      "title": "WMS Preferences",
+      "key": "wms_preferences_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "route_preferences_category": {
+      "title": "Route Preferences",
+      "key": "route_preferences_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "walking_category": {
+      "title": "Walking",
+      "key": "walking_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "driving_category": {
+      "title": "Driving",
+      "key": "driving_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "flying_category": {
+      "title": "Flying",
+      "key": "flying_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "swimming_category": {
+      "title": "Swimming",
+      "key": "swimming_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "watercraft_category": {
+      "title": "Watercraft",
+      "key": "watercraft_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "attachment_billboards_category": {
+      "title": "Attachment Billboards",
+      "key": "attachment_billboards_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "other_category": {
+      "title": "Other",
+      "key": "other_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "configuration_category": {
+      "title": "Configuration",
+      "key": "configuration_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "address_category": {
+      "title": "Address",
+      "key": "address_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "dns_servers_category": {
+      "title": "DNS Servers",
+      "key": "dns_servers_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "track_history_preferences_category": {
+      "title": "Track History Preferences",
+      "key": "track_history_preferences_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "bread_crumb_preferences_category": {
+      "title": "Bread Crumb Preferences",
+      "key": "bread_crumb_preferences_category",
+      "menu_key": "fire_prefs_Menu Item",
+      "menu_title": "Fire Toolbar/Digital Pointer Preferences"
+    },
+    "adjust_toolbar_preferences_category": {
+      "title": "Adjust Toolbar Preferences",
+      "key": "adjust_toolbar_preferences_category",
+      "menu_key": "displayPrefs",
+      "menu_title": "Display Preferences"
+    },
+    "basic_display_settings_category": {
+      "title": "Basic Display Settings",
+      "key": "basic_display_settings_category",
+      "menu_key": "basic_display_settings",
+      "menu_title": "Basic Display Settings"
+    },
+    "coordinate_preferences_category": {
+      "title": "Coordinate Preferences",
+      "key": "coordinate_preferences_category",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "units_category": {
+      "title": "Units",
+      "key": "units_category",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "unit_threshold_category": {
+      "title": "Unit Threshold",
+      "key": "unit_threshold_category",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "visual_preferences_category": {
+      "title": "Visual Preferences",
+      "key": "visual_preferences_category",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "domain_preferences_category": {
+      "title": "Domain Preferences",
+      "key": "domain_preferences_category",
+      "menu_key": "unitPreferences",
+      "menu_title": "Unit Display Format Preferences"
+    },
+    "usability_settings_category": {
+      "title": "Usability Settings",
+      "key": "usability_settings_category",
+      "menu_key": "usableSettings",
+      "menu_title": "Usability Settings"
+    },
+    "dex_options_category": {
+      "title": "DEX Options",
+      "key": "dex_options_category",
+      "menu_key": "dexOptions",
+      "menu_title": "DEX Options"
+    },
+    "3D_rendering_options_category": {
+      "title": "3-D / Rendering Options",
+      "key": "3D_rendering_options_category",
+      "menu_key": "3DRendering",
+      "menu_title": "3-D / Rendering Options"
+    },
+    "size_category": {
+      "title": "Size",
+      "key": "size_category",
+      "menu_key": "my_location_icon_color",
+      "menu_title": "My Location Color / Size"
+    },
+    "color_category": {
+      "title": "Color",
+      "key": "color_category",
+      "menu_key": "my_location_icon_color",
+      "menu_title": "My Location Color / Size"
+    },
+    "other_miscellaneous_display_options": {
+      "title": "Other Miscellaneous Display Options",
+      "key": "other_miscellaneous_display_options",
+      "menu_key": "additionalDisplay",
+      "menu_title": "Additional Display Options"
+    },
+    "control_preferences_category": {
+      "title": "Control Preferences",
+      "key": "control_preferences_category",
+      "menu_key": "controlPrefs",
+      "menu_title": "Control Preferences"
+    },
+    "media_preferences_category": {
+      "title": "Media Preferences",
+      "key": "media_preferences_category",
+      "menu_key": "mediaPreference",
+      "menu_title": "Media Preferences"
+    },
+    "quick_pic_preferences": {
+      "title": "Quick Pic Preferences",
+      "key": "quick_pic_preferences",
+      "menu_key": "mediaPreference",
+      "menu_title": "Media Preferences"
+    },
+    "lock_behavior_category": {
+      "title": "Lock Behavior",
+      "key": "lock_behavior_category",
+      "menu_key": "lockBehavior",
+      "menu_title": "Lock Behavior"
+    },
+    "stale_data_preferences": {
+      "title": "Stale Data Preferences",
+      "key": "stale_data_preferences",
+      "menu_key": "staleData",
+      "menu_title": "Stale Data Preferences"
+    },
+    "user_touch_preferences_category": {
+      "title": "User Touch Preferences",
+      "key": "user_touch_preferences_category",
+      "menu_key": "userTouch",
+      "menu_title": "User Touch Preferences"
+    },
+    "self_coordinate_category": {
+      "title": "Self Coordinate",
+      "key": "self_coordinate_category",
+      "menu_key": "selfCoordinate",
+      "menu_title": "Additional Self Coordinate Controls"
+    },
+    "legacy_preferences_category": {
+      "title": "Legacy Preferences",
+      "key": "legacy_preferences_category",
+      "menu_key": "legacyPrefs",
+      "menu_title": "Legacy Preferences"
+    },
+    "app_logging_preferences_category": {
+      "title": "App Logging Preferences",
+      "key": "app_logging_preferences_category",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "advanced_logging": {
+      "title": "Advanced Logging",
+      "key": "advanced_logging",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "debug_logging_preferences_category": {
+      "title": "Debug Logging Preferences",
+      "key": "debug_logging_preferences_category",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    },
+    "network_logging_preferences_category": {
+      "title": "Network Logging Preferences",
+      "key": "network_logging_preferences_category",
+      "menu_key": "loggingPrefs",
+      "menu_title": "Logging Preferences"
+    }
+  },
+  "stats": {
+    "total_keys": 274,
+    "exportable_keys": 240,
+    "category_count": 64
+  }
+}

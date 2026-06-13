@@ -4,6 +4,7 @@
   "source": "https://github.com/TAK-Product-Center/atak-civ",
   "mdm_reference": {
     "guide": "Watchtower 22.4.1",
+    "atak_core_keys": "ATAK-Preferences-Key.xlsx",
     "sections": {
       "atak_app_preferences": "ATAK Shared Preferences (com.atakmap.app.civ_preferences)",
       "cot_settings": "CoT Inputs, Outputs, and Streams map to cot_inputs, cot_outputs, cot_streams",

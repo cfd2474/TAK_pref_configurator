@@ -14,6 +14,7 @@ from pydantic import BaseModel, Field
 from .apk_scanner import MAX_APK_BYTES, ApkScanError, scan_apk_bytes
 from .pref_generator import DEFAULT_APP_PREFS, generate_pref_xml
 from .pref_parser import parse_pref_xml
+from .schema_enricher import enrich_schema
 from .secrets import redact_preferences
 from .validation import validate_connections
 
@@ -64,7 +65,7 @@ def health() -> dict:
 
 @app.get("/api/schema")
 def get_schema() -> dict:
-    return load_schema()
+    return enrich_schema(load_schema())
 
 
 @app.post("/api/plugins/scan")

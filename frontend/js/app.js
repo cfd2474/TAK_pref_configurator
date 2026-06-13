@@ -429,6 +429,7 @@ function renderSection(title, fields) {
   const grid = document.createElement("div");
   grid.className = "field-grid";
   for (const field of fields) {
+    if (field.exportable === false) continue;
     grid.appendChild(renderPreferenceField(field));
   }
   card.appendChild(grid);
@@ -488,18 +489,25 @@ function createMultiSelect(field, currentValue, onChange) {
   return box;
 }
 
+function getFieldDescription(field) {
+  return field.summary || field.reference_hint || "";
+}
+
+function appendFieldDescription(wrapper, field) {
+  const description = getFieldDescription(field);
+  if (!description) return;
+  const summary = document.createElement("div");
+  summary.className = "summary";
+  summary.textContent = description;
+  wrapper.appendChild(summary);
+}
+
 function renderSelectField(field, currentValue, onChange) {
   const wrapper = document.createElement("div");
   wrapper.className = "field";
 
   wrapper.appendChild(createLabel(field.title || field.key, `pref-${field.key}`));
-
-  if (field.summary) {
-    const summary = document.createElement("div");
-    summary.className = "summary";
-    summary.textContent = field.summary;
-    wrapper.appendChild(summary);
-  }
+  appendFieldDescription(wrapper, field);
 
   const knownValues = new Set((field.options || []).map((o) => String(o.value)));
   const isCustom = currentValue !== undefined && currentValue !== null && !knownValues.has(String(currentValue));
@@ -588,12 +596,7 @@ function renderPreferenceField(field) {
     const wrapper = document.createElement("div");
     wrapper.className = "field";
     wrapper.appendChild(createLabel(field.title || field.key));
-    if (field.summary) {
-      const summary = document.createElement("div");
-      summary.className = "summary";
-      summary.textContent = field.summary;
-      wrapper.appendChild(summary);
-    }
+    appendFieldDescription(wrapper, field);
     wrapper.appendChild(
       createMultiSelect(field, current, (values) => setPreferenceFromField(field, values))
     );
@@ -603,12 +606,7 @@ function renderPreferenceField(field) {
   const wrapper = document.createElement("div");
   wrapper.className = "field";
   wrapper.appendChild(createLabel(field.title || field.key, `pref-${field.key}`));
-  if (field.summary) {
-    const summary = document.createElement("div");
-    summary.className = "summary";
-    summary.textContent = field.summary;
-    wrapper.appendChild(summary);
-  }
+  appendFieldDescription(wrapper, field);
 
   const input = document.createElement("input");
   input.id = `pref-${field.key}`;
