@@ -3375,7 +3375,7 @@
     {
       "id": "lrf_preferences",
       "file": "lrf_preferences.xml",
-      "title": "Lrf Preferences",
+      "title": "LRF Preferences",
       "sections": [
         {
           "title": "Laser Range Finder Preferences",
