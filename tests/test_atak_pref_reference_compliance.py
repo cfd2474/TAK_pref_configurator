@@ -132,6 +132,7 @@ def test_device_preferences_nav_label_and_duplicate_hidden() -> None:
     assert by_id["missionpackage_preferences"]["title"] == "Mission Package Preferences"
     assert by_id["lrf_preferences"]["title"] == "LRF Preferences"
     assert by_id["off_scr_indi_preferences"]["title"] == "Off Screen Indicator Preferences"
+    assert by_id["takgov_eud_preferences"]["title"] == "TAK.GOV EUD Preferences"
 
 
 def test_route_and_radius_fields_clarify_meter_units() -> None:
