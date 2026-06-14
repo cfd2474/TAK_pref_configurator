@@ -524,6 +524,12 @@ function setApkScanModalState(state, payload = {}) {
     appendApkScanDetail("Package", payload.pluginPackage || "—");
     appendApkScanDetail("Category", payload.categoryTitle || "—");
     appendApkScanDetail("Preference fields", String(payload.fieldCount));
+    if (payload.reconciledCount > 0) {
+      appendApkScanDetail(
+        "From Custom Preferences",
+        `${payload.reconciledCount} matching key${payload.reconciledCount === 1 ? "" : "s"} moved`
+      );
+    }
     if (payload.sourceFiles?.length) {
       appendApkScanDetail("Source XML", payload.sourceFiles.join(", "));
     }
@@ -607,14 +613,23 @@ async function importPluginApk(event) {
       warnings: data.warnings || [],
     };
 
+    const customKeysBefore = new Set(listCustomPreferenceKeys());
     state.pluginCategories = state.pluginCategories.filter((existing) => existing.id !== category.id);
     state.pluginCategories.push(category);
+    const reconciledKeys = reconcileCustomPreferencesForCategory(category, customKeysBefore);
     rebuildSchemaFieldKeys();
     state.activePanel = category.id;
     buildNavigation(els.search.value.trim());
     renderPanel();
     scrollContentToTop();
-    setApkScanModalState("success", modalPayload);
+    setApkScanModalState("success", {
+      ...modalPayload,
+      reconciledCount: reconciledKeys.length,
+    });
+    const reconcileMessage = formatReconcileSummary([
+      { categoryTitle: category.title || category.id, keys: reconciledKeys },
+    ]);
+    if (reconcileMessage) showToast(reconcileMessage);
   } catch (error) {
     setApkScanModalState("error", {
       filename: file.name,
@@ -870,6 +885,48 @@ function setPreferenceFromField(field, value) {
     value: normalized,
     ...(meta.java_class ? { java_class: meta.java_class } : {}),
   };
+}
+
+function reconcileCustomPreferencesForCategory(category, customKeys = null) {
+  const eligible = customKeys ?? new Set(listCustomPreferenceKeys());
+  const reconciled = [];
+  for (const field of exportableFields(categoryFields(category))) {
+    const key = field.key;
+    if (!key || !eligible.has(key)) continue;
+    const existing = state.preferences[key];
+    if (!existing) continue;
+    setPreferenceFromField(field, existing.value);
+    if (state.preferences[key]) reconciled.push(key);
+  }
+  return reconciled;
+}
+
+function reconcileCustomPreferencesForAllPlugins() {
+  const customKeys = new Set(listCustomPreferenceKeys());
+  const results = [];
+  for (const category of state.pluginCategories) {
+    const keys = reconcileCustomPreferencesForCategory(category, customKeys);
+    if (!keys.length) continue;
+    for (const key of keys) customKeys.delete(key);
+    results.push({
+      categoryTitle: category.title || category.id,
+      keys,
+    });
+  }
+  return results;
+}
+
+function formatReconcileSummary(results) {
+  if (!results.length) return null;
+  const total = results.reduce((count, entry) => count + entry.keys.length, 0);
+  if (results.length === 1) {
+    const { categoryTitle, keys } = results[0];
+    if (keys.length === 1) {
+      return `Moved ${keys[0]} from Custom Preferences to ${categoryTitle}`;
+    }
+    return `Moved ${keys.length} preferences from Custom Preferences to ${categoryTitle}`;
+  }
+  return `Moved ${total} preferences from Custom Preferences into ${results.length} plugin categories`;
 }
 
 function isAndroidResourceRef(value) {
@@ -1695,8 +1752,12 @@ async function importPref(event) {
       cot_outputs: data.connections?.cot_outputs || [],
       cot_streams: data.connections?.cot_streams || [],
     };
+    const reconcileResults = reconcileCustomPreferencesForAllPlugins();
     renderPanel();
-    showToast(`Imported ${file.name}`);
+    let message = `Imported ${file.name}`;
+    const reconcileMessage = formatReconcileSummary(reconcileResults);
+    if (reconcileMessage) message += `. ${reconcileMessage}`;
+    showToast(message);
   } catch (error) {
     showToast(error.message, true);
   }
