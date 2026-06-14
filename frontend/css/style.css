@@ -332,6 +332,25 @@ code {
   color: #cbd5e1;
 }
 
+.section-search {
+  margin-bottom: 0.75rem;
+}
+
+.section-search input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.section-search-count {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 .field-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

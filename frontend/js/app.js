@@ -44,6 +44,7 @@ const state = {
     cot_outputs: [],
     cot_streams: [],
   },
+  customPrefsFilter: "",
 };
 
 const els = {
@@ -1211,6 +1212,20 @@ function listCustomPreferenceKeys() {
     .sort();
 }
 
+function customPreferenceSearchHaystack(key) {
+  const pref = state.preferences[key];
+  if (!pref) return key.toLowerCase();
+  return [key, pref.type, String(pref.value ?? "")]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function customPreferenceMatchesFilter(key, lower) {
+  if (!lower) return true;
+  return customPreferenceSearchHaystack(key).includes(lower);
+}
+
 function normalizeCustomValue(type, raw) {
   if (raw === null || raw === undefined || raw === "") return null;
   if (type === "boolean") return raw === true || raw === "true";
@@ -1243,12 +1258,16 @@ function prependSearchFilterBanner(container, { lower, matchCount = null, label 
 }
 
 function renderCustomPreferencesPanel() {
+  const searchHadFocus = document.activeElement?.id === "custom-prefs-search";
+  const searchSelection = searchHadFocus ? document.activeElement.selectionStart : null;
+
   els.panelTitle.textContent = "Custom ATAK Preferences";
   els.panelDescription.textContent =
     "Add ATAK Shared Preferences not covered by the schema. Use this for plugin settings (including NWSharedPreferences Scope/Key/Value pairs). Unset values are omitted from export.";
   els.form.innerHTML = "";
 
   const lower = getActiveSearchFilter().toLowerCase();
+  const localLower = state.customPrefsFilter.trim().toLowerCase();
   const customMatch = customPreferencesMatchesSearch(lower);
   if (lower) {
     prependSearchFilterBanner(els.form, {
@@ -1304,24 +1323,67 @@ function renderCustomPreferencesPanel() {
   listCard.className = "section-card";
   listCard.appendChild(Object.assign(document.createElement("h3"), { textContent: "Custom Preferences" }));
 
-  const keys = listCustomPreferenceKeys().filter(
-    (key) => !lower || customMatch.nameMatch || key.toLowerCase().includes(lower)
-  );
+  const searchWrap = document.createElement("div");
+  searchWrap.className = "section-search";
+  const searchInput = document.createElement("input");
+  searchInput.type = "search";
+  searchInput.id = "custom-prefs-search";
+  searchInput.placeholder = "Search by key or value…";
+  searchInput.autocomplete = "off";
+  searchInput.value = state.customPrefsFilter;
+  searchInput.addEventListener("input", () => {
+    state.customPrefsFilter = searchInput.value;
+    renderCustomPreferencesPanel();
+  });
+  searchWrap.appendChild(searchInput);
+  listCard.appendChild(searchWrap);
+
+  const allKeys = listCustomPreferenceKeys();
+  const keys = allKeys.filter((key) => {
+    if (lower && !customMatch.nameMatch && !key.toLowerCase().includes(lower)) return false;
+    if (localLower && !customPreferenceMatchesFilter(key, localLower)) return false;
+    return true;
+  });
+
+  if (localLower || (lower && !customMatch.nameMatch)) {
+    const countNote = document.createElement("p");
+    countNote.className = "section-search-count";
+    countNote.textContent =
+      keys.length === allKeys.length
+        ? `${allKeys.length} preference${allKeys.length === 1 ? "" : "s"}`
+        : `Showing ${keys.length} of ${allKeys.length}`;
+    listCard.appendChild(countNote);
+  }
+
   if (!keys.length) {
     listCard.appendChild(
       Object.assign(document.createElement("div"), {
         className: "empty-state",
-        textContent: lower ? "No custom preferences match this search." : "No custom preferences yet.",
+        textContent:
+          localLower || lower
+            ? "No custom preferences match this search."
+            : "No custom preferences yet.",
       })
     );
   } else {
     for (const key of keys) {
       const row = renderCustomPreferenceRow(key);
-      if (lower && key.toLowerCase().includes(lower)) row.classList.add("search-match");
+      const activeFilter = localLower || (lower && !customMatch.nameMatch ? lower : "");
+      if (activeFilter && customPreferenceMatchesFilter(key, activeFilter)) {
+        row.classList.add("search-match");
+      }
       listCard.appendChild(row);
     }
   }
   els.form.appendChild(listCard);
+
+  if (searchHadFocus) {
+    const input = document.getElementById("custom-prefs-search");
+    if (input) {
+      input.focus();
+      if (searchSelection != null) input.setSelectionRange(searchSelection, searchSelection);
+    }
+  }
 }
 
 function wrapField(label, control) {
