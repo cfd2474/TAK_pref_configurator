@@ -549,6 +549,49 @@ dialog::backdrop {
   border-top: 1px solid var(--border);
 }
 
+.import-xml-body {
+  padding: 1rem 1.25rem;
+}
+
+.import-xml-hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.import-xml-textarea {
+  width: 100%;
+  min-height: 280px;
+  max-height: calc(85vh - 220px);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.import-xml-textarea:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.45);
+  outline-offset: 1px;
+}
+
+.import-xml-error {
+  margin: 0.75rem 0 0;
+  color: #fca5a5;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+#import-xml-dialog {
+  width: min(960px, 94vw);
+}
+
 .apk-scan-body {
   padding: 1.25rem;
 }

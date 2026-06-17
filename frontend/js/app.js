@@ -69,6 +69,13 @@ const els = {
   previewContent: document.getElementById("preview-content"),
   copyPreview: document.getElementById("copy-preview"),
   closePreview: document.getElementById("close-preview"),
+  importXmlBtn: document.getElementById("import-xml-btn"),
+  importXmlDialog: document.getElementById("import-xml-dialog"),
+  importXmlContent: document.getElementById("import-xml-content"),
+  importXmlError: document.getElementById("import-xml-error"),
+  submitImportXml: document.getElementById("submit-import-xml"),
+  cancelImportXml: document.getElementById("cancel-import-xml"),
+  closeImportXml: document.getElementById("close-import-xml"),
   toast: document.getElementById("toast"),
   content: document.querySelector(".content"),
 };
@@ -96,6 +103,18 @@ function bindEvents() {
   els.previewBtn.addEventListener("click", previewPref);
   els.importFile.addEventListener("change", importPref);
   els.importPluginApk.addEventListener("change", importPluginApk);
+  els.importXmlBtn.addEventListener("click", openImportXmlDialog);
+  els.submitImportXml.addEventListener("click", submitImportXml);
+  els.cancelImportXml.addEventListener("click", closeImportXmlDialog);
+  els.closeImportXml.addEventListener("click", closeImportXmlDialog);
+  els.importXmlDialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeImportXmlDialog();
+  });
+  els.importXmlContent.addEventListener("input", () => {
+    els.importXmlError.hidden = true;
+    els.importXmlError.textContent = "";
+  });
   els.apkScanAck.addEventListener("click", () => els.apkScanDialog.close());
   els.apkScanDialog.addEventListener("cancel", (event) => {
     event.preventDefault();
@@ -1745,21 +1764,69 @@ async function importPref(event) {
     const response = await fetch("/api/parse", { method: "POST", body: formData });
     const data = await response.json();
     if (!response.ok) throw new Error(data.detail || "Import failed");
-
-    state.preferences = data.preferences || {};
-    state.connections = {
-      cot_inputs: data.connections?.cot_inputs || [],
-      cot_outputs: data.connections?.cot_outputs || [],
-      cot_streams: data.connections?.cot_streams || [],
-    };
-    const reconcileResults = reconcileCustomPreferencesForAllPlugins();
-    renderPanel();
-    let message = `Imported ${file.name}`;
-    const reconcileMessage = formatReconcileSummary(reconcileResults);
-    if (reconcileMessage) message += `. ${reconcileMessage}`;
-    showToast(message);
+    applyImportedPrefData(data, file.name);
+    closeImportXmlDialog();
   } catch (error) {
     showToast(error.message, true);
+  }
+}
+
+function applyImportedPrefData(data, label) {
+  state.preferences = data.preferences || {};
+  state.connections = {
+    cot_inputs: data.connections?.cot_inputs || [],
+    cot_outputs: data.connections?.cot_outputs || [],
+    cot_streams: data.connections?.cot_streams || [],
+  };
+  const reconcileResults = reconcileCustomPreferencesForAllPlugins();
+  renderPanel();
+  let message = `Imported ${label}`;
+  const reconcileMessage = formatReconcileSummary(reconcileResults);
+  if (reconcileMessage) message += `. ${reconcileMessage}`;
+  showToast(message);
+}
+
+function openImportXmlDialog() {
+  els.importXmlError.hidden = true;
+  els.importXmlError.textContent = "";
+  els.importXmlDialog.showModal();
+  els.importXmlContent.focus();
+}
+
+function closeImportXmlDialog() {
+  els.importXmlDialog.close();
+  els.importXmlError.hidden = true;
+  els.importXmlError.textContent = "";
+}
+
+async function submitImportXml() {
+  const content = els.importXmlContent.value.trim();
+  if (!content) {
+    els.importXmlError.hidden = false;
+    els.importXmlError.textContent = "Paste preference XML before importing.";
+    return;
+  }
+
+  els.submitImportXml.disabled = true;
+  els.importXmlError.hidden = true;
+  els.importXmlError.textContent = "";
+
+  try {
+    const response = await fetch("/api/parse-text", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content }),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.detail || "Import failed");
+    applyImportedPrefData(data, "pasted XML");
+    els.importXmlContent.value = "";
+    closeImportXmlDialog();
+  } catch (error) {
+    els.importXmlError.hidden = false;
+    els.importXmlError.textContent = error.message;
+  } finally {
+    els.submitImportXml.disabled = false;
   }
 }
 

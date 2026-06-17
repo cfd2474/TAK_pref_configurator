@@ -51,6 +51,10 @@ class GenerateRequest(BaseModel):
     preferences: dict[str, PreferenceValue] = Field(default_factory=dict)
 
 
+class ParseTextRequest(BaseModel):
+    content: str = Field(min_length=1)
+
+
 def load_schema() -> dict:
     if not SCHEMA_PATH.exists():
         raise HTTPException(status_code=500, detail="Preference schema not found")
@@ -122,17 +126,29 @@ def generate_pref(request: GenerateRequest) -> Response:
     )
 
 
-@app.post("/api/parse")
-async def parse_pref(file: UploadFile = File(...)) -> dict:
-    if not file.filename or not file.filename.lower().endswith((".pref", ".xml")):
-        raise HTTPException(status_code=400, detail="Upload a .pref or .xml file")
-    content = (await file.read()).decode("utf-8", errors="replace")
+def _parse_pref_content(content: str) -> dict:
     try:
         parsed = parse_pref_xml(content)
         parsed["preferences"] = redact_preferences(parsed["preferences"])
         return parsed
     except Exception as exc:
-        raise HTTPException(status_code=400, detail=f"Failed to parse preference file: {exc}") from exc
+        raise HTTPException(
+            status_code=400,
+            detail=f"Failed to parse preference file: {exc}",
+        ) from exc
+
+
+@app.post("/api/parse")
+async def parse_pref(file: UploadFile = File(...)) -> dict:
+    if not file.filename or not file.filename.lower().endswith((".pref", ".xml")):
+        raise HTTPException(status_code=400, detail="Upload a .pref or .xml file")
+    content = (await file.read()).decode("utf-8", errors="replace")
+    return _parse_pref_content(content)
+
+
+@app.post("/api/parse-text")
+def parse_pref_text(request: ParseTextRequest) -> dict:
+    return _parse_pref_content(request.content.strip())
 
 
 if FRONTEND_DIR.exists():
