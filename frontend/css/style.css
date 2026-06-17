@@ -592,6 +592,111 @@ dialog::backdrop {
   width: min(960px, 94vw);
 }
 
+.import-merge-body,
+.import-summary-body {
+  padding: 1rem 1.25rem;
+}
+
+.import-merge-hint {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.import-merge-options {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.import-merge-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--bg);
+}
+
+.import-merge-option:has(input:checked) {
+  border-color: rgba(59, 130, 246, 0.65);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.import-merge-option input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.import-merge-option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.import-merge-option-text strong {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.import-summary-message {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.import-summary-reconcile {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#import-merge-dialog {
+  width: min(560px, 94vw);
+}
+
+#import-summary-dialog {
+  width: min(520px, 94vw);
+}
+
+#import-summary-dialog .apk-scan-details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 1rem;
+  margin: 0;
+}
+
+#import-summary-dialog .apk-scan-details dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+#import-summary-dialog .apk-scan-details dd {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
 .apk-scan-body {
   padding: 1.25rem;
 }

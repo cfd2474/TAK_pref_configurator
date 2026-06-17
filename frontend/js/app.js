@@ -47,6 +47,14 @@ const state = {
   customPrefsFilter: "",
 };
 
+let pendingImport = null;
+
+const IMPORT_MERGE_MODES = {
+  append: "append",
+  override: "override",
+  replace: "replace",
+};
+
 const els = {
   nav: document.getElementById("category-nav"),
   form: document.getElementById("settings-form"),
@@ -76,6 +84,17 @@ const els = {
   submitImportXml: document.getElementById("submit-import-xml"),
   cancelImportXml: document.getElementById("cancel-import-xml"),
   closeImportXml: document.getElementById("close-import-xml"),
+  importMergeDialog: document.getElementById("import-merge-dialog"),
+  importMergeSource: document.getElementById("import-merge-source"),
+  confirmImportMerge: document.getElementById("confirm-import-merge"),
+  cancelImportMerge: document.getElementById("cancel-import-merge"),
+  closeImportMerge: document.getElementById("close-import-merge"),
+  importSummaryDialog: document.getElementById("import-summary-dialog"),
+  importSummaryMessage: document.getElementById("import-summary-message"),
+  importSummaryDetails: document.getElementById("import-summary-details"),
+  importSummaryReconcile: document.getElementById("import-summary-reconcile"),
+  ackImportSummary: document.getElementById("ack-import-summary"),
+  closeImportSummary: document.getElementById("close-import-summary"),
   toast: document.getElementById("toast"),
   content: document.querySelector(".content"),
 };
@@ -114,6 +133,19 @@ function bindEvents() {
   els.importXmlContent.addEventListener("input", () => {
     els.importXmlError.hidden = true;
     els.importXmlError.textContent = "";
+  });
+  els.confirmImportMerge.addEventListener("click", confirmImportMerge);
+  els.cancelImportMerge.addEventListener("click", cancelImportMerge);
+  els.closeImportMerge.addEventListener("click", cancelImportMerge);
+  els.importMergeDialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    cancelImportMerge();
+  });
+  els.ackImportSummary.addEventListener("click", () => els.importSummaryDialog.close());
+  els.closeImportSummary.addEventListener("click", () => els.importSummaryDialog.close());
+  els.importSummaryDialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    els.importSummaryDialog.close();
   });
   els.apkScanAck.addEventListener("click", () => els.apkScanDialog.close());
   els.apkScanDialog.addEventListener("cancel", (event) => {
@@ -1764,26 +1796,257 @@ async function importPref(event) {
     const response = await fetch("/api/parse", { method: "POST", body: formData });
     const data = await response.json();
     if (!response.ok) throw new Error(data.detail || "Import failed");
-    applyImportedPrefData(data, file.name);
-    closeImportXmlDialog();
+    promptImportMerge(data, file.name);
   } catch (error) {
     showToast(error.message, true);
   }
 }
 
-function applyImportedPrefData(data, label) {
-  state.preferences = data.preferences || {};
-  state.connections = {
-    cot_inputs: data.connections?.cot_inputs || [],
-    cot_outputs: data.connections?.cot_outputs || [],
-    cot_streams: data.connections?.cot_streams || [],
+function isPreferenceSet(pref) {
+  if (!pref) return false;
+  const value = pref.value;
+  if (value === null || value === undefined || value === "") return false;
+  if (Array.isArray(value) && !value.length) return false;
+  return true;
+}
+
+function clonePreference(pref) {
+  if (!pref) return pref;
+  const cloned = { ...pref };
+  if (Array.isArray(pref.value)) cloned.value = [...pref.value];
+  return cloned;
+}
+
+function cloneConnection(connection) {
+  return JSON.parse(JSON.stringify(connection));
+}
+
+function emptyImportStats() {
+  return { added: 0, appended: 0, overwritten: 0, rejected: 0, removed: 0 };
+}
+
+function combineImportStats(...parts) {
+  const total = emptyImportStats();
+  for (const part of parts) {
+    for (const key of Object.keys(total)) {
+      total[key] += part[key] || 0;
+    }
+  }
+  return total;
+}
+
+function mergePreferences(current, imported, mode) {
+  const stats = emptyImportStats();
+  const importedPrefs = imported || {};
+
+  if (mode === IMPORT_MERGE_MODES.replace) {
+    const result = {};
+    for (const [key, pref] of Object.entries(importedPrefs)) {
+      if (!isPreferenceSet(pref)) continue;
+      result[key] = clonePreference(pref);
+      if (key in current) stats.overwritten += 1;
+      else stats.added += 1;
+    }
+    stats.removed = Object.keys(current).filter((key) => !(key in result)).length;
+    return { preferences: result, stats };
+  }
+
+  const result = {};
+  for (const [key, pref] of Object.entries(current)) {
+    result[key] = clonePreference(pref);
+  }
+
+  for (const [key, importedPref] of Object.entries(importedPrefs)) {
+    if (!isPreferenceSet(importedPref)) continue;
+
+    const currentPref = current[key];
+    const currentSet = isPreferenceSet(currentPref);
+
+    if (mode === IMPORT_MERGE_MODES.append) {
+      if (currentSet) {
+        stats.rejected += 1;
+        continue;
+      }
+      result[key] = clonePreference(importedPref);
+      if (key in current) stats.appended += 1;
+      else stats.added += 1;
+      continue;
+    }
+
+    if (!currentSet) stats.added += 1;
+    else stats.overwritten += 1;
+    result[key] = clonePreference(importedPref);
+  }
+
+  return { preferences: result, stats };
+}
+
+function countConnections(connections) {
+  return COT_PANELS.reduce((total, group) => total + (connections[group] || []).length, 0);
+}
+
+function mergeConnections(current, imported, mode) {
+  const stats = emptyImportStats();
+  const result = {
+    cot_inputs: [],
+    cot_outputs: [],
+    cot_streams: [],
   };
+
+  for (const group of COT_PANELS) {
+    const currentList = current[group] || [];
+    const importedList = imported?.[group] || [];
+
+    if (mode === IMPORT_MERGE_MODES.replace) {
+      result[group] = importedList.map(cloneConnection);
+      if (importedList.length) {
+        if (currentList.length) stats.overwritten += importedList.length;
+        else stats.added += importedList.length;
+      }
+      if (currentList.length && !importedList.length) {
+        stats.removed += currentList.length;
+      } else if (currentList.length > importedList.length) {
+        stats.removed += currentList.length - importedList.length;
+      }
+      continue;
+    }
+
+    if (mode === IMPORT_MERGE_MODES.append) {
+      if (!currentList.length && importedList.length) {
+        result[group] = importedList.map(cloneConnection);
+        stats.added += importedList.length;
+      } else {
+        result[group] = currentList.map(cloneConnection);
+        if (currentList.length && importedList.length) {
+          stats.rejected += importedList.length;
+        }
+      }
+      continue;
+    }
+
+    if (importedList.length) {
+      result[group] = importedList.map(cloneConnection);
+      if (currentList.length) stats.overwritten += importedList.length;
+      else stats.added += importedList.length;
+    } else {
+      result[group] = currentList.map(cloneConnection);
+    }
+  }
+
+  return { connections: result, stats };
+}
+
+function hasExistingImportState() {
+  if (Object.keys(state.preferences).length > 0) return true;
+  return countConnections(state.connections) > 0;
+}
+
+function importMergeModeLabel(mode) {
+  if (mode === IMPORT_MERGE_MODES.append) return "Append";
+  if (mode === IMPORT_MERGE_MODES.override) return "Merge (import wins)";
+  return "Replace all";
+}
+
+function formatImportSummaryDetails(stats) {
+  const lines = [];
+  if (stats.added) lines.push(["Added", String(stats.added)]);
+  if (stats.appended) lines.push(["Appended (filled blanks)", String(stats.appended)]);
+  if (stats.overwritten) lines.push(["Overwritten", String(stats.overwritten)]);
+  if (stats.rejected) lines.push(["Rejected (kept existing)", String(stats.rejected)]);
+  if (stats.removed) lines.push(["Removed", String(stats.removed)]);
+  return lines;
+}
+
+function showImportSummaryDialog({ label, mode, stats, reconcileMessage }) {
+  els.importSummaryMessage.textContent = `Imported ${label} using ${importMergeModeLabel(mode)}.`;
+  els.importSummaryDetails.innerHTML = "";
+  const details = formatImportSummaryDetails(stats);
+  if (!details.length) {
+    const dt = document.createElement("dt");
+    dt.textContent = "Changes";
+    const dd = document.createElement("dd");
+    dd.textContent = "No preference or CoT connection values were applied.";
+    els.importSummaryDetails.appendChild(dt);
+    els.importSummaryDetails.appendChild(dd);
+  } else {
+    for (const [name, value] of details) {
+      const dt = document.createElement("dt");
+      dt.textContent = name;
+      const dd = document.createElement("dd");
+      dd.textContent = value;
+      els.importSummaryDetails.appendChild(dt);
+      els.importSummaryDetails.appendChild(dd);
+    }
+  }
+
+  if (reconcileMessage) {
+    els.importSummaryReconcile.hidden = false;
+    els.importSummaryReconcile.textContent = reconcileMessage;
+  } else {
+    els.importSummaryReconcile.hidden = true;
+    els.importSummaryReconcile.textContent = "";
+  }
+
+  els.importSummaryDialog.showModal();
+}
+
+function getSelectedImportMergeMode() {
+  const selected = document.querySelector('input[name="import-merge-mode"]:checked');
+  return selected?.value || IMPORT_MERGE_MODES.override;
+}
+
+function promptImportMerge(data, label) {
+  pendingImport = { data, label, clearXmlOnFinish: label === "pasted XML" };
+  if (!hasExistingImportState()) {
+    finishImport(IMPORT_MERGE_MODES.replace);
+    return;
+  }
+  els.importMergeSource.textContent = label;
+  const overrideRadio = document.querySelector('input[name="import-merge-mode"][value="override"]');
+  if (overrideRadio) overrideRadio.checked = true;
+  closeImportXmlDialog();
+  els.importMergeDialog.showModal();
+}
+
+function cancelImportMerge() {
+  pendingImport = null;
+  els.importMergeDialog.close();
+}
+
+function confirmImportMerge() {
+  if (!pendingImport) {
+    els.importMergeDialog.close();
+    return;
+  }
+  const mode = getSelectedImportMergeMode();
+  els.importMergeDialog.close();
+  finishImport(mode);
+}
+
+function finishImport(mode) {
+  if (!pendingImport) return;
+
+  const { data, label, clearXmlOnFinish } = pendingImport;
+  pendingImport = null;
+
+  const prefMerge = mergePreferences(state.preferences, data.preferences || {}, mode);
+  const connMerge = mergeConnections(state.connections, data.connections || {}, mode);
+  const stats = combineImportStats(prefMerge.stats, connMerge.stats);
+
+  state.preferences = prefMerge.preferences;
+  state.connections = connMerge.connections;
+
   const reconcileResults = reconcileCustomPreferencesForAllPlugins();
+  rebuildSchemaFieldKeys();
   renderPanel();
-  let message = `Imported ${label}`;
+
+  if (clearXmlOnFinish) {
+    els.importXmlContent.value = "";
+    closeImportXmlDialog();
+  }
+
   const reconcileMessage = formatReconcileSummary(reconcileResults);
-  if (reconcileMessage) message += `. ${reconcileMessage}`;
-  showToast(message);
+  showImportSummaryDialog({ label, mode, stats, reconcileMessage });
 }
 
 function openImportXmlDialog() {
@@ -1819,9 +2082,7 @@ async function submitImportXml() {
     });
     const data = await response.json();
     if (!response.ok) throw new Error(data.detail || "Import failed");
-    applyImportedPrefData(data, "pasted XML");
-    els.importXmlContent.value = "";
-    closeImportXmlDialog();
+    promptImportMerge(data, "pasted XML");
   } catch (error) {
     els.importXmlError.hidden = false;
     els.importXmlError.textContent = error.message;

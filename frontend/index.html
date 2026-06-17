@@ -51,13 +51,66 @@
       <button type="button" id="close-import-xml" class="icon-btn" aria-label="Close">&times;</button>
     </div>
     <div class="import-xml-body">
-      <p class="import-xml-hint">Paste TAK-CIV <code>.pref</code> XML below. CoT settings and ATAK shared preferences will replace the current form values.</p>
+      <p class="import-xml-hint">Paste TAK-CIV <code>.pref</code> XML below. You will choose how to merge with any values already in the form.</p>
       <textarea id="import-xml-content" class="import-xml-textarea" placeholder="&lt;?xml version='1.0' standalone='yes'?&gt;&#10;&lt;preferences&gt;&#10;…&#10;&lt;/preferences&gt;" spellcheck="false"></textarea>
       <p id="import-xml-error" class="import-xml-error" hidden></p>
     </div>
     <div class="dialog-footer">
       <button type="button" id="cancel-import-xml" class="btn btn-secondary">Cancel</button>
       <button type="button" id="submit-import-xml" class="btn btn-primary">Import</button>
+    </div>
+  </dialog>
+
+  <dialog id="import-merge-dialog">
+    <div class="dialog-header">
+      <h2>Import Merge Options</h2>
+      <button type="button" id="close-import-merge" class="icon-btn" aria-label="Close">&times;</button>
+    </div>
+    <div class="import-merge-body">
+      <p class="import-merge-hint">The form already has values. How should <strong id="import-merge-source"></strong> be applied?</p>
+      <fieldset class="import-merge-options">
+        <legend class="sr-only">Import merge strategy</legend>
+        <label class="import-merge-option">
+          <input type="radio" name="import-merge-mode" value="append">
+          <span class="import-merge-option-text">
+            <strong>Append</strong>
+            <span>Fill in blank fields only. Existing values are kept.</span>
+          </span>
+        </label>
+        <label class="import-merge-option">
+          <input type="radio" name="import-merge-mode" value="override" checked>
+          <span class="import-merge-option-text">
+            <strong>Merge (import wins)</strong>
+            <span>Imported values replace matching keys. Values only in the form are kept.</span>
+          </span>
+        </label>
+        <label class="import-merge-option">
+          <input type="radio" name="import-merge-mode" value="replace">
+          <span class="import-merge-option-text">
+            <strong>Replace all</strong>
+            <span>Discard current values and use the import only.</span>
+          </span>
+        </label>
+      </fieldset>
+    </div>
+    <div class="dialog-footer">
+      <button type="button" id="cancel-import-merge" class="btn btn-secondary">Cancel</button>
+      <button type="button" id="confirm-import-merge" class="btn btn-primary">Continue</button>
+    </div>
+  </dialog>
+
+  <dialog id="import-summary-dialog">
+    <div class="dialog-header">
+      <h2>Import Complete</h2>
+      <button type="button" id="close-import-summary" class="icon-btn" aria-label="Close">&times;</button>
+    </div>
+    <div class="import-summary-body">
+      <p id="import-summary-message" class="import-summary-message"></p>
+      <dl id="import-summary-details" class="apk-scan-details"></dl>
+      <p id="import-summary-reconcile" class="import-summary-reconcile" hidden></p>
+    </div>
+    <div class="dialog-footer">
+      <button type="button" id="ack-import-summary" class="btn btn-primary">OK</button>
     </div>
   </dialog>
 
