@@ -660,6 +660,35 @@ dialog::backdrop {
   line-height: 1.45;
 }
 
+.import-merge-clean {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.import-merge-clean input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.import-merge-radial-hint {
+  margin: 0.65rem 0 0;
+  font-size: 0.85rem;
+  color: #fcd34d;
+  line-height: 1.45;
+}
+
+.import-summary-fixed {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  color: #86efac;
+  line-height: 1.45;
+}
+
 .import-summary-warnings {
   margin: 1rem 0 0;
   padding-left: 1.2rem;

@@ -36,6 +36,7 @@
         <input type="text" id="filename" value="tak-civ-config.pref">
         <p class="hint">Preference group: <code>com.atakmap.app.civ_preferences</code></p>
         <p class="hint">Device session keys (icon picker state) are removed on download.</p>
+        <button type="button" id="clean-radial-btn" class="btn btn-secondary sidebar-btn">Clean radial menu issues</button>
       </div>
     </aside>
 
@@ -54,6 +55,10 @@
     <div class="import-xml-body">
       <p class="import-xml-hint">Paste TAK-CIV <code>.pref</code> XML below. You will choose how to merge with any values already in the form.</p>
       <textarea id="import-xml-content" class="import-xml-textarea" placeholder="&lt;?xml version='1.0' standalone='yes'?&gt;&#10;&lt;preferences&gt;&#10;…&#10;&lt;/preferences&gt;" spellcheck="false"></textarea>
+      <label class="import-merge-clean">
+        <input type="checkbox" id="import-xml-clean-radial" checked>
+        <span>Clean radial menu / Node Type issues on import</span>
+      </label>
       <p id="import-xml-error" class="import-xml-error" hidden></p>
     </div>
     <div class="dialog-footer">
@@ -93,6 +98,11 @@
           </span>
         </label>
       </fieldset>
+      <label class="import-merge-clean">
+        <input type="checkbox" id="import-clean-radial" checked>
+        <span>Clean radial menu / Node Type issues (remove icon picker session keys)</span>
+      </label>
+      <p id="import-merge-radial-hint" class="import-merge-radial-hint" hidden></p>
     </div>
     <div class="dialog-footer">
       <button type="button" id="cancel-import-merge" class="btn btn-secondary">Cancel</button>
@@ -109,6 +119,7 @@
       <p id="import-summary-message" class="import-summary-message"></p>
       <dl id="import-summary-details" class="apk-scan-details"></dl>
       <ul id="import-summary-warnings" class="import-summary-warnings" hidden></ul>
+      <p id="import-summary-fixed" class="import-summary-fixed" hidden></p>
       <p id="import-summary-reconcile" class="import-summary-reconcile" hidden></p>
     </div>
     <div class="dialog-footer">

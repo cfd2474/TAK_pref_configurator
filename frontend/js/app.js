@@ -101,7 +101,12 @@ const els = {
   importSummaryMessage: document.getElementById("import-summary-message"),
   importSummaryDetails: document.getElementById("import-summary-details"),
   importSummaryWarnings: document.getElementById("import-summary-warnings"),
+  importSummaryFixed: document.getElementById("import-summary-fixed"),
   importSummaryReconcile: document.getElementById("import-summary-reconcile"),
+  importCleanRadial: document.getElementById("import-clean-radial"),
+  importMergeRadialHint: document.getElementById("import-merge-radial-hint"),
+  importXmlCleanRadial: document.getElementById("import-xml-clean-radial"),
+  cleanRadialBtn: document.getElementById("clean-radial-btn"),
   ackImportSummary: document.getElementById("ack-import-summary"),
   closeImportSummary: document.getElementById("close-import-summary"),
   toast: document.getElementById("toast"),
@@ -143,6 +148,7 @@ function bindEvents() {
     els.importXmlError.hidden = true;
     els.importXmlError.textContent = "";
   });
+  els.cleanRadialBtn.addEventListener("click", cleanRadialMenuIssuesInState);
   els.confirmImportMerge.addEventListener("click", confirmImportMerge);
   els.cancelImportMerge.addEventListener("click", cancelImportMerge);
   els.closeImportMerge.addEventListener("click", cancelImportMerge);
@@ -1744,9 +1750,54 @@ function stripSessionPreferences(preferences) {
 }
 
 function stripSessionPreferencesFromState() {
-  const { preferences, stripped } = stripSessionPreferences(state.preferences);
-  state.preferences = preferences;
-  return stripped;
+  return repairRadialMenuIssuesFromState();
+}
+
+function repairRadialMenuIssues(preferences) {
+  const analysis = analyzeSessionPrefIssues(preferences);
+  const unitTypeBefore = prefValue(preferences, "locationUnitType");
+  const lastCoTBefore = prefValue(preferences, "lastCoTTypeSet");
+  const { preferences: cleaned, stripped } = stripSessionPreferences(preferences);
+  const messages = [];
+
+  if (stripped.length) {
+    messages.push(`Removed ${stripped.length} icon picker session key(s).`);
+  }
+  if (analysis.unit_type_conflict && unitTypeBefore) {
+    messages.push(
+      `Kept My Display Type (${unitTypeBefore}) and removed conflicting lastCoTTypeSet (${lastCoTBefore}).`
+    );
+  }
+
+  return {
+    preferences: cleaned,
+    stripped,
+    repaired: stripped.length > 0 || analysis.unit_type_conflict,
+    messages,
+    unit_type_kept: unitTypeBefore,
+  };
+}
+
+function repairRadialMenuIssuesFromState() {
+  const repair = repairRadialMenuIssues(state.preferences);
+  state.preferences = repair.preferences;
+  return repair;
+}
+
+function cleanRadialMenuIssuesInState() {
+  const repair = repairRadialMenuIssuesFromState();
+  rebuildSchemaFieldKeys();
+  renderPanel();
+  if (repair.repaired) {
+    showToast(repair.messages.join(" "));
+  } else {
+    showToast("No radial menu / Node Type issues found.");
+  }
+}
+
+function formatRadialRepairMessage(repair) {
+  if (!repair?.repaired) return "";
+  return `Radial menu cleaned: ${repair.messages.join(" ")}`;
 }
 
 function mergeSessionAnalysis(existingAnalysis, importedAnalysis) {
@@ -2011,12 +2062,19 @@ function formatImportSummaryDetails(stats) {
   return lines;
 }
 
-function showImportSummaryDialog({ label, mode, stats, reconcileMessage, sessionAnalysis, strippedSessionKeys = [] }) {
+function showImportSummaryDialog({
+  label,
+  mode,
+  stats,
+  reconcileMessage,
+  sessionAnalysis,
+  radialRepair = null,
+}) {
   els.importSummaryMessage.textContent = `Imported ${label} using ${importMergeModeLabel(mode)}.`;
   els.importSummaryDetails.innerHTML = "";
   const details = formatImportSummaryDetails(stats);
-  if (strippedSessionKeys.length) {
-    details.push(["Session keys removed", String(strippedSessionKeys.length)]);
+  if (radialRepair?.stripped?.length) {
+    details.push(["Radial menu cleaned", `${radialRepair.stripped.length} session key(s) removed`]);
   }
   if (!details.length) {
     const dt = document.createElement("dt");
@@ -2046,7 +2104,7 @@ function showImportSummaryDialog({ label, mode, stats, reconcileMessage, session
 
   const warnings = sessionAnalysis?.warnings || [];
   els.importSummaryWarnings.innerHTML = "";
-  if (warnings.length) {
+  if (warnings.length && !radialRepair?.repaired) {
     els.importSummaryWarnings.hidden = false;
     for (const warning of warnings) {
       const item = document.createElement("li");
@@ -2055,6 +2113,15 @@ function showImportSummaryDialog({ label, mode, stats, reconcileMessage, session
     }
   } else {
     els.importSummaryWarnings.hidden = true;
+  }
+
+  const fixedMessage = formatRadialRepairMessage(radialRepair);
+  if (fixedMessage) {
+    els.importSummaryFixed.hidden = false;
+    els.importSummaryFixed.textContent = fixedMessage;
+  } else {
+    els.importSummaryFixed.hidden = true;
+    els.importSummaryFixed.textContent = "";
   }
 
   els.importSummaryDialog.showModal();
@@ -2066,7 +2133,12 @@ function getSelectedImportMergeMode() {
 }
 
 function promptImportMerge(data, label) {
-  pendingImport = { data, label, clearXmlOnFinish: label === "pasted XML" };
+  pendingImport = {
+    data,
+    label,
+    clearXmlOnFinish: label === "pasted XML",
+    cleanRadial: label === "pasted XML" ? els.importXmlCleanRadial.checked : true,
+  };
   if (!hasExistingImportState()) {
     finishImport(IMPORT_MERGE_MODES.replace);
     return;
@@ -2074,6 +2146,21 @@ function promptImportMerge(data, label) {
   els.importMergeSource.textContent = label;
   const overrideRadio = document.querySelector('input[name="import-merge-mode"][value="override"]');
   if (overrideRadio) overrideRadio.checked = true;
+  if (els.importCleanRadial) els.importCleanRadial.checked = true;
+
+  const analysis = mergeSessionAnalysis(analyzeSessionPrefIssues(state.preferences), data.session_analysis);
+  if (els.importMergeRadialHint) {
+    if (analysis.unit_type_conflict || analysis.session_keys.length) {
+      els.importMergeRadialHint.hidden = false;
+      els.importMergeRadialHint.textContent =
+        "This import includes icon picker session state that can cause Node Type to show as Not Recognized. " +
+        "Keep the clean option enabled to fix it.";
+    } else {
+      els.importMergeRadialHint.hidden = true;
+      els.importMergeRadialHint.textContent = "";
+    }
+  }
+
   closeImportXmlDialog();
   els.importMergeDialog.showModal();
 }
@@ -2088,6 +2175,7 @@ function confirmImportMerge() {
     els.importMergeDialog.close();
     return;
   }
+  pendingImport.cleanRadial = els.importCleanRadial?.checked ?? true;
   const mode = getSelectedImportMergeMode();
   els.importMergeDialog.close();
   finishImport(mode);
@@ -2096,7 +2184,7 @@ function confirmImportMerge() {
 function finishImport(mode) {
   if (!pendingImport) return;
 
-  const { data, label, clearXmlOnFinish } = pendingImport;
+  const { data, label, clearXmlOnFinish, cleanRadial = true } = pendingImport;
   pendingImport = null;
 
   const sessionAnalysis = mergeSessionAnalysis(
@@ -2111,7 +2199,10 @@ function finishImport(mode) {
   state.preferences = prefMerge.preferences;
   state.connections = connMerge.connections;
 
-  const strippedSessionKeys = stripSessionPreferencesFromState();
+  let radialRepair = null;
+  if (cleanRadial) {
+    radialRepair = repairRadialMenuIssuesFromState();
+  }
 
   const reconcileResults = reconcileCustomPreferencesForAllPlugins();
   rebuildSchemaFieldKeys();
@@ -2129,7 +2220,7 @@ function finishImport(mode) {
     stats,
     reconcileMessage,
     sessionAnalysis,
-    strippedSessionKeys,
+    radialRepair,
   });
 }
 

@@ -64,3 +64,28 @@ def strip_session_preferences(preferences: dict[str, Any]) -> tuple[dict[str, An
             stripped.append(key)
             del cleaned[key]
     return cleaned, stripped
+
+
+def repair_radial_menu_preferences(preferences: dict[str, Any]) -> dict[str, Any]:
+    """Remove icon-picker session keys that conflict with locationUnitType."""
+    analysis = analyze_session_pref_issues(preferences)
+    unit_type = pref_value(preferences, "locationUnitType")
+    last_cot = pref_value(preferences, "lastCoTTypeSet")
+    cleaned, stripped = strip_session_preferences(preferences)
+
+    messages: list[str] = []
+    if stripped:
+        messages.append(f"Removed {len(stripped)} icon picker session key(s).")
+    if analysis["unit_type_conflict"] and unit_type:
+        messages.append(
+            f"Kept My Display Type ({unit_type}) and removed conflicting "
+            f"lastCoTTypeSet ({last_cot})."
+        )
+
+    return {
+        "preferences": cleaned,
+        "stripped": stripped,
+        "repaired": bool(stripped or analysis["unit_type_conflict"]),
+        "messages": messages,
+        "unit_type_kept": unit_type,
+    }
