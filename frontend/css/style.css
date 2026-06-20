@@ -660,6 +660,18 @@ dialog::backdrop {
   line-height: 1.45;
 }
 
+.import-summary-warnings {
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+  color: #fcd34d;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.import-summary-warnings li + li {
+  margin-top: 0.35rem;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

@@ -55,6 +55,14 @@ const IMPORT_MERGE_MODES = {
   replace: "replace",
 };
 
+const SESSION_PREF_KEYS = new Set([
+  "lastCoTTypeSet",
+  "lastIconsetPath",
+  "iconset.selected.uid",
+  "iconset.selected.color",
+  "iconset.display.hint2",
+]);
+
 const els = {
   nav: document.getElementById("category-nav"),
   form: document.getElementById("settings-form"),
@@ -92,6 +100,7 @@ const els = {
   importSummaryDialog: document.getElementById("import-summary-dialog"),
   importSummaryMessage: document.getElementById("import-summary-message"),
   importSummaryDetails: document.getElementById("import-summary-details"),
+  importSummaryWarnings: document.getElementById("import-summary-warnings"),
   importSummaryReconcile: document.getElementById("import-summary-reconcile"),
   ackImportSummary: document.getElementById("ack-import-summary"),
   closeImportSummary: document.getElementById("close-import-summary"),
@@ -1712,12 +1721,49 @@ function validateConnectionsClient() {
 
 function buildPayload() {
   normalizeFilename();
+  const preferences = stripSessionPreferences(state.preferences).preferences;
   return {
     filename: els.filename.value,
     preference_name: PREFERENCE_GROUP,
     include_empty_connection_groups: true,
     connections: state.connections,
-    preferences: state.preferences,
+    preferences,
+  };
+}
+
+function stripSessionPreferences(preferences) {
+  const cleaned = { ...preferences };
+  const stripped = [];
+  for (const key of SESSION_PREF_KEYS) {
+    if (key in cleaned) {
+      stripped.push(key);
+      delete cleaned[key];
+    }
+  }
+  return { preferences: cleaned, stripped };
+}
+
+function stripSessionPreferencesFromState() {
+  const { preferences, stripped } = stripSessionPreferences(state.preferences);
+  state.preferences = preferences;
+  return stripped;
+}
+
+function mergeSessionAnalysis(existingAnalysis, importedAnalysis) {
+  const warnings = [];
+  if (existingAnalysis?.warnings?.length) warnings.push(...existingAnalysis.warnings);
+  if (importedAnalysis?.warnings?.length) {
+    for (const warning of importedAnalysis.warnings) {
+      if (!warnings.includes(warning)) warnings.push(warning);
+    }
+  }
+  const sessionKeys = [
+    ...new Set([...(existingAnalysis?.session_keys || []), ...(importedAnalysis?.session_keys || [])]),
+  ].sort();
+  return {
+    warnings,
+    session_keys: sessionKeys,
+    unit_type_conflict: Boolean(existingAnalysis?.unit_type_conflict || importedAnalysis?.unit_type_conflict),
   };
 }
 
@@ -1965,10 +2011,13 @@ function formatImportSummaryDetails(stats) {
   return lines;
 }
 
-function showImportSummaryDialog({ label, mode, stats, reconcileMessage }) {
+function showImportSummaryDialog({ label, mode, stats, reconcileMessage, sessionAnalysis, strippedSessionKeys = [] }) {
   els.importSummaryMessage.textContent = `Imported ${label} using ${importMergeModeLabel(mode)}.`;
   els.importSummaryDetails.innerHTML = "";
   const details = formatImportSummaryDetails(stats);
+  if (strippedSessionKeys.length) {
+    details.push(["Session keys removed", String(strippedSessionKeys.length)]);
+  }
   if (!details.length) {
     const dt = document.createElement("dt");
     dt.textContent = "Changes";
@@ -1993,6 +2042,19 @@ function showImportSummaryDialog({ label, mode, stats, reconcileMessage }) {
   } else {
     els.importSummaryReconcile.hidden = true;
     els.importSummaryReconcile.textContent = "";
+  }
+
+  const warnings = sessionAnalysis?.warnings || [];
+  els.importSummaryWarnings.innerHTML = "";
+  if (warnings.length) {
+    els.importSummaryWarnings.hidden = false;
+    for (const warning of warnings) {
+      const item = document.createElement("li");
+      item.textContent = warning;
+      els.importSummaryWarnings.appendChild(item);
+    }
+  } else {
+    els.importSummaryWarnings.hidden = true;
   }
 
   els.importSummaryDialog.showModal();
@@ -2037,12 +2099,19 @@ function finishImport(mode) {
   const { data, label, clearXmlOnFinish } = pendingImport;
   pendingImport = null;
 
+  const sessionAnalysis = mergeSessionAnalysis(
+    analyzeSessionPrefIssues(state.preferences),
+    data.session_analysis
+  );
+
   const prefMerge = mergePreferences(state.preferences, data.preferences || {}, mode);
   const connMerge = mergeConnections(state.connections, data.connections || {}, mode);
   const stats = combineImportStats(prefMerge.stats, connMerge.stats);
 
   state.preferences = prefMerge.preferences;
   state.connections = connMerge.connections;
+
+  const strippedSessionKeys = stripSessionPreferencesFromState();
 
   const reconcileResults = reconcileCustomPreferencesForAllPlugins();
   rebuildSchemaFieldKeys();
@@ -2054,7 +2123,49 @@ function finishImport(mode) {
   }
 
   const reconcileMessage = formatReconcileSummary(reconcileResults);
-  showImportSummaryDialog({ label, mode, stats, reconcileMessage });
+  showImportSummaryDialog({
+    label,
+    mode,
+    stats,
+    reconcileMessage,
+    sessionAnalysis,
+    strippedSessionKeys,
+  });
+}
+
+function prefValue(preferences, key) {
+  return preferences?.[key]?.value ?? null;
+}
+
+function analyzeSessionPrefIssues(preferences) {
+  const sessionKeys = Object.keys(preferences || {})
+    .filter((key) => SESSION_PREF_KEYS.has(key))
+    .sort();
+  const warnings = [];
+  const unitType = prefValue(preferences, "locationUnitType");
+  const lastCoT = prefValue(preferences, "lastCoTTypeSet");
+
+  if (unitType && lastCoT && String(unitType) !== String(lastCoT)) {
+    warnings.push(
+      `locationUnitType (${unitType}) conflicts with lastCoTTypeSet (${lastCoT}). ` +
+        'ATAK may show Node Type as "Not Recognized [Ground Troop]" and change radial menu behavior.'
+    );
+  }
+
+  if (sessionKeys.length) {
+    const preview = sessionKeys.slice(0, 5).join(", ");
+    warnings.push(
+      `Found ${sessionKeys.length} device session key(s) unsuitable for deployment: ${preview}${
+        sessionKeys.length > 5 ? ", …" : ""
+      }.`
+    );
+  }
+
+  return {
+    session_keys: sessionKeys,
+    warnings,
+    unit_type_conflict: Boolean(unitType && lastCoT && String(unitType) !== String(lastCoT)),
+  };
 }
 
 function openImportXmlDialog() {

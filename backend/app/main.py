@@ -16,6 +16,7 @@ from .pref_generator import DEFAULT_APP_PREFS, generate_pref_xml
 from .pref_parser import parse_pref_xml
 from .schema_enricher import enrich_schema
 from .secrets import redact_preferences
+from .session_prefs import analyze_session_pref_issues, strip_session_preferences
 from .validation import validate_connections
 
 APP_DIR = Path(__file__).resolve().parent
@@ -117,6 +118,7 @@ def generate_pref(request: GenerateRequest) -> Response:
         },
     }
     config["preferences"] = redact_preferences(config["preferences"])
+    config["preferences"], _stripped = strip_session_preferences(config["preferences"])
     xml_content = generate_pref_xml(config)
     filename = request.filename if request.filename.endswith(".pref") else f"{request.filename}.pref"
     return Response(
@@ -130,6 +132,7 @@ def _parse_pref_content(content: str) -> dict:
     try:
         parsed = parse_pref_xml(content)
         parsed["preferences"] = redact_preferences(parsed["preferences"])
+        parsed["session_analysis"] = analyze_session_pref_issues(parsed["preferences"])
         return parsed
     except Exception as exc:
         raise HTTPException(
