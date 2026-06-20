@@ -58,7 +58,8 @@ def test_xlsx_overrides_watchtower_text_for_display_type() -> None:
 
     display_type = fields["locationUnitType"]
     assert display_type["type"] == "select"
-    assert len(display_type["options"]) >= 6
+    assert len(display_type["options"]) == 6
+    assert display_type["options"][0]["value"] == "a-f-G-U-C"
 
 
 def test_boolean_from_xlsx_becomes_tristate_when_watchtower_text() -> None:

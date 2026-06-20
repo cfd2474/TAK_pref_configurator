@@ -54,7 +54,9 @@ def test_action_keys_map_to_reference_pref_keys() -> None:
     assert "atakRoleTypeAction" not in fields
     display_field = fields["locationUnitType"]
     assert display_field["type"] == "select"
-    assert len(display_field["options"]) >= 6
+    assert len(display_field["options"]) == 6
+    assert display_field["options"][0] == {"label": "Ground Troop", "value": "a-f-G-U-C"}
+    assert display_field.get("allow_custom") is True
 
 
 def test_reference_string_ports_use_string_storage() -> None:

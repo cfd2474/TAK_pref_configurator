@@ -144,31 +144,32 @@
       "reference_type": "String",
       "type": "select",
       "exportable": true,
-      "reference_hint": null,
+      "reference_hint": "CoT type string stored in .pref (e.g. a-f-G-U-C). Choose Custom for other symbology types.",
+      "allow_custom": true,
       "options": [
         {
           "label": "Ground Troop",
-          "value": "Ground Troop"
+          "value": "a-f-G-U-C"
         },
         {
           "label": "Armored Vehicle",
-          "value": "Armored Vehicle"
+          "value": "a-f-G-E-V-A"
         },
         {
           "label": "Civilian Vehicle",
-          "value": "Civilian Vehicle"
+          "value": "a-f-G-E-V-C"
         },
         {
           "label": "Generic Air Unit",
-          "value": "Generic Air Unit"
+          "value": "a-f-A"
         },
         {
           "label": "Generic Ground Unit",
-          "value": "Generic Ground Unit"
+          "value": "a-f-G-U"
         },
         {
           "label": "Generic Sea Surface Unit",
-          "value": "Generic Sea Surface Unit"
+          "value": "a-f-S"
         }
       ],
       "input": "select",

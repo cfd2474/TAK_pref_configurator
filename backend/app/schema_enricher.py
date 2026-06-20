@@ -243,6 +243,8 @@ def reference_field_to_schema_field(ref: dict[str, Any]) -> dict[str, Any]:
         field["java_class"] = ref["java_class"]
     if ref.get("reference_hint"):
         field["reference_hint"] = ref["reference_hint"]
+    if ref.get("allow_custom"):
+        field["allow_custom"] = ref["allow_custom"]
     _apply_color_field_metadata(field, ref)
     _apply_boolean_option_label_overrides(field)
     return field
@@ -299,6 +301,8 @@ def apply_reference_to_field(
         field["storage_type"] = ref["storage_type"]
     if ref.get("java_class"):
         field["java_class"] = ref["java_class"]
+    if ref.get("allow_custom"):
+        field["allow_custom"] = ref["allow_custom"]
 
     _apply_color_field_metadata(field, ref)
     _apply_boolean_option_label_overrides(field)

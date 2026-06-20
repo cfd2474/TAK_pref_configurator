@@ -869,12 +869,20 @@ function renderSelectField(field, currentValue, onChange) {
   );
   select.id = `pref-${field.key}`;
 
+  if (field.allow_custom) {
+    const customOpt = document.createElement("option");
+    customOpt.value = "__custom__";
+    customOpt.textContent = "Custom…";
+    select.appendChild(customOpt);
+    if (isCustom) select.value = "__custom__";
+  }
+
   let customInput = null;
   if (field.allow_custom) {
     customInput = document.createElement("input");
     customInput.type = "text";
     customInput.className = "custom-option-input";
-    customInput.placeholder = "Custom path or value";
+    customInput.placeholder = field.placeholder || "Custom CoT type (e.g. a-f-G-U-C)";
     customInput.hidden = !isCustom && select.value !== "__custom__";
     if (isCustom) customInput.value = currentValue;
   }
